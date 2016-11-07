@@ -192,7 +192,7 @@
 	    </executions>
 		  <configuration>
 	    	<outputDirectory>src/main/generated</outputDirectory>
-	    	<clearOutputDir>true</clearOutputDir>
+	    	<!-- <clearOutputDir>true</clearOutputDir> -->
 		    <sources>
 		    	<source>/webapp/WEB-INF/xsd</source>
 		    </sources>
@@ -226,7 +226,6 @@
           	<compilerArgs>
 			  <compilerArg>-Amapstruct.suppressGeneratorTimestamp=true</compilerArg>
 			  <compilerArg>-Amapstruct.suppressGeneratorVersionInfoComment=true</compilerArg>
-					<!-- serve a creare gli oggetti per l'injection spring -->
 			  <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
 			</compilerArgs>
         </configuration>
