@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:int="http://www.springframework.org/schema/integration"
-		xmlns:oxm="http://www.springframework.org/schema/oxm"
-		xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
-		xmlns:int-http="http://www.springframework.org/schema/integration/http"
-		xmlns:int-ws="http://www.springframework.org/schema/integration/ws"
-		xsi:schemaLocation="http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-4.3.xsd
-			http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream-4.3.xsd
-			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-			http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-4.3.xsd
-			http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.3.xsd
-			http://www.springframework.org/schema/integration/ws http://www.springframework.org/schema/integration/ws/spring-integration-ws-4.3.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-ws="http://www.springframework.org/schema/integration/ws"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
+	xmlns:int-http="http://www.springframework.org/schema/integration/http"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration/ws
+						http://www.springframework.org/schema/integration/ws/spring-integration-ws-4.3.xsd
+						http://www.springframework.org/schema/integration
+						http://www.springframework.org/schema/integration/spring-integration-4.3.xsd
+						http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+						http://www.springframework.org/schema/oxm
+						http://www.springframework.org/schema/oxm/spring-oxm-4.3.xsd
+						http://www.springframework.org/schema/integration/stream
+						http://www.springframework.org/schema/integration/stream/spring-integration-stream-4.3.xsd
+						http://www.springframework.org/schema/integration/http
+						http://www.springframework.org/schema/integration/http/spring-integration-http-4.3.xsd">
 
 	<!-- Import marshalling handlers -->
 	<import resource="spring-integration-marshalling-config.xml"/>
@@ -29,28 +35,29 @@
 	
 	<!-- - EASY way -->
  	<int:channel id="routerEasyChannel"></int:channel>
+	<int:service-activator
+			id="easyRouterActivator" input-channel="routerEasyChannel" output-channel="easyForChainChannel" >
+		<bean id="easyRouterActivatorBean" class="it.cg.main.integration.easyway.EasyRouterActivatorBean" />
+	</int:service-activator>
 	
-		<!-- CHAIN easy way -->
-	<int:chain  input-channel="routerEasyChannel"
-				output-channel="easyChainActivatorResultChannel">
-		
-		<int:service-activator id="chainEasyActivator" >
-			<bean id="chainEasyActivatorBean" class="it.cg.main.integration.easyway.chain.EasyActivatorChain" ></bean>
-		</int:service-activator>
+	<!-- CHAIN easy way -->
+	<int:chain input-channel="easyForChainChannel" output-channel="easyChainActivatorResultChannel"   >
 		<int-ws:outbound-gateway
 				marshaller="marshallerOutboundJaxb"  unmarshaller="marshallerOutboundJaxb" 
 				uri="${endpointOut}"
 				header-mapper="headerMapperEasy" >
 		</int-ws:outbound-gateway>
-		
 	</int:chain>
-		<!-- chain easy END -->
-
+	
 	<int:channel id="easyChainActivatorResultChannel"></int:channel>
 	<int:service-activator id="serviceActivatorMeteoPost" input-channel="easyChainActivatorResultChannel" >
 		<bean id="replyEasyWayAcrivator" class="it.cg.main.integration.easyway.reply.ReplyEasyWayAcrivator"></bean>
 	</int:service-activator>
 	<bean id="headerMapperEasy" class="it.cg.main.integration.easyway.ws.HeaderMapperEasy" />
+	
+	
+	
+	
 	
 	
 </beans>

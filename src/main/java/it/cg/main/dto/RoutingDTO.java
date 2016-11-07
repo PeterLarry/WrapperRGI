@@ -2,8 +2,8 @@ package it.cg.main.dto;
 
 import com.blog.samples.webservices.servicedetail.ServiceCallRequest;
 
-public class RoutingDTO
-{
+public class RoutingDTO {
+	
 	private String typeOf;
 	private ServiceCallRequest requestService;
 	private InboundRequestHttpJSON requestHttpService;

@@ -40,11 +40,21 @@
         <artifactId>jackson-databind</artifactId>
         <version>${jackson-version}</version>
     </dependency>
-	<!-- MAPSTRUCT -->
+	<!-- DOZER / MAPSTRUCT -->
 	<dependency>
 		<groupId>org.mapstruct</groupId>
 		<artifactId>mapstruct-jdk8</artifactId>
 		<version>${org.mapstruct.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>net.sf.dozer</groupId>
+	    <artifactId>dozer</artifactId>
+	    <version>${dozer.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>net.sf.dozer</groupId>
+	    <artifactId>dozer-spring</artifactId>
+	    <version>${dozer.version}</version>
 	</dependency>
 	<!-- JAXB plugin -->
 	<dependency>
@@ -154,6 +164,7 @@
 	<properties>
 		<spring.version>4.3.3.RELEASE</spring.version>
 		<integration.version>4.3.4.RELEASE</integration.version>
+		<dozer.version>5.5.1</dozer.version>
 		<jackson-version>2.8.4</jackson-version>
 		<org.mapstruct.version>1.1.0.CR1</org.mapstruct.version>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
@@ -226,7 +237,6 @@
           	<compilerArgs>
 			  <compilerArg>-Amapstruct.suppressGeneratorTimestamp=true</compilerArg>
 			  <compilerArg>-Amapstruct.suppressGeneratorVersionInfoComment=true</compilerArg>
-					<!-- serve a creare gli oggetti per l'injection spring -->
 			  <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
 			</compilerArgs>
         </configuration>

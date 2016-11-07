@@ -1,0 +1,33 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified" 
+			targetNamespace="http://www.w3schools.com/xml/">
+ <xsd:element name="FahrenheitToCelsius">
+	<xsd:complexType>
+	   <xsd:sequence>
+		  <xsd:element minOccurs="0" maxOccurs="1" name="Fahrenheit" type="xsd:string"/>
+	   </xsd:sequence>
+	</xsd:complexType>
+ </xsd:element>
+ <xsd:element name="FahrenheitToCelsiusResponse">
+	<xsd:complexType>
+	   <xsd:sequence>
+		  <xsd:element minOccurs="0" maxOccurs="1" name="FahrenheitToCelsiusResult" type="xsd:string"/>
+	   </xsd:sequence>
+	</xsd:complexType>
+ </xsd:element>
+ <xsd:element name="CelsiusToFahrenheit">
+	<xsd:complexType>
+	   <xsd:sequence>
+		  <xsd:element minOccurs="0" maxOccurs="1" name="Celsius" type="xsd:string"/>
+	   </xsd:sequence>
+	</xsd:complexType>
+ </xsd:element>
+ <xsd:element name="CelsiusToFahrenheitResponse">
+	<xsd:complexType>
+	   <xsd:sequence>
+		  <xsd:element minOccurs="0" maxOccurs="1" name="CelsiusToFahrenheitResult" type="xsd:string"/>
+	   </xsd:sequence>
+	</xsd:complexType>
+ </xsd:element>
+ <xsd:element name="string" nillable="true" type="xsd:string"/>
+</xsd:schema>

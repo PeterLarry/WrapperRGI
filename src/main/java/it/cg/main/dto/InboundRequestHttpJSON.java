@@ -5,11 +5,19 @@ import java.io.Serializable;
 public class InboundRequestHttpJSON  implements Serializable
 {
 
+	private static final long serialVersionUID = 1L;
 	
-	private static final long serialVersionUID = -4058572266373539270L;
-
+	public InboundRequestHttpJSON() { }
+	
+	public InboundRequestHttpJSON(String testo, Integer numero)
+	{
+		this.testo=testo;
+		this.numero=numero;
+	}
+	
 	private String testo;
 	private Integer numero;
+	
 	
 	public String getTesto() {
 		return testo;

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:web-services="http://www.springframework.org/schema/web-services"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+						http://www.springframework.org/schema/web-services
+						http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	
+	<context:annotation-config />
+	<context:component-scan base-package="it.cg" ></context:component-scan>
+	
+	<!-- Integration config -->
+	<import resource="spring-integration-config.xml"/>
+	
+	<web-services:dynamic-wsdl id="springWsFirstAccess"
+				portTypeName="wsPortInbound" locationUri="/wrapper">
+		<web-services:xsd location="WEB-INF/xsd/ServiceCallServiceOperations.xsd"/>
+	</web-services:dynamic-wsdl>
+	
+	<bean class="org.springframework.ws.server.endpoint.mapping.UriEndpointMapping">
+		<property name="defaultEndpoint" ref="wsPortInbound"></property>
+	</bean>
+	
+</beans>

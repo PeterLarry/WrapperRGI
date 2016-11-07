@@ -10,7 +10,6 @@ import com.pass.global.WSPassProHelloWorldOperationResponse;
 @Mapper
 public interface EasyMapperMapstruct
 {
-	
 	@Mappings({
 		@Mapping(source="return", target="serviceType"),
 		@Mapping(source="return", target="return")

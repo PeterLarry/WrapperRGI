@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebListener;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.dozer.spring.DozerBeanMapperFactoryBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -24,8 +26,30 @@ import org.springframework.core.io.FileSystemResource;
 //@ComponentScan(basePackages={"it.cg.*"})
 public class ApplicationContextConfig implements ServletContextListener
 { 
+	@Value("${dozer-global-config}")
+	private String pathDozerGlobConfig;
+	
 	private static Logger logger = Logger.getLogger("it.cg.main.init.ApplicationContextConfig");
 	
+	/**
+	 * Config dozer factory bean than
+	 * @return
+	 */
+	@Bean(name = "dozerBeanMapperFactoryBean")
+    public DozerBeanMapperFactoryBean configDozer()
+	{
+        DozerBeanMapperFactoryBean mapper = new DozerBeanMapperFactoryBean();
+        AbstractResource resources[] = new AbstractResource[] {
+        		new FileSystemResource(pathDozerGlobConfig)
+        };
+        
+        
+		mapper.setMappingFiles(resources);
+        return mapper;
+    }
+	
+	
+
 	/**
 	 * Load configuration external and internal
 	 * @return

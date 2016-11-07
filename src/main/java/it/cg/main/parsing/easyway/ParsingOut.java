@@ -1,4 +1,4 @@
-package it.cg.main.integration.easyway.parsing;
+package it.cg.main.parsing.easyway;
 
 import com.pass.global.WSPassProHelloWorldOperation;
 
@@ -6,7 +6,6 @@ import it.cg.main.dto.RoutingDTO;
 
 public class ParsingOut
 {
-	
 	
 	public WSPassProHelloWorldOperation getParsing(RoutingDTO request)
 	{
