@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	
+<!--  	<bean id="inboundMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller" >
+		<property name="contextPath" value="com.blog.samples.webservices.servicedetail" ></property>
+	</bean>
+	 -->
+ 	<bean id="marshallerOutboundJaxb" class="org.springframework.oxm.jaxb.Jaxb2Marshaller" >
+		<property name="contextPaths" value="com.pass.global"></property>
+	</bean>
+		
+		
+</beans>

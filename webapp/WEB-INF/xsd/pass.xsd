@@ -1,0 +1,2701 @@
+<xs:schema
+		targetNamespace="http://rgi.it/WSPassPro"
+		xmlns:tns="http://rgi.it/WSPassPro"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:element name="WSPassProHelloWorldOperation" type="tns:WSPassProHelloWorldOperation"  />
+   <xs:element name="WSPassProHelloWorldOperationResponse" type="tns:WSPassProHelloWorldOperationResponse"/>
+   <xs:element name="calcolaPremio" type="tns:calcolaPremio"/>
+   <xs:element name="calcolaPremioProdotto" type="tns:calcolaPremioProdotto"/>
+   <xs:element name="calcolaPremioProdottoResponse" type="tns:calcolaPremioProdottoResponse"/>
+   <xs:element name="calcolaPremioResponse" type="tns:calcolaPremioResponse"/>
+   <xs:element name="calculateLifePremium" type="tns:calculateLifePremium"/>
+   <xs:element name="calculateLifePremiumResponse" type="tns:calculateLifePremiumResponse"/>
+   <xs:element name="calculatePremium" type="tns:calculatePremium"/>
+   <xs:element name="calculatePremiumResponse" type="tns:calculatePremiumResponse"/>
+   <xs:element name="eseguiAzioni" type="tns:eseguiAzioni"/>
+   <xs:element name="eseguiAzioniProdotto" type="tns:eseguiAzioniProdotto"/>
+   <xs:element name="eseguiAzioniProdottoResponse" type="tns:eseguiAzioniProdottoResponse"/>
+   <xs:element name="eseguiAzioniResponse" type="tns:eseguiAzioniResponse"/>
+   <xs:element name="executeActions" type="tns:executeActions"/>
+   <xs:element name="executeActionsResponse" type="tns:executeActionsResponse"/>
+   <xs:element name="getAssets" type="tns:getAssets"/>
+   <xs:element name="getAssetsResponse" type="tns:getAssetsResponse"/>
+   <xs:element name="getBeni" type="tns:getBeni"/>
+   <xs:element name="getBeniProdotto" type="tns:getBeniProdotto"/>
+   <xs:element name="getBeniProdottoResponse" type="tns:getBeniProdottoResponse"/>
+   <xs:element name="getBeniResponse" type="tns:getBeniResponse"/>
+   <xs:element name="getClauses" type="tns:getClauses"/>
+   <xs:element name="getClausesResponse" type="tns:getClausesResponse"/>
+   <xs:element name="getClausoleRischiBene" type="tns:getClausoleRischiBene"/>
+   <xs:element name="getClausoleRischiBeneProdotto" type="tns:getClausoleRischiBeneProdotto"/>
+   <xs:element name="getClausoleRischiBeneProdottoResponse" type="tns:getClausoleRischiBeneProdottoResponse"/>
+   <xs:element name="getClausoleRischiBeneResponse" type="tns:getClausoleRischiBeneResponse"/>
+   <xs:element name="getCurrencies" type="tns:getCurrencies"/>
+   <xs:element name="getCurrenciesResponse" type="tns:getCurrenciesResponse"/>
+   <xs:element name="getCurrenciesTax" type="tns:getCurrenciesTax"/>
+   <xs:element name="getCurrenciesTaxResponse" type="tns:getCurrenciesTaxResponse"/>
+   <xs:element name="getDatiTecnici" type="tns:getDatiTecnici"/>
+   <xs:element name="getDatiTecniciResponse" type="tns:getDatiTecniciResponse"/>
+   <xs:element name="getElencoProdotti" type="tns:getElencoProdotti"/>
+   <xs:element name="getElencoProdottiResponse" type="tns:getElencoProdottiResponse"/>
+   <xs:element name="getFactors" type="tns:getFactors"/>
+   <xs:element name="getFactorsResponse" type="tns:getFactorsResponse"/>
+   <xs:element name="getFattoriRischiBene" type="tns:getFattoriRischiBene"/>
+   <xs:element name="getFattoriRischiBeneProdotto" type="tns:getFattoriRischiBeneProdotto"/>
+   <xs:element name="getFattoriRischiBeneProdottoResponse" type="tns:getFattoriRischiBeneProdottoResponse"/>
+   <xs:element name="getFattoriRischiBeneResponse" type="tns:getFattoriRischiBeneResponse"/>
+   <xs:element name="getLogicWarrantySelectionJS" type="tns:getLogicWarrantySelectionJS"/>
+   <xs:element name="getLogicWarrantySelectionJSResponse" type="tns:getLogicWarrantySelectionJSResponse"/>
+   <xs:element name="getLogicaSelezioneGaranzieJS" type="tns:getLogicaSelezioneGaranzieJS"/>
+   <xs:element name="getLogicaSelezioneGaranzieJSProdotto" type="tns:getLogicaSelezioneGaranzieJSProdotto"/>
+   <xs:element name="getLogicaSelezioneGaranzieJSProdottoResponse" type="tns:getLogicaSelezioneGaranzieJSProdottoResponse"/>
+   <xs:element name="getLogicaSelezioneGaranzieJSResponse" type="tns:getLogicaSelezioneGaranzieJSResponse"/>
+   <xs:element name="getOperations" type="tns:getOperations"/>
+   <xs:element name="getOperationsResponse" type="tns:getOperationsResponse"/>
+   <xs:element name="getOperazioniProdotto" type="tns:getOperazioniProdotto"/>
+   <xs:element name="getOperazioniProdottoResponse" type="tns:getOperazioniProdottoResponse"/>
+   <xs:element name="getProductsList" type="tns:getProductsList"/>
+   <xs:element name="getProductsListResponse" type="tns:getProductsListResponse"/>
+   <xs:element name="getQuestionnaire" type="tns:getQuestionnaire"/>
+   <xs:element name="getQuestionnaireResponse" type="tns:getQuestionnaireResponse"/>
+   <xs:element name="getRischiBene" type="tns:getRischiBene"/>
+   <xs:element name="getRischiBeneProdotto" type="tns:getRischiBeneProdotto"/>
+   <xs:element name="getRischiBeneProdottoResponse" type="tns:getRischiBeneProdottoResponse"/>
+   <xs:element name="getRischiBeneResponse" type="tns:getRischiBeneResponse"/>
+   <xs:element name="getRisks" type="tns:getRisks"/>
+   <xs:element name="getRisksResponse" type="tns:getRisksResponse"/>
+   <xs:element name="getTechnicalData" type="tns:getTechnicalData"/>
+   <xs:element name="getTechnicalDataResponse" type="tns:getTechnicalDataResponse"/>
+   <xs:element name="getValuedProduct" type="tns:getValuedProduct"/>
+   <xs:element name="getValuedProductResponse" type="tns:getValuedProductResponse"/>
+   <xs:element name="getVehicleInfoes" type="tns:getVehicleInfoes"/>
+   <xs:element name="getVehicleInfoesResponse" type="tns:getVehicleInfoesResponse"/>
+   <xs:complexType name="getTechnicalData">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetTechnicalDataRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetTechnicalDataRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetTechnicalDataInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetTechnicalDataInput">
+      <xs:sequence>
+         <xs:element name="langCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsProduct">
+      <xs:sequence>
+         <xs:element name="activityPacket" type="tns:wsActivityPacket" minOccurs="0"/>
+         <xs:element name="agreementCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="agreements" type="tns:wsAgreement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="agreementsDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="applicationCertificateManagement" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="assetManagementMode" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="assets" type="tns:wsAsset" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="beneficiaries" type="tns:passProBeneficiary" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clauses" type="tns:wsClause" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="coHolders" type="xs:boolean"/>
+         <xs:element name="coInsurance" type="xs:int"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="commonRisk" type="xs:int"/>
+         <xs:element name="companies" type="tns:wsCompany" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="companyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="couponDiscount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="currencies" type="tns:wsCurrency" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="currencyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="customProperties" type="tns:wsProperty" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="dependenceBetweenRights" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="derogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountApplicationPremiumType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="discountedPremiumAdjustedMin" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="discountedPremiumBelowMin" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="enoughDataForQuotation" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="exceptionListCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="facilitatedTaxAllowed" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="facilitatedTaxUse" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="factors" type="tns:wsFactor" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="flex" type="tns:passProFlex" minOccurs="0"/>
+         <xs:element name="flex1Discount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="flex2" type="tns:passProFlex" minOccurs="0"/>
+         <xs:element name="flex2Discount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="flexCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="flexDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="holderType" type="xs:int"/>
+         <xs:element name="indexType" type="tns:passProIndexType" minOccurs="0"/>
+         <xs:element name="indexTypes" type="tns:passProIndexType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="indexation" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="indirectCoInsurance" type="xs:int"/>
+         <xs:element name="instalmentDuration" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="insuredAsPolicyholder" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="levelMessagges" type="tns:wsActionLevel" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="life" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="lifePremium" type="tns:passProLifePremiumGroup" minOccurs="0"/>
+         <xs:element name="linkedPolicies" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maximumActualQuotedMinimumPremiumPerc" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="maximumScore" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="messages" type="tns:wsMessage" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="minimumActualQuotedMinimumPremiumPerc" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="minimumPremium" type="xs:double"/>
+         <xs:element name="minimumPremiumActualQuotedPerc" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="minimumPremiumMode" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minimumScore" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="multiAsset" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="obtainIndexTypes" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="openDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="operationCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="operationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="packetUnitSelectionMode" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="paymentFrequencies" type="tns:wsPaymentFrequency" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="paymentFrequencyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="paymentMethodCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="paymentMethodLifePremium" type="tns:passProPaymentMethodLifePremium" minOccurs="0"/>
+         <xs:element name="paymentMethods" type="tns:passProPaymentMethod" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="plusDiscount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="policyDefDays" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policyDefMonths" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policyDefYears" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policyDuration" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policyMaxDays" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policyMaxMonths" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policyMaxYears" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policyMinDays" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policyMinMonths" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policyMinYears" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="premiumAdjustedMin" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premiumAdjustment" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="premiumBelowMin" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premiumRegulationTypes" type="tns:passProPremiumRegulationType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="questionnaires" type="tns:wsQuestionnaire" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="quotable" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="quoteValidityDays" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="rescindability" type="xs:short"/>
+         <xs:element name="rescindabilityDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="rescindabilityDuration" type="xs:int"/>
+         <xs:element name="restriction" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="retrieveDependencies" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="retrieveDependents" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="rights" type="tns:passProRightsGroup" minOccurs="0"/>
+         <xs:element name="rightsAllowed" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="rightsAmountType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="secondRisk" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="supplementaryPolicy" type="xs:int"/>
+         <xs:element name="tacitRenewal" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="targetCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="targets" type="tns:passProTarget" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="taxDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="taxFree" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="taxTypes" type="tns:passProTaxType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="taxesCalculationMode" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="technicalDivisionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="transcoderCode1" type="xs:string" minOccurs="0"/>
+         <xs:element name="transcoderCode2" type="xs:string" minOccurs="0"/>
+         <xs:element name="type" type="tns:wsType" minOccurs="0"/>
+         <xs:element name="userLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="versionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="versionEndDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="versionStartDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="warranties" type="tns:passProWarranty" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="yearDuration" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsActivityPacket">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="levelNum" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="levels" type="tns:wsPacketLevel" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="typeInt32" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="int" type="xs:int"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsPacketLevel">
+      <xs:sequence>
+         <xs:element name="activityList" type="tns:wsActivityEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="entity" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="levelCode" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsActivityEntity">
+      <xs:sequence>
+         <xs:element name="ANIACode" type="xs:string" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="supDescription" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsAgreement">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="commissionListCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountCoeff" type="xs:double"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="flexListCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="flexListCode2" type="xs:string" minOccurs="0"/>
+         <xs:element name="minPremium" type="xs:double"/>
+         <xs:element name="renewalBehaviour" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="tariffReferenceDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="transcoderCode1" type="xs:string" minOccurs="0"/>
+         <xs:element name="transcoderCode2" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="typeData" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="data" type="xs:dateTime" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="typeBooleano" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="boolean" type="xs:boolean"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsAsset">
+      <xs:sequence>
+         <xs:element name="ANIAVehicleTypeCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="activityPacket" type="tns:wsActivityPacket" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="customProperties" type="tns:wsProperty" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="dataDownloadFromANIA" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="dataDownloadPriority" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="driversInMasterRepository" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="extensions" type="tns:wsAssetExtension" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="firstAddressMode" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="firstPartyMode" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="inheritSettingsInstances" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="instances" type="tns:wsAssetInstance" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="lifePremium" type="tns:passProLifePremiumGroup" minOccurs="0"/>
+         <xs:element name="maxActivities" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxDrivers" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxInstance" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxLocations" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxOwners" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxParties" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxTenants" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minActivities" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minDrivers" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minInstance" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minLocations" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minOwners" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minParties" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minTenants" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ownersInMasterRepository" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="partyInMasterRepository" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="quotable" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="tenantsInMasterRepository" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="type" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="usedJournal" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="vehicles" type="tns:wsVehicle" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsProperty">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="format" type="xs:string" minOccurs="0"/>
+         <xs:element name="type" type="xs:short"/>
+         <xs:element name="value" type="xs:string" minOccurs="0"/>
+         <xs:element name="values" type="tns:wsPropListValue" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsPropListValue">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="typeInt64" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="long" type="xs:long"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsPremiumGroup">
+      <xs:sequence>
+         <xs:element name="annual" type="tns:wsPremium" minOccurs="0"/>
+         <xs:element name="instalment" type="tns:wsPremium" minOccurs="0"/>
+         <xs:element name="subscriptionInstalment" type="tns:wsPremium" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsPremium">
+      <xs:sequence>
+         <xs:element name="accessories" type="xs:double"/>
+         <xs:element name="antiracket" type="xs:double"/>
+         <xs:element name="gross" type="xs:double"/>
+         <xs:element name="net" type="xs:double"/>
+         <xs:element name="paymentFrequencyInterest" type="xs:double"/>
+         <xs:element name="paymentFrequencyInterestAccessories" type="xs:double"/>
+         <xs:element name="paymentFrequencyInterestNet" type="xs:double"/>
+         <xs:element name="SSN" type="xs:double"/>
+         <xs:element name="taxable" type="xs:double"/>
+         <xs:element name="taxes" type="xs:double"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsAssetExtension">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsAssetInstance">
+      <xs:sequence>
+         <xs:element name="activities" type="tns:wsActivity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="activityPacket" type="tns:wsActivityPacket" minOccurs="0"/>
+         <xs:element name="assetCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="clauses" type="tns:wsClause" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="enoughDataForQuotation" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="extensionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="extensions" type="tns:wsAssetExtension" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="extraDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="factors" type="tns:wsFactor" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="lifePremium" type="tns:passProLifePremiumGroup" minOccurs="0"/>
+         <xs:element name="messageLevels" type="tns:wsActionLevel" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="messages" type="tns:wsMessage" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="name" type="xs:string" minOccurs="0"/>
+         <xs:element name="packetUnitCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="packets" type="tns:passProPacket" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="questionnaires" type="tns:wsQuestionnaire" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="secondaryActivityPacket" type="tns:wsActivityPacket" minOccurs="0"/>
+         <xs:element name="sections" type="tns:wsAssetSection" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="vehicle" type="tns:wsVehicle" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsActivity">
+      <xs:sequence>
+         <xs:element name="additionalDescriptionMode" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="level1Code" type="xs:string" minOccurs="0"/>
+         <xs:element name="level1Values" type="tns:wsActivityEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="level2Code" type="xs:string" minOccurs="0"/>
+         <xs:element name="level2Values" type="tns:wsActivityEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="level3Code" type="xs:string" minOccurs="0"/>
+         <xs:element name="level3Values" type="tns:wsActivityEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="level4Code" type="xs:string" minOccurs="0"/>
+         <xs:element name="level4Values" type="tns:wsActivityEntity" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="note" type="xs:string" minOccurs="0"/>
+         <xs:element name="packetCode" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsClause">
+      <xs:sequence>
+         <xs:element name="applicationClause" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="children" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="compulsoryText" type="xs:boolean"/>
+         <xs:element name="customProperties" type="tns:wsProperty" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="derogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="enabled" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="endDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="format" type="xs:string" minOccurs="0"/>
+         <xs:element name="hasFactor" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="helpFile" type="xs:string" minOccurs="0"/>
+         <xs:element name="manuallySet" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="parents" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="retrieveDependencies" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="retrieveDependents" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="selected" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="startDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="text" type="xs:string" minOccurs="0"/>
+         <xs:element name="textFormat" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="textType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="transcoderCode1" type="xs:string" minOccurs="0"/>
+         <xs:element name="transcoderCode2" type="xs:string" minOccurs="0"/>
+         <xs:element name="type" type="tns:passProClauseType" minOccurs="0"/>
+         <xs:element name="visibilityLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="visible" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="visibleOnQuote" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProClauseType">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsFactor">
+      <xs:sequence>
+         <xs:element name="applicationFactor" type="xs:boolean"/>
+         <xs:element name="children" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="claims" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="compulsory" type="xs:boolean"/>
+         <xs:element name="configurable" type="xs:boolean"/>
+         <xs:element name="convertedValue" type="xs:string" minOccurs="0"/>
+         <xs:element name="customProperties" type="tns:wsProperty" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="defaultVal" type="xs:string" minOccurs="0"/>
+         <xs:element name="dependent" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="derogationLevelValuesList" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="dynamic" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="dynamicVisibility" type="xs:boolean"/>
+         <xs:element name="dynamicVisibilityOnQuote" type="xs:boolean"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="extraValue" type="xs:string" minOccurs="0"/>
+         <xs:element name="factorClass" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="fields" type="tns:wsStructureField" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="format" type="xs:string" minOccurs="0"/>
+         <xs:element name="formatter" type="tns:passProFactorFormat" minOccurs="0"/>
+         <xs:element name="helpFile" type="xs:string" minOccurs="0"/>
+         <xs:element name="indexation" type="xs:boolean"/>
+         <xs:element name="iterator" type="xs:boolean"/>
+         <xs:element name="life" type="xs:boolean"/>
+         <xs:element name="manuallySet" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="modifiable" type="xs:boolean"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="parameterType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="parents" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="persistent" type="xs:boolean"/>
+         <xs:element name="retrieveDependencies" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="retrieveDependents" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="SQL" type="xs:boolean"/>
+         <xs:element name="transcoderCode1" type="xs:string" minOccurs="0"/>
+         <xs:element name="transcoderCode2" type="xs:string" minOccurs="0"/>
+         <xs:element name="type" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="value" type="xs:string" minOccurs="0"/>
+         <xs:element name="values" type="tns:wsListValue" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="vector" type="xs:boolean"/>
+         <xs:element name="vectorDimension" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="vectorValues" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="visibilityLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="visible" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="visibleOnConsultation" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="visibleOnQuote" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsStructureField">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="decimals" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProFactorFormat">
+      <xs:sequence>
+         <xs:element name="alignment" type="xs:int"/>
+         <xs:element name="format" type="xs:string" minOccurs="0"/>
+         <xs:element name="grouping" type="xs:boolean"/>
+         <xs:element name="html" type="xs:boolean"/>
+         <xs:element name="maxLen" type="xs:int"/>
+         <xs:element name="maxRowLen" type="xs:int"/>
+         <xs:element name="multiline" type="xs:boolean"/>
+         <xs:element name="pad" type="xs:int"/>
+         <xs:element name="precision" type="xs:int"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsListValue">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="structFieldValues" type="xs:double" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="transcoderCode1" type="xs:string" minOccurs="0"/>
+         <xs:element name="transcoderCode2" type="xs:string" minOccurs="0"/>
+         <xs:element name="value" type="xs:string" minOccurs="0"/>
+         <xs:element name="visibilityLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="visibleOnQuote" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProLifePremiumGroup">
+      <xs:sequence>
+         <xs:element name="instalment" type="tns:passProLifePremium" minOccurs="0"/>
+         <xs:element name="nextInstalment" type="tns:passProLifePremium" minOccurs="0"/>
+         <xs:element name="policy" type="tns:passProLifePremium" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProLifePremium">
+      <xs:sequence>
+         <xs:element name="gross" type="xs:double"/>
+         <xs:element name="net" type="xs:double"/>
+         <xs:element name="paymentFrequencyInterest" type="xs:double"/>
+         <xs:element name="rights" type="xs:double"/>
+         <xs:element name="taxes" type="xs:double"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsActionLevel">
+      <xs:sequence>
+         <xs:element name="actionLevelCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="messages" type="tns:wsMessage" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsMessage">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="derogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="helpFile" type="xs:string" minOccurs="0"/>
+         <xs:element name="message" type="xs:string" minOccurs="0"/>
+         <xs:element name="messageLevel" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProPacket">
+      <xs:sequence>
+         <xs:element name="children" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="enabled" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="enoughDataForQuotation" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="initialState" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="parents" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="retrieveDependencies" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="retrieveDependents" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="selected" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="units" type="tns:passProPacketUnit" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProPacketUnit">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="enabled" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="enoughDataForQuotation" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="sectionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="selected" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsQuestionnaire">
+      <xs:sequence>
+         <xs:element name="category" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="codeType" type="xs:string" minOccurs="0"/>
+         <xs:element name="codeVersion" type="xs:string" minOccurs="0"/>
+         <xs:element name="compulsory" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="descriptionType" type="xs:string" minOccurs="0"/>
+         <xs:element name="included" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="openDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="questions" type="tns:wsQuestion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="score" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsQuestion">
+      <xs:sequence>
+         <xs:element name="answers" type="tns:wsAnswer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="conditions" type="tns:wsQuestCondition" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="status" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="text" type="xs:string" minOccurs="0"/>
+         <xs:element name="visible" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsAnswer">
+      <xs:sequence>
+         <xs:element name="defaultValue" type="xs:string" minOccurs="0"/>
+         <xs:element name="factorCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="factorDescr" type="xs:string" minOccurs="0"/>
+         <xs:element name="factorDescrExt" type="xs:string" minOccurs="0"/>
+         <xs:element name="factorFormat" type="xs:string" minOccurs="0"/>
+         <xs:element name="factorType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="formatter" type="tns:passProFactorFormat" minOccurs="0"/>
+         <xs:element name="notes" type="xs:string" minOccurs="0"/>
+         <xs:element name="paramType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="value" type="xs:string" minOccurs="0"/>
+         <xs:element name="values" type="tns:wsAnswerValue" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsAnswerValue">
+      <xs:sequence>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="notes" type="xs:string" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="score" type="xs:double"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsQuestCondition">
+      <xs:sequence>
+         <xs:element name="status" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="terms" type="tns:wsQuestTerm" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsQuestTerm">
+      <xs:sequence>
+         <xs:element name="factorCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="operator" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="questionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="value" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsAssetSection">
+      <xs:sequence>
+         <xs:element name="clauses" type="tns:wsClause" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="factors" type="tns:wsFactor" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="life" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="lifePremium" type="tns:passProLifePremiumGroup" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="units" type="tns:wsAssetUnit" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsAssetUnit">
+      <xs:sequence>
+         <xs:element name="accessory" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="admittedPremium" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="annuityPaymentFrequencies" type="tns:wsPaymentFrequency" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="annuityPaymentFrequencyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="base" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="baseCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="beneficiaries" type="tns:passProBeneficiary" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="children" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clauses" type="tns:wsClause" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="complementary" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="couponDiscount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="customProperties" type="tns:wsProperty" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="decreasePaymentFrequencies" type="tns:wsPaymentFrequency" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="decreasePaymentFrequencyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="derogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountable" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="editablePremium" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="editablePremiumIfZero" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="enable" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="factors" type="tns:wsFactor" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="flex1Discount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="flex2Discount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="indexType" type="tns:passProIndexType" minOccurs="0"/>
+         <xs:element name="inputPremiumType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="instances" type="tns:wsUnitInstance" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="life" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="lifePremium" type="tns:passProLifePremiumGroup" minOccurs="0"/>
+         <xs:element name="loanInterestsPaymentFrequencies" type="tns:wsPaymentFrequency" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="loanInterestsPaymentFrequencyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="manuallySet" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="maxInstances" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minInstances" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="parents" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="paymentMethod" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="plusDiscount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="retrieveDependencies" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="retrieveDependents" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="riskCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="selection" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="tacitRenewal" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="tariffDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="transcoderCode1" type="xs:string" minOccurs="0"/>
+         <xs:element name="transcoderCode2" type="xs:string" minOccurs="0"/>
+         <xs:element name="unitInAgreement" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="visibilityLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="visible" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="warrantyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="warrantyUnitShares" type="tns:passProWarrantyUnitShare" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="withdrawalAccessory" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsPaymentFrequency">
+      <xs:sequence>
+         <xs:element name="additionalInterest" type="xs:double"/>
+         <xs:element name="additionalInterestRefund" type="xs:boolean"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="derogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="extension" type="xs:boolean"/>
+         <xs:element name="instalmentMinPremium" type="xs:double"/>
+         <xs:element name="instalmentMinPremiumDerogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="instalmentNumber" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="interests" type="xs:double"/>
+         <xs:element name="maxDurationDays" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minDurationDays" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="paymentFrequencyType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="policy" type="xs:boolean"/>
+         <xs:element name="premiumAdjustment" type="xs:boolean"/>
+         <xs:element name="quote" type="xs:boolean"/>
+         <xs:element name="settlementRights" type="xs:double"/>
+         <xs:element name="subscriptionInstalmentRights" type="xs:double"/>
+         <xs:element name="visibilityLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="visible" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProBeneficiary">
+      <xs:sequence>
+         <xs:element name="beneficiaryType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="maxSubjectsAnagraphicalNumber" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minSubjectsAnagraphicalNumber" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProExtDiscount">
+      <xs:sequence>
+         <xs:element name="accessories" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="amount" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="coeff" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="effectiveAmount" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="effectiveCoeff" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="effectivePercentage" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="gross" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="manuallySet" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="net" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="percentage" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="taxable" type="tns:typeReal" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="typeReal" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="real" type="xs:double"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProIndexType">
+      <xs:sequence>
+         <xs:element name="adjustmentMaxPerc" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="adjustmentMinPerc" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="increasePerc" type="xs:double"/>
+         <xs:element name="indexValue" type="xs:double"/>
+         <xs:element name="operativity" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="rebasingCoeff" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="referenceBase" type="tns:typeData" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsUnitInstance">
+      <xs:sequence>
+         <xs:element name="calculatedPremium" type="xs:boolean"/>
+         <xs:element name="clauses" type="tns:wsClause" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="commission" type="tns:passProCommission" minOccurs="0"/>
+         <xs:element name="couponDiscount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="discountedPremiumAdjustedMin" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="discountedPremiumBelowMin" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="enableTariffFormulaLog" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="enoughDataForQuotation" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="errors" type="tns:wsMessage" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="evaluationFormulasMode" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="exceptionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="extraDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="factors" type="tns:wsFactor" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="flex" type="tns:passProFlex" minOccurs="0"/>
+         <xs:element name="flex1Discount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="flex2" type="tns:passProFlex" minOccurs="0"/>
+         <xs:element name="flex2Discount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="flexDiscount" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="formulas" type="tns:wsFormula" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="generationDevelopmentsMode" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="lifePremium" type="tns:passProLifePremiumGroup" minOccurs="0"/>
+         <xs:element name="name" type="xs:string" minOccurs="0"/>
+         <xs:element name="plusDiscount" type="tns:passProExtDiscount" minOccurs="0"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="premiumAdjustedMin" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premiumBelowMin" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="questionnaires" type="tns:wsQuestionnaire" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="quotes" type="tns:passProQuote" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="settedPremium" type="xs:boolean"/>
+         <xs:element name="tariffFormulaLog" type="xs:string" minOccurs="0"/>
+         <xs:element name="tariffPremium" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="tariffPremiumType" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="tariffVersionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="tariffVersionId" type="tns:typeInt64" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProCommission">
+      <xs:sequence>
+         <xs:element name="activeCommListCurtailmentDisc" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="collAccPre" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="collAccRec" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="collAccTemp" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="collFirstAnnualPre" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="collFirstAnnualRec" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="collNetPre" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="collNetRec" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="collNetRenewalPre" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="collNetTemp" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentIACQR" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentIAIPR" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentICOFI" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentICOGE" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentIINCR" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentIRCPA" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPADIR" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPAIFR" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPAIMO" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPAIPR" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPAIRI" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPAPRN" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPASPA" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPASPP" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPASPS" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPASPT" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPCOFI" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPCOGE" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPIDIR" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPIIFR" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPIIMO" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPIIPR" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPIIRI" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPIPRN" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPISPA" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPISPP" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPISPS" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="componentPISPT" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="derogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="maxYearCalcPre" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="overCollAccRec" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="overCollNetRec" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="overPurcAccRec" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="overPurcNetRec" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="purcAccPre" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="purcAccRec" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="purcIndexLinked" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="purcInstalments" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="purcNetPre" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="purcNetRec" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="purcNetRenewalPre" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="purcRenewal" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="regPrAcc" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="regPrNet" type="tns:typeReal" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProFlex">
+      <xs:sequence>
+         <xs:element name="averageDiscount" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="averageMiscountDerogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="defaultDiscount" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="discountStep" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="erosion" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="maximumDiscount" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="maximunMiscountDerogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minimumDiscount" type="tns:typeReal" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsFormula">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="complexValue" type="tns:wsComplexValue" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="editable" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="persistent" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="visible" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsComplexValue">
+      <xs:sequence>
+         <xs:element name="error" type="xs:string" minOccurs="0"/>
+         <xs:element name="value" type="tns:typeReal" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProQuote">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="developments" type="tns:passProQuoteDevelopment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProQuoteDevelopment">
+      <xs:sequence>
+         <xs:element name="quoteColums" type="tns:passProQuoteDevelopmentColumn" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="quoteRows" type="tns:passProQuoteDevelopmentRow" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="rateDescription" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProQuoteDevelopmentColumn">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="order" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="outputFormat" type="xs:string" minOccurs="0"/>
+         <xs:element name="visible" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProQuoteDevelopmentRow">
+      <xs:sequence>
+         <xs:element name="complexValues" type="tns:wsComplexValue" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProWarrantyUnitShare">
+      <xs:sequence>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="ministerialDivisionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="percentage" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="sectionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="subDivisionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="unitCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="warrantyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="warrantyDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="warrantyExtendedDescription" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsVehicle">
+      <xs:sequence>
+         <xs:element name="ANIACode" type="xs:string" minOccurs="0"/>
+         <xs:element name="adminExceptions" type="xs:boolean"/>
+         <xs:element name="assetExtension" type="xs:boolean"/>
+         <xs:element name="category" type="xs:string" minOccurs="0"/>
+         <xs:element name="classCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="classDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="classes" type="tns:wsVehicleClass" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="sectorCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="sectorDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="technicalData" type="xs:string" minOccurs="0"/>
+         <xs:element name="useCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="useDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="usedJournal" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="uses" type="tns:wsVehicleUse" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsVehicleClass">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsVehicleUse">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsCompany">
+      <xs:sequence>
+         <xs:element name="ANIACode" type="xs:string" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="defRateAccessories" type="xs:double"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="isvapCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="maxRateAccessories" type="xs:double"/>
+         <xs:element name="minRateAccessories" type="xs:double"/>
+         <xs:element name="productDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="productExtendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="technicalDivisionCode" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsCurrency">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="decimals" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="id" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="reference" type="xs:boolean"/>
+         <xs:element name="rndThreshold" type="xs:double"/>
+         <xs:element name="rndValue" type="xs:double"/>
+         <xs:element name="symbol" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProPaymentMethodLifePremium">
+      <xs:sequence>
+         <xs:element name="annual" type="tns:passProLifePremiumGroup" minOccurs="0"/>
+         <xs:element name="recurringUnique" type="tns:passProLifePremiumGroup" minOccurs="0"/>
+         <xs:element name="unique" type="tns:passProLifePremiumGroup" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProPaymentMethod">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProPremiumRegulationType">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProRightsGroup">
+      <xs:sequence>
+         <xs:element name="annual" type="tns:passProRights" minOccurs="0"/>
+         <xs:element name="instalment" type="tns:passProRights" minOccurs="0"/>
+         <xs:element name="subscriptionInstalment" type="tns:passProRights" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProRights">
+      <xs:sequence>
+         <xs:element name="amount" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="antiracket" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="commissionRate" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="defaultPercentage" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="defaultValue" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="gross" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="manuallySet" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="max" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="min" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="net" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="paymentFrequencyInterest" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="percentage" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="ssn" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="taxable" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="taxes" type="tns:typeReal" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProTarget">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProTaxType">
+      <xs:sequence>
+         <xs:element name="antiRacketRate" type="xs:double"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="commissionStrippingCoeff" type="xs:double"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="exception" type="xs:string" minOccurs="0"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="rightTaxRate" type="xs:double"/>
+         <xs:element name="ssnRate" type="xs:double"/>
+         <xs:element name="tariffArticle" type="xs:string" minOccurs="0"/>
+         <xs:element name="taxRate" type="xs:double"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsType">
+      <xs:sequence>
+         <xs:element name="category" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProWarranty">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountRepositoryCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountRepositoryDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="discountedPremium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="extendedDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="ministerialDivisionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="ministerialDivisionDescription" type="xs:string" minOccurs="0"/>
+         <xs:element name="premium" type="tns:wsPremiumGroup" minOccurs="0"/>
+         <xs:element name="selected" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="taxTypeCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="warrantyUnitShares" type="tns:passProWarrantyUnitShare" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgRequestHeader" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="checkString" type="xs:string" minOccurs="0"/>
+         <xs:element name="context" type="xs:string" minOccurs="0"/>
+         <xs:element name="executionId" type="xs:string" minOccurs="0"/>
+         <xs:element name="hostAddress" type="xs:string" minOccurs="0"/>
+         <xs:element name="idPuntoVendita" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="livelloLog" type="xs:string" minOccurs="0"/>
+         <xs:element name="locale" type="xs:string" minOccurs="0"/>
+         <xs:element name="properties" type="tns:typeProperty" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="rilanciaErrori" type="xs:boolean"/>
+         <xs:element name="timestamp" type="xs:string" minOccurs="0"/>
+         <xs:element name="username" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="typeProperty" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="chiave" type="xs:string" minOccurs="0"/>
+         <xs:element name="valore" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getTechnicalDataResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetTechnicalDataResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetTechnicalDataResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetTechnicalDataOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetTechnicalDataOutput">
+      <xs:sequence>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgResponseHeader" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codiceErroreOccorso" type="xs:short"/>
+         <xs:element name="descrizioneErroreOccorso" type="xs:string" minOccurs="0"/>
+         <xs:element name="dettagliSullErroreOccorso" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="eccezioneOccorsaSerializzata" type="xs:base64Binary" minOccurs="0"/>
+         <xs:element name="erroreOccorso" type="xs:boolean"/>
+         <xs:element name="executionId" type="xs:string" minOccurs="0"/>
+         <xs:element name="logs" type="xs:base64Binary" minOccurs="0"/>
+         <xs:element name="tipoErroreOccorso" type="xs:short"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getVehicleInfoes">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetVehicleInfoesRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetVehicleInfoesRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetVehicleInfoesInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetVehicleInfoesInput">
+      <xs:sequence>
+         <xs:element name="codLang" type="xs:string" minOccurs="0"/>
+         <xs:element name="loadOnlyLastLevelList" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="vehicleInfoes" type="tns:passProVehicleInfo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProVehicleInfo">
+      <xs:sequence>
+         <xs:element name="assets" type="tns:wsAsset" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="classCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="classes" type="tns:wsVehicleClass" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="productCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="sectorCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="sectors" type="tns:passProVehicleSector" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="useCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="uses" type="tns:wsVehicleUse" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProVehicleSector">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getVehicleInfoesResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetVehicleInfoesResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetVehicleInfoesResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetVehicleInfoesOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetVehicleInfoesOutput">
+      <xs:sequence>
+         <xs:element name="vehicleInfoes" type="tns:passProVehicleInfo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getFattoriRischiBene">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetFattoriRischiBeneRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetFattoriRischiBeneRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="attivita" type="tns:wsAttivita" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clausole" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="codBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="codConvenzione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codDivisa" type="xs:string" minOccurs="0"/>
+         <xs:element name="codFrazionamento" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="codOperazione" type="xs:string" minOccurs="0"/>
+         <xs:element name="fattori" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="istanzeBene" type="tns:wsIstanzaBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="livelloOperazione" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloUtente" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="modalitaPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="prodottoIn" type="tns:wsProdottoIn" minOccurs="0"/>
+         <xs:element name="rischi" type="tns:wsRischio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsAttivita">
+      <xs:sequence>
+         <xs:element name="codLivello1" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLivello2" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLivello3" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLivello4" type="xs:string" minOccurs="0"/>
+         <xs:element name="codPacchetto" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsClausola">
+      <xs:sequence>
+         <xs:element name="clausolaApplicazione" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="dataFine" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="dataInizio" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneEstesa" type="xs:string" minOccurs="0"/>
+         <xs:element name="enabled" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="formato" type="xs:string" minOccurs="0"/>
+         <xs:element name="hasFattore" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="helpFile" type="xs:string" minOccurs="0"/>
+         <xs:element name="livelloDeroga" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloVisibilita" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ordine" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="selected" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="testo" type="xs:string" minOccurs="0"/>
+         <xs:element name="testoObbligatorio" type="xs:boolean"/>
+         <xs:element name="tipoTesto" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="visibile" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="visibileInPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsFattore">
+      <xs:sequence>
+         <xs:element name="campi" type="tns:wsCampoStruttura" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="classe" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="configurabile" type="xs:boolean"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneEstesa" type="xs:string" minOccurs="0"/>
+         <xs:element name="dinamico" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="dipendente" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="fattoreApplicazione" type="xs:boolean"/>
+         <xs:element name="formato" type="xs:string" minOccurs="0"/>
+         <xs:element name="helpFile" type="xs:string" minOccurs="0"/>
+         <xs:element name="indicizzazione" type="xs:boolean"/>
+         <xs:element name="livelloDerogaListaValori" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloVisibilita" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="modificabile" type="xs:boolean"/>
+         <xs:element name="obbligatorio" type="xs:boolean"/>
+         <xs:element name="ordine" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="persistente" type="xs:boolean"/>
+         <xs:element name="SQL" type="xs:boolean"/>
+         <xs:element name="tipo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="tipoparametro" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="valdefault" type="xs:string" minOccurs="0"/>
+         <xs:element name="valore" type="xs:string" minOccurs="0"/>
+         <xs:element name="valoreConvertito" type="xs:string" minOccurs="0"/>
+         <xs:element name="valori" type="tns:wsValoreLista" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="visibile" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="visibileInPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="visibilitaDinamica" type="xs:boolean"/>
+         <xs:element name="visibilitaDinamicaInPrev" type="xs:boolean"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsCampoStruttura">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="decimali" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="ordine" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsValoreLista">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="ordine" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsIstanzaBene">
+      <xs:sequence>
+         <xs:element name="attivita" type="tns:wsAttivita" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clausole" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="codiceBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="fattori" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="messaggi" type="tns:wsMessaggio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="messaggiLivelli" type="tns:wsLivelloAzione" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="rischi" type="tns:wsRischio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="sezioni" type="tns:wsSezioneBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsMessaggio">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="helpFile" type="xs:string" minOccurs="0"/>
+         <xs:element name="livelloDeroga" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloMessaggio" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="messaggio" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsLivelloAzione">
+      <xs:sequence>
+         <xs:element name="codiceLivelloAzione" type="xs:string" minOccurs="0"/>
+         <xs:element name="messaggi" type="tns:wsMessaggio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsRischio">
+      <xs:sequence>
+         <xs:element name="abilitazione" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="clausole" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="codgaranzia" type="xs:string" minOccurs="0"/>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="codiceUnit" type="xs:string" minOccurs="0"/>
+         <xs:element name="codiceVerTariffa" type="xs:string" minOccurs="0"/>
+         <xs:element name="datatariffa" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneEst" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneEstSezione" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneSezione" type="xs:string" minOccurs="0"/>
+         <xs:element name="errore" type="xs:string" minOccurs="0"/>
+         <xs:element name="errori" type="tns:wsMessaggio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="fattori" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="idVerTariffa" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="livelloDeroga" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloVisibilita" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="premio" type="tns:wsGruppoPremi" minOccurs="0"/>
+         <xs:element name="premioAdeguatoAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioCalcolatoInferioreAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioScontato" type="tns:wsGruppoPremi" minOccurs="0"/>
+         <xs:element name="premioScontatoAdeguatoAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioScontatoCalcolatoInferioreAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premiotariffa" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="proprietaPersonalizzate" type="tns:wsProprieta" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="scontoFlex" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="selezione" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="tacitoRinnovo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="tipoPremioTariffa" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="unitInConvenzione" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="vita" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGruppoPremi">
+      <xs:sequence>
+         <xs:element name="annuo" type="tns:wsPremio" minOccurs="0"/>
+         <xs:element name="rata" type="tns:wsPremio" minOccurs="0"/>
+         <xs:element name="rataFirma" type="tns:wsPremio" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsPremio">
+      <xs:sequence>
+         <xs:element name="accessori" type="xs:double"/>
+         <xs:element name="antiracket" type="xs:double"/>
+         <xs:element name="imponibile" type="xs:double"/>
+         <xs:element name="imposte" type="xs:double"/>
+         <xs:element name="intfraz" type="xs:double"/>
+         <xs:element name="intfrazaccessori" type="xs:double"/>
+         <xs:element name="intfraznetto" type="xs:double"/>
+         <xs:element name="lordo" type="xs:double"/>
+         <xs:element name="netto" type="xs:double"/>
+         <xs:element name="SSN" type="xs:double"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsProprieta">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="formato" type="xs:string" minOccurs="0"/>
+         <xs:element name="tipo" type="xs:short"/>
+         <xs:element name="valore" type="xs:string" minOccurs="0"/>
+         <xs:element name="valori" type="tns:wsPropValoreLista" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsPropValoreLista">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsSezioneBene">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneEst" type="xs:string" minOccurs="0"/>
+         <xs:element name="ordine" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="units" type="tns:wsUnitBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsUnitBene">
+      <xs:sequence>
+         <xs:element name="abilitazione" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="codgaranzia" type="xs:string" minOccurs="0"/>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="codiceRischio" type="xs:string" minOccurs="0"/>
+         <xs:element name="datatariffa" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneEst" type="xs:string" minOccurs="0"/>
+         <xs:element name="istanze" type="tns:wsIstanzaUnit" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="livelloDeroga" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloVisibilita" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ordine" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="proprietaPersonalizzate" type="tns:wsProprieta" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="selezione" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="tacitoRinnovo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="unitInConvenzione" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="vita" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsIstanzaUnit">
+      <xs:sequence>
+         <xs:element name="clausole" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="codEccezione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codiceVerTariffa" type="xs:string" minOccurs="0"/>
+         <xs:element name="errori" type="tns:wsMessaggio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="fattori" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="ID" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="idVerTariffa" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="premio" type="tns:wsGruppoPremi" minOccurs="0"/>
+         <xs:element name="premioAdeguatoAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioCalcolatoInferioreAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioScontato" type="tns:wsGruppoPremi" minOccurs="0"/>
+         <xs:element name="premioScontatoAdeguatoAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioScontatoCalcolatoInferioreAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premiotariffa" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="scontoFlex" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="tipoPremioTariffa" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsProdottoIn">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="versione" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="vita" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getFattoriRischiBeneResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetFattoriRischiBeneResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetFattoriRischiBeneResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="fattoriBene" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="fattoriProdotto" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="istanzeBene" type="tns:wsIstanzaBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="rischi" type="tns:wsRischio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getValuedProduct">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetValuedProductRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetValuedProductRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetValuedProductInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetValuedProductInput">
+      <xs:sequence>
+         <xs:element name="adaptToMinimumPrize" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="applyDiscounts" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="calculatePrizes" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="codLang" type="xs:string" minOccurs="0"/>
+         <xs:element name="factorOrderCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+         <xs:element name="quotationMode" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="showHiddenElements" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getValuedProductResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetValuedProductResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetValuedProductResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetValuedProductOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetValuedProductOutput">
+      <xs:sequence>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getBeniProdotto">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetBeniProdottoRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetBeniProdottoRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="livelloOperazione" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloUtente" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="prodottoIn" type="tns:wsProdottoIn" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getBeniProdottoResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetBeniProdottoResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetBeniProdottoResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="elencoBeniProdotto" type="tns:wsBeneProdotto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="multibene" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsBeneProdotto">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="ereditaIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="preventivabile" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="tipo" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getFactors">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetFactorsRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetFactorsRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetFactorsInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetFactorsInput">
+      <xs:sequence>
+         <xs:element name="factorOrderCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="langCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+         <xs:element name="quoteMode" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="showHiddenElements" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getFactorsResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetFactorsResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetFactorsResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetFactorsOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetFactorsOutput">
+      <xs:sequence>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getRischiBeneProdotto">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetRischiBeneProdottoRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetRischiBeneProdottoRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsProdotto">
+      <xs:sequence>
+         <xs:element name="beni" type="tns:wsBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clausole" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="codConvenzione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codDivisa" type="xs:string" minOccurs="0"/>
+         <xs:element name="codFlex" type="xs:string" minOccurs="0"/>
+         <xs:element name="codFrazionamento" type="xs:string" minOccurs="0"/>
+         <xs:element name="codOperazione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="codiceVersione" type="xs:string" minOccurs="0"/>
+         <xs:element name="convenzioni" type="tns:wsConvenzione" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="dataApertura" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="dataFineVersione" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="dataFlex" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="dataImposta" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="dataInizioVersione" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="defAnniPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="defGiorniPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="defMesiPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneEstesa" type="xs:string" minOccurs="0"/>
+         <xs:element name="divise" type="tns:wsDivisa" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="durataAnno" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="durataPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="durataRata" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="esenteImposta" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="fattori" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="frazionamenti" type="tns:wsFrazionamento" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="GGValiditaPreventivo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="gestAppCert" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="impostaAgevolataAmmessa" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="indicizzazione" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloDeroga" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloOperazione" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloUtente" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxAnniPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxGiorniPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="maxMesiPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="messaggi" type="tns:wsMessaggio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="messaggiLivelli" type="tns:wsLivelloAzione" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="minAnniPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minGiorniPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minMesiPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="modoCalcoloImposte" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="modoPremioMinimo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="multibene" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="pacchettoAttivita" type="tns:wsPacchettoAttivita" minOccurs="0"/>
+         <xs:element name="premio" type="tns:wsGruppoPremi" minOccurs="0"/>
+         <xs:element name="premioAdeguatoAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioCalcolatoInferioreAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioMinimo" type="xs:double"/>
+         <xs:element name="premioScontato" type="tns:wsGruppoPremi" minOccurs="0"/>
+         <xs:element name="premioScontatoAdeguatoAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioScontatoCalcolatoInferioreAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="quickquotation" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="regolazionePremio" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="secondoRischio" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="tacitoRinnovo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="tipo" type="tns:wsTipo" minOccurs="0"/>
+         <xs:element name="usoImpostaAgevolata" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="vincolo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="vita" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsBene">
+      <xs:sequence>
+         <xs:element name="attivitaMax" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="attivitaMin" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="codTipoVeicoloANIA" type="xs:string" minOccurs="0"/>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="condInAnagrafeGen" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="conducentiMax" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="conducentiMin" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="ereditaIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="istanze" type="tns:wsIstanzaBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="maxIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="minIstanze" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="modoPrimoIndirizzo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="modoPrimoSoggetto" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="pacchettoAttivita" type="tns:wsPacchettoAttivita" minOccurs="0"/>
+         <xs:element name="preventivabile" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="prioritaRecupero" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="propInAnagrafeGen" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="proprietariMax" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="proprietariMin" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="soggettiMax" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="soggettiMin" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="tipo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ubicazioniMax" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ubicazioniMin" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsPacchettoAttivita">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="livelli" type="tns:wsLivelloPacchetto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="numeroLivelli" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsLivelloPacchetto">
+      <xs:sequence>
+         <xs:element name="codLivello" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="elencoAttivita" type="tns:wsEntitaAttivita" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="entita" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="ID" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsEntitaAttivita">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="codiceAnia" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneEst" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneSup" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsConvenzione">
+      <xs:sequence>
+         <xs:element name="codListinoFlessibilita" type="xs:string" minOccurs="0"/>
+         <xs:element name="codListinoFlessibilita2" type="xs:string" minOccurs="0"/>
+         <xs:element name="codListinoProvvigioni" type="xs:string" minOccurs="0"/>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="coeffSconto" type="xs:double"/>
+         <xs:element name="comportamentoRinnovo" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="dataRiferimentoTariffa" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizioneEstesa" type="xs:string" minOccurs="0"/>
+         <xs:element name="premioMinimo" type="xs:double"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsDivisa">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="decimali" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="riferimento" type="xs:boolean"/>
+         <xs:element name="rndSoglia" type="xs:double"/>
+         <xs:element name="rndValore" type="xs:double"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsFrazionamento">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="dirittiPrimaRata" type="xs:double"/>
+         <xs:element name="dirittiQuietanza" type="xs:double"/>
+         <xs:element name="durataMaxGG" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="interessi" type="xs:double"/>
+         <xs:element name="interessiAddizionali" type="xs:double"/>
+         <xs:element name="livelloDeroga" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloDerogaPremioMinimoRata" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloVisibilita" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="numrate" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="polizza" type="xs:boolean"/>
+         <xs:element name="premioMinimoRata" type="xs:double"/>
+         <xs:element name="preventivo" type="xs:boolean"/>
+         <xs:element name="proroga" type="xs:boolean"/>
+         <xs:element name="regolazionePremio" type="xs:boolean"/>
+         <xs:element name="rimborsoInteressiAddizionali" type="xs:boolean"/>
+         <xs:element name="tipoFrazionamento" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsTipo">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getRischiBeneProdottoResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetRischiBeneProdottoResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetRischiBeneProdottoResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getClausoleRischiBene">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetClausoleRischiBeneRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetClausoleRischiBeneRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="attivita" type="tns:wsAttivita" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clausole" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="codBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="codConvenzione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codDivisa" type="xs:string" minOccurs="0"/>
+         <xs:element name="codFrazionamento" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="codOperazione" type="xs:string" minOccurs="0"/>
+         <xs:element name="fattori" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="istanzeBene" type="tns:wsIstanzaBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="livelloOperazione" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloUtente" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="modalitaPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="prodottoIn" type="tns:wsProdottoIn" minOccurs="0"/>
+         <xs:element name="rischi" type="tns:wsRischio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getClausoleRischiBeneResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetClausoleRischiBeneResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetClausoleRischiBeneResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="clausoleBene" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clausoleProdotto" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="istanzeBene" type="tns:wsIstanzaBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="rischi" type="tns:wsRischio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getDatiTecnici">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetDatiTecniciRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetDatiTecniciRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getDatiTecniciResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetDatiTecniciResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetDatiTecniciResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="WSPassProHelloWorldOperation">
+      <xs:sequence>
+         <xs:element name="arg0" type="xs:int"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="WSPassProHelloWorldOperationResponse">
+      <xs:sequence>
+         <xs:element name="return" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="calcolaPremioProdotto">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgCalcolaPremioProdottoRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgCalcolaPremioProdottoRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="adeguaAPremioMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="applicaSconti" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="modalitaPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="calcolaPremioProdottoResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgCalcolaPremioProdottoResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgCalcolaPremioProdottoResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getCurrencies">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetCurrenciesRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetCurrenciesRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetCurrencyInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetCurrencyInput">
+      <xs:sequence>
+         <xs:element name="codLang" type="xs:string" minOccurs="0"/>
+         <xs:element name="currencies" type="tns:wsCurrency" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getCurrenciesResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetCurrenciesResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetCurrenciesResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetCurrencyOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetCurrencyOutput">
+      <xs:sequence>
+         <xs:element name="currencies" type="tns:wsCurrency" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getLogicaSelezioneGaranzieJSProdotto">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetLogicaSelezioneGaranzieJSProdottoRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetLogicaSelezioneGaranzieJSProdottoRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codLivelloAzioni" type="xs:string" minOccurs="0"/>
+         <xs:element name="htmlFormName" type="xs:string" minOccurs="0"/>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+         <xs:element name="test" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getLogicaSelezioneGaranzieJSProdottoResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetLogicaSelezioneGaranzieJSProdottoResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetLogicaSelezioneGaranzieJSProdottoResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="htmlTestPage" type="xs:string" minOccurs="0"/>
+         <xs:element name="jscontainer" type="tns:wsJsContainer" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsJsContainer">
+      <xs:sequence>
+         <xs:element name="definitions" type="xs:string" minOccurs="0"/>
+         <xs:element name="htmlElements" type="tns:wsJsElement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsJsElement">
+      <xs:sequence>
+         <xs:element name="codBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="codRischio" type="xs:string" minOccurs="0"/>
+         <xs:element name="codSezioneBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="codUnitBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="html" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getClausoleRischiBeneProdotto">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetClausoleRischiBeneProdottoRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetClausoleRischiBeneProdottoRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="modalitaPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getClausoleRischiBeneProdottoResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetClausoleRischiBeneProdottoResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetClausoleRischiBeneProdottoResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="eseguiAzioni">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgEseguiAzioniRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgEseguiAzioniRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="adeguaAPremioMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="applicaSconti" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="attivita" type="tns:wsAttivita" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clausole" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="codBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="codConvenzione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codDivisa" type="xs:string" minOccurs="0"/>
+         <xs:element name="codFrazionamento" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLivelloAzioni" type="xs:string" minOccurs="0"/>
+         <xs:element name="codOperazione" type="xs:string" minOccurs="0"/>
+         <xs:element name="fattori" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="istanzeBene" type="tns:wsIstanzaBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="livelliAzioni" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="livelloOperazione" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloUtente" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="modalitaPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="numistanzebene" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="prodottoIn" type="tns:wsProdottoIn" minOccurs="0"/>
+         <xs:element name="rischi" type="tns:wsRischio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="eseguiAzioniResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgEseguiAzioniResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgEseguiAzioniResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="clausoleBene" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clausoleProdotto" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="istanzeBene" type="tns:wsIstanzaBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getAssets">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetAssetsRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetAssetsRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetAssetsInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetAssetsInput">
+      <xs:sequence>
+         <xs:element name="includeAssetProps" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="langCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getAssetsResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetAssetsResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetAssetsResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetAssetOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetAssetOutput">
+      <xs:sequence>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getOperazioniProdotto">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetOperazioniProdottoRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetOperazioniProdottoRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getOperazioniProdottoResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetOperazioniProdottoResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetOperazioniProdottoResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="operazioni" type="tns:wsOperazione" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsOperazione">
+      <xs:sequence>
+         <xs:element name="codice" type="xs:string" minOccurs="0"/>
+         <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+         <xs:element name="livelloDeroga" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getBeni">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetBeniRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetBeniRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getBeniResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetBeniResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetBeniResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getOperations">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetOperationsRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetOperationsRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetOperationsInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetOperationsInput">
+      <xs:sequence>
+         <xs:element name="langCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getOperationsResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetOperationsResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetOperationsResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetOperationsOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetOperationsOutput">
+      <xs:sequence>
+         <xs:element name="operation" type="tns:wsOperation" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsOperation">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="derogationLevel" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="description" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="calculatePremium">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgCalculatePremiumRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgCalculatePremiumRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsCalculatePremiumInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsCalculatePremiumInput">
+      <xs:sequence>
+         <xs:element name="adaptToMinimumPremium" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="applyDiscount" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="langCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+         <xs:element name="quoteMode" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="calculatePremiumResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgCalculatePremiumResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgCalculatePremiumResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsCalculatePremiumOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsCalculatePremiumOutput">
+      <xs:sequence>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getRisks">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetRisksRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetRisksRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetRisksInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetRisksInput">
+      <xs:sequence>
+         <xs:element name="langCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getRisksResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetRisksResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetRisksResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetRisksOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetRisksOutput">
+      <xs:sequence>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getFattoriRischiBeneProdotto">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetFattoriRischiBeneProdottoRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetFattoriRischiBeneProdottoRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="modalitaPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getFattoriRischiBeneProdottoResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetFattoriRischiBeneProdottoResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetFattoriRischiBeneProdottoResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getProductsList">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetProductsListRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetProductsListRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetProductsListInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetProductsListInput">
+      <xs:sequence>
+         <xs:element name="agreementCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="assetCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="companyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="listCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="targetCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="validityDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="warrantyCode" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getProductsListResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetProductsListResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetProductsListResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetProductsListOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetProductsListOutput">
+      <xs:sequence>
+         <xs:element name="products" type="tns:wsProduct" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="eseguiAzioniProdotto">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgEseguiAzioniProdottoRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgEseguiAzioniProdottoRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="adeguaAPremioMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="applicaSconti" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLivelloAzioni" type="xs:string" minOccurs="0"/>
+         <xs:element name="livelliAzioni" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="modalitaPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="eseguiAzioniProdottoResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgEseguiAzioniProdottoResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgEseguiAzioniProdottoResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="prodotto" type="tns:wsProdotto" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="executeActions">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgExecuteActionsRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgExecuteActionsRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsExecuteActionsInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsExecuteActionsInput">
+      <xs:sequence>
+         <xs:element name="actionLevelCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="actionLevels" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="adaptToMinimumPremium" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="applyDiscount" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="langCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+         <xs:element name="quoteMode" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="showHiddenElements" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="executeActionsResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgExecuteActionsResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgExecuteActionsResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsExecuteActionsOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsExecuteActionsOutput">
+      <xs:sequence>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getCurrenciesTax">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetCurrenciesTaxRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetCurrenciesTaxRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetCurrencyTaxInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetCurrencyTaxInput">
+      <xs:sequence>
+         <xs:element name="taxes" type="tns:passProCurrencyTax" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProCurrencyTax">
+      <xs:sequence>
+         <xs:element name="currencyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="currencyCodeRef" type="xs:string" minOccurs="0"/>
+         <xs:element name="exchangeEndDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="exchangeStartDate" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="exchangeTax" type="tns:typeReal" minOccurs="0"/>
+         <xs:element name="openDate" type="tns:typeData" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getCurrenciesTaxResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetCurrenciesTaxResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetCurrenciesTaxResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetCurrencyTaxInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="calculateLifePremium">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgCalculateLifePremiumRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgCalculateLifePremiumRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsCalculateLifePremiumInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsCalculateLifePremiumInput">
+      <xs:sequence>
+         <xs:element name="langCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+         <xs:element name="quoteMode" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="titleRatePlanMode" type="tns:typeInt32" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="calculateLifePremiumResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgCalculateLifePremiumResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgCalculateLifePremiumResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsCalculateLifePremiumOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsCalculateLifePremiumOutput">
+      <xs:sequence>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getLogicaSelezioneGaranzieJS">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetLogicaSelezioneGaranzieJSRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetLogicaSelezioneGaranzieJSRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="codConvenzione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLivelloAzioni" type="xs:string" minOccurs="0"/>
+         <xs:element name="htmlFormName" type="xs:string" minOccurs="0"/>
+         <xs:element name="prodottoIn" type="tns:wsProdottoIn" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+         <xs:element name="test" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getLogicaSelezioneGaranzieJSResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetLogicaSelezioneGaranzieJSResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetLogicaSelezioneGaranzieJSResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="htmlTestPage" type="xs:string" minOccurs="0"/>
+         <xs:element name="jscontainer" type="tns:wsJsContainer" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getElencoProdotti">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetElencoProdottiRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetElencoProdottiRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="codCompagnia" type="xs:string" minOccurs="0"/>
+         <xs:element name="codConvenzione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codGaranzia" type="xs:string" minOccurs="0"/>
+         <xs:element name="codListino" type="xs:string" minOccurs="0"/>
+         <xs:element name="codTarget" type="xs:string" minOccurs="0"/>
+         <xs:element name="dataValidita" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getElencoProdottiResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetElencoProdottiResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetElencoProdottiResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="prodotti" type="tns:wsProdotto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getQuestionnaire">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetQuestionnaireRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetQuestionnaireRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetQuestionnaireInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetQuestionnaireInput">
+      <xs:sequence>
+         <xs:element name="codLang" type="xs:string" minOccurs="0"/>
+         <xs:element name="extensionData" type="tns:passProExtensionData" minOccurs="0"/>
+         <xs:element name="questionnaire" type="tns:wsQuestionnaire" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="passProExtensionData">
+      <xs:sequence>
+         <xs:element name="properties" type="tns:typeProperty" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getQuestionnaireResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetQuestionnaireResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetQuestionnaireResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetQuestionnaireOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetQuestionnaireOutput">
+      <xs:sequence>
+         <xs:element name="extensionData" type="tns:passProExtensionData" minOccurs="0"/>
+         <xs:element name="questionnaire" type="tns:wsQuestionnaire" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getRischiBene">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetRischiBeneRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetRischiBeneRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="codBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="codConvenzione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="livelloOperazione" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloUtente" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="prodottoIn" type="tns:wsProdottoIn" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getRischiBeneResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetRischiBeneResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetRischiBeneResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="rischiProdotto" type="tns:wsRischio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getClauses">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetClausesRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetClausesRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetClausesInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetClausesInput">
+      <xs:sequence>
+         <xs:element name="langCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="modeQuote" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+         <xs:element name="showHiddenElements" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getClausesResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetClausesResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetClausesResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetClausesOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetClausesOutput">
+      <xs:sequence>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="calcolaPremio">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgCalcolaPremioRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgCalcolaPremioRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="adeguaAPremioMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="applicaSconti" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="attivita" type="tns:wsAttivita" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="clausole" type="tns:wsClausola" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="codBene" type="xs:string" minOccurs="0"/>
+         <xs:element name="codConvenzione" type="xs:string" minOccurs="0"/>
+         <xs:element name="codDivisa" type="xs:string" minOccurs="0"/>
+         <xs:element name="codFlex" type="xs:string" minOccurs="0"/>
+         <xs:element name="codFrazionamento" type="xs:string" minOccurs="0"/>
+         <xs:element name="codLingua" type="xs:string" minOccurs="0"/>
+         <xs:element name="codOperazione" type="xs:string" minOccurs="0"/>
+         <xs:element name="dataFlex" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="dataImposta" type="tns:typeData" minOccurs="0"/>
+         <xs:element name="durataAnno" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="durataPolizza" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="durataRata" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="esenteImposta" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="fattori" type="tns:wsFattore" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="istanzeBene" type="tns:wsIstanzaBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="livelloOperazione" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="livelloUtente" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="modalitaPreventivo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="modoCalcoloImposte" type="tns:typeInt32" minOccurs="0"/>
+         <xs:element name="numistanzebene" type="tns:typeInt64" minOccurs="0"/>
+         <xs:element name="prodottoIn" type="tns:wsProdottoIn" minOccurs="0"/>
+         <xs:element name="rischi" type="tns:wsRischio" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+         <xs:element name="usaImpostaAgevolata" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="calcolaPremioResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgCalcolaPremioResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgCalcolaPremioResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="istanzeBene" type="tns:wsIstanzaBene" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="premio" type="tns:wsGruppoPremi" minOccurs="0"/>
+         <xs:element name="premioAdeguatoAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioCalcolatoInferioreAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioScontato" type="tns:wsGruppoPremi" minOccurs="0"/>
+         <xs:element name="premioScontatoAdeguatoAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="premioScontatoCalcolatoInferioreAlMinimo" type="tns:typeBooleano" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getLogicWarrantySelectionJS">
+      <xs:sequence>
+         <xs:element name="arg0" type="tns:msgGetLogicWarrantySelectionJSRequest" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetLogicWarrantySelectionJSRequest" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="input" type="tns:wsGetLogicWarrantySelectionJSInput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgRequestHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetLogicWarrantySelectionJSInput">
+      <xs:sequence>
+         <xs:element name="actionLevelCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="htmlFormName" type="xs:string" minOccurs="0"/>
+         <xs:element name="product" type="tns:wsProduct" minOccurs="0"/>
+         <xs:element name="test" type="tns:typeBooleano" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getLogicWarrantySelectionJSResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:msgGetLogicWarrantySelectionJSResponse" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="msgGetLogicWarrantySelectionJSResponse" final="extension restriction">
+      <xs:sequence>
+         <xs:element name="output" type="tns:wsGetLogicWarrantySelectionJSOutput" minOccurs="0"/>
+         <xs:element name="serviceInfo" type="tns:msgResponseHeader" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsGetLogicWarrantySelectionJSOutput">
+      <xs:sequence>
+         <xs:element name="htmlTestPage" type="xs:string" minOccurs="0"/>
+         <xs:element name="jscontainer" type="tns:wsJavaScriptContainer" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsJavaScriptContainer">
+      <xs:sequence>
+         <xs:element name="definitions" type="xs:string" minOccurs="0"/>
+         <xs:element name="htmlElements" type="tns:wsJavaScriptElement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="wsJavaScriptElement">
+      <xs:sequence>
+         <xs:element name="assetCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="assetSectionCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="assetUnitCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="html" type="xs:string" minOccurs="0"/>
+         <xs:element name="riskCode" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

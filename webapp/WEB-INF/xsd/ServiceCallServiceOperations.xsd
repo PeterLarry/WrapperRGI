@@ -1,0 +1,24 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ 			 xmlns="http://com/blog/samples/webservices/servicedetail" 
+ 			 xmlns:detail="http://webservices.samples.blog.com" 
+ 			 targetNamespace="http://com/blog/samples/webservices/servicedetail" 
+ 			 elementFormDefault="qualified">  
+ 
+      <xsd:import namespace="http://webservices.samples.blog.com" schemaLocation="DetailService.xsd"/>  
+      
+      <xsd:element name="ServiceCallRequest">  
+           <xsd:complexType>  
+                <xsd:sequence>  
+                     <xsd:element name="serviceType" type="xsd:string"/>  
+                </xsd:sequence>  
+           </xsd:complexType>  
+      </xsd:element>  
+      
+      <xsd:element name="ServiceCallResponse">  
+           <xsd:complexType>  
+                <xsd:sequence>  
+                     <xsd:element name="DetailService" type="detail:DetailService"/>  
+                </xsd:sequence>  
+           </xsd:complexType>
+      </xsd:element>  
+</xsd:schema>
