@@ -1,6 +1,7 @@
 package it.cg.main.integration.gateway.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.messaging.MessagingException;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,12 @@ import it.cg.main.integration.interfaces.ActivatorHandler;
 @Service
 public class ActivatorInboundGatewayImpl implements ActivatorHandler
 {
-	
 	private final Logger logger = Logger.getLogger(getClass());
+	
+	@Value("${easyFieldRouting:vuoto}")
+	private String externalTypeForEasyWay;
+	@Value("${hardFieldRouting:vuoto}")
+	private String externalTypeForHardWay;
 	
 	/**
 	 * Setto che tipo di routing è da fare e l'oggetto di request intero per trasportarlo tra
@@ -32,6 +37,8 @@ public class ActivatorInboundGatewayImpl implements ActivatorHandler
 		logger.info("for handlingJsonObjectToRouter with : "+request);
 		
 		RoutingDTO routingDto = new RoutingDTO();
+		routingDto.setExternalTypeForEasyWay(externalTypeForEasyWay);
+		routingDto.setExternalTypeForHardWay(externalTypeForHardWay);
 		routingDto.setTypeOf(request.getTesto());
 		routingDto.setRequestHttpService(request);
 		

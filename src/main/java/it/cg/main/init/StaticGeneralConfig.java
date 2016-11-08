@@ -20,7 +20,11 @@ public enum StaticGeneralConfig
 	/**
 	 * webservice-conf
 	 */
-	WEBSERVICE_PARAM_MAIN_PROPERTIES("webservice-conf")
+	WEBSERVICE_PARAM_MAIN_PROPERTIES("webservice-conf"),
+	/**
+	 * routing-conf
+	 */
+	ROUTING_PARAM_MAIN_PROPERTIES("routing-conf"),
 	
 	;
 	

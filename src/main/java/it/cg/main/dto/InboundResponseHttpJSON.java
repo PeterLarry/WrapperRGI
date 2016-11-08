@@ -2,8 +2,11 @@ package it.cg.main.dto;
 
 import com.pass.global.CalcolaPremioProdottoResponse;
 
-public class InboundResponseHttpJSON
+import it.cg.main.conf.error.DtoImpl;
+
+public class InboundResponseHttpJSON extends DtoImpl
 {
+	private static final long serialVersionUID = 8248795967018752526L;
 	private CalcolaPremioProdottoResponse calcolaPremioProdottoResponse;
 	private String typeOfService;
 

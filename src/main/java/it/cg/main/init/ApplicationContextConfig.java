@@ -38,11 +38,13 @@ public class ApplicationContextConfig implements ServletContextListener
 		PropertySourcesPlaceholderConfigurer propConf = new PropertySourcesPlaceholderConfigurer();
 		String pathLog4j = getPropertyValue(StaticGeneralConfig.LOG4J_PARAM_MAIN_PROPERTIES.value());
 		String pathEndpoint = getPropertyValue(StaticGeneralConfig.WEBSERVICE_PARAM_MAIN_PROPERTIES.value());
+		String pathRouting = getPropertyValue(StaticGeneralConfig.ROUTING_PARAM_MAIN_PROPERTIES.value());
 		
         AbstractResource resources[] = new AbstractResource[] {
         		new ClassPathResource(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()),
         		new FileSystemResource(pathLog4j),
-        		new FileSystemResource(pathEndpoint)
+        		new FileSystemResource(pathEndpoint),
+        		new FileSystemResource(pathRouting)
         };
 		
 		propConf.setLocations(resources);
