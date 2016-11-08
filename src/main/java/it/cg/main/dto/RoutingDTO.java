@@ -1,11 +1,12 @@
 package it.cg.main.dto;
 
-import com.blog.samples.webservices.servicedetail.ServiceCallRequest;
-
 public class RoutingDTO
 {
 	private String typeOf;
-	private ServiceCallRequest requestService;
+	
+	private String externalTypeForEasyWay;
+	private String externalTypeForHardWay;
+	
 	private InboundRequestHttpJSON requestHttpService;
 	
 	
@@ -17,20 +18,29 @@ public class RoutingDTO
 		this.typeOf = typeOf;
 	}
 
-	public ServiceCallRequest getRequestService() {
-		return requestService;
-	}
-
-	public void setRequestService(ServiceCallRequest requestService) {
-		this.requestService = requestService;
-	}
-
+	
 	public InboundRequestHttpJSON getRequestHttpService() {
 		return requestHttpService;
 	}
 
 	public void setRequestHttpService(InboundRequestHttpJSON requestHttpService) {
 		this.requestHttpService = requestHttpService;
+	}
+
+	public String getExternalTypeForEasyWay() {
+		return externalTypeForEasyWay;
+	}
+
+	public void setExternalTypeForEasyWay(String externalTypeForEasyWay) {
+		this.externalTypeForEasyWay = externalTypeForEasyWay;
+	}
+
+	public String getExternalTypeForHardWay() {
+		return externalTypeForHardWay;
+	}
+
+	public void setExternalTypeForHardWay(String externalTypeForHardWay) {
+		this.externalTypeForHardWay = externalTypeForHardWay;
 	}
 
 	

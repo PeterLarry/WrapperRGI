@@ -20,6 +20,10 @@
 	<!-- Context config -->
 	<context:component-scan base-package="it.cg" ></context:component-scan>
 	
+	<!-- Error Handler -->
+	<int:transformer input-channel="testError" ref="exceptionTransformer" method="createErrorResponse" ></int:transformer>
+	<bean id="exceptionTransformer" class="it.cg.main.conf.error.ErrorMessageHandler" ></bean>
+	
 	<!-- Gateway HTTP -->
 	<int-http:inbound-gateway
 					  id="inboundGateway"
@@ -27,7 +31,8 @@
 	                  path="/inboundAdapter"
 	                  request-payload-type="byte[]"
 	                  message-converters="converters"
-	                  supported-methods="POST" >
+	                  supported-methods="POST"
+	                  error-channel="testError" >
     </int-http:inbound-gateway>
     
     <util:list id="converters">
@@ -46,4 +51,5 @@
 	<!-- Integration config -->
 	<import resource="spring-integration-config.xml"/>
 
+	
 </beans>

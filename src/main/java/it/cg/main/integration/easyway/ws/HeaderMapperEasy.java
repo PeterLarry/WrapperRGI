@@ -8,7 +8,7 @@ import it.cg.main.integration.interfaces.SoapHeadersHandler;
 
 public class HeaderMapperEasy extends SoapHeadersHandler
 {
-	@Value("headerOutboundPass")
+	@Value("${headerOutboundPass}")
 	private String headerOutboundPass;
 	
 	@Override

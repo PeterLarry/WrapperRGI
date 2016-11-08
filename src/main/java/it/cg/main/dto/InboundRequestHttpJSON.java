@@ -2,10 +2,10 @@ package it.cg.main.dto;
 
 import java.io.Serializable;
 
-public class InboundRequestHttpJSON  implements Serializable
-{
+import it.cg.main.conf.error.DtoImpl;
 
-	
+public class InboundRequestHttpJSON extends DtoImpl implements Serializable
+{
 	private static final long serialVersionUID = -4058572266373539270L;
 
 	private String testo;
