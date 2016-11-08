@@ -6,21 +6,36 @@ public class ErrorIntegrationDTO implements Serializable
 {
 
 	private static final long serialVersionUID = 2061127219313719019L;
+
+	private String errorCauseJava;
+	private String errorMessageJava;
+	private String errorSpecCauseJava;
+	private String errorRootCauseJava;
 	
-	private String errorType;
-	private String errorMessage;
+	public String getErrorCauseJava() {
+		return errorCauseJava;
+	}
+	public void setErrorCauseJava(String errorCauseJava) {
+		this.errorCauseJava = errorCauseJava;
+	}
+	public String getErrorMessageJava() {
+		return errorMessageJava;
+	}
+	public void setErrorMessageJava(String errorMessageJava) {
+		this.errorMessageJava = errorMessageJava;
+	}
+	public String getErrorSpecCauseJava() {
+		return errorSpecCauseJava;
+	}
+	public void setErrorSpecCauseJava(String errorSpecCauseJava) {
+		this.errorSpecCauseJava = errorSpecCauseJava;
+	}
+	public String getErrorRootCauseJava() {
+		return errorRootCauseJava;
+	}
+	public void setErrorRootCauseJava(String errorRootCauseJava) {
+		this.errorRootCauseJava = errorRootCauseJava;
+	}
 	
-	public String getErrorType() {
-		return errorType;
-	}
-	public void setErrorType(String errorType) {
-		this.errorType = errorType;
-	}
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
 
 }

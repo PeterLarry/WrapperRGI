@@ -14,21 +14,19 @@ public class ErrorMessageHandler  extends ErrorMessageExceptionTypeRouter
 {
 	private Logger logger = Logger.getLogger(getClass());
 	
+	/**
+	 * Dato un errore nel flusso integration, questi viene bindato
+	 * e ritornato nell'oggetto di response.
+	 * @param message
+	 * @return
+	 */
 	public Message<?> createErrorResponse(AggregateMessageDeliveryException message)
 	{
 		logger.info("Binding Error for exception : "+message);
 		
-//		ServiceCallResponse callResp = new ServiceCallResponse();
-//		DetailService detailService = new DetailService();
-//		detailService.setReturn("ERRORE WEB channel");
-//		callResp.setDetailService(detailService );
-//		Message<ServiceCallResponse> messageResponse = MessageBuilder.withPayload(callResp).build();
 		InboundResponseHttpJSON response = new InboundResponseHttpJSON();
-		ErrorIntegrationDTO errorResponseDTO = new ErrorIntegrationDTO();
-		
-		errorResponseDTO.setErrorMessage("Message ERRRO");
-		errorResponseDTO.setErrorType("Type ERROR");
-//		response.setErrorResponseDTO(errorResponseDTO);
+//		attuate the binding
+		response.bindAggregateError(message);
 		
 		Message<InboundResponseHttpJSON> messageResponse = MessageBuilder.withPayload(response).build();
 		
