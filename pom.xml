@@ -147,7 +147,7 @@
 			</exclusion>
 		</exclusions>
 	</dependency>
-	
+  
   </dependencies>
   
    <!--  PROPERTIES  -->
