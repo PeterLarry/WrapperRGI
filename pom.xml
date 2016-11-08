@@ -147,6 +147,13 @@
 			</exclusion>
 		</exclusions>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson ONLY FOR TEST -->
+	<dependency>
+	    <groupId>com.google.code.gson</groupId>
+	    <artifactId>gson</artifactId>
+	    <version>2.3.1</version>
+	</dependency>
+	
   
   </dependencies>
   
