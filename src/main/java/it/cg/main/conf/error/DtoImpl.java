@@ -1,7 +1,6 @@
 package it.cg.main.conf.error;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +13,6 @@ public abstract class DtoImpl implements Serializable
 	private static final long serialVersionUID = 2708950285561187948L;
 	
 	private Logger logger = Logger.getLogger(getClass());
-	
-	
 	private List<ErrorIntegrationDTO> errorResponseDTO;
 
 	public List<ErrorIntegrationDTO> getErrorResponseDTO()

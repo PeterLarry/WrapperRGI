@@ -21,8 +21,11 @@
 	<context:component-scan base-package="it.cg" ></context:component-scan>
 	
 	<!-- Error Handler -->
-	<int:transformer input-channel="testError" ref="exceptionTransformer" method="createErrorResponse" ></int:transformer>
-	<bean id="exceptionTransformer" class="it.cg.main.conf.error.ErrorMessageHandler" ></bean>
+	<int:transformer	id="transformerErrorHandler" 
+						input-channel="transformerHandlingErrorChannel"
+						ref="exceptionTransformer"
+						method="createErrorResponse" />
+	<bean id="exceptionTransformer" class="it.cg.main.conf.error.ErrorMessageHandler" />
 	
 	<!-- Gateway HTTP -->
 	<int-http:inbound-gateway
@@ -32,7 +35,7 @@
 	                  request-payload-type="byte[]"
 	                  message-converters="converters"
 	                  supported-methods="POST"
-	                  error-channel="testError" >
+	                  error-channel="transformerHandlingErrorChannel" >
     </int-http:inbound-gateway>
     
     <util:list id="converters">
