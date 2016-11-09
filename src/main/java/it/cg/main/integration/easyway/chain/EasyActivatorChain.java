@@ -18,7 +18,7 @@ public class EasyActivatorChain
 	private Logger logger = Logger.getLogger(getClass());
 	
 	/**
-	 * TODO Parsing
+	 * Parsing
 	 * @param routingDTO
 	 * @param headerMap
 	 * @return
@@ -28,7 +28,7 @@ public class EasyActivatorChain
 	{
 		logger.info("Into gotoEasyCall call , input="+request);
 		
-//		parserizzatore
+//		parser
 		ParsingOut pout = new ParsingOut();
 		WSPassProHelloWorldOperation response = pout.getParsing(request);
 

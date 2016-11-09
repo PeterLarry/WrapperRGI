@@ -4,6 +4,11 @@ import com.pass.global.CalcolaPremioProdottoResponse;
 
 import it.cg.main.conf.error.DtoImpl;
 
+/**
+ * DTO exposed for the response for Direct Line
+ * @author RiccardoEstia
+ *
+ */
 public class InboundResponseHttpJSON extends DtoImpl
 {
 	private static final long serialVersionUID = 8248795967018752526L;

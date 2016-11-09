@@ -1,27 +1,37 @@
 package it.cg.main.dto;
 
-import java.io.Serializable;
-
 import it.cg.main.conf.error.DtoImpl;
+import it.cg.main.dto.inbound.InboundWsProductDTO;
 
-public class InboundRequestHttpJSON extends DtoImpl implements Serializable
+/**
+ * DTO exposed for the request from Direct Line
+ * @author RiccardoEstia
+ *
+ */
+public class InboundRequestHttpJSON extends DtoImpl
 {
 	private static final long serialVersionUID = -4058572266373539270L;
 
-	private String testo;
-	private Integer numero;
+	/**
+	 * Service type variable request from external service
+	 */
+	private String serviceType;
+	/**
+	 * Start Object for pass
+	 */
+	private InboundWsProductDTO wsProductDTO;
 	
-	public String getTesto() {
-		return testo;
+	public String getServiceType() {
+		return serviceType;
 	}
-	public void setTesto(String testo) {
-		this.testo = testo;
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
 	}
-	public Integer getNumero() {
-		return numero;
+	public InboundWsProductDTO getWsProductDTO() {
+		return wsProductDTO;
 	}
-	public void setNumero(Integer numero) {
-		this.numero = numero;
+	public void setWsProductDTO(InboundWsProductDTO wsProductDTO) {
+		this.wsProductDTO = wsProductDTO;
 	}
 	
 }

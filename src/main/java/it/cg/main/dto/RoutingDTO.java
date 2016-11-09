@@ -1,9 +1,13 @@
 package it.cg.main.dto;
 
-public class RoutingDTO
+import it.cg.main.conf.error.DtoImpl;
+
+public class RoutingDTO extends DtoImpl
 {
+	private static final long serialVersionUID = 2645400659518697356L;
+
 	private String typeOf;
-	
+
 	private String externalTypeForEasyWay;
 	private String externalTypeForHardWay;
 	
@@ -26,7 +30,9 @@ public class RoutingDTO
 	public void setRequestHttpService(InboundRequestHttpJSON requestHttpService) {
 		this.requestHttpService = requestHttpService;
 	}
-
+	/**
+	 * external constant for the EASY way field check
+	 */
 	public String getExternalTypeForEasyWay() {
 		return externalTypeForEasyWay;
 	}
@@ -34,7 +40,9 @@ public class RoutingDTO
 	public void setExternalTypeForEasyWay(String externalTypeForEasyWay) {
 		this.externalTypeForEasyWay = externalTypeForEasyWay;
 	}
-
+	/**
+	 * external constant for the HARD way field check
+	 */
 	public String getExternalTypeForHardWay() {
 		return externalTypeForHardWay;
 	}

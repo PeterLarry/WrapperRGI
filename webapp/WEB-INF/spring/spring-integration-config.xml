@@ -39,9 +39,8 @@
 		</int:service-activator>
 		<int-ws:outbound-gateway
 				marshaller="marshallerOutboundJaxb"  unmarshaller="marshallerOutboundJaxb" 
-				uri="${endpointOut}"
+				uri="${endpointOut}" 
 				header-mapper="headerMapperEasy" >
-				
 		</int-ws:outbound-gateway>
 		
 	</int:chain>

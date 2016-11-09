@@ -4,16 +4,16 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import com.blog.samples.webservices.DetailService;
 import com.pass.global.WSPassProHelloWorldOperationResponse;
+
+import it.cg.main.dto.InboundResponseHttpJSON;
 
 @Mapper
 public interface EasyMapperMapstruct
 {
 	
 	@Mappings({
-		@Mapping(source="return", target="serviceType"),
-		@Mapping(source="return", target="return")
+		@Mapping(source="return", target="typeOfService")
 	})
-	DetailService helloWorldToDetailService(WSPassProHelloWorldOperationResponse response);
+	InboundResponseHttpJSON helloWorldToDetailService(WSPassProHelloWorldOperationResponse response);
 }

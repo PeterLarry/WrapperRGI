@@ -4,10 +4,10 @@ package it.cg.main.integration.easyway.parsing;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.blog.samples.webservices.DetailService;
 import com.pass.global.WSPassProHelloWorldOperationResponse;
 
 import it.cg.main.conf.mapping.EasyMapperMapstruct;
+import it.cg.main.dto.InboundResponseHttpJSON;
 
 @Service
 public class ParsingIn
@@ -21,11 +21,11 @@ public class ParsingIn
 	 * @param routingDTO
 	 * @return
 	 */
-	public DetailService parse(WSPassProHelloWorldOperationResponse routingDTO)
+	public InboundResponseHttpJSON parse(WSPassProHelloWorldOperationResponse routingDTO)
 	{
 		logger.info("parse input DTO "+routingDTO);
 		
-		DetailService response = new DetailService();
+		InboundResponseHttpJSON response = new InboundResponseHttpJSON();
 //		Mapstruct test
 		
 		response = getMapper().helloWorldToDetailService(routingDTO);
