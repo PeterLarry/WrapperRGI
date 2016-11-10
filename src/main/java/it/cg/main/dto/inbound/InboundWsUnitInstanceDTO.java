@@ -8,8 +8,8 @@ public class InboundWsUnitInstanceDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 9101829727272214353L;
-	private InboundWsFactorDTO factors;
-	private InboundWsClauseDTO clauses;
+	private InboundWsFactorUnitInstanceDTO factors;
+	private InboundWsClauseUnitInstanceDTO clauses;
 	
 	/**
 	 * Se impostato a true nel tracciato di output valorizza un campo stringa con xml di quanto successo durante 

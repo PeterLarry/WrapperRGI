@@ -14,10 +14,10 @@ public class InboundWsFactorAssetInstanceDTO implements Serializable {
 	 */
 	private String n2aave;
 	private String n2afon;
-	private String n2alim;
+//	private String n2alim;
 	private List<String> n2bm;
-	private String n2cbma;
-	private String n2cbmp;
+//	private String n2cbma;
+//	private String n2cbmp;
 	private Integer n2cc;
 	private Integer n2ceta;
 	private Integer n2cf;
@@ -27,12 +27,12 @@ public class InboundWsFactorAssetInstanceDTO implements Serializable {
 	private Integer n2crca;
 	private Integer n2cris;
 	private Integer n2crpr;
-	private String n2csxm;
+//	private String n2csxm;
 	private String n2ctpf;
 	private List<String> n2cu;
 	private List<String> n2cuas;
 	private List<String> n2cupr;
-	private String n2dich;
+//	private String n2dich;
 	private String n2dimm;
 	private List<String> n2ftaa;
 	private List<String> n2ftap;
@@ -89,10 +89,10 @@ public class InboundWsFactorAssetInstanceDTO implements Serializable {
 	private List<String> n2parkn;
 	private Integer n2primc;
 	private List<String> n2promc;
-	private String n2pvmd;
-	private String n2pvow;
-	private String n2pvrd1;
-	private String n2pvrd2;
+//	private String n2pvmd;
+//	private String n2pvow;
+//	private String n2pvrd1;
+//	private String n2pvrd2;
 	private Integer n2r1anp;
 	private Integer n2r2anp;
 	private Integer n2rd1ap;

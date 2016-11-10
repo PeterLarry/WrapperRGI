@@ -41,7 +41,9 @@ public class InboundWsFactorProductDTO implements Serializable {
 	private String n1phpr;
 	private String n1phsc;
 	private String n2cm26;
-	private String n2pvph;
+//	private String n2pvph;
+	
+	
 	public Integer getN1ceta() {
 		return n1ceta;
 	}
@@ -216,12 +218,12 @@ public class InboundWsFactorProductDTO implements Serializable {
 	public void setN2cm26(String n2cm26) {
 		this.n2cm26 = n2cm26;
 	}
-	public String getN2pvph() {
-		return n2pvph;
-	}
-	public void setN2pvph(String n2pvph) {
-		this.n2pvph = n2pvph;
-	}
+//	public String getN2pvph() {
+//		return n2pvph;
+//	}
+//	public void setN2pvph(String n2pvph) {
+//		this.n2pvph = n2pvph;
+//	}
 
 	
 }

@@ -44,8 +44,8 @@ public class InboundWsAssetUnitDTO implements Serializable {
 	private Boolean tg1;
 	private Boolean tg2;
 	
-	private InboundWsFactorDTO factor;
-	private InboundWsClauseDTO clauses;
+	private InboundWsFactorAssetUnitDTO factor;
+	private InboundWsClauseAssetUnitDTO clauses;
 	private InboundWsUnitInstanceDTO instances;
 
 }

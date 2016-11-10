@@ -16,8 +16,12 @@ public class InboundWsAssetSectionDTO implements Serializable {
 	 */
 	private String code;
 	
+	/**
+	 * Per questi parametri controllare bene il foglio excel
+	 */
 	private InboundWsFactorDTO factors;
 	private InboundWsClauseDTO clauses;
 	private InboundWsAssetUnitDTO units;
+	
 
 }

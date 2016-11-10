@@ -48,7 +48,11 @@ public class InboundWsProductDTO implements Serializable {
 	 */
 	private String operationCode;
 	
-	private InboundWsFactorDTO factors;
+	private InboundWsFactorProductDTO factors;
+	
+	/**
+	 * Non c'è sull'excel delle clausole (wsclause) con nodo padre il prodotto(wsproduct)
+	 */
 	private InboundWsClauseDTO clauses;
 	private InboundWsAssetDTO assets;
 	
@@ -82,12 +86,6 @@ public class InboundWsProductDTO implements Serializable {
 	}
 	public void setOperationCode(String operationCode) {
 		this.operationCode = operationCode;
-	}
-	public InboundWsFactorDTO getFactors() {
-		return factors;
-	}
-	public void setFactors(InboundWsFactorDTO factors) {
-		this.factors = factors;
 	}
 	public InboundWsClauseDTO getClauses() {
 		return clauses;
