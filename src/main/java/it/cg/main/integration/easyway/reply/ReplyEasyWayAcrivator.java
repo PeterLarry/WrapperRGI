@@ -6,7 +6,7 @@ import org.springframework.integration.annotation.Gateway;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 
-import com.pass.global.WSPassProHelloWorldOperationResponse;
+import com.pass.global.CalculatePremiumResponse;
 
 import it.cg.main.conf.mapping.EasyMapperMapstruct;
 import it.cg.main.dto.InboundResponseHttpJSON;
@@ -26,14 +26,14 @@ public class ReplyEasyWayAcrivator implements ActivatorHandler {
 	 * @return InboundResponseHttpJSON
 	 */
 	@Gateway(requestChannel="easyChainActivatorResultChannel")
-	public Message<InboundResponseHttpJSON> gotoEasyWay(WSPassProHelloWorldOperationResponse routingDTO)
+	public Message<InboundResponseHttpJSON> gotoEasyWay(CalculatePremiumResponse routingDTO)
 	{
 		logger.info("gotoEasyWay input DTO "+routingDTO);
 		
 		ParsingIn pIn = new ParsingIn(easyMapperMapstruct);
 		InboundResponseHttpJSON responseJson  = new InboundResponseHttpJSON();
-		
-		responseJson = pIn.parse(routingDTO);
+		responseJson.setCalcolaPremioProdottoResponse(routingDTO);
+//		responseJson = pIn.parse(routingDTO);
 		
 		Message<InboundResponseHttpJSON> message = MessageBuilder.withPayload(responseJson).build();
 		

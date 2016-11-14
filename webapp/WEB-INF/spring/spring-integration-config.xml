@@ -44,14 +44,15 @@
 		</int-ws:outbound-gateway>
 		
 	</int:chain>
-		<!-- chain easy END -->
+	<bean id="headerMapperEasy" class="it.cg.main.integration.easyway.ws.HeaderMapperEasy" />
 
 	<int:channel id="easyChainActivatorResultChannel"></int:channel>
-	<int:service-activator id="serviceActivatorMeteoPost" input-channel="easyChainActivatorResultChannel" >
+	<int:service-activator input-channel="easyChainActivatorResultChannel" >
 		<bean id="replyEasyWayAcrivator" class="it.cg.main.integration.easyway.reply.ReplyEasyWayAcrivator"></bean>
 	</int:service-activator>
-	<bean id="headerMapperEasy" class="it.cg.main.integration.easyway.ws.HeaderMapperEasy" />
 	
+		<!-- chain easy END -->
+
 	
 </beans>
 

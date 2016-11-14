@@ -1,6 +1,6 @@
 package it.cg.main.dto;
 
-import it.cg.main.conf.error.DtoImpl;
+import it.cg.main.conf.DtoImpl;
 import it.cg.main.dto.inbound.InboundWsProductDTO;
 
 /**

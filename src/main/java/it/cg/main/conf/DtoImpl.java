@@ -1,4 +1,4 @@
-package it.cg.main.conf.error;
+package it.cg.main.conf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.integration.dispatcher.AggregateMessageDeliveryException;
+
+import it.cg.main.conf.error.ErrorIntegrationDTO;
 
 public abstract class DtoImpl implements Serializable
 {
@@ -40,11 +42,11 @@ public abstract class DtoImpl implements Serializable
 		ErrorIntegrationDTO bindingErrorMesssage = new ErrorIntegrationDTO();
 		try
 		{
-			bindingErrorMesssage.setErrorMessageJava(errorMessage.getCause().toString());
-			bindingErrorMesssage.setErrorMessageJava(errorMessage.getMessage());
-			bindingErrorMesssage.setErrorSpecCauseJava(errorMessage.getMostSpecificCause().toString());
-			bindingErrorMesssage.setErrorRootCauseJava( errorMessage.getRootCause().toString());
-			logger.error("Error binding : "+errorMessage.getMessage());
+				bindingErrorMesssage.setErrorMessageJava(errorMessage.getCause().toString());
+				bindingErrorMesssage.setErrorMessageJava(errorMessage.getMessage());
+				bindingErrorMesssage.setErrorSpecCauseJava(errorMessage.getMostSpecificCause().toString());
+				bindingErrorMesssage.setErrorRootCauseJava( errorMessage.getRootCause().toString());
+				logger.error("Error binding JAVA error : "+errorMessage.getMessage());
 		}
 		catch(Exception ex)
 		{
