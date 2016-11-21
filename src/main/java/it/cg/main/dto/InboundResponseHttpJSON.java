@@ -10,7 +10,7 @@ import it.cg.main.conf.DtoImpl;
  * @author RiccardoEstia
  *
  */
-public class InboundResponseHttpJSON extends DtoImpl
+public class InboundResponseHttpJSON
 {
 	private static final long serialVersionUID = 8248795967018752526L;
 	private CalculatePremiumResponse calcolaPremioProdottoResponse;
