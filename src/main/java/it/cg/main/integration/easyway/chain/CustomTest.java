@@ -82,9 +82,6 @@ public class CustomTest
 		
 //		WsAsset -> wsAssetInstance -> WsVehicle
 		WsVehicle vehicleTest = new WsVehicle();
-		vehicleTest.setClassCode("Ciclomotore");
-		vehicleTest.setSectorCode("Settore5");
-		vehicleTest.setUseCode("Privato");
 		instanceTest.setVehicle(vehicleTest);
 		
 		assetTest.getInstances().add(instanceTest);
