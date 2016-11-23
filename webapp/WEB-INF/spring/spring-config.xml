@@ -31,7 +31,7 @@
 	<int-http:inbound-gateway
 					  id="inboundGateway"
 	                  request-channel="inputRequestJson"
-	                  path="/inboundAdapter"
+	                  path="/calculate"
 	                  request-payload-type="byte[]"
 	                  message-converters="converters"
 	                  supported-methods="POST"

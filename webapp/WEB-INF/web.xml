@@ -28,7 +28,7 @@
 	
 	 <servlet-mapping>
 		<servlet-name>inboundGateway</servlet-name>
-		<url-pattern>/inboundAdapterFirst/*</url-pattern>
+		<url-pattern>/getPassPremium/*</url-pattern>
 	</servlet-mapping>
 	
 	
