@@ -12,7 +12,7 @@ import it.cg.main.dto.inbound.InboundQuoteDTO;
  * @author RiccardoEstia
  *
  */
-public class InboundRequestHttpJSON
+public class InboundRequestHttpJSON extends DtoImpl
 {
 	private static final long serialVersionUID = -4058572266373539270L;
 

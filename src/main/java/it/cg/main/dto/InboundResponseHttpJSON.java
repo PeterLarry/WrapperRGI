@@ -1,7 +1,7 @@
 package it.cg.main.dto;
 
-import com.pass.global.CalcolaPremioProdottoResponse;
 import com.pass.global.CalculatePremiumResponse;
+import com.pass.global.GetFactorsResponse;
 
 import it.cg.main.conf.DtoImpl;
 
@@ -10,11 +10,12 @@ import it.cg.main.conf.DtoImpl;
  * @author RiccardoEstia
  *
  */
-public class InboundResponseHttpJSON
+public class InboundResponseHttpJSON extends DtoImpl
 {
 	private static final long serialVersionUID = 8248795967018752526L;
 	private CalculatePremiumResponse calcolaPremioProdottoResponse;
 	private String typeOfService;
+	private GetFactorsResponse getFactorsResponse;
 
 	public CalculatePremiumResponse getCalcolaPremioProdottoResponse() {
 		return calcolaPremioProdottoResponse;
@@ -30,6 +31,14 @@ public class InboundResponseHttpJSON
 
 	public void setTypeOfService(String typeOfService) {
 		this.typeOfService = typeOfService;
+	}
+
+	public GetFactorsResponse getGetFactorsResponse() {
+		return getFactorsResponse;
+	}
+
+	public void setGetFactorsResponse(GetFactorsResponse getFactorsResponse) {
+		this.getFactorsResponse = getFactorsResponse;
 	}
 
 }

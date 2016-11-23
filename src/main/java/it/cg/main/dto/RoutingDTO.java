@@ -2,7 +2,7 @@ package it.cg.main.dto;
 
 import it.cg.main.conf.DtoImpl;
 
-public class RoutingDTO
+public class RoutingDTO extends DtoImpl
 {
 	private static final long serialVersionUID = 2645400659518697356L;
 
