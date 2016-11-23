@@ -1,26 +1,17 @@
 package it.cg.main.integration.easyway.chain;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.log4j.Logger;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.stereotype.Component;
 
 import com.pass.global.CalculatePremium;
-import com.pass.global.MsgCalculatePremiumRequest;
-import com.pass.global.TypeData;
 import com.pass.global.WSPassProHelloWorldOperation;
-import com.pass.global.WsCalculatePremiumInput;
-import com.pass.global.WsFactor;
-import com.pass.global.WsProduct;
 
 import it.cg.main.dto.RoutingDTO;
 import it.cg.main.integration.easyway.parsing.ParsingOut;
+import test.CustomTest;
 
 @Component
 public class EasyActivatorChain
