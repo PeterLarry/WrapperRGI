@@ -5,6 +5,16 @@
   <version>0.9.0-SNAPSHOT</version>
   <packaging>war</packaging>
   <name/>
+  <distributionManagement>
+    <repository>
+        <id>releases</id>
+        <url>http://vbbolly.directline.italy:8080/nexus-2.2-01/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <url>http://vbbolly.directline.italy:8080/nexus-2.2-01/content/repositories/snapshots</url>
+    </snapshotRepository>
+</distributionManagement>
   
   <!-- DEPENDENCIES -->
   <dependencies>
