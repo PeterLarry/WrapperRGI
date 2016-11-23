@@ -12,7 +12,7 @@ import it.cg.main.integration.interfaces.ActivatorHandler;
 
 
 @Service
-public class ActivatorInboundGatewayImpl implements ActivatorHandler
+public class ActivatorInboundGatewayImpl extends ActivatorHandler
 {
 	private final Logger logger = Logger.getLogger(getClass());
 	

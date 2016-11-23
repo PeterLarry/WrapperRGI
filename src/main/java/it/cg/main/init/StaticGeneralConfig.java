@@ -26,6 +26,17 @@ public enum StaticGeneralConfig
 	 */
 	ROUTING_PARAM_MAIN_PROPERTIES("routing-conf"),
 	
+	/**
+	 * When the message is created in a specific handler phase : 
+	 * GetTechnicaldata or GetFactors of technical data <br>
+	 * this parameter into header specify the start point of the message
+	 * <b>phaseHardway</b>
+	 */
+	HEADER_MESSAGE_HARDWAY_PHASE_KEY("phaseHardway"),
+	HEADER_MESSAGE_HARDWAY_GETTECHINICALDATA_VAL("getTechinicalData"),
+	HEADER_MESSAGE_HARDWAY_GETASSETS_VAL("getAssets"),
+	HEADER_MESSAGE_HARDWAY_GETRISK_VAL("getRisk")
+	
 	;
 	
 	

@@ -19,7 +19,7 @@ public class ParsingIn
 	/**
 	 * 
 	 * @param routingDTO
-	 * @return
+	 * @return InboundResponseHttpJSON
 	 */
 	public InboundResponseHttpJSON parse(WSPassProHelloWorldOperationResponse routingDTO)
 	{
@@ -29,7 +29,6 @@ public class ParsingIn
 //		Mapstruct test
 		
 		response = getMapper().helloWorldToDetailService(routingDTO);
-		
 		
 		logger.info("parse output DTO "+response);
 		return response;

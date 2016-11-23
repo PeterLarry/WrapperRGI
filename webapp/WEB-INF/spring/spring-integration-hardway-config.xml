@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
+	xmlns:int-http="http://www.springframework.org/schema/integration/http"
+	xmlns:int-ws="http://www.springframework.org/schema/integration/ws"
+	xsi:schemaLocation="http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-4.3.xsd
+						http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream-4.3.xsd
+						http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+						http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-4.3.xsd
+						http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.3.xsd
+						http://www.springframework.org/schema/integration/ws http://www.springframework.org/schema/integration/ws/spring-integration-ws-4.3.xsd">
+
+	
+	<int:channel id="routerHardChannel"></int:channel>
+		<!-- Main Chain -->
+	<int:chain input-channel="routerHardChannel"
+			   output-channel="hardChainActivatorResultChannel">
+			   
+	   		<!-- Main call -->
+		<int:service-activator id="technicalDataActivator">
+			<bean class="it.cg.main.integration.hardway.chain.HardFirstActivatorChain" ></bean>
+		</int:service-activator>
+		<int-ws:outbound-gateway id="outboundForPrincipal"
+								 marshaller="marshallerOutboundJaxb" unmarshaller="marshallerOutboundJaxb"
+								 uri="${endpointOut}" header-mapper="headerMapperEasy" >
+		</int-ws:outbound-gateway>
+		<!-- <int:gateway request-channel="routerHardChannelFactorsAndClauses"/> -->
+			<!-- Call Factors -->
+		<int:service-activator id="factclauActivator">
+			<bean class="it.cg.main.integration.hardway.chain.factcla.FactClauReqRespHandler"></bean>
+		</int:service-activator>
+		<int-ws:outbound-gateway id="outboundForFactors" 
+							 marshaller="marshallerOutboundJaxb" unmarshaller="marshallerOutboundJaxb"
+							 uri="${endpointOut}" header-mapper="headerMapperEasy">
+		</int-ws:outbound-gateway>
+			<!-- Call Clauses -->
+	<!-- 	<int:service-activator id="clausesActivator">
+			<bean class="it.cg.main.integration.hardway.chain.factcla.ClausesReqRespHandler" ></bean>
+		</int:service-activator>
+		<int-ws:outbound-gateway id="outboundForClauses" 
+								 marshaller="marshallerOutboundJaxb" unmarshaller="marshallerOutboundJaxb"
+								 uri="${endpointOut}" header-mapper="headerMapperEasy" >
+		</int-ws:outbound-gateway> -->
+		
+	</int:chain>
+
+		<!-- Main Chain Output -->
+	<int:channel id="hardChainActivatorResultChannel"></int:channel>
+	<int:service-activator input-channel="hardChainActivatorResultChannel">
+		<bean class="it.cg.main.integration.hardway.reply.ReplyHardwayAcrivator"></bean>
+	</int:service-activator>
+
+<!-- 
+	<int:chain id="main-chain" input-channel="in" output-channel="out">
+    <int:header-enricher>
+      <int:header name="name" value="Many" />
+    </int:header-enricher>
+    <int:service-activator>
+      <bean class="org.foo.SampleService" />
+    </int:service-activator>
+    <int:gateway request-channel="inputA"/>  
+</int:chain>
+
+<int:chain id="nested-chain-a" input-channel="inputA">
+    <int:header-enricher>
+        <int:header name="name" value="Moe" />
+    </int:header-enricher>
+    <int:gateway request-channel="inputB"/> 
+    <int:service-activator>
+        <bean class="org.foo.SampleService" />
+    </int:service-activator>
+</int:chain>
+
+<int:chain id="nested-chain-b" input-channel="inputB">
+    <int:header-enricher>
+        <int:header name="name" value="Jack" />
+    </int:header-enricher>
+    <int:service-activator>
+        <bean class="org.foo.SampleService" />
+    </int:service-activator>
+</int:chain>
+-->
+	
+	
+		
+</beans>
