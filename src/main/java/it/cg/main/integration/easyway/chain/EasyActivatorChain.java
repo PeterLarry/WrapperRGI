@@ -3,12 +3,13 @@ package it.cg.main.integration.easyway.chain;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.stereotype.Component;
 
 import com.pass.global.CalculatePremium;
-import com.pass.global.WSPassProHelloWorldOperation;
 
+import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
 import it.cg.main.dto.RoutingDTO;
 import it.cg.main.integration.easyway.parsing.ParsingOut;
 import test.CustomTest;
@@ -17,6 +18,9 @@ import test.CustomTest;
 public class EasyActivatorChain
 {
 	private Logger logger = Logger.getLogger(getClass());
+	
+	@Autowired
+	private EasyMapperMapstruct easyMapperMapstruct;
 	
 	/**
 	 * Parsing Input PASS
@@ -31,8 +35,8 @@ public class EasyActivatorChain
 		logger.info("Into gotoEasyCall call , input="+request);
 		
 //		parser
-		ParsingOut pout = new ParsingOut();
-		WSPassProHelloWorldOperation response = pout.getParsing(request);
+		ParsingOut pout = new ParsingOut(easyMapperMapstruct);
+		pout.getQuoteToWsProduct(request);
 		
 //		Calculate premium
 		CustomTest ctest = new CustomTest();

@@ -43,7 +43,7 @@ public class ActivatorInboundGatewayImpl extends ActivatorHandler
 		routingDto.setExternalTypeForEasyWay(externalTypeForEasyWay);
 		routingDto.setExternalTypeForHardWay(externalTypeForHardWay);
 		routingDto.setTypeOf(request.getServiceType());
-		routingDto.setRequestHttpService(request);
+		routingDto.setInboundRequestHttpJSON(request);
 		
 		logger.info("for handlingJsonObjectToRouter response : "+routingDto);
 		return routingDto;

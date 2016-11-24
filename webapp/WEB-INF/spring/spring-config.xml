@@ -6,7 +6,9 @@
 	xmlns:int-http="http://www.springframework.org/schema/integration/http"
 	xmlns:int="http://www.springframework.org/schema/integration"
 	xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="http://www.springframework.org/schema/integration
+	xsi:schemaLocation="http://www.springframework.org/schema/web-services
+						http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+						http://www.springframework.org/schema/integration
 						http://www.springframework.org/schema/integration/spring-integration-4.3.xsd
 						http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
@@ -20,6 +22,12 @@
 	<!-- Context config -->
 	<context:component-scan base-package="it.cg" ></context:component-scan>
 	
+	
+	<!-- Logging ws SOAP -->
+	<web-services:interceptors >
+    	<bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor" ></bean>
+  	</web-services:interceptors>
+  	
 	<!-- Error Handler -->
 	<int:transformer	id="transformerErrorHandler" 
 						input-channel="transformerHandlingErrorChannel"
