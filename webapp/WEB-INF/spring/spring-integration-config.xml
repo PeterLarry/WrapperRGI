@@ -18,11 +18,7 @@
 
 	<!-- Import marshalling handlers -->
 	<import resource="spring-integration-marshalling-config.xml"/>
-	
-	<!-- Logging ws SOAP -->
-	<web-services:interceptors >
-    	<bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor" ></bean>
-  	</web-services:interceptors> 
+	 
 
  	<int:service-activator input-channel="gateForActivatorChannel" output-channel="activatorForRouterChannel">
 		<bean class="it.cg.main.integration.gateway.impl.ActivatorInboundGatewayImpl"  />

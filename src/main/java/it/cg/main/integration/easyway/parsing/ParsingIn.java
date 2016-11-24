@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.pass.global.WSPassProHelloWorldOperationResponse;
 
-import it.cg.main.conf.mapping.EasyMapperMapstruct;
+import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
 import it.cg.main.dto.InboundResponseHttpJSON;
 
 @Service
@@ -28,7 +28,7 @@ public class ParsingIn
 		InboundResponseHttpJSON response = new InboundResponseHttpJSON();
 //		Mapstruct test
 		
-		response = getMapper().helloWorldToDetailService(routingDTO);
+//		response = getMapper().helloWorldToDetailService(routingDTO);
 		
 		logger.info("parse output DTO "+response);
 		return response;

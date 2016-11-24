@@ -11,7 +11,7 @@ public class RoutingDTO extends DtoImpl
 	private String externalTypeForEasyWay;
 	private String externalTypeForHardWay;
 	
-	private InboundRequestHttpJSON requestHttpService;
+	private InboundRequestHttpJSON inboundRequestHttpJSON;
 	
 	
 	public String getTypeOf() {
@@ -22,14 +22,7 @@ public class RoutingDTO extends DtoImpl
 		this.typeOf = typeOf;
 	}
 
-	
-	public InboundRequestHttpJSON getRequestHttpService() {
-		return requestHttpService;
-	}
 
-	public void setRequestHttpService(InboundRequestHttpJSON requestHttpService) {
-		this.requestHttpService = requestHttpService;
-	}
 	/**
 	 * external constant for the EASY way field check
 	 */
@@ -49,6 +42,20 @@ public class RoutingDTO extends DtoImpl
 
 	public void setExternalTypeForHardWay(String externalTypeForHardWay) {
 		this.externalTypeForHardWay = externalTypeForHardWay;
+	}
+
+	/**
+	 * @return the inboundRequestHttpJSON
+	 */
+	public InboundRequestHttpJSON getInboundRequestHttpJSON() {
+		return inboundRequestHttpJSON;
+	}
+
+	/**
+	 * @param inboundRequestHttpJSON the inboundRequestHttpJSON to set
+	 */
+	public void setInboundRequestHttpJSON(InboundRequestHttpJSON inboundRequestHttpJSON) {
+		this.inboundRequestHttpJSON = inboundRequestHttpJSON;
 	}
 
 	

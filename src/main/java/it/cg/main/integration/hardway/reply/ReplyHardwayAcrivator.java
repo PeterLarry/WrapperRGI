@@ -11,7 +11,7 @@ import com.pass.global.GetFactorsResponse;
 import com.pass.global.GetTechnicalDataResponse;
 import com.pass.global.WSPassProHelloWorldOperationResponse;
 
-import it.cg.main.conf.mapping.EasyMapperMapstruct;
+import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
 import it.cg.main.dto.InboundResponseHttpJSON;
 import it.cg.main.integration.easyway.parsing.ParsingIn;
 import it.cg.main.integration.interfaces.ActivatorHandler;
