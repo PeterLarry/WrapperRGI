@@ -4,7 +4,7 @@
   <artifactId>WrapperRGI</artifactId>
   <version>0.9.5-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name/>
+  <name>WrapperDL-RGI</name>
   <distributionManagement>
     <repository>
         <id>releases</id>
@@ -14,7 +14,7 @@
         <id>snapshots</id>
         <url>http://vbbolly.directline.italy:8080/nexus-2.2-01/content/repositories/snapshots</url>
     </snapshotRepository>
-</distributionManagement>
+  </distributionManagement>
   
   <!-- DEPENDENCIES -->
   <dependencies>
@@ -56,7 +56,7 @@
 		<artifactId>mapstruct-jdk8</artifactId>
 		<version>${org.mapstruct.version}</version>
 	</dependency>
-	<!-- JAXB plugin -->
+	<!-- JAXB -->
 	<dependency>
 	    <groupId>org.jvnet.jaxb2_commons</groupId>
 	    <artifactId>jaxb2-basics-runtime</artifactId>
@@ -175,8 +175,10 @@
 		<org.mapstruct.version>1.1.0.Final</org.mapstruct.version>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 	</properties>
-  
+	
   <build>
+  	<!-- The name of the generated war from main.properties -->
+  	<finalName>${m2e.app.name}</finalName>
     <resources>
       <resource>
         <directory>${basedir}/src/main/java</directory>
@@ -203,7 +205,7 @@
 			    	<xsdPathWithinArtifact>/webapp/WEB-INF/xsd</xsdPathWithinArtifact>
 			    	<extension>true</extension>
 			    	<enableIntrospection>true</enableIntrospection>
-			    	<target>2.1</target>
+			    	<target>2.2</target>
 			    </configuration>
 		    </execution>
 	    </executions>
@@ -246,6 +248,25 @@
 			  <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
 			</compilerArgs>
         </configuration>
+      </plugin>
+      <!-- Read external conf MAVEN -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>read-project-properties</goal>
+            </goals>
+            <configuration>
+              <files>
+                <file>${basedir}/src/main/resurces/main.properties</file>
+              </files>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
