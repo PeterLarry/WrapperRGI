@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:web-services="http://www.springframework.org/schema/web-services"
+	xmlns:sws="http://www.springframework.org/schema/web-services"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:int-http="http://www.springframework.org/schema/integration/http"
 	xmlns:int="http://www.springframework.org/schema/integration"
@@ -22,12 +22,6 @@
 	<!-- Context config -->
 	<context:component-scan base-package="it.cg" ></context:component-scan>
 	
-	
-	<!-- Logging ws SOAP -->
-	<web-services:interceptors >
-    	<bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor" ></bean>
-  	</web-services:interceptors>
-  	
 	<!-- Error Handler -->
 	<int:transformer	id="transformerErrorHandler" 
 						input-channel="transformerHandlingErrorChannel"
@@ -35,22 +29,25 @@
 						method="createErrorResponse" />
 	<bean id="exceptionTransformer" class="it.cg.main.conf.error.ErrorMessageHandler" />
 	
+	<!-- LOGGING -->
+	<int:channel id="inputRequestJson">
+		<int:interceptors>
+			<int:wire-tap channel="logHttpRequestChannel" />
+		</int:interceptors>
+	</int:channel>
+	<int:logging-channel-adapter id="logHttpRequestChannel"
+		level="TRACE" logger-name="inputRequestJson" log-full-message="true" />
+	
+	
 	<!-- Gateway HTTP -->
 	<int-http:inbound-gateway
 					  id="inboundGateway"
 	                  request-channel="inputRequestJson"
 	                  path="/calculate"
 	                  request-payload-type="byte[]"
-	                  message-converters="converters"
 	                  supported-methods="POST"
 	                  error-channel="transformerHandlingErrorChannel" >
     </int-http:inbound-gateway>
-    
-    <util:list id="converters">
-	 	<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
-	    <bean class="org.springframework.http.converter.StringHttpMessageConverter" />
-	    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
-	</util:list>
 	
     <!-- TRANSFORMER json TO object -->
     <int:json-to-object-transformer 
