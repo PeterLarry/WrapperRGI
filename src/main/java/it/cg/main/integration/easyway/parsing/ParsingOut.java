@@ -3,12 +3,11 @@ package it.cg.main.integration.easyway.parsing;
 import org.apache.log4j.Logger;
 
 import com.pass.global.GetTechnicalData;
-import com.pass.global.WsFactor;
+import com.pass.global.WsCalculatePremiumInput;
 import com.pass.global.WsProduct;
 
 import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
 import it.cg.main.dto.RoutingDTO;
-import it.cg.main.dto.inbound.InboundQuoteDTO;
 
 public class ParsingOut
 {
@@ -43,15 +42,15 @@ public class ParsingOut
 		return easyMapperMapstruct;
 	}
 	
-	public WsProduct getQuoteToWsProduct(RoutingDTO request)
+	public WsCalculatePremiumInput getQuoteToWsProduct(RoutingDTO request)
 	{
 		logger.info("richiesta" + request);
 		
-		WsProduct response = getMapper().quoteDtoToFactor(request.getInboundRequestHttpJSON().getInboundQuoteDTO());
+		WsCalculatePremiumInput responsePro = getMapper().quoteDtoToFactor(request.getInboundRequestHttpJSON());
 		
-		logger.info("risposta" + response);
+		logger.info("risposta" + responsePro);
 		
-		return response;
+		return responsePro;
 	}
 	
 	

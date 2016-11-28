@@ -1,8 +1,10 @@
 package it.cg.main.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import com.pass.global.WsCalculatePremiumInput;
+import com.pass.global.WsFactor;
 
 import it.cg.main.conf.DtoImpl;
 import it.cg.main.dto.inbound.InboundQuoteDTO;
@@ -41,6 +43,7 @@ public class InboundRequestHttpJSON extends DtoImpl
 	private boolean selectionAssetUnit = true;
 	private String codeClause = "RCA001";
 	private boolean selectedClause = false;
+//	private List<WsFactor> factors;
 	
 	private WsCalculatePremiumInput wsCalculatePremiumInput;
 	
@@ -165,5 +168,21 @@ public class InboundRequestHttpJSON extends DtoImpl
 	public void setWsCalculatePremiumInput(WsCalculatePremiumInput wsCalculatePremiumInput) {
 		this.wsCalculatePremiumInput = wsCalculatePremiumInput;
 	}
+	/**
+	 * @return the factors
+	 */
+	/**
+	 * @return the factors
+	 */
+//	public List<WsFactor> getFactors() {
+//		return factors;
+//	}
+//	/**
+//	 * @param factors the factors to set
+//	 */
+//	public void setFactors(List<WsFactor> factors) {
+//		this.factors = factors;
+//	}
+//	
 	
 }

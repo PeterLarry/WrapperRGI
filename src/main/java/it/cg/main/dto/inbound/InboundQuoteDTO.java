@@ -2,6 +2,8 @@ package it.cg.main.dto.inbound;
 
 import java.util.Date;
 
+import com.pass.global.WsFactor;
+
 public class InboundQuoteDTO {
 	
 	private String affinity;
@@ -40,6 +42,7 @@ public class InboundQuoteDTO {
 	private String previousInsuranceCompany;
 	private Integer driverNumber;
 	private Boolean clean1;
+	private WsFactor factors;
 	
 //	Da qua in poi iniziano i nuovi attributi presi dalla versione 1.1 non presenti nel file di debora.
 	
@@ -267,6 +270,18 @@ public class InboundQuoteDTO {
 	 */
 	public void setClean1(Boolean clean1) {
 		this.clean1 = clean1;
+	}
+	/**
+	 * @return the factors
+	 */
+	public WsFactor getFactors() {
+		return factors;
+	}
+	/**
+	 * @param factors the factors to set
+	 */
+	public void setFactors(WsFactor factors) {
+		this.factors = factors;
 	}
 	
 	
