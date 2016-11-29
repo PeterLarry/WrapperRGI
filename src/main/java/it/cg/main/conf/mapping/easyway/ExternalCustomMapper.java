@@ -17,10 +17,12 @@ import com.pass.global.WsPremiumGroup;
 import com.pass.global.WsProduct;
 import com.pass.global.WsVehicle;
 
+import it.cg.main.dto.inbound.InboundContextDTO;
 import it.cg.main.dto.inbound.InboundPremiumDTO;
 import it.cg.main.dto.inbound.InboundQuoteDTO;
 import it.cg.main.dto.inbound.InboundVehicleDTO;
 import it.cg.main.integration.mapper.enumerations.AssetInstanceFactorsENUM;
+import it.cg.main.integration.mapper.enumerations.CodeProductENUM;
 import it.cg.main.integration.mapper.enumerations.UnitInstanceFactorsENUM;
 import it.cg.main.integration.mapper.enumerations.WsProductFactorsENUM;
 
@@ -37,13 +39,8 @@ public class ExternalCustomMapper
 		ArrayList<WsFactor> factInst = new ArrayList<WsFactor>();
 		ArrayList<WsFactor> factUnit = new ArrayList<WsFactor>();
 		
-		
-
-		
 		WsFactor wsFactor = new WsFactor();
-		
-//		factProp = (ArrayList<WsFactor>) quote.getFactors();
-		
+			
 		
 		if(quote.getAffinity() != null)
 		{
@@ -195,21 +192,10 @@ public class ExternalCustomMapper
 			factProp.add(wsFactor);
 		}
 		
-//		return factProp;
-		
-		
-//	}
-	
-//	public List<WsFactor> quoteToListWsFactorAssetInstance(InboundQuoteDTO quote)
-//	{
-//	ArrayList<WsFactor> factProp = new ArrayList<WsFactor>();
-	
-//	WsFactor wsFactor = new WsFactor();
-	
 	
 	if(quote.getNumberOfClaimsInLastYear() != null)
 	{
-//		wsFactor = new WsFactor();
+		wsFactor = new WsFactor();
 		wsFactor.setCode(AssetInstanceFactorsENUM.FACTOR_SXTOT.value());
 		wsFactor.setValue(quote.getNumberOfClaimsInLastYear().toString());
 		factInst.add(wsFactor);
@@ -312,17 +298,6 @@ public class ExternalCustomMapper
 		wsFactor.setValue(quote.getDriverNumber().toString());
 		factInst.add(wsFactor);
 	}
-	
-//	return factProp;
-//	}
-	
-	
-//	public List<WsFactor> quoteToListWsFactorUnitInstance(InboundQuoteDTO quote)
-//	{
-		
-//		ArrayList<WsFactor> factProp = new ArrayList<WsFactor>();
-		
-//		WsFactor wsFactor = new WsFactor();
 		
 		if(quote.getCoverages().getLimit().getCode() != null)
 		{
@@ -347,6 +322,39 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getClean1().toString());
 			factProp.add(wsFactor);
 		}
+//		----------------------
+//		case AUTO DLI
+		if(quote.getContext().getRisktype().equalsIgnoreCase("000001")&&
+		   quote.getContext().getProductType().equalsIgnoreCase("DLI"))
+		{	
+			prod.setCode(CodeProductENUM.CODE_AUTODLI.value());
+		}
+		else if(quote.getContext().getProductType().equalsIgnoreCase("DLI") &&
+			  ( quote.getContext().getRisktype().equalsIgnoreCase("000003")||
+				quote.getContext().getRisktype().equalsIgnoreCase("000004"))  )
+		{
+			prod.setCode(CodeProductENUM.CODE_MOTOCICLODLI.value());
+		}
+		else if(quote.getContext().getRisktype().equalsIgnoreCase("000006")&&
+				quote.getContext().getProductType().equalsIgnoreCase("DLI"))//cambiare la stringa
+		{
+			prod.setCode(CodeProductENUM.CODE_AUTODLSS.value());
+		}
+		else if ((quote.getContext().getProductType().equalsIgnoreCase("ADI"))&&
+				   quote.getContext().getRisktype().equalsIgnoreCase("000001"))
+		{
+				
+			prod.setCode(CodeProductENUM.CODE_AUTOADI.value());
+			
+		}
+		else if ( ( !quote.getContext().getRisktype().equalsIgnoreCase("000001") )&&
+				  ( !quote.getContext().getRisktype().equalsIgnoreCase("000003") )&&
+				  ( !quote.getContext().getRisktype().equalsIgnoreCase("000004") )&&
+				    quote.getContext().getProductType().equalsIgnoreCase("DLI")  )
+		{
+				
+			prod.setCode(CodeProductENUM.CODE_ALTRIVEICOLIDLI.value());
+		}
 		
 		prod.getFactors().addAll(factProp);
 		prod.getAssets().add(new WsAsset());
@@ -358,7 +366,7 @@ public class ExternalCustomMapper
 		prod.getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getFactors().addAll(factUnit);
 		
 		return prod;
-	
+
 	}
 	
 	
@@ -385,7 +393,6 @@ public class ExternalCustomMapper
 		return assetProp;
 			
 	}
-	
 
 	
 	public WsPremiumGroup changeInstance (InboundPremiumDTO pre){

@@ -30,9 +30,9 @@ public class InboundRequestHttpJSON extends DtoImpl
 	private boolean quoteMode = false;
 	private boolean adaptToMinimumPremium = true;
 	private boolean applyDiscount = true;
-	private String codeProduct = "000002";
+//	private String codeProduct = "000002";
 	private Date openDateProduct = new Date();
-	private String paymentFrequencyCodeProduct = "000001";
+	private String paymentFrequencyCodeProduct = "1";
 	private String currencyCodeProduct = "000001";
 	private String codeAsset = "000002";
 	private String classCodeVehicle = "Ciclomotore";
@@ -84,12 +84,12 @@ public class InboundRequestHttpJSON extends DtoImpl
 	public void setApplyDiscount(boolean applyDiscount) {
 		this.applyDiscount = applyDiscount;
 	}
-	public String getCodeProduct() {
-		return codeProduct;
-	}
-	public void setCodeProduct(String codeProduct) {
-		this.codeProduct = codeProduct;
-	}
+//	public String getCodeProduct() {
+//		return codeProduct;
+//	}
+//	public void setCodeProduct(String codeProduct) {
+//		this.codeProduct = codeProduct;
+//	}
 	public Date getOpenDateProduct() {
 		return openDateProduct;
 	}

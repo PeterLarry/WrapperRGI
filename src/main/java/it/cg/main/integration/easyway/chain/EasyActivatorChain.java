@@ -84,7 +84,7 @@ public class EasyActivatorChain
 		cp.getArg0().getInput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().get(0).getClauses().get(0).setSelected(tBF);
 		
 
-		logger.info("Into method gotoEasyCall , output="+cp);
+ 		logger.info("Into method gotoEasyCall , output="+cp);
 		return cp;
 	}
 

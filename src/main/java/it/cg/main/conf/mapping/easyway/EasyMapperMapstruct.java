@@ -1,25 +1,12 @@
 package it.cg.main.conf.mapping.easyway;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.Qualifier;
 
 import com.pass.global.WsCalculatePremiumInput;
-import com.pass.global.WsFactor;
 
 import it.cg.main.dto.InboundRequestHttpJSON;
-import it.cg.main.dto.inbound.InboundQuoteDTO;
-import it.cg.main.integration.mapper.enumerations.AssetInstanceFactorsENUM;
-import it.cg.main.integration.mapper.enumerations.UnitInstanceFactorsENUM;
-import it.cg.main.integration.mapper.enumerations.WsProductFactorsENUM;
 
 
 
@@ -29,13 +16,12 @@ public interface EasyMapperMapstruct
 	
 	@Mappings({
 		@Mapping(source="inboundQuoteDTO", target = "product"),
-//		@Mapping(source = "inboundQuoteDTO", target = "factors"),
-		@Mapping(source = "inboundQuoteDTO", target = "product.assets"),
-//		@Mapping(source = "inboundQuoteDTO.context.risktype", target = "assets"),
-		@Mapping(source = "inboundQuoteDTO.installments", target = "product.paymentFrequencyCode"),
-		@Mapping(source = "codeProduct", target = "product.code")
+		@Mapping(source="inboundQuoteDTO", target = "product.assets"),
+		@Mapping(source = "inboundQuoteDTO.installments", target = "product.paymentFrequencyCode")
 		})
 	WsCalculatePremiumInput quoteDtoToFactor(InboundRequestHttpJSON inbound);
+	
+
 	
 	
 //	@Mappings({
