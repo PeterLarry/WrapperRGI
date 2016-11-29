@@ -31,6 +31,4 @@
 		<url-pattern>/getPassPremium/*</url-pattern>
 	</servlet-mapping>
 	
-	
-	
 </web-app>

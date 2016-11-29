@@ -23,41 +23,57 @@
 	<context:component-scan base-package="it.cg" ></context:component-scan>
 	
 	<!-- Error Handler -->
-	<int:transformer	id="transformerErrorHandler" 
-						input-channel="transformerHandlingErrorChannel"
-						ref="exceptionTransformer"
-						method="createErrorResponse" />
+	<int:transformer id="transformerErrorHandler" 
+					 input-channel="transformerHandlingErrorChannel"
+					 ref="exceptionTransformer"
+					 method="createErrorResponse" />
 	<bean id="exceptionTransformer" class="it.cg.main.conf.error.ErrorMessageHandler" />
 	
-	<!-- LOGGING -->
-	<int:channel id="inputRequestJson">
-		<int:interceptors>
-			<int:wire-tap channel="logHttpRequestChannel" />
-		</int:interceptors>
-	</int:channel>
-	<int:logging-channel-adapter id="logHttpRequestChannel"
-		level="TRACE" logger-name="inputRequestJson" log-full-message="true" />
+
 	
-	
+<!-- MAIN integration -->
 	<!-- Gateway HTTP -->
-	<int-http:inbound-gateway
-					  id="inboundGateway"
-	                  request-channel="inputRequestJson"
-	                  path="/calculate"
-	                  request-payload-type="byte[]"
-	                  supported-methods="POST"
-	                  error-channel="transformerHandlingErrorChannel" >
+	<int-http:inbound-gateway id="inboundGateway"
+			                  request-channel="channelInputRequestJson"
+			                  path="${mainUrlPatternWebXml}"
+			                  request-payload-type="java.lang.String"
+			                  supported-methods="POST"
+			                  message-converters="converters"
+			                  error-channel="transformerHandlingErrorChannel" >
     </int-http:inbound-gateway>
+    <!-- reply useful for the gateway HTTP -->
+    <util:list id="converters">
+	    <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+	    <bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+	    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+	</util:list>
 	
     <!-- TRANSFORMER json TO object -->
-    <int:json-to-object-transformer 
-    			id="transoformerJsonToObj"
-    			input-channel="inputRequestJson"
-    			output-channel="gateForActivatorChannel"
-    			type="it.cg.main.dto.InboundRequestHttpJSON" />
+    <int:json-to-object-transformer id="transoformerJsonToObj"
+					    			input-channel="channelInputRequestJson"
+					    			output-channel="gateForActivatorChannel"
+					    			type="it.cg.main.dto.InboundRequestHttpJSON" />
 	
 	<!-- Integration config -->
 	<import resource="spring-integration-config.xml"/>
+	
+<!-- ___ IVASS ___ -->
+	<!-- Gateway HTTP IVASS -->
+	<!-- <int-http:inbound-gateway id="inboundGatewayIvass"
+				              request-channel="inputRequestJsonIvass"
+				              path="/ivass"
+				              request-payload-type="byte[]"
+				              supported-methods="POST"
+				              error-channel="transformerHandlingErrorChannel">
+    </int-http:inbound-gateway>
+    
+    TRANSFORMER json TO object
+    <int:json-to-object-transformer id="transoformerIvassJsonToObj"
+					    			input-channel="inputRequestJsonIvass"
+					    			output-channel="gateForActivatorChannel"
+					    			type="it.cg.main.dto.ivass.InboundIvassDTO" />
 
+	<import resource="ivass/spring-integration-ivass-config.xml"/> -->
+	
 	
 </beans>
