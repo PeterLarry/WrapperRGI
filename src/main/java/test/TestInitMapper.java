@@ -49,7 +49,7 @@ public class TestInitMapper {
 		//InboundQuoteDTO.InboundContextDTO
 		inboundRequestHttpJSON.getInboundQuoteDTO().setContext(new InboundContextDTO());
 		inboundRequestHttpJSON.getInboundQuoteDTO().getContext().setProductType(("MOTOCICLO DLI"));
-		inboundRequestHttpJSON.getInboundQuoteDTO().getContext().setRisktype("Ciclomotore");
+		inboundRequestHttpJSON.getInboundQuoteDTO().getContext().setRiskType("Ciclomotore");
 		
 		//InboundQuoteDTO.InboundVehicleDTO
 		inboundRequestHttpJSON.getInboundQuoteDTO().setVehicle(new InboundVehicleDTO());

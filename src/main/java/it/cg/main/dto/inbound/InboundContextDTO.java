@@ -3,7 +3,7 @@ package it.cg.main.dto.inbound;
 public class InboundContextDTO {
 	
 	private String platform;
-	private String risktype;
+	private String riskType;
 	private String quoteType;
 	private String amendmentType;
 	private String dateType;
@@ -18,12 +18,7 @@ public class InboundContextDTO {
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
-	public String getRisktype() {
-		return risktype;
-	}
-	public void setRisktype(String risktype) {
-		this.risktype = risktype;
-	}
+	
 	public String getQuoteType() {
 		return quoteType;
 	}
@@ -59,6 +54,18 @@ public class InboundContextDTO {
 	}
 	public void setFlowType(String flowType) {
 		this.flowType = flowType;
+	}
+	/**
+	 * @return the riskType
+	 */
+	public String getRiskType() {
+		return riskType;
+	}
+	/**
+	 * @param riskType the riskType to set
+	 */
+	public void setRiskType(String riskType) {
+		this.riskType = riskType;
 	}
 	
 	

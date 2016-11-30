@@ -14,6 +14,7 @@ public class InboundTechnicalDataDTO {
 	private String bodyType;
 	private String airbagType;
 	private String type;
+	private String praUse;
 	
 	
 	public String getInfocarCode() {
@@ -87,6 +88,18 @@ public class InboundTechnicalDataDTO {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	/**
+	 * @return the praUse
+	 */
+	public String getPraUse() {
+		return praUse;
+	}
+	/**
+	 * @param praUse the praUse to set
+	 */
+	public void setPraUse(String praUse) {
+		this.praUse = praUse;
 	}
 	
 	

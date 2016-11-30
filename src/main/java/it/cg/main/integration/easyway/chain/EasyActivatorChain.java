@@ -17,9 +17,6 @@ import com.pass.global.MsgCalculatePremiumRequest;
 import com.pass.global.TypeBooleano;
 import com.pass.global.TypeData;
 import com.pass.global.WsCalculatePremiumInput;
-import com.pass.global.WsClause;
-import com.pass.global.WsProduct;
-import com.pass.global.WsUnitInstance;
 
 import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
 import it.cg.main.dto.RoutingDTO;
@@ -59,30 +56,11 @@ public class EasyActivatorChain
 		 
 //		parser
 		ParsingOut pout = new ParsingOut(easyMapperMapstruct);
-//		WsProduct wsprod= pout.getQuoteToWsProduct(request);
-		WsCalculatePremiumInput calcPremium = pout.getQuoteToWsProduct(request);
+		WsCalculatePremiumInput calcPremium = pout.getQuoteToPass(request);
 		
 		CalculatePremium cp = new CalculatePremium();
 		cp.setArg0(new MsgCalculatePremiumRequest());
 		cp.getArg0().setInput(calcPremium);
-//		cp.getArg0().getInput().setProduct(wsprod);
-		cp.getArg0().getInput().setAdaptToMinimumPremium(tB);
-		cp.getArg0().getInput().setApplyDiscount(tB);
-		cp.getArg0().getInput().getProduct().setOpenDate(dataOpenTypeData);
-		cp.getArg0().getInput().getProduct().setPaymentFrequencyCode("000001");
-		cp.getArg0().getInput().getProduct().setCurrencyCode("000001");
-		cp.getArg0().getInput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).setCode("S1");
-		cp.getArg0().getInput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).setCode("RCAR1");
-		cp.getArg0().getInput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).setSelection(tB);
-		cp.getArg0().getInput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().add(new WsUnitInstance());
-		cp.getArg0().getInput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().get(0).getClauses().add(new WsClause());
-		
-		
-		
-//		cp.getArg0().getInput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().get(0).getClauses().add(new WsClause());
-		cp.getArg0().getInput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().get(0).getClauses().get(0).setCode("RCA001");
-		cp.getArg0().getInput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().get(0).getClauses().get(0).setSelected(tBF);
-		
 
  		logger.info("Into method gotoEasyCall , output="+cp);
 		return cp;

@@ -1,10 +1,6 @@
 package it.cg.main.dto;
 
-import java.util.Date;
-import java.util.List;
-
 import com.pass.global.WsCalculatePremiumInput;
-import com.pass.global.WsFactor;
 
 import it.cg.main.conf.DtoImpl;
 import it.cg.main.dto.inbound.InboundQuoteDTO;
@@ -30,20 +26,13 @@ public class InboundRequestHttpJSON extends DtoImpl
 	private boolean quoteMode = false;
 	private boolean adaptToMinimumPremium = true;
 	private boolean applyDiscount = true;
-//	private String codeProduct = "000002";
-	private Date openDateProduct = new Date();
-	private String paymentFrequencyCodeProduct = "1";
-	private String currencyCodeProduct = "000001";
-	private String codeAsset = "000002";
-	private String classCodeVehicle = "Ciclomotore";
-	private String sectorCodeVehicle = "Settore5";
-	private String useCodeVehicle = "Privato";
+	private String currencyCodeProduct = "";
+	private String sectorCodeVehicle = "000005";
 	private String codeAssetSection = "S1";
 	private String codeAssetUnit = "RCAR1";
 	private boolean selectionAssetUnit = true;
 	private String codeClause = "RCA001";
 	private boolean selectedClause = false;
-//	private List<WsFactor> factors;
 	
 	private WsCalculatePremiumInput wsCalculatePremiumInput;
 	
@@ -90,35 +79,12 @@ public class InboundRequestHttpJSON extends DtoImpl
 //	public void setCodeProduct(String codeProduct) {
 //		this.codeProduct = codeProduct;
 //	}
-	public Date getOpenDateProduct() {
-		return openDateProduct;
-	}
-	public void setOpenDateProduct(Date openDateProduct) {
-		this.openDateProduct = openDateProduct;
-	}
-	public String getPaymentFrequencyCodeProduct() {
-		return paymentFrequencyCodeProduct;
-	}
-	public void setPaymentFrequencyCodeProduct(String paymentFrequencyCodeProduct) {
-		this.paymentFrequencyCodeProduct = paymentFrequencyCodeProduct;
-	}
+	
 	public String getCurrencyCodeProduct() {
 		return currencyCodeProduct;
 	}
 	public void setCurrencyCodeProduct(String currencyCodeProduct) {
 		this.currencyCodeProduct = currencyCodeProduct;
-	}
-	public String getCodeAsset() {
-		return codeAsset;
-	}
-	public void setCodeAsset(String codeAsset) {
-		this.codeAsset = codeAsset;
-	}
-	public String getClassCodeVehicle() {
-		return classCodeVehicle;
-	}
-	public void setClassCodeVehicle(String classCodeVehicle) {
-		this.classCodeVehicle = classCodeVehicle;
 	}
 	public String getSectorCodeVehicle() {
 		return sectorCodeVehicle;
@@ -126,12 +92,7 @@ public class InboundRequestHttpJSON extends DtoImpl
 	public void setSectorCodeVehicle(String sectorCodeVehicle) {
 		this.sectorCodeVehicle = sectorCodeVehicle;
 	}
-	public String getUseCodeVehicle() {
-		return useCodeVehicle;
-	}
-	public void setUseCodeVehicle(String useCodeVehicle) {
-		this.useCodeVehicle = useCodeVehicle;
-	}
+	
 	public String getCodeAssetSection() {
 		return codeAssetSection;
 	}

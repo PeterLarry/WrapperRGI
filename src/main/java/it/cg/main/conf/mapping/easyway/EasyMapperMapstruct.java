@@ -2,11 +2,17 @@ package it.cg.main.conf.mapping.easyway;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
+import com.pass.global.WsAsset;
+import com.pass.global.WsAssetInstance;
+import com.pass.global.WsAssetSection;
 import com.pass.global.WsCalculatePremiumInput;
+import com.pass.global.WsUnitInstance;
 
 import it.cg.main.dto.InboundRequestHttpJSON;
+import it.cg.main.dto.inbound.InboundQuoteDTO;
 
 
 
@@ -15,13 +21,37 @@ public interface EasyMapperMapstruct
 {
 	
 	@Mappings({
-		@Mapping(source="inboundQuoteDTO", target = "product"),
-		@Mapping(source="inboundQuoteDTO", target = "product.assets"),
-		@Mapping(source = "inboundQuoteDTO.installments", target = "product.paymentFrequencyCode")
+		@Mapping(source="quoteMode", target = "quoteMode"),
+		@Mapping(source="adaptToMinimumPremium", target = "adaptToMinimumPremium"),
+		@Mapping(source="applyDiscount", target = "applyDiscount"),
+		@Mapping(source="inboundQuoteDTO", target = "product"),//In questa riga mappo il Code
+//		@Mapping(source="inboundQuoteDTO.rateFromDate", target = "product.openDate"), 
+//		@Mapping(source = "inboundQuoteDTO.installments", target = "product.paymentFrequencyCode"),
+//		@Mapping(source = "inboundQuoteDTO.context.flowType", target = "product.operationCode")
 		})
-	WsCalculatePremiumInput quoteDtoToFactor(InboundRequestHttpJSON inbound);
+	void quoteDtoToProduct(InboundRequestHttpJSON inbound, @MappingTarget WsCalculatePremiumInput wsCalculate);
 	
-
+	@Mappings({
+		@Mapping(source="inboundQuoteDTO", target = "instances"),
+		@Mapping(source="inboundQuoteDTO.context.riskType", target = "code"),//In questa riga mappo il code dell'asset relativo al WsProduct
+		@Mapping(source="inbound", target = "vehicles"),
+	})
+	WsAsset quoteDtoToFactorASS(InboundRequestHttpJSON inbound);
+	
+	
+	@Mappings({
+		@Mapping(source="codeAssetSection", target = "code"),
+		@Mapping(source="inbound", target = "units")
+		
+	})
+	WsAssetSection quoteDtoToAssetSector(InboundRequestHttpJSON inbound);
+	
+	
+	@Mappings({
+		@Mapping(source="inbound", target = "clauses"),
+		@Mapping(source="inboundQuoteDTO", target = "factors")
+	})
+	WsUnitInstance quoteDtoToUnitInst(InboundRequestHttpJSON inbound);
 	
 	
 //	@Mappings({

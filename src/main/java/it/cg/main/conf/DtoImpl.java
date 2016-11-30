@@ -44,7 +44,7 @@ public abstract class DtoImpl implements Serializable
 		{
 				bindingErrorMesssage.setErrorMessageJava(errorMessage.getCause().toString());
 				bindingErrorMesssage.setErrorMessageJava(errorMessage.getMessage());
-				bindingErrorMesssage.setErrorSpecCauseJava(errorMessage.getMostSpecificCause().toString());
+				bindingErrorMesssage.setErrorSpecCauseJava(errorMessage.getStackTrace().toString());
 				bindingErrorMesssage.setErrorRootCauseJava( errorMessage.getRootCause().toString());
 				logger.error("Error binding JAVA error : "+errorMessage.getMessage());
 		}

@@ -3,8 +3,10 @@ package it.cg.main.integration.easyway.parsing;
 import org.apache.log4j.Logger;
 
 import com.pass.global.GetTechnicalData;
+import com.pass.global.WsAsset;
+import com.pass.global.WsAssetSection;
 import com.pass.global.WsCalculatePremiumInput;
-import com.pass.global.WsProduct;
+import com.pass.global.WsUnitInstance;
 
 import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
 import it.cg.main.dto.RoutingDTO;
@@ -42,15 +44,24 @@ public class ParsingOut
 		return easyMapperMapstruct;
 	}
 	
-	public WsCalculatePremiumInput getQuoteToWsProduct(RoutingDTO request)
+	public WsCalculatePremiumInput getQuoteToPass(RoutingDTO request)
 	{
 		logger.info("richiesta" + request);
 		
-		WsCalculatePremiumInput responsePro = getMapper().quoteDtoToFactor(request.getInboundRequestHttpJSON());
+		WsCalculatePremiumInput responsePremium = new WsCalculatePremiumInput();
+		getMapper().quoteDtoToProduct(request.getInboundRequestHttpJSON(), responsePremium);
 		
-		logger.info("risposta" + responsePro);
+		WsAsset ass = getMapper().quoteDtoToFactorASS(request.getInboundRequestHttpJSON());
+		WsAssetSection sec = getMapper().quoteDtoToAssetSector(request.getInboundRequestHttpJSON());
+		WsUnitInstance uInst = getMapper().quoteDtoToUnitInst(request.getInboundRequestHttpJSON());
 		
-		return responsePro;
+		responsePremium.getProduct().getAssets().add(ass);
+		responsePremium.getProduct().getAssets().get(0).getInstances().get(0).getSections().add(sec);
+		responsePremium.getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().add(uInst);
+		
+		logger.info("risposta" + responsePremium);
+		
+		return responsePremium;
 	}
 	
 	
