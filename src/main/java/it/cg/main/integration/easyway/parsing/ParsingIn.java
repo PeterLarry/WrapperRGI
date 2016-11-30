@@ -4,33 +4,45 @@ package it.cg.main.integration.easyway.parsing;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.pass.global.WSPassProHelloWorldOperationResponse;
+import com.pass.global.CalculatePremiumResponse;
+import com.pass.global.WsUnitInstance;
 
-import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
+import it.cg.main.conf.mapping.easyway.MapperResponseToDL;
 import it.cg.main.dto.InboundResponseHttpJSON;
 
+/**
+ * Handling recived resposnse from PASS to parse Tto DL
+ * @author RiccardoEstia
+ *
+ */
 @Service
 public class ParsingIn
 {
 	private Logger logger = Logger.getLogger(getClass());
 	
-	private EasyMapperMapstruct easyMapperMapstruct;
+	private MapperResponseToDL mapperToDL;
 	
-	/**
-	 * 
-	 * @param routingDTO
-	 * @return InboundResponseHttpJSON
-	 */
-	public InboundResponseHttpJSON parse(WSPassProHelloWorldOperationResponse routingDTO)
+	public InboundResponseHttpJSON parseCalculatePremiumResponse(CalculatePremiumResponse responseCalculate)
 	{
-		logger.info("parse input DTO "+routingDTO);
+		logger.info("parseCalculatePremiumResponse enter with parameters :"+responseCalculate);
+		InboundResponseHttpJSON response = getMapper().getResponseJsonFromProd(responseCalculate);
+		WsUnitInstance unitInstance = new WsUnitInstance();
+		try
+		{
+			unitInstance = responseCalculate.getReturn().getOutput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().get(0);
+		}
+		catch(NullPointerException ex)
+		{
+			logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
+		}
+		catch(ArrayIndexOutOfBoundsException ex)
+		{
+			logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
+		}
 		
-		InboundResponseHttpJSON response = new InboundResponseHttpJSON();
-//		Mapstruct test
+		getMapper().getResponseJsonFromUnitInstance(unitInstance , response);
 		
-//		response = getMapper().helloWorldToDetailService(routingDTO);
-		
-		logger.info("parse output DTO "+response);
+		logger.info("parseCalculatePremiumResponse out with response :"+response);
 		return response;
 	}
 	
@@ -40,9 +52,9 @@ public class ParsingIn
 	 * <i>@Autowired <br> org.mapstruct.@Mapper </i>
 	 * @param mapper
 	 */
-	public ParsingIn(EasyMapperMapstruct easyMapperMapstruct)
+	public ParsingIn(MapperResponseToDL mapperToDL)
 	{
-		this.easyMapperMapstruct = easyMapperMapstruct;
+		this.mapperToDL = mapperToDL;
 	}
 
 	
@@ -52,14 +64,14 @@ public class ParsingIn
 	 * @return Mapper
 	 * @throws NullPointerException nel caso sia null
 	 */
-	private EasyMapperMapstruct getMapper() throws NullPointerException
+	private MapperResponseToDL getMapper() throws NullPointerException
 	{
-		if(easyMapperMapstruct == null)
+		if(mapperToDL == null)
 		{
 			throw new NullPointerException("mapper null from super implementation");
 		}
 		
-		return easyMapperMapstruct;
+		return mapperToDL;
 	}
 	
 

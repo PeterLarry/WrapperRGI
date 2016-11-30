@@ -27,6 +27,7 @@ public class ErrorMessageHandler  extends ErrorMessageExceptionTypeRouter
 		InboundResponseHttpJSON response = new InboundResponseHttpJSON();
 //		attuate the binding
 		response.bindAggregateError(message);
+		response.setSuccess(false);
 		
 		Message<InboundResponseHttpJSON> messageResponse = MessageBuilder.withPayload(response).build();
 		

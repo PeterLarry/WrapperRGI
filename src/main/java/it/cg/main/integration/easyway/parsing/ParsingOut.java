@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import com.pass.global.GetTechnicalData;
 import com.pass.global.WsAsset;
 import com.pass.global.WsAssetSection;
+import com.pass.global.WsAssetUnit;
 import com.pass.global.WsCalculatePremiumInput;
 import com.pass.global.WsUnitInstance;
 
@@ -53,6 +54,9 @@ public class ParsingOut
 		
 		WsAsset ass = getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON());
 		WsAssetSection sec = getMapper().quoteDtoToAssetSection(request.getInboundRequestHttpJSON());
+		WsAssetUnit unit = new WsAssetUnit();
+		getMapper().inboundToUnit(request.getInboundRequestHttpJSON(), unit);
+		sec.getUnits().add(unit);
 		WsUnitInstance uInst = getMapper().quoteDtoToUnitInst(request.getInboundRequestHttpJSON());
 		
 		responsePremium.getProduct().getAssets().add(ass);

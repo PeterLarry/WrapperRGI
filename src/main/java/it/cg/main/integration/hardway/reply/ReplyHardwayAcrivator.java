@@ -34,7 +34,7 @@ public class ReplyHardwayAcrivator extends ActivatorHandler
 		
 //		ParsingIn pIn = new ParsingIn(easyMapperMapstruct);
 		InboundResponseHttpJSON responseJson  = new InboundResponseHttpJSON();
-		responseJson.setGetFactorsResponse(factorsResponse);
+//		responseJson.setGetFactorsResponse(factorsResponse);
 //		responseJson = pIn.parse(routingDTO);
 		
 		Message<InboundResponseHttpJSON> message = MessageBuilder.withPayload(responseJson).build();

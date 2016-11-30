@@ -8,6 +8,7 @@ import org.mapstruct.Mappings;
 import com.pass.global.WsAsset;
 import com.pass.global.WsAssetInstance;
 import com.pass.global.WsAssetSection;
+import com.pass.global.WsAssetUnit;
 import com.pass.global.WsCalculatePremiumInput;
 import com.pass.global.WsUnitInstance;
 
@@ -40,11 +41,15 @@ public interface EasyMapperMapstruct
 	
 	
 	@Mappings({
-		@Mapping(source="codeAssetSection", target = "code"),
-		@Mapping(source="inbound", target = "units")
-		
+		@Mapping(source="codeAssetSection", target = "code")
 	})
 	WsAssetSection quoteDtoToAssetSection(InboundRequestHttpJSON inbound);
+	
+	@Mappings({
+		@Mapping(source="codeAssetUnit", target = "code"),
+		@Mapping(source="selectionAssetUnit", target = "selection")
+	})
+	void inboundToUnit(InboundRequestHttpJSON inbound, @MappingTarget WsAssetUnit unit);
 	
 	
 	@Mappings({

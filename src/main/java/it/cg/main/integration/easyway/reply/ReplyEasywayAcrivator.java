@@ -9,6 +9,7 @@ import org.springframework.messaging.support.MessageBuilder;
 import com.pass.global.CalculatePremiumResponse;
 
 import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
+import it.cg.main.conf.mapping.easyway.MapperResponseToDL;
 import it.cg.main.dto.InboundResponseHttpJSON;
 import it.cg.main.integration.easyway.parsing.ParsingIn;
 import it.cg.main.integration.interfaces.ActivatorHandler;
@@ -18,7 +19,7 @@ public class ReplyEasywayAcrivator extends ActivatorHandler {
 	private Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired
-	private EasyMapperMapstruct easyMapperMapstruct;
+	private MapperResponseToDL mapperToDL;
 	
 	/**
 	 * Method to access to the mapping object from PASS to DL reply
@@ -30,10 +31,9 @@ public class ReplyEasywayAcrivator extends ActivatorHandler {
 	{
 		logger.info("gotoEasyWay input DTO "+routingDTO);
 		
-		ParsingIn pIn = new ParsingIn(easyMapperMapstruct);
-		InboundResponseHttpJSON responseJson  = new InboundResponseHttpJSON();
-		responseJson.setCalcolaPremioProdottoResponse(routingDTO);
-//		responseJson = pIn.parse(routingDTO);
+		ParsingIn pIn = new ParsingIn(mapperToDL);
+		InboundResponseHttpJSON responseJson  = pIn.parseCalculatePremiumResponse(routingDTO);
+		responseJson.setSuccess(true);
 		
 		Message<InboundResponseHttpJSON> message = createMessage(responseJson);
 		

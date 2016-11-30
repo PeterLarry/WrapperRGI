@@ -1,5 +1,7 @@
 package it.cg.main.conf.mapping.easyway;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -15,17 +17,13 @@ import org.springframework.stereotype.Service;
 import com.pass.global.TypeBooleano;
 import com.pass.global.TypeData;
 import com.pass.global.WsAssetInstance;
-import com.pass.global.WsAssetUnit;
 import com.pass.global.WsClause;
 import com.pass.global.WsFactor;
-import com.pass.global.WsPremiumGroup;
 import com.pass.global.WsProduct;
 import com.pass.global.WsVehicle;
 
 import it.cg.main.dto.InboundRequestHttpJSON;
-import it.cg.main.dto.inbound.InboundPremiumDTO;
 import it.cg.main.dto.inbound.InboundQuoteDTO;
-import it.cg.main.dto.inbound.InboundVehicleDTO;
 import it.cg.main.integration.mapper.enumerations.AssetInstanceFactorsENUM;
 import it.cg.main.integration.mapper.enumerations.CodeProductENUM;
 import it.cg.main.integration.mapper.enumerations.UnitInstanceFactorsENUM;
@@ -34,26 +32,62 @@ import it.cg.main.integration.mapper.enumerations.WsProductFactorsENUM;
 @Service
 public class ExternalCustomMapper
 {
+	TypeBooleano typeB =  new TypeBooleano();
 	/**
 	 * Metodo custom di quoteDtoToProduct
 	 * @param quote
 	 * @return
 	 */
+//	TODO aggiungi directLineSelfservice, confronta con platform
 	public WsProduct quoteToListWsProduct(InboundQuoteDTO quote)
 	{
 		WsProduct prod = new WsProduct();
 		
+//		Fields
 		prod.setOpenDate(dataToTypeData(quote.getRateFromDate()));
-		
-		if(quote.getInstallments()==1){
-			
+//		TODO annotation agginta
+		if(quote.getInstallments()==1)
+		{
 			prod.setPaymentFrequencyCode("000001");
-			
 		}
 		prod.setOperationCode(quote.getContext().getFlowType());
 		
-		ArrayList<WsFactor> factProp = new ArrayList<WsFactor>();
+//		TODO enum if
+		if(quote.getContext().getRiskType() != null && quote.getContext().getProductType() != null)
+		{
+			if(quote.getContext().getRiskType().equalsIgnoreCase("000001")&&
+					quote.getContext().getProductType().equalsIgnoreCase("DLI"))
+			{	
+				prod.setCode(CodeProductENUM.CODE_AUTODLI.value());
+			}
+			else if(  quote.getContext().getProductType().equalsIgnoreCase("DLI") &&
+					  ( quote.getContext().getRiskType().equalsIgnoreCase("000003") ||
+					    quote.getContext().getRiskType().equalsIgnoreCase("000004") )  )
+			{
+				prod.setCode(CodeProductENUM.CODE_MOTOCICLODLI.value());
+			}
+			else if(quote.getContext().getRiskType().equalsIgnoreCase("000006")&&
+						quote.getContext().getProductType().equalsIgnoreCase("DLI"))//cambiare la stringa
+			{
+				prod.setCode(CodeProductENUM.CODE_AUTODLSS.value());
+			}
+			else if ( (quote.getContext().getProductType().equalsIgnoreCase("ADI"))&&
+					   		quote.getContext().getRiskType().equalsIgnoreCase("000001") )
+			{
+				prod.setCode(CodeProductENUM.CODE_AUTOADI.value());
+				
+			}
+			else if ( ( !quote.getContext().getRiskType().equalsIgnoreCase("000001") &&
+							  !quote.getContext().getRiskType().equalsIgnoreCase("000003") &&
+							  !quote.getContext().getRiskType().equalsIgnoreCase("000004") ) &&
+							    quote.getContext().getProductType().equalsIgnoreCase("DLI")  )
+			{
+				prod.setCode(CodeProductENUM.CODE_ALTRIVEICOLIDLI.value());
+			}
+		}
 		
+//		Factors
+		ArrayList<WsFactor> factProp = new ArrayList<WsFactor>();
 		WsFactor wsFactor = new WsFactor();
 			
 		if(quote.getAffinity() != null)
@@ -67,7 +101,9 @@ public class ExternalCustomMapper
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(WsProductFactorsENUM.FACTOR__1PEFF.value());
-			wsFactor.setValue("");	//DA MODIFICARE
+			//TODO DA verificare pattern
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			wsFactor.setValue(dateFormat.format(quote.getEffectiveDate()));	
 			factProp.add(wsFactor);
 		}
 
@@ -79,76 +115,14 @@ public class ExternalCustomMapper
 			factProp.add(wsFactor);
 		}
 		
-		
-//		----------------------
-//		case AUTO DLI
-		if(quote.getContext().getRiskType() != null)
-		{
-			if(quote.getContext().getRiskType().equalsIgnoreCase("000001")&&
-			   quote.getContext().getProductType().equalsIgnoreCase("DLI"))
-			{	
-				prod.setCode(CodeProductENUM.CODE_AUTODLI.value());
-			}
-			else if(quote.getContext().getProductType().equalsIgnoreCase("DLI") &&
-				  ( quote.getContext().getRiskType().equalsIgnoreCase("000003")||
-					quote.getContext().getRiskType().equalsIgnoreCase("000004"))  )
-			{
-				prod.setCode(CodeProductENUM.CODE_MOTOCICLODLI.value());
-			}
-			else if(quote.getContext().getRiskType().equalsIgnoreCase("000006")&&
-					quote.getContext().getProductType().equalsIgnoreCase("DLI"))//cambiare la stringa
-			{
-				prod.setCode(CodeProductENUM.CODE_AUTODLSS.value());
-			}
-			else if ((quote.getContext().getProductType().equalsIgnoreCase("ADI"))&&
-					   quote.getContext().getRiskType().equalsIgnoreCase("000001"))
-			{
-					
-				prod.setCode(CodeProductENUM.CODE_AUTOADI.value());
-				
-			}
-			else if ( ( !quote.getContext().getRiskType().equalsIgnoreCase("000001") )&&
-					  ( !quote.getContext().getRiskType().equalsIgnoreCase("000003") )&&
-					  ( !quote.getContext().getRiskType().equalsIgnoreCase("000004") )&&
-					    quote.getContext().getProductType().equalsIgnoreCase("DLI")  )
-			{
-					
-				prod.setCode(CodeProductENUM.CODE_ALTRIVEICOLIDLI.value());
-			}
-		}
+
 		prod.getFactors().addAll(factProp);
 		
 		return prod;
 	}
 	
 	
-	public TypeBooleano boolToTypeBool(Boolean bool) {
 		
-		TypeBooleano typeB = new TypeBooleano();
-		
-		typeB.setBoolean(bool);
-		
-		return typeB;
-	}
-	
-	public TypeData dataToTypeData(Date data) {
-		
-		TypeData dataOpenTypeData  = new TypeData(); 
-		GregorianCalendar c = new GregorianCalendar();
-		c.setTime(data); // dopo ottobre
-		XMLGregorianCalendar dataOpen = null;
-		try {
-			dataOpen = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		dataOpenTypeData.setData(dataOpen);
-		
-	return dataOpenTypeData;
-	
-	}
-	
 	
 	/**
 	 * Metodo custon di quoteDtoToAsset
@@ -157,9 +131,11 @@ public class ExternalCustomMapper
 	 */
 	public List<WsAssetInstance> quoteToWsAsset(InboundQuoteDTO quote)
 	{
-		ArrayList<WsAssetInstance> assetInst = new ArrayList<WsAssetInstance>();
-		assetInst.add(new WsAssetInstance());
-		ArrayList<WsFactor> factAsset= new ArrayList<WsFactor>();
+		List<WsAssetInstance> assetInst = new ArrayList<WsAssetInstance>();
+		WsAssetInstance aInstance = new WsAssetInstance();
+		assetInst.add(aInstance);
+		
+		List<WsFactor> factAsset= new ArrayList<WsFactor>();
 		WsFactor wsFactor = new WsFactor();
 		
 		if(quote.getNumberOfClaimsInLastYear() != null)
@@ -192,7 +168,7 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getVehicle().getCarAgeAtPurchase().toString());
 			factAsset.add(wsFactor);
 		}
-		//CONTROLLARE A CHE FATTORE METTERLO
+		//TODO CONTROLLARE A CHE FATTORE METTERLO
 		if(quote.getFigures().getAge() != null)
 		{
 					wsFactor = new WsFactor();
@@ -200,7 +176,7 @@ public class ExternalCustomMapper
 					wsFactor.setValue(quote.getFigures().getAge().toString());
 					factAsset.add(wsFactor);
 		}
-				//CONTROLLARE A CHE FATTORE METTERLO
+		//TODO CONTROLLARE A CHE FATTORE METTERLO
 		if(quote.getFigures().getResidenceAddress().getCap() != null)
 		{
 					wsFactor = new WsFactor();
@@ -294,7 +270,7 @@ public class ExternalCustomMapper
 					wsFactor.setValue(quote.getVehicle().getCarAgeAtPurchase().toString());
 					factAsset.add(wsFactor);
 		}
-		//CONTROLLARE A CHE FATTORE METTERLO
+		//TODO CONTROLLARE A CHE FATTORE METTERLO
 		if(quote.getFigures().getAge() != null)
 		{
 					wsFactor = new WsFactor();
@@ -302,7 +278,7 @@ public class ExternalCustomMapper
 					wsFactor.setValue(quote.getFigures().getAge().toString());
 					factAsset.add(wsFactor);
 		}
-				//CONTROLLARE A CHE FATTORE METTERLO
+				//TODO CONTROLLARE A CHE FATTORE METTERLO
 		if(quote.getFigures().getResidenceAddress().getCap() != null)
 		{
 					wsFactor = new WsFactor();
@@ -358,7 +334,8 @@ public class ExternalCustomMapper
 					wsFactor.setValue(quote.getDriverNumber().toString());
 					factAsset.add(wsFactor);
 		}
-		assetInst.get(0).getFactors().addAll(factAsset);
+		
+		aInstance.getFactors().addAll(factAsset);
 				
 		return assetInst;
 	}
@@ -377,8 +354,9 @@ public class ExternalCustomMapper
 		wsVe.setSectorCode(inb.getSectorCodeVehicle());
 		wsVe.setUseCode(inb.getInboundQuoteDTO().getVehicle().getTechnicalData().getPraUse());
 		
+		ve.add(wsVe);
+		
 		return ve;
-	
 	}
 	
 	/**
@@ -386,23 +364,21 @@ public class ExternalCustomMapper
 	 * @param inb
 	 * @return
 	 */
-	public List<WsAssetUnit> quoteToAssetUnit(InboundRequestHttpJSON inb)
-	{
-		ArrayList<WsAssetUnit> listAssetUnit = new ArrayList<WsAssetUnit>();
-		WsAssetUnit assetUnit = new WsAssetUnit();
-		TypeBooleano typeB =  new TypeBooleano();
-		
-		typeB.setBoolean(inb.isSelectionAssetUnit());
-
-		assetUnit.setCode(inb.getCodeAssetUnit());
-		
-		assetUnit.setSelection(typeB);
-		
-		listAssetUnit.add(assetUnit);
-		
-		return listAssetUnit;
-	
-	}
+//	public List<WsAssetUnit> quoteToAssetUnit(InboundRequestHttpJSON inb)
+//	{
+//		ArrayList<WsAssetUnit> listAssetUnit = new ArrayList<WsAssetUnit>();
+//		WsAssetUnit assetUnit = new WsAssetUnit();
+//		typeB = new TypeBooleano();
+//		
+//		typeB.setBoolean(inb.isSelectionAssetUnit());
+//		assetUnit.setCode(inb.getCodeAssetUnit());
+//		assetUnit.setSelection(typeB);
+//
+//		listAssetUnit.add(assetUnit);
+//		
+//		return listAssetUnit;
+//	
+//	}
 	
 	/**
 	 * Metodo custom di quoteDtoToUnitInst
@@ -484,20 +460,40 @@ public class ExternalCustomMapper
 			factorUnit.add(wsFactor);
 		}
 		
+		factorUnit.add(wsFactor);
 		
 		return factorUnit;
 	
 	}
 	
+//	Types mappings 
 	
-	public WsPremiumGroup changeInstance (InboundPremiumDTO pre)
-	{		
-		return new WsPremiumGroup();
+	public TypeBooleano boolToTypeBool(Boolean bool)
+	{
+		TypeBooleano typeB = new TypeBooleano();
+		typeB.setBoolean(bool);
+		
+		return typeB;
 	}
 	
-	public WsVehicle changeInstance (InboundVehicleDTO vehicle)
-	{		
-		return new WsVehicle();
+	public TypeData dataToTypeData(Date data)
+	{
+		
+		TypeData dataOpenTypeData  = new TypeData(); 
+		GregorianCalendar c = new GregorianCalendar();
+		c.setTime(data); // dopo ottobre
+		XMLGregorianCalendar dataOpen = null;
+		try {
+			dataOpen = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		dataOpenTypeData.setData(dataOpen);
+		
+		return dataOpenTypeData;
+	
 	}
+
 
 }

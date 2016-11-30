@@ -47,9 +47,12 @@
 	    <bean class="org.springframework.http.converter.StringHttpMessageConverter" />
 	    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 	</util:list>
-	
+	<bean id="customJack" class="it.cg.main.conf.CustomMapperJackson" factory-method="getMapper" >
+	</bean>
+	<!-- _______________ -->
     <!-- TRANSFORMER json TO object -->
     <int:json-to-object-transformer id="transoformerJsonToObj"
+    								object-mapper="customJack"
 					    			input-channel="channelInputRequestJson"
 					    			output-channel="gateForActivatorChannel"
 					    			type="it.cg.main.dto.InboundRequestHttpJSON" />
