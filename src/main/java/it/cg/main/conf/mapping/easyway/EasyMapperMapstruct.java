@@ -36,7 +36,7 @@ public interface EasyMapperMapstruct
 		@Mapping(source="inboundQuoteDTO.context.riskType", target = "code"),//In questa riga mappo il code dell'asset relativo al WsProduct
 		@Mapping(source="inbound", target = "vehicles"),
 	})
-	WsAsset quoteDtoToFactorASS(InboundRequestHttpJSON inbound);
+	WsAsset quoteDtoToAsset(InboundRequestHttpJSON inbound);
 	
 	
 	@Mappings({
@@ -44,7 +44,7 @@ public interface EasyMapperMapstruct
 		@Mapping(source="inbound", target = "units")
 		
 	})
-	WsAssetSection quoteDtoToAssetSector(InboundRequestHttpJSON inbound);
+	WsAssetSection quoteDtoToAssetSection(InboundRequestHttpJSON inbound);
 	
 	
 	@Mappings({

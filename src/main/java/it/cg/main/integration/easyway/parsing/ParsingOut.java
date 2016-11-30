@@ -51,8 +51,8 @@ public class ParsingOut
 		WsCalculatePremiumInput responsePremium = new WsCalculatePremiumInput();
 		getMapper().quoteDtoToProduct(request.getInboundRequestHttpJSON(), responsePremium);
 		
-		WsAsset ass = getMapper().quoteDtoToFactorASS(request.getInboundRequestHttpJSON());
-		WsAssetSection sec = getMapper().quoteDtoToAssetSector(request.getInboundRequestHttpJSON());
+		WsAsset ass = getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON());
+		WsAssetSection sec = getMapper().quoteDtoToAssetSection(request.getInboundRequestHttpJSON());
 		WsUnitInstance uInst = getMapper().quoteDtoToUnitInst(request.getInboundRequestHttpJSON());
 		
 		responsePremium.getProduct().getAssets().add(ass);

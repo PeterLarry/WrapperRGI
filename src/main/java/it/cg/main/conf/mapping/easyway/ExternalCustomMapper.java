@@ -34,7 +34,11 @@ import it.cg.main.integration.mapper.enumerations.WsProductFactorsENUM;
 @Service
 public class ExternalCustomMapper
 {
-	
+	/**
+	 * Metodo custom di quoteDtoToProduct
+	 * @param quote
+	 * @return
+	 */
 	public WsProduct quoteToListWsProduct(InboundQuoteDTO quote)
 	{
 		WsProduct prod = new WsProduct();
@@ -146,7 +150,11 @@ public class ExternalCustomMapper
 	}
 	
 	
-	
+	/**
+	 * Metodo custon di quoteDtoToAsset
+	 * @param quote
+	 * @return
+	 */
 	public List<WsAssetInstance> quoteToWsAsset(InboundQuoteDTO quote)
 	{
 		ArrayList<WsAssetInstance> assetInst = new ArrayList<WsAssetInstance>();
@@ -355,6 +363,11 @@ public class ExternalCustomMapper
 		return assetInst;
 	}
 	
+	/**
+	 * Metodo custom di quoteDtoToAsset
+	 * @param inb
+	 * @return
+	 */
 	public List<WsVehicle> quoteToWsVehicle(InboundRequestHttpJSON inb)
 	{
 		ArrayList<WsVehicle> ve = new ArrayList<WsVehicle>();
@@ -368,6 +381,11 @@ public class ExternalCustomMapper
 	
 	}
 	
+	/**
+	 * Metodo custom di quoteDtoToAssetSection
+	 * @param inb
+	 * @return
+	 */
 	public List<WsAssetUnit> quoteToAssetUnit(InboundRequestHttpJSON inb)
 	{
 		ArrayList<WsAssetUnit> listAssetUnit = new ArrayList<WsAssetUnit>();
@@ -386,6 +404,11 @@ public class ExternalCustomMapper
 	
 	}
 	
+	/**
+	 * Metodo custom di quoteDtoToUnitInst
+	 * @param inb
+	 * @return
+	 */
 	public List<WsClause> quoteToClause(InboundRequestHttpJSON inb)
 	{
 		ArrayList<WsClause> listClause = new ArrayList<WsClause>();
@@ -403,6 +426,11 @@ public class ExternalCustomMapper
 	
 	}
 	
+	/**
+	 * Metodo custom di quoteDtoToUnitInst
+	 * @param quote
+	 * @return
+	 */
 	public List<WsFactor> quoteToUnitFactor(InboundQuoteDTO quote)
 	{
 		ArrayList<WsFactor> factorUnit = new ArrayList<WsFactor>();
