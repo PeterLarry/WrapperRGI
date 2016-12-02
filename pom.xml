@@ -298,5 +298,10 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<!-- SCM  -->
+	<scm>
+		<url>https://bolly.directline.italy/svn/repos/web/products/infrastructure/rating-engine/wrapper/trunk</url>
+		<connection>  scm:svn:https://bolly.directline.italy/svn/repos/web/products/infrastructure/rating-engine/wrapper/trunk</connection>
+		<developerConnection>  scm:svn:https://bolly.directline.italy/svn/repos/web/products/infrastructure/rating-engine/wrapper/trunk</developerConnection>
+	</scm>
 </project>

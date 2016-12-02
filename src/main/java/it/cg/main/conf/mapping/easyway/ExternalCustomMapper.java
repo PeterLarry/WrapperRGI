@@ -91,7 +91,7 @@ public class ExternalCustomMapper
 				}
 				listFactor.add(wsFactor);
 				
-				if(figureTemp.getYearsWithLicense().toString() != null)
+				if(figureTemp.getYearsWithLicense() != null)
 				{
 					wsFactor = new WsFactor();
 					wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1PHAP.value());

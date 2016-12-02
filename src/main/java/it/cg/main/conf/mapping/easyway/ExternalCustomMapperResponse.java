@@ -31,11 +31,13 @@ public class ExternalCustomMapperResponse
 	public IPremium getPremiumQuoteFromProdAnnual(WsPremium premiumAnnual)
 	{
 		Premium pre = new Premium();
-		
-		pre.setNet(premiumAnnual.getNet());
-		pre.setGross(premiumAnnual.getGross());
-		pre.setTax(premiumAnnual.getTaxes());
-		pre.setSsn(premiumAnnual.getSSN());
+		if(premiumAnnual != null)
+		{
+			pre.setNet(premiumAnnual.getNet());
+			pre.setGross(premiumAnnual.getGross());
+			pre.setTax(premiumAnnual.getTaxes());
+			pre.setSsn(premiumAnnual.getSSN());
+		}
 		
 		return pre;
 	}

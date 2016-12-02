@@ -48,7 +48,7 @@ public class ParsingOut
 	
 	public WsCalculatePremiumInput getQuoteToPass(RoutingDTO request)
 	{
-		logger.info("richiesta" + request);
+		logger.info("richiesta " + request);
 		
 		WsCalculatePremiumInput responsePremium = new WsCalculatePremiumInput();
 //		TODO da trovare il mapping con deborah
