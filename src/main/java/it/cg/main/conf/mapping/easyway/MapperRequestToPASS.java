@@ -13,18 +13,15 @@ import com.pass.global.WsCalculatePremiumInput;
 import com.pass.global.WsUnitInstance;
 
 import it.cg.main.dto.InboundRequestHttpJSON;
-import it.cg.main.dto.inbound.InboundQuoteDTO;
+import it.cg.main.dto.main.Quote;
 
 
 
 @Mapper(uses=ExternalCustomMapper.class)
-public interface EasyMapperMapstruct
+public interface MapperRequestToPASS
 {
 	
 	@Mappings({
-		@Mapping(source="quoteMode", target = "quoteMode"),
-		@Mapping(source="adaptToMinimumPremium", target = "adaptToMinimumPremium"),
-		@Mapping(source="applyDiscount", target = "applyDiscount"),
 		@Mapping(source="inboundQuoteDTO", target = "product"),//In questa riga mappo il Code
 //		@Mapping(source="inboundQuoteDTO.rateFromDate", target = "product.openDate"), 
 //		@Mapping(source = "inboundQuoteDTO.installments", target = "product.paymentFrequencyCode"),
@@ -39,17 +36,18 @@ public interface EasyMapperMapstruct
 	})
 	WsAsset quoteDtoToAsset(InboundRequestHttpJSON inbound);
 	
+//TODO custom con risktype e coverage.code
+//	@Mappings({
+//		@Mapping(source="codeAssetSection", target = "code")
+//	})
+//	WsAssetSection quoteDtoToAssetSection(InboundRequestHttpJSON inbound);
 	
-	@Mappings({
-		@Mapping(source="codeAssetSection", target = "code")
-	})
-	WsAssetSection quoteDtoToAssetSection(InboundRequestHttpJSON inbound);
-	
-	@Mappings({
-		@Mapping(source="codeAssetUnit", target = "code"),
-		@Mapping(source="selectionAssetUnit", target = "selection")
-	})
-	void inboundToUnit(InboundRequestHttpJSON inbound, @MappingTarget WsAssetUnit unit);
+//	TODO custom
+//	@Mappings({
+//		@Mapping(source="codeAssetUnit", target = "code"),
+//		@Mapping(source="selectionAssetUnit", target = "selection")
+//	})
+//	void inboundToUnit(InboundRequestHttpJSON inbound, @MappingTarget WsAssetUnit unit);
 	
 	
 	@Mappings({

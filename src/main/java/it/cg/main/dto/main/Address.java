@@ -1,6 +1,6 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
-public class InboundAddressDTO {
+public class Address {
 	
 	private String provinceDesc;
 	private String province;

@@ -5,7 +5,7 @@ package it.cg.main.integration.mapper.enumerations;
  * @author RiccardoEstia
  *
  */
-public enum WsProductFactorsENUM
+public enum ENUMInternalWsProductFactors
 {
 	FACTOR__1CETA("_1CETA"),
 	FACTOR__1CNAS("_1CNAS"),
@@ -36,7 +36,7 @@ public enum WsProductFactorsENUM
 //	Impl
 	private String value;
 
-	WsProductFactorsENUM(String value) {
+	ENUMInternalWsProductFactors(String value) {
         this.value = value;
     }
 

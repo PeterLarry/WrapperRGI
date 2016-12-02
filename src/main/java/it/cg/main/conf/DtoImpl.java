@@ -42,7 +42,7 @@ public abstract class DtoImpl implements Serializable
 		ErrorIntegrationDTO bindingErrorMesssage = new ErrorIntegrationDTO();
 		try
 		{
-				bindingErrorMesssage.setErrorMessageJava(errorMessage.getCause().toString());
+				bindingErrorMesssage.setErrorCauseJava(errorMessage.getCause().toString());
 				bindingErrorMesssage.setErrorMessageJava(errorMessage.getMessage());
 				bindingErrorMesssage.setErrorSpecCauseJava(errorMessage.getStackTrace().toString());
 				bindingErrorMesssage.setErrorRootCauseJava( errorMessage.getRootCause().toString());

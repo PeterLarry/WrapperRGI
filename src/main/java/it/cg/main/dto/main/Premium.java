@@ -1,6 +1,6 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
-public class InboundPremiumDTO {
+public class Premium {
 	
 	private Double net; 
 	private Double tax; 

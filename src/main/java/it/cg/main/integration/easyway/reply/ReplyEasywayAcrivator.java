@@ -8,7 +8,7 @@ import org.springframework.messaging.support.MessageBuilder;
 
 import com.pass.global.CalculatePremiumResponse;
 
-import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
+import it.cg.main.conf.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.conf.mapping.easyway.MapperResponseToDL;
 import it.cg.main.dto.InboundResponseHttpJSON;
 import it.cg.main.integration.easyway.parsing.ParsingIn;

@@ -1,6 +1,6 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
-public class InboundTechnicalDataDTO {
+public class TechnicalData {
 	
 	private String infocarCode;
 	private String makerId;

@@ -1,13 +1,13 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
-public class InboundCoverageDTO {
+public class Coverage {
 	
 	private Boolean selected;
 	private String code;
-	private InboundLimitDTO limit;
-	private InboundCoinsuranceDTO coinsurance;
-	private InboundDeductibleDTO deductible;
-	private InboundPremiumDTO amount;
+	private Limit limit;
+	private Coinsurance coinsurance;
+	private Deductible deductible;
+	private Premium amount;
 	private Double taxRate;
 	private Double fiddleFactor;
 	
@@ -24,28 +24,28 @@ public class InboundCoverageDTO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public InboundLimitDTO getLimit() {
+	public Limit getLimit() {
 		return limit;
 	}
-	public void setLimit(InboundLimitDTO limit) {
+	public void setLimit(Limit limit) {
 		this.limit = limit;
 	}
-	public InboundCoinsuranceDTO getCoinsurance() {
+	public Coinsurance getCoinsurance() {
 		return coinsurance;
 	}
-	public void setCoinsurance(InboundCoinsuranceDTO coinsurance) {
+	public void setCoinsurance(Coinsurance coinsurance) {
 		this.coinsurance = coinsurance;
 	}
-	public InboundDeductibleDTO getDeductible() {
+	public Deductible getDeductible() {
 		return deductible;
 	}
-	public void setDeductible(InboundDeductibleDTO deductible) {
+	public void setDeductible(Deductible deductible) {
 		this.deductible = deductible;
 	}
-	public InboundPremiumDTO getAmount() {
+	public Premium getAmount() {
 		return amount;
 	}
-	public void setAmount(InboundPremiumDTO amount) {
+	public void setAmount(Premium amount) {
 		this.amount = amount;
 	}
 	public Double getTaxRate() {

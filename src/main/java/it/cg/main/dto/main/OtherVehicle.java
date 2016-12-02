@@ -1,6 +1,6 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
-public class InboundOtherVehicleDTO {
+public class OtherVehicle {
 	
 	private String province;
 	private String bmClass;

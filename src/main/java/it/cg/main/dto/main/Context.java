@@ -1,6 +1,6 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
-public class InboundContextDTO {
+public class Context {
 	
 	private String platform;
 	private String riskType;

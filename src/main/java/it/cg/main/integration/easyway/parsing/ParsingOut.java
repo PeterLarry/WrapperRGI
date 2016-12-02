@@ -3,20 +3,21 @@ package it.cg.main.integration.easyway.parsing;
 import org.apache.log4j.Logger;
 
 import com.pass.global.GetTechnicalData;
+import com.pass.global.TypeBooleano;
 import com.pass.global.WsAsset;
 import com.pass.global.WsAssetSection;
 import com.pass.global.WsAssetUnit;
 import com.pass.global.WsCalculatePremiumInput;
 import com.pass.global.WsUnitInstance;
 
-import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
+import it.cg.main.conf.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.dto.RoutingDTO;
 
 public class ParsingOut
 {
 	private Logger logger = Logger.getLogger(getClass());
 
-	private EasyMapperMapstruct easyMapperMapstruct;
+	private MapperRequestToPASS easyMapperMapstruct;
 	
 	
 	/**
@@ -24,7 +25,7 @@ public class ParsingOut
 	 * <i>@Autowired <br> org.mapstruct.@Mapper </i>
 	 * @param mapper
 	 */
-	public ParsingOut(EasyMapperMapstruct easyMapperMapstruct)
+	public ParsingOut(MapperRequestToPASS easyMapperMapstruct)
 	{
 		this.easyMapperMapstruct = easyMapperMapstruct;
 	}
@@ -35,7 +36,7 @@ public class ParsingOut
 	 * @return Mapper
 	 * @throws NullPointerException nel caso sia null
 	 */
-	private EasyMapperMapstruct getMapper() throws NullPointerException
+	private MapperRequestToPASS getMapper() throws NullPointerException
 	{
 		if(easyMapperMapstruct == null)
 		{
@@ -50,14 +51,31 @@ public class ParsingOut
 		logger.info("richiesta" + request);
 		
 		WsCalculatePremiumInput responsePremium = new WsCalculatePremiumInput();
+//		TODO da trovare il mapping con deborah
+		TypeBooleano tybF = new TypeBooleano();
+		tybF.setBoolean(false);
+		TypeBooleano tybT = new TypeBooleano();
+		tybT.setBoolean(true);
+		responsePremium.setQuoteMode(tybF);
+		responsePremium.setAdaptToMinimumPremium(tybT);
+		responsePremium.setApplyDiscount(tybT);
+//		-------------
 		getMapper().quoteDtoToProduct(request.getInboundRequestHttpJSON(), responsePremium);
 		
 		WsAsset ass = getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON());
-		WsAssetSection sec = getMapper().quoteDtoToAssetSection(request.getInboundRequestHttpJSON());
+		WsAssetSection sec = new WsAssetSection();
+//		TODO
+		sec.setCode("S1");
+//				getMapper().quoteDtoToAssetSection(request.getInboundRequestHttpJSON());
 		WsAssetUnit unit = new WsAssetUnit();
-		getMapper().inboundToUnit(request.getInboundRequestHttpJSON(), unit);
+		unit.setCode("RCAR1");
+		unit.setSelection(tybT);
+//		getMapper().inboundToUnit(request.getInboundRequestHttpJSON(), unit);
 		sec.getUnits().add(unit);
 		WsUnitInstance uInst = getMapper().quoteDtoToUnitInst(request.getInboundRequestHttpJSON());
+//		TODO da rimappare su custom xx11
+		uInst.getClauses().get(0).setCode("RCA001");
+		uInst.getClauses().get(0).setSelected(tybF);
 		
 		responsePremium.getProduct().getAssets().add(ass);
 		responsePremium.getProduct().getAssets().get(0).getInstances().get(0).getSections().add(sec);

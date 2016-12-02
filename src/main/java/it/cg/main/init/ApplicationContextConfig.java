@@ -36,15 +36,21 @@ public class ApplicationContextConfig implements ServletContextListener
 	{
 		logger.info("Loading properties");
 		PropertySourcesPlaceholderConfigurer propConf = new PropertySourcesPlaceholderConfigurer();
-		String pathLog4j = getPropertyValue(StaticGeneralConfig.LOG4J_PARAM_MAIN_PROPERTIES.value());
-		String pathEndpoint = getPropertyValue(StaticGeneralConfig.WEBSERVICE_PARAM_MAIN_PROPERTIES.value());
-		String pathRouting = getPropertyValue(StaticGeneralConfig.ROUTING_PARAM_MAIN_PROPERTIES.value());
+//		vvvvvvvvvvv TODO for external conf files vvvvvvvvvvv
+//		String pathLog4j = getPropertyValue(StaticGeneralConfig.LOG4J_PARAM_MAIN_PROPERTIES.value());
+//		String pathEndpoint = getPropertyValue(StaticGeneralConfig.WEBSERVICE_PARAM_MAIN_PROPERTIES.value());
+//		String pathRouting = getPropertyValue(StaticGeneralConfig.ROUTING_PARAM_MAIN_PROPERTIES.value());
 		
+//        AbstractResource resources[] = new AbstractResource[] {
+//        		new ClassPathResource(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()),
+//        		new FileSystemResource(pathLog4j),
+//        		new FileSystemResource(pathEndpoint),
+//        		new FileSystemResource(pathRouting)
+//        };
+//		^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//		Internal conf files
         AbstractResource resources[] = new AbstractResource[] {
         		new ClassPathResource(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()),
-        		new FileSystemResource(pathLog4j),
-        		new FileSystemResource(pathEndpoint),
-        		new FileSystemResource(pathRouting)
         };
 		
 		propConf.setLocations(resources);
@@ -95,14 +101,18 @@ public class ApplicationContextConfig implements ServletContextListener
 		Properties properties = new Properties();
 		try
 		{
-			properties.load(context.getResourceAsStream(StaticGeneralConfig.MAIN_PROPERTIES_CLASSPATH.value()+StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()));
+			properties.load(context.getResourceAsStream(StaticGeneralConfig.MAIN_PROPERTIES_CLASSPATH.value()+
+								StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()));
 		}
 		catch (IOException ex)
 		{
 			logger.error("GRAVE Impossibile caricare le configurazioni principali del main.properties"+ex.getMessage());
 			ex.printStackTrace();
 		}
-		String log4jConfigFile = properties.getProperty(StaticGeneralConfig.LOG4J_PARAM_MAIN_PROPERTIES.value());
+		ClassPathResource resources = new ClassPathResource("log4j.properties");
+	        
+		String log4jConfigFile =  resources.getPath();
+//				properties.getProperty(StaticGeneralConfig.LOG4J_PARAM_MAIN_PROPERTIES.value());
 				
 		PropertyConfigurator.configureAndWatch(log4jConfigFile);
 		

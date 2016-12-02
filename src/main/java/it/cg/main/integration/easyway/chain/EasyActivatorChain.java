@@ -12,7 +12,7 @@ import com.pass.global.CalculatePremium;
 import com.pass.global.MsgCalculatePremiumRequest;
 import com.pass.global.WsCalculatePremiumInput;
 
-import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
+import it.cg.main.conf.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.dto.RoutingDTO;
 import it.cg.main.integration.easyway.parsing.ParsingOut;
 import it.cg.main.integration.interfaces.ActivatorHandler;
@@ -23,7 +23,7 @@ public class EasyActivatorChain extends ActivatorHandler
 	private Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired
-	private EasyMapperMapstruct easyMapperMapstruct;
+	private MapperRequestToPASS easyMapperMapstruct;
 	
 	/**
 	 * Parsing Input PASS

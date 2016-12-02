@@ -15,16 +15,16 @@ public enum StaticGeneralConfig
 	/**
 	 * log4j-conf
 	 */
-	LOG4J_PARAM_MAIN_PROPERTIES("log4j-conf"),
+//	LOG4J_PARAM_MAIN_PROPERTIES("log4j-conf"),
 	
 	/**
 	 * webservice-conf
 	 */
-	WEBSERVICE_PARAM_MAIN_PROPERTIES("webservice-conf"),
+//	WEBSERVICE_PARAM_MAIN_PROPERTIES("webservice-conf"),
 	/**
 	 * routing-conf
 	 */
-	ROUTING_PARAM_MAIN_PROPERTIES("routing-conf"),
+//	ROUTING_PARAM_MAIN_PROPERTIES("routing-conf"),
 	
 	/**
 	 * When the message is created in a specific handler phase : 

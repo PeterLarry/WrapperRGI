@@ -1,6 +1,6 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
-public class InboundRatingInfoDTO {
+public class RatingInfo {
 	
 	private String last3YearsAggregatedClaims;
 	private String aggregatedClaims;

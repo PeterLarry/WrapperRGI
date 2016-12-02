@@ -40,7 +40,7 @@ public class ParsingIn
 			logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
 		}
 		
-		getMapper().getResponseJsonFromUnitInstance(unitInstance , response);
+//		getMapper().getResponseJsonFromUnitInstance(unitInstance , response);
 		
 		logger.info("parseCalculatePremiumResponse out with response :"+response);
 		return response;

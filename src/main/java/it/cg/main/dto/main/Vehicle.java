@@ -1,8 +1,8 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
 import java.util.Date;
 
-public class InboundVehicleDTO {
+public class Vehicle {
 	
 	private Integer purchaseYear;
 	private Integer vehicleAge;
@@ -12,7 +12,7 @@ public class InboundVehicleDTO {
 	private String antitheftType;
 	private Date matriculationYearMonth;
 	private String habitualUse;
-	private InboundTechnicalDataDTO technicalData;
+	private TechnicalData technicalData;
 	private Integer insuredValue;
 	private Integer carAgeAtPurchase;
 	
@@ -65,10 +65,10 @@ public class InboundVehicleDTO {
 	public void setHabitualUse(String habitualUse) {
 		this.habitualUse = habitualUse;
 	}
-	public InboundTechnicalDataDTO getTechnicalData() {
+	public TechnicalData getTechnicalData() {
 		return technicalData;
 	}
-	public void setTechnicalData(InboundTechnicalDataDTO technicalData) {
+	public void setTechnicalData(TechnicalData technicalData) {
 		this.technicalData = technicalData;
 	}
 	public Integer getInsuredValue() {

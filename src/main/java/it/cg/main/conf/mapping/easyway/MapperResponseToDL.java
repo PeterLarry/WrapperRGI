@@ -14,18 +14,16 @@ import it.cg.main.dto.InboundResponseHttpJSON;
 public interface MapperResponseToDL
 {
 	@Mappings({
-		@Mapping(source="return.output.product", target = "inboundQuoteDTO"),
-		@Mapping(source="return.output.product.premium.annual.net", target = "inboundQuoteDTO.premium.net"),
-		@Mapping(source="return.output.product.premium.annual.gross", target = "inboundQuoteDTO.premium.gross"),
-		@Mapping(source="return.output.product.premium.annual.taxes", target = "inboundQuoteDTO.premium.tax")
+		@Mapping(source="return.output.product", target = "quote"),
+		@Mapping(source="return.output.product.premium.annual", target = "quote.premium"),
 	})
-	public InboundResponseHttpJSON getResponseJsonFromProd(CalculatePremiumResponse cp);
+	InboundResponseHttpJSON getResponseJsonFromProd(CalculatePremiumResponse cp);
 	
-	@Mappings({
-		@Mapping(source="premium.annual.net", target="inboundQuoteDTO.coverages.amount.net"),
-		@Mapping(source="premium.annual.gross", target="inboundQuoteDTO.coverages.amount.gross"),
-		@Mapping(source="premium.annual.taxes", target="inboundQuoteDTO.coverages.amount.tax")
-	})
-	public void getResponseJsonFromUnitInstance(WsUnitInstance unitInstance, @MappingTarget InboundResponseHttpJSON response );
+//	@Mappings({
+//		@Mapping(source="premium.annual.net", target="quote.coverages.amount.net"),
+//		@Mapping(source="premium.annual.gross", target="quote.coverages.amount.gross"),
+//		@Mapping(source="premium.annual.taxes", target="quote.coverages.amount.tax")
+//	})
+//	public void getResponseJsonFromUnitInstance(WsUnitInstance unitInstance, @MappingTarget InboundResponseHttpJSON response );
 
 }

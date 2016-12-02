@@ -19,24 +19,23 @@
 	<!-- Profiles configurable for jenkins, part 1 -->
 	<profiles>
 		<profile>
-			<id>dev</id>
+			<id>DEV</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<build.profile.id>dev</build.profile.id>
+				<build.profile.id>DEV</build.profile.id>
 			</properties>
 		</profile>
 		<profile>
-			<id>col</id>
+			<id>SYS</id>
 			<properties>
-				<build.profile.id>col</build.profile.id>
+				<build.profile.id>SYS</build.profile.id>
 			</properties>
 		</profile>
 	</profiles>
 	<!-- DEPENDENCIES -->
 	<dependencies>
-
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -181,6 +180,12 @@
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+		<!-- Common -->
+		<dependency>
+			<groupId>mapfre-rating-engine</groupId>
+			<artifactId>rating-engine-proxy-business-objects</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<!--  PROPERTIES  -->
 	<properties>
@@ -260,15 +265,15 @@
 					<target>1.8</target>
 					<annotationProcessorPaths>
 						<path>
-			  	<groupId>org.mapstruct</groupId>
+			  				<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
 							<version>${org.mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
 					<compilerArgs>
-			  <compilerArg>-Amapstruct.suppressGeneratorTimestamp=true</compilerArg>
-			  <compilerArg>-Amapstruct.suppressGeneratorVersionInfoComment=true</compilerArg>
-			  <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
+					  <compilerArg>-Amapstruct.suppressGeneratorTimestamp=true</compilerArg>
+					  <compilerArg>-Amapstruct.suppressGeneratorVersionInfoComment=true</compilerArg>
+					  <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
 					</compilerArgs>
 				</configuration>
 			</plugin>

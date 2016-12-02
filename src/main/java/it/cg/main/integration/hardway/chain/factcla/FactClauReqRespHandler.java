@@ -39,15 +39,16 @@ public class FactClauReqRespHandler extends ActivatorHandler
 	{
 		logger.info("gotoFactorsRequest input DTO "+technicalData);
 		
-		MappingRequests mappingRequests = new MappingRequests(getTechnicalDataMapstruct);
-		GetFactors requestFactors  = mappingRequests.parseGetTecnicalDataFactors(technicalData);
+//		MappingRequests mappingRequests = new MappingRequests(getTechnicalDataMapstruct);
+//		GetFactors requestFactors  = mappingRequests.parseGetTecnicalDataFactors(technicalData);
 		
-		Message<GetFactors> message = createMessageWithHeader( requestFactors,
-								StaticGeneralConfig.HEADER_MESSAGE_HARDWAY_PHASE_KEY.value(),
-								StaticGeneralConfig.HEADER_MESSAGE_HARDWAY_GETTECHINICALDATA_VAL.value() );
-		
-		logger.info("gotoFactorsRequest response message "+message);
-		return message;
+//		Message<GetFactors> message = createMessageWithHeader( requestFactors,
+//								StaticGeneralConfig.HEADER_MESSAGE_HARDWAY_PHASE_KEY.value(),
+//								StaticGeneralConfig.HEADER_MESSAGE_HARDWAY_GETTECHINICALDATA_VAL.value() );
+//		
+//		logger.info("gotoFactorsRequest response message "+message);
+//		return message;
+		return null;
 	}
 	
 	/**

@@ -1,6 +1,6 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
-public class InboundLimitDTO {
+public class Limit {
 	
 	private String description;
 	private String code;

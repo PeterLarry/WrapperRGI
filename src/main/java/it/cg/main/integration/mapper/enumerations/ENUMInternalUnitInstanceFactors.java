@@ -1,6 +1,6 @@
 package it.cg.main.integration.mapper.enumerations;
 
-public enum UnitInstanceFactorsENUM {
+public enum ENUMInternalUnitInstanceFactors {
 	
 	FACTOR_1FIDRC("1FIDRC"),
 	FACTOR_2LOYAL("2LOYAL"),
@@ -30,7 +30,7 @@ public enum UnitInstanceFactorsENUM {
 //	Impl
 	private String value;
 
-	UnitInstanceFactorsENUM(String value) {
+	ENUMInternalUnitInstanceFactors(String value) {
         this.value = value;
     }
 

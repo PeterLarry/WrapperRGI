@@ -5,7 +5,7 @@ package it.cg.main.integration.mapper.enumerations;
  * @author RiccardoEstia
  *
  */
-public enum AssetInstanceFactorsENUM
+public enum ENUMInternalAssetInstanceFactors
 {
 	FACTOR__2AAVE("_2AAVE"),
 	FACTOR__2ALIM("_2ALIM"),
@@ -92,7 +92,7 @@ public enum AssetInstanceFactorsENUM
 //	Impl
 	private String value;
 
-	AssetInstanceFactorsENUM(String value) {
+	ENUMInternalAssetInstanceFactors(String value) {
         this.value = value;
     }
 

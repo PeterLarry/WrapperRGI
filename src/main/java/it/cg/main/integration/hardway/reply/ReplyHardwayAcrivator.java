@@ -1,19 +1,14 @@
 package it.cg.main.integration.hardway.reply;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 import com.pass.global.GetFactorsResponse;
-import com.pass.global.GetTechnicalDataResponse;
-import com.pass.global.WSPassProHelloWorldOperationResponse;
 
-import it.cg.main.conf.mapping.easyway.EasyMapperMapstruct;
 import it.cg.main.dto.InboundResponseHttpJSON;
-import it.cg.main.integration.easyway.parsing.ParsingIn;
 import it.cg.main.integration.interfaces.ActivatorHandler;
 
 @Service

@@ -1,6 +1,6 @@
 package it.cg.main.integration.mapper.enumerations;
 
-public enum CodeProductENUM {
+public enum ENUMInternalCodeProduct {
 	
 	CODE_AUTODLI("000001"),
 	CODE_MOTOCICLODLI("000002"),
@@ -13,7 +13,7 @@ public enum CodeProductENUM {
 	
 	private String value;
 
-	CodeProductENUM(String value) {
+	ENUMInternalCodeProduct(String value) {
         this.value = value;
     }
 

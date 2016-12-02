@@ -1,12 +1,12 @@
-package it.cg.main.dto.inbound;
+package it.cg.main.dto.main;
 
 import java.util.Date;
 
-public class InboundFigureDTO {
+public class Figure {
 	
 	private Date birthDate;
 	private Integer age;
-	private InboundAddressDTO residenceAddress;
+	private Address residenceAddress;
 	private String maritalStatus;
 	private String occupation;
 	private Date licenseIssueDate;
@@ -28,10 +28,10 @@ public class InboundFigureDTO {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-	public InboundAddressDTO getResidenceAddress() {
+	public Address getResidenceAddress() {
 		return residenceAddress;
 	}
-	public void setResidenceAddress(InboundAddressDTO residenceAddress) {
+	public void setResidenceAddress(Address residenceAddress) {
 		this.residenceAddress = residenceAddress;
 	}
 	public String getMaritalStatus() {
