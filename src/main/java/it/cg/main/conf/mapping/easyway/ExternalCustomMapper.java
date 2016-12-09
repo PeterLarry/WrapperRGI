@@ -218,6 +218,28 @@ public class ExternalCustomMapper
 			factProp.add(wsFactor);
 		}
 		
+		// Aggiunto fattore  mamarino
+		if(quote.getPreviousRenewalYears() != null )
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1FRRIN.value());
+			wsFactor.setValue(quote.getPreviousRenewalYears().toString());
+			factProp.add(wsFactor);
+		}
+		// Aggiunto fattore  mamarino
+		if(quote.getCampaign() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1CSC.value());
+			
+			//wsFactor.setValue(figureTemp.getOccupation().getWrapperCode().toString());
+			wsFactor.setValue(quote.getCampaign().toString());
+			factProp.add(wsFactor);
+		}
+		
+		
+		
+		
 		prod.getFactors().addAll(factProp);
 		List<WsFactor> listFactorsFigures = getFactorForFigureFromRoleWSProduct(quote.getFigures());
 		prod.getFactors().addAll(listFactorsFigures);
@@ -540,6 +562,74 @@ public class ExternalCustomMapper
 			factAsset.add(wsFactor);
 		}
 		
+		// // Aggiunto fattore  mamarino -> verificare fattori nell'else
+		if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
+		    !quote.getContext().getRiskType().equals(EnumRiskType.MOTORBIKE) ||
+		    !quote.getContext().getRiskType().equals(EnumRiskType.MOPED))
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CF.value());
+			wsFactor.setValue(quote.getOtherVehicle().getTaxableHorsePower().toString());
+			factAsset.add(wsFactor);
+
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CC.value());
+			wsFactor.setValue(quote.getOtherVehicle().getCcCapacity().toString());
+			factAsset.add(wsFactor);
+			
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2NUMAB.value());
+			wsFactor.setValue(quote.getOtherVehicle().getNumberOfCitizens().toString());
+			factAsset.add(wsFactor);
+			
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_3MASSA.value());
+			wsFactor.setValue(quote.getOtherVehicle().getWeight().toString());
+			factAsset.add(wsFactor);
+			
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2SEATS.value());
+			wsFactor.setValue(quote.getOtherVehicle().getNumberOfSeats().toString());
+			factAsset.add(wsFactor);
+			
+			if(quote.getOtherVehicle().getOwnBehalf() != null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_3CONTO.value());
+				if(quote.getOtherVehicle().getOwnBehalf() == true) {
+					wsFactor.setValue("1");
+					factAsset.add(wsFactor);
+				}else{
+					wsFactor.setValue("2");
+					factAsset.add(wsFactor);
+				}
+			
+			}
+		}else{			
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CF.value());
+			wsFactor.setValue(quote.getVehicle().getTechnicalData().getTaxableHorsePower().toString());
+			factAsset.add(wsFactor);
+			
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CC.value());
+			wsFactor.setValue(quote.getVehicle().getTechnicalData().getCcCapacity().toString());
+			factAsset.add(wsFactor);
+		}
+		
+		
+		
+		// // Aggiunto fattore  mamarino ->  _2alim
+		if(quote.getVehicle().getTechnicalData().getAlimentation() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2ALIM.value());
+			wsFactor.setValue(quote.getVehicle().getTechnicalData().getAlimentation().toString());
+			factAsset.add(wsFactor);
+		}
+		
+		
+
 		aInstance.getFactors().addAll(factAsset);
 		List<WsFactor> listFactorFigures =  getFactorForFigureFromRoleAssetInstance(quote.getFigures());
 		aInstance.getFactors().addAll(listFactorFigures);
