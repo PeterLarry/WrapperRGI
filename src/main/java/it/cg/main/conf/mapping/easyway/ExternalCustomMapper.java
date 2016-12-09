@@ -615,6 +615,8 @@ public class ExternalCustomMapper
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CC.value());
 			wsFactor.setValue(quote.getVehicle().getTechnicalData().getCcCapacity().toString());
 			factAsset.add(wsFactor);
+			
+			
 		}
 		
 		
