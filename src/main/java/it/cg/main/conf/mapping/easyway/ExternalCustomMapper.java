@@ -617,6 +617,8 @@ public class ExternalCustomMapper
 			factAsset.add(wsFactor);
 			
 			
+			
+			
 		}
 		
 		
