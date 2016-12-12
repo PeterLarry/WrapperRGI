@@ -133,14 +133,14 @@ public class CustomTest
 		factorTest = new WsFactor();factorTest.setCode("2ETAV");factorTest.setValue("1");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("2EVACQ");factorTest.setValue("0");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("2ANUCF");factorTest.setValue("1.0");assetInstances.getFactors().add(factorTest);
-		factorTest = new WsFactor();factorTest.setCode("2ALAUT");factorTest.setValue("Sì");assetInstances.getFactors().add(factorTest);
-		factorTest = new WsFactor();factorTest.setCode("3CLIN1");factorTest.setValue("Sì");assetInstances.getFactors().add(factorTest);
+		factorTest = new WsFactor();factorTest.setCode("2ALAUT");factorTest.setValue("si");assetInstances.getFactors().add(factorTest);
+		factorTest = new WsFactor();factorTest.setCode("3CLIN1");factorTest.setValue("si");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("_2FTAP");factorTest.setValue("7");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("_2CUPR");factorTest.setValue("3");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("_2CUAS");factorTest.setValue("2");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("_2CU");factorTest.setValue("2");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("2OWAP");factorTest.setValue("1");assetInstances.getFactors().add(factorTest);
-		factorTest = new WsFactor();factorTest.setCode("2BERSP");factorTest.setValue("Sì");assetInstances.getFactors().add(factorTest);
+		factorTest = new WsFactor();factorTest.setCode("2BERSP");factorTest.setValue("si");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("1FIDRC");factorTest.setValue("1.0");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("2ASSIN");factorTest.setValue("2.0");assetInstances.getFactors().add(factorTest);
 		factorTest = new WsFactor();factorTest.setCode("1FRRIN");factorTest.setValue("2.0");assetInstances.getFactors().add(factorTest);

@@ -194,6 +194,8 @@
 		<jackson-version>2.8.4</jackson-version>
 		<org.mapstruct.version>1.1.0.Final</org.mapstruct.version>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
+		<!-- PROJECT -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<!-- Build MAVEN -->
 	<build>
@@ -230,21 +232,21 @@
 							<goal>xjc</goal>
 						</goals>
 						<configuration>
-							<xsdPathWithinArtifact>/webapp/WEB-INF/xsd</xsdPathWithinArtifact>
 							<extension>true</extension>
 							<enableIntrospection>true</enableIntrospection>
 							<target>2.2</target>
+							<sources><source>${basedir}/webapp/WEB-INF/xsd/pass.xsd</source></sources>
+							<xjbSources><xjbSource>${basedir}/webapp/WEB-INF/xjb/global.xjb</xjbSource></xjbSources>
 						</configuration>
 					</execution>
 				</executions>
 				<configuration>
 					<outputDirectory>src/main/generated</outputDirectory>
-					<!-- <clearOutputDir>true</clearOutputDir> -->
+					<clearOutputDir>true</clearOutputDir>
 					<sources>
-						<source>/webapp/WEB-INF/xsd</source>
+						<source>${basedir}/webapp/WEB-INF/xsd/pass.xsd</source>
 					</sources>
-					<xsdPathWithinArtifact>/webapp/WEB-INF/xsd</xsdPathWithinArtifact>
-					<xjbSources>/webapp/WEB-INF/xjb</xjbSources>
+					<xjbSources><xjbSource>/webapp/WEB-INF/xjb/global.xjb</xjbSource></xjbSources>
 				</configuration>
 			</plugin>
 			<!-- MAVEN WAR -->
@@ -301,7 +303,7 @@
 	<!-- SCM  -->
 	<scm>
 		<url>https://bolly.directline.italy/svn/repos/web/products/infrastructure/rating-engine/wrapper/trunk</url>
-		<connection>  scm:svn:https://bolly.directline.italy/svn/repos/web/products/infrastructure/rating-engine/wrapper/trunk</connection>
-		<developerConnection>  scm:svn:https://bolly.directline.italy/svn/repos/web/products/infrastructure/rating-engine/wrapper/trunk</developerConnection>
+		<connection>scm:svn:https://bolly.directline.italy/svn/repos/web/products/infrastructure/rating-engine/wrapper/trunk</connection>
+		<developerConnection>scm:svn:https://bolly.directline.italy/svn/repos/web/products/infrastructure/rating-engine/wrapper/trunk</developerConnection>
 	</scm>
 </project>
