@@ -4,17 +4,16 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.support.MessageBuilder;
 
 import com.pass.global.CalculatePremiumResponse;
 
-import it.cg.main.conf.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.conf.mapping.easyway.MapperResponseToDL;
 import it.cg.main.dto.InboundResponseHttpJSON;
 import it.cg.main.integration.easyway.parsing.ParsingIn;
 import it.cg.main.integration.interfaces.ActivatorHandler;
 
-public class ReplyEasywayAcrivator extends ActivatorHandler {
+public class ReplyEasywayAcrivator extends ActivatorHandler
+{
 
 	private Logger logger = Logger.getLogger(getClass());
 	
@@ -23,17 +22,16 @@ public class ReplyEasywayAcrivator extends ActivatorHandler {
 	
 	/**
 	 * Method to access to the mapping object from PASS to DL reply
-	 * @param routingDTO
+	 * @param calculateResponse
 	 * @return InboundResponseHttpJSON
 	 */
 	@Gateway(requestChannel="easyChainActivatorResultChannel")
-	public Message<InboundResponseHttpJSON> gotoEasyWay(CalculatePremiumResponse routingDTO)
+	public Message<InboundResponseHttpJSON> gotoEasyWay(CalculatePremiumResponse calculateResponse)
 	{
-		logger.info("gotoEasyWay input DTO "+routingDTO);
+		logger.info("gotoEasyWay input DTO "+calculateResponse);
 		
 		ParsingIn pIn = new ParsingIn(mapperToDL);
-		InboundResponseHttpJSON responseJson  = pIn.parseCalculatePremiumResponse(routingDTO);
-		responseJson.setSuccess(true);
+		InboundResponseHttpJSON responseJson  = pIn.parseCalculatePremiumResponse(calculateResponse);
 		
 		Message<InboundResponseHttpJSON> message = createMessage(responseJson);
 		

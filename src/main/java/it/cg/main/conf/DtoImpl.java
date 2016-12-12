@@ -8,6 +8,8 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.integration.dispatcher.AggregateMessageDeliveryException;
 
+import com.pass.global.MsgResponseHeader;
+
 import it.cg.main.conf.error.ErrorIntegrationDTO;
 
 public abstract class DtoImpl implements Serializable
@@ -15,6 +17,7 @@ public abstract class DtoImpl implements Serializable
 	private static final long serialVersionUID = 2708950285561187948L;
 	
 	private Logger logger = Logger.getLogger(getClass());
+
 	private List<ErrorIntegrationDTO> errorResponseDTO;
 
 	public List<ErrorIntegrationDTO> getErrorResponseDTO()
@@ -32,9 +35,9 @@ public abstract class DtoImpl implements Serializable
 	}
 
 	/**
-	 * Aggiungo la mappatura di un errore nell'oggetto custom di errore del dto.
+	 * Binding error
 	 * 
-	 * @param errorMessage
+	 * @param AggregateMessageDeliveryException
 	 */
 	public void bindAggregateError(AggregateMessageDeliveryException errorMessage)
 	{
@@ -42,11 +45,12 @@ public abstract class DtoImpl implements Serializable
 		ErrorIntegrationDTO bindingErrorMesssage = new ErrorIntegrationDTO();
 		try
 		{
-				bindingErrorMesssage.setErrorCauseJava(errorMessage.getCause().toString());
-				bindingErrorMesssage.setErrorMessageJava(errorMessage.getMessage());
-				bindingErrorMesssage.setErrorSpecCauseJava(errorMessage.getStackTrace().toString());
-				bindingErrorMesssage.setErrorRootCauseJava( errorMessage.getRootCause().toString());
-				logger.error("Error binding JAVA error : "+errorMessage.getMessage());
+			bindingErrorMesssage.setErrorCauseJava(errorMessage.getCause().toString());
+			bindingErrorMesssage.setErrorMessageJava(errorMessage.getMessage());
+			bindingErrorMesssage.setErrorSpecCauseJava(errorMessage.getStackTrace().toString());
+			bindingErrorMesssage.setErrorRootCauseJava( errorMessage.getRootCause().toString());
+			
+			logger.error("Error binding JAVA error : "+errorMessage.getMessage());
 		}
 		catch(Exception ex)
 		{
@@ -61,6 +65,38 @@ public abstract class DtoImpl implements Serializable
 		
 		getErrorResponseDTO().add(bindingErrorMesssage);
 		logger.error("Out form method of binding aggregate : "+bindingErrorMesssage);
+	}
+	
+	/**
+	 * Every pass response have a message error object,<br>
+	 *  this method set the right fields to return to DL
+	 * @param MsgResponseHeader
+	 * @return boolean, if true = there are errors, else no errors found
+	 */
+	public boolean bindPassError(MsgResponseHeader msgError)
+	{
+		boolean isErrorsFound = true;
+		
+		if(msgError != null)
+		{
+			if(msgError.isErroreOccorso())
+			{
+				isErrorsFound = true;
+				ErrorIntegrationDTO bindingErrorMesssage = new ErrorIntegrationDTO();
+				
+				bindingErrorMesssage.setCustomCodiceErroreOccorso(msgError.getCodiceErroreOccorso());
+				bindingErrorMesssage.setCustomDescrizioneErroreOccorso(msgError.getDescrizioneErroreOccorso());
+				bindingErrorMesssage.setCustomDettagliSullErroreOccorsos(msgError.getDettagliSullErroreOccorsos());
+				bindingErrorMesssage.setCustomEccezioneOccorsaSerializzata(msgError.getEccezioneOccorsaSerializzata());
+				bindingErrorMesssage.setCustomExecutionId(msgError.getExecutionId());
+				bindingErrorMesssage.setCustomLogs(msgError.getLogs());
+				bindingErrorMesssage.setCustomTipoErroreOccorso(msgError.getTipoErroreOccorso());
+				
+				getErrorResponseDTO().add(bindingErrorMesssage);
+			}
+		}
+		
+		return isErrorsFound;
 	}
 	
 	@Override
