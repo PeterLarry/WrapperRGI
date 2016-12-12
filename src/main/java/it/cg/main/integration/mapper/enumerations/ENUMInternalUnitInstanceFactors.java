@@ -2,7 +2,7 @@ package it.cg.main.integration.mapper.enumerations;
 
 public enum ENUMInternalUnitInstanceFactors {
 	
-	FACTOR_1FIDRC("1FIDRC"),
+//	FACTOR_1FIDRC("1FIDRC"),FATTORE ELIMINATO(RIPETUTO)
 	FACTOR_2LOYAL("2LOYAL"),
 	FACTOR_2PROMC("2PROMC"),
 	FACTOR_2PRRCA("2PRRCA"),

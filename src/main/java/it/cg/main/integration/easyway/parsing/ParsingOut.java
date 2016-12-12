@@ -56,9 +56,11 @@ public class ParsingOut
 		tybF.setBoolean(false);
 		TypeBooleano tybT = new TypeBooleano();
 		tybT.setBoolean(true);
-		responsePremium.setQuoteMode(tybF);
-		responsePremium.setAdaptToMinimumPremium(tybT);
-		responsePremium.setApplyDiscount(tybT);
+		
+		//Inutili 
+//		responsePremium.setQuoteMode(tybF);
+//		responsePremium.setAdaptToMinimumPremium(tybT);
+//		responsePremium.setApplyDiscount(tybT);
 //		-------------
 		getMapper().quoteDtoToProduct(request.getInboundRequestHttpJSON(), responsePremium);
 		

@@ -32,7 +32,7 @@ public interface MapperRequestToPASS
 	@Mappings({
 		@Mapping(source="inboundQuoteDTO", target = "instances"),
 		@Mapping(source="inboundQuoteDTO.context.riskType", target = "code"),//In questa riga mappo il code dell'asset relativo al WsProduct
-		@Mapping(source="inbound", target = "vehicles"),
+		@Mapping(source="inbound", target = "vehicles")
 	})
 	WsAsset quoteDtoToAsset(InboundRequestHttpJSON inbound);
 	
