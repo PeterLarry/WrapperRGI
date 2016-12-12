@@ -40,8 +40,8 @@ import it.cg.main.integration.mapper.enumerations.ENUMInternalWsProductFactors;
 public class ExternalCustomMapper
 {
 	private TypeBooleano typeB =  new TypeBooleano();
-	//TODO DA verificare pattern
-	private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	//Pattern aggiornato
+	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 	
 	/**
 	 * Get factors for WsProduct from FIGURES
@@ -515,7 +515,7 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getUsualDriverOwnerRelationship().getWrapperCode().toString());
 			factAsset.add(wsFactor);
 		}
-		//Non Ë sicuro se il mappaggio Ë giusto
+		//Non √® sicuro se il mappaggio √® giusto
 		if(quote.getVehicle().getPreviousVehicleAgeInMonth()!= null)
 		{
 			wsFactor = new WsFactor();
@@ -524,7 +524,7 @@ public class ExternalCustomMapper
 			factAsset.add(wsFactor);
 		}
 		
-		//Non Ë sicuro se il mappaggio Ë giusto
+		//Non √® sicuro se il mappaggio √® giusto
 		if(quote.getFiddleFactorCalculationRequired()!= null)
 		{
 			wsFactor = new WsFactor();
@@ -532,7 +532,7 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getFiddleFactorCalculationRequired().toString());
 			factAsset.add(wsFactor);
 		}
-		//Non Ë sicuro se il mappaggio Ë giusto. Controllare se ci sono novit‡
+		//Non √® sicuro se il mappaggio √® giusto. Controllare se ci sono novit√†
 		if(quote.getPreviousFlagClaimsInLastYear()!= null)
 		{
 			wsFactor = new WsFactor();
@@ -550,7 +550,7 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getPreviousFlagClaimsInLastYear().toString());
 			factAsset.add(wsFactor);
 		}
-		//Non Ë sicuro se il mappaggio Ë giusto
+		//Non √® sicuro se il mappaggio √® giusto
 		if(quote.getPreviousCleanIn5()!= null)
 		{
 			wsFactor = new WsFactor();
@@ -968,7 +968,7 @@ if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 	{
 		ArrayList<WsClause> listClause = new ArrayList<WsClause>();
 		WsClause cla = new WsClause();
-		TypeBooleano typeB =  new TypeBooleano();
+		typeB =  new TypeBooleano();
 //		xx11 rimappa e togli da parsingout
 //		typeB.setBoolean(inb.isSelectedClause());
 		
@@ -1054,7 +1054,7 @@ if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 	
 	public TypeBooleano boolToTypeBool(Boolean bool)
 	{
-		TypeBooleano typeB = new TypeBooleano();
+		typeB = new TypeBooleano();
 		typeB.setBoolean(bool);
 		
 		return typeB;
