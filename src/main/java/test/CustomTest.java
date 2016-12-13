@@ -30,7 +30,7 @@ public class CustomTest
 	
 	private void getWsCalculatePremiumInput(CalculatePremium cp)
 	{
-		tyBoolGen.setBoolean(false); cp.getArg0().getInput().setQuoteMode(tyBoolGen);
+		tyBoolGen = new TypeBooleano(); tyBoolGen.setBoolean(false); cp.getArg0().getInput().setQuoteMode(tyBoolGen);
 		
 		tyBoolGen = new TypeBooleano(); tyBoolGen.setBoolean(true);
 		cp.getArg0().getInput().setAdaptToMinimumPremium(tyBoolGen);

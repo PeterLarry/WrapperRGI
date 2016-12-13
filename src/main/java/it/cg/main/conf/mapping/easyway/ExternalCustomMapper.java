@@ -11,6 +11,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.log4j.Logger;
 //import javax.inject.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,8 @@ import it.cg.main.integration.mapper.enumerations.ENUMInternalWsProductFactors;
 @Service
 public class ExternalCustomMapper
 {
+	private Logger logger = Logger.getLogger(getClass());
+	
 	private TypeBooleano typeB =  new TypeBooleano();
 	//Pattern aggiornato
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -130,7 +133,6 @@ public class ExternalCustomMapper
 	 * @param quote
 	 * @return
 	 */
-//	TODO aggiungi directLineSelfservice, confronta con platform
 	public WsProduct quoteToListWsProduct(Quote quote)
 	{
 		WsProduct prod = new WsProduct();
@@ -162,7 +164,8 @@ public class ExternalCustomMapper
 		
 		
 		//code product
-		if(quote.getContext().getRiskType() != null && quote.getContext().getProductType() != null)
+		if(quote.getContext().getRiskType() != null && quote.getContext().getProductType() != null && 
+				quote.getContext().getDirectlineSelfService() != null)
 		{
 			if(quote.getContext().getRiskType().equals(EnumRiskType.CAR) &&
 					quote.getContext().getProductType().equals(EnumProductType.DLI)&&
@@ -750,9 +753,10 @@ public class ExternalCustomMapper
 		}
 		
 		// // Aggiunto fattore  mamarino -> verificare fattori nell'else
-if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
+if (  quote.getOtherVehicle() != null && (		
+		!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
     !quote.getContext().getRiskType().equals(EnumRiskType.MOTORBIKE) ||
-    !quote.getContext().getRiskType().equals(EnumRiskType.MOPED))
+    !quote.getContext().getRiskType().equals(EnumRiskType.MOPED))  )
 {
 	wsFactor = new WsFactor();
 	wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CF.value());
@@ -855,9 +859,9 @@ if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 	}
 	
 	/**
-	 * For level WsAsset, calculate of risk type
+	 * For level WsAsset->vehicle , calculate of risk type
 	 * @param inb
-	 * @return
+	 * @return ClassCode and edit sectorCode
 	 */
 	private String getRiskTypeAsset(InboundRequestHttpJSON inb, String sectorCode)
 	{
@@ -994,8 +998,8 @@ if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 		List<ICoverage> listCoverage = quote.getCoverages();
 		for (ICoverage coverageTemp : listCoverage)
 		{
-			
-			if(coverageTemp.getLimit().getCode() != null)
+			if( coverageTemp.getLimit() != null &&
+					coverageTemp.getLimit().getCode() != null)
 			{
 				wsFactor = new WsFactor();
 				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CRLMT.value());
@@ -1003,7 +1007,8 @@ if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 				factorUnit.add(wsFactor);
 			}
 			
-			if(coverageTemp.getDeductible().getCode() != null)
+			if( coverageTemp.getDeductible() != null &&
+					coverageTemp.getDeductible().getCode() != null)
 			{
 				wsFactor = new WsFactor();
 				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CRDED.value());
@@ -1019,7 +1024,8 @@ if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 				factorUnit.add(wsFactor);
 			}
 			
-			if(coverageTemp.getLimit().getCode() != null)
+			if(coverageTemp.getLimit() != null &&
+					coverageTemp.getLimit().getCode() != null)
 			{
 				wsFactor = new WsFactor();
 				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CRLMT.value());
@@ -1027,7 +1033,8 @@ if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 				factorUnit.add(wsFactor);
 			}
 			
-			if(coverageTemp.getDeductible().getCode() != null)
+			if(coverageTemp.getDeductible() != null &&
+					coverageTemp.getDeductible().getCode() != null)
 			{
 				wsFactor = new WsFactor();
 				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CRDED.value());
@@ -1067,11 +1074,13 @@ if (!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(data); // dopo ottobre
 		XMLGregorianCalendar dataOpen = null;
-		try {
+		try
+		{
 			dataOpen = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}
+		catch (DatatypeConfigurationException e)
+		{
+			logger.error("Error conversion for data : "+data+" ");
 		}
 		dataOpenTypeData.setData(dataOpen);
 		
