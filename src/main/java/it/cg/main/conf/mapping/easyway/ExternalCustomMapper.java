@@ -648,11 +648,35 @@ public class ExternalCustomMapper
 			factAsset.add(wsFactor);
 		}
 		
+		if(quote.getFnb() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2RINNB.value());
+			wsFactor.setValue(quote.getFnb().toString());
+			factAsset.add(wsFactor);
+		}
+		
+		if(quote.getClean5() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_3CLIN5.value());
+			wsFactor.setValue(quote.getClean5().toString());
+			factAsset.add(wsFactor);
+		}
+		
 		if(quote.getVehicle().getTechnicalData().getMakerId() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CMAR.value());
 			wsFactor.setValue(quote.getVehicle().getTechnicalData().getMakerId());
+			factAsset.add(wsFactor);
+		}
+		
+		if(quote.getVehicle().getTechnicalData().getType() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2RROAD.value());
+			wsFactor.setValue(quote.getVehicle().getTechnicalData().getType().getWrapperCode().toString());
 			factAsset.add(wsFactor);
 		}
 		
@@ -677,6 +701,14 @@ public class ExternalCustomMapper
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2VVAL.value());
 			wsFactor.setValue(quote.getVehicle().getInsuredValue().toString());
+			factAsset.add(wsFactor);
+		}
+		
+		if(quote.getVehicle().getLeasingType() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2TVINC.value());
+			wsFactor.setValue(quote.getVehicle().getLeasingType().getWrapperCode().toString());
 			factAsset.add(wsFactor);
 		}
 		
@@ -725,6 +757,15 @@ public class ExternalCustomMapper
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2PARKN.value());
 			wsFactor.setValue(quote.getVehicle().getShelterType().getWrapperCode().toString());
+			factAsset.add(wsFactor);
+		}
+		
+		//Controllare se lato DL ci passano 10 anzichè 10000
+		if(quote.getVehicle().getKmPerYear() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2KMAN.value());
+			wsFactor.setValue(quote.getVehicle().getKmPerYear().toString());
 			factAsset.add(wsFactor);
 		}
 		
