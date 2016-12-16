@@ -3,6 +3,7 @@ package it.cg.main.conf.mapping.easyway;
 import java.util.List;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ICoverage;
+import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumCoverageCode;
 import com.mapfre.engines.rating.common.enums.EnumRiskType;
 import com.pass.global.TypeBooleano;
@@ -36,7 +37,7 @@ public class ExternalCustomMapperToPASSEasy
 		tybT.setBoolean(true);
 		tybF.setBoolean(false);
 		
-		WsAssetSection assetSectionSx = getS1(listCov, riskType, inb.getInboundQuoteDTO().getNumberOfYoungDriver());
+		WsAssetSection assetSectionSx = getS1(listCov, riskType, inb.getInboundQuoteDTO().getNumberOfYoungDriver(), inb.getInboundQuoteDTO().getOtherVehicle() );
 		if(assetSectionSx != null)
 			instance.getSections().add(assetSectionSx);
 		
@@ -637,7 +638,7 @@ public class ExternalCustomMapperToPASSEasy
 	 * @param RiskType
 	 * @return AssetSection S1 , if no S1 present return null
 	 */
-	private WsAssetSection getS1(List<ICoverage> listCov, EnumRiskType riskType, Integer numberOfYoungDriver)
+	private WsAssetSection getS1(List<ICoverage> listCov, EnumRiskType riskType, Integer numberOfYoungDriver, IOtherVehicle otherVehicle)
 	{
 		WsAssetSection resultS1 = new WsAssetSection();
 		resultS1.setCode(ENUMInternalCodeSection.CODE_S1.value());
@@ -707,21 +708,16 @@ public class ExternalCustomMapperToPASSEasy
 				}
 				else if(riskType.equals(EnumRiskType.TRUCK_TRAILER))
 				{
-					assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA3.value());
+//					TODO sul documento weight è un int
+					if(new Integer(otherVehicle.getWeight()) <= 60)
+						assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA3.value());
+					if(new Integer(otherVehicle.getWeight()) > 60)
+						assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA4.value());
 				}
-//				else if(riskType.equals(EnumRiskType.16))
-//				{
-//					assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA4.value());
-//				}
 				else if(riskType.equals(EnumRiskType.CAMPER))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA5.value());
 				}
-//				else if(riskType.equals(EnumRiskType.????))
-//				{
-//					assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA6.value());
-//				}
-//				TODO da verificare perchè in rosso su excel
 				else if(riskType.equals(EnumRiskType.MOTORCYCLE_FREIGHT_TRANSPORT))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA7.value());
@@ -734,7 +730,7 @@ public class ExternalCustomMapperToPASSEasy
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA9.value());
 				}
-//				non chiaro cosa mettere da excel
+//				TODO non chiaro cosa mettere da excel
 //				else if(riskType.equals(EnumRiskType.))
 //				{
 //					assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCAR1.value());
@@ -748,7 +744,7 @@ public class ExternalCustomMapperToPASSEasy
 					clauseUnitInstance.setSelected(tybT);
 				else
 					clauseUnitInstance.setSelected(tybF);
-				unitInstanceToAdd.getClauses().add(clauseUnitInstance );
+				unitInstanceToAdd.getClauses().add(clauseUnitInstance);
 				
 				resultS1.getUnits().add(assetUnitTemp);
 			}
