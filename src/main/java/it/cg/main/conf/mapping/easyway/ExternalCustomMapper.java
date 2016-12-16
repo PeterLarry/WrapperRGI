@@ -496,9 +496,16 @@ public class ExternalCustomMapper
 	 */
 	public List<WsAssetInstance> quoteToWsAsset(Quote quote)
 	{
-		List<WsAssetInstance> assetInst = new ArrayList<WsAssetInstance>();
-		WsAssetInstance aInstance = new WsAssetInstance();
-		assetInst.add(aInstance);
+		List<WsAssetInstance> listAssetInst = new ArrayList<WsAssetInstance>();
+		WsAssetInstance assetInstance = new WsAssetInstance();
+		
+//		factor 2Loyal
+		Map2Loyal map2Loyal = new Map2Loyal();
+		String loyalCode = map2Loyal.get2Loyal(quote.getRatingInfo().getCompanyChangesDetails());
+		WsFactor factorToAdd2Loyal = new WsFactor();
+		factorToAdd2Loyal.setCode(ENUMInternalUnitInstanceFactors.FACTOR_2LOYAL.value());
+		factorToAdd2Loyal.setValue(loyalCode);
+		assetInstance.getFactors().add(factorToAdd2Loyal);
 		
 		List<WsFactor> factAsset= new ArrayList<WsFactor>();
 		WsFactor wsFactor = new WsFactor();
@@ -661,6 +668,14 @@ public class ExternalCustomMapper
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_3CLIN5.value());
 			wsFactor.setValue(quote.getClean5().toString());
+			factAsset.add(wsFactor);
+		}
+		
+		if(quote.getClean1() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_3CLIN1.value());
+			wsFactor.setValue(quote.getClean1().toString());
 			factAsset.add(wsFactor);
 		}
 		
@@ -859,11 +874,13 @@ if (  quote.getOtherVehicle() != null && (
 			factAsset.add(wsFactor);
 		}
 		
-		aInstance.getFactors().addAll(factAsset);
+		assetInstance.getFactors().addAll(factAsset);
 		List<WsFactor> listFactorFigures =  getFactorForFigureFromRoleAssetInstance(quote.getFigures());
-		aInstance.getFactors().addAll(listFactorFigures);
+		assetInstance.getFactors().addAll(listFactorFigures);
+		
+		listAssetInst.add(assetInstance);
 				
-		return assetInst;
+		return listAssetInst;
 	}
 	
 	
@@ -984,27 +1001,6 @@ if (  quote.getOtherVehicle() != null && (
 	}
 	
 	/**
-	 * Metodo custom di quoteDtoToAssetSection
-	 * @param inb
-	 * @return
-	 */
-//	public List<WsAssetUnit> quoteToAssetUnit(InboundRequestHttpJSON inb)
-//	{
-//		ArrayList<WsAssetUnit> listAssetUnit = new ArrayList<WsAssetUnit>();
-//		WsAssetUnit assetUnit = new WsAssetUnit();
-//		typeB = new TypeBooleano();
-//		
-//		typeB.setBoolean(inb.isSelectionAssetUnit());
-//		assetUnit.setCode(inb.getCodeAssetUnit());
-//		assetUnit.setSelection(typeB);
-//
-//		listAssetUnit.add(assetUnit);
-//		
-//		return listAssetUnit;
-//	
-//	}
-	
-	/**
 	 * Metodo custom di quoteDtoToUnitInst
 	 * @param inb
 	 * @return
@@ -1023,7 +1019,6 @@ if (  quote.getOtherVehicle() != null && (
 		listClause.add(cla);
 		
 		return listClause;
-	
 	}
 	
 	/**
@@ -1057,39 +1052,6 @@ if (  quote.getOtherVehicle() != null && (
 				factorUnit.add(wsFactor);
 			}
 			
-			if(quote.getClean1() != null)
-			{
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CLIN1.value());
-				wsFactor.setValue(quote.getClean1().toString());
-				factorUnit.add(wsFactor);
-			}
-			
-			if(coverageTemp.getLimit() != null &&
-					coverageTemp.getLimit().getCode() != null)
-			{
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CRLMT.value());
-				wsFactor.setValue(coverageTemp.getLimit().getCode());
-				factorUnit.add(wsFactor);
-			}
-			
-			if(coverageTemp.getDeductible() != null &&
-					coverageTemp.getDeductible().getCode() != null)
-			{
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CRDED.value());
-				wsFactor.setValue(coverageTemp.getDeductible().getCode());
-				factorUnit.add(wsFactor);
-			}
-			
-			if(quote.getClean1() != null)
-			{
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CLIN1.value());
-				wsFactor.setValue(quote.getClean1().toString());
-				factorUnit.add(wsFactor);
-			}
 		}
 		
 		factorUnit.add(wsFactor);

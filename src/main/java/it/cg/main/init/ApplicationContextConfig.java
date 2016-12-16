@@ -51,6 +51,7 @@ public class ApplicationContextConfig implements ServletContextListener
 //		Internal conf files
         AbstractResource resources[] = new AbstractResource[] {
         		new ClassPathResource(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()),
+        		new ClassPathResource("log4j.properties")
         };
 		
 		propConf.setLocations(resources);

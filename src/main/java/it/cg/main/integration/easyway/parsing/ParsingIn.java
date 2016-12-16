@@ -12,7 +12,7 @@ import it.cg.main.conf.mapping.easyway.MapperResponseToDL;
 import it.cg.main.dto.InboundResponseHttpJSON;
 
 /**
- * Handling recived resposnse from PASS to parse Tto DL
+ * Handling recived response from PASS to parse to DL
  * @author RiccardoEstia
  *
  */

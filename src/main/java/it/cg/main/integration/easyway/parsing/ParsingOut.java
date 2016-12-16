@@ -5,11 +5,10 @@ import org.apache.log4j.Logger;
 import com.pass.global.GetTechnicalData;
 import com.pass.global.TypeBooleano;
 import com.pass.global.WsAsset;
-import com.pass.global.WsAssetSection;
-import com.pass.global.WsAssetUnit;
 import com.pass.global.WsCalculatePremiumInput;
 import com.pass.global.WsUnitInstance;
 
+import it.cg.main.conf.mapping.easyway.ExternalCustomMapperToPASSEasy;
 import it.cg.main.conf.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.dto.RoutingDTO;
 
@@ -18,6 +17,7 @@ public class ParsingOut
 	private Logger logger = Logger.getLogger(getClass());
 
 	private MapperRequestToPASS easyMapperMapstruct;
+	private ExternalCustomMapperToPASSEasy mapperEasy;
 	
 	
 	/**
@@ -48,44 +48,49 @@ public class ParsingOut
 	
 	public WsCalculatePremiumInput getQuoteToPass(RoutingDTO request)
 	{
-		logger.info("richiesta " + request);
-		
-		WsCalculatePremiumInput responsePremium = new WsCalculatePremiumInput();
-//		TODO da trovare il mapping con deborah
+		logger.info("Request form DL to parse : " + request);
+
 		TypeBooleano tybF = new TypeBooleano();
 		tybF.setBoolean(false);
 		TypeBooleano tybT = new TypeBooleano();
 		tybT.setBoolean(true);
+		mapperEasy = new ExternalCustomMapperToPASSEasy();
 		
-		//Inutili 
-//		responsePremium.setQuoteMode(tybF);
-//		responsePremium.setAdaptToMinimumPremium(tybT);
-//		responsePremium.setApplyDiscount(tybT);
-//		-------------
-		getMapper().quoteDtoToProduct(request.getInboundRequestHttpJSON(), responsePremium);
+//		mapping instance
+		WsCalculatePremiumInput responseCalculatePremium = new WsCalculatePremiumInput();
+		WsAsset asset = new WsAsset();
+		WsUnitInstance uInst = new WsUnitInstance();
+		try
+		{
+//			populate product
+			getMapper().quoteDtoToProduct(request.getInboundRequestHttpJSON(), responseCalculatePremium);
+//			populate assetInstance
+			getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON(), asset);
+//			populate assetSection and assetUnit and UnitInstance
+			mapperEasy.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0), responseCalculatePremium.getProduct().getCode());
+		}
+		catch(NullPointerException ex)
+		{
+			logger.error("Error during create asset section "+ex.getMessage()+"\n"+ ex.getCause());
+			ex.printStackTrace();
+		}
+		catch(ArrayIndexOutOfBoundsException ex)
+		{
+			logger.error("Error during create asset section "+ex.getMessage()+"\n"+ ex.getCause());
+			ex.printStackTrace();
+		}
 		
-		WsAsset ass = getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON());
-		WsAssetSection sec = new WsAssetSection();
-//		TODO
-		sec.setCode("S1");
-//				getMapper().quoteDtoToAssetSection(request.getInboundRequestHttpJSON());
-		WsAssetUnit unit = new WsAssetUnit();
-		unit.setCode("RCAR1");
-		unit.setSelection(tybT);
-//		getMapper().inboundToUnit(request.getInboundRequestHttpJSON(), unit);
-		sec.getUnits().add(unit);
-		WsUnitInstance uInst = getMapper().quoteDtoToUnitInst(request.getInboundRequestHttpJSON());
+
 //		TODO da rimappare su custom xx11
-		uInst.getClauses().get(0).setCode("RCA001");
-		uInst.getClauses().get(0).setSelected(tybF);
-		
-		responsePremium.getProduct().getAssets().add(ass);
-		responsePremium.getProduct().getAssets().get(0).getInstances().get(0).getSections().add(sec);
-		responsePremium.getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().add(uInst);
-		
-		logger.info("risposta" + responsePremium);
-		
-		return responsePremium;
+//		uInst.getClauses().get(0).setCode("RCA001");
+//		uInst.getClauses().get(0).setSelected(tybF);
+//		
+//		responseCalculatePremium.getProduct().getAssets().add(asset);
+//		responseCalculatePremium.getProduct().getAssets().get(0).getInstances().add(asset.getInstances().get(0));
+//		responseCalculatePremium.getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().add(uInst);
+//		
+		logger.info("PASS object parsed : " + responseCalculatePremium);
+		return responseCalculatePremium;
 	}
 	
 	
