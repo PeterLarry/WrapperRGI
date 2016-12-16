@@ -9,6 +9,7 @@ import com.pass.global.TypeBooleano;
 import com.pass.global.WsAssetInstance;
 import com.pass.global.WsAssetSection;
 import com.pass.global.WsAssetUnit;
+import com.pass.global.WsClause;
 import com.pass.global.WsFactor;
 import com.pass.global.WsUnitInstance;
 
@@ -20,6 +21,7 @@ import it.cg.main.integration.mapper.enumerations.ENUMInternalUnitInstanceFactor
 public class ExternalCustomMapperToPASSEasy
 {
 	private TypeBooleano tybT = new TypeBooleano();
+	private TypeBooleano tybF = new TypeBooleano();
 	
 
 	/**
@@ -32,8 +34,9 @@ public class ExternalCustomMapperToPASSEasy
 		EnumRiskType riskType = inb.getInboundQuoteDTO().getContext().getRiskType();
 		List<ICoverage> listCov = inb.getInboundQuoteDTO().getCoverages();
 		tybT.setBoolean(true);
+		tybF.setBoolean(false);
 		
-		WsAssetSection assetSectionSx = getS1(listCov, riskType);
+		WsAssetSection assetSectionSx = getS1(listCov, riskType, inb.getInboundQuoteDTO().getNumberOfYoungDriver());
 		if(assetSectionSx != null)
 			instance.getSections().add(assetSectionSx);
 		
@@ -634,7 +637,7 @@ public class ExternalCustomMapperToPASSEasy
 	 * @param RiskType
 	 * @return AssetSection S1 , if no S1 present return null
 	 */
-	private WsAssetSection getS1(List<ICoverage> listCov, EnumRiskType riskType)
+	private WsAssetSection getS1(List<ICoverage> listCov, EnumRiskType riskType, Integer numberOfYoungDriver)
 	{
 		WsAssetSection resultS1 = new WsAssetSection();
 		resultS1.setCode(ENUMInternalCodeSection.CODE_S1.value());
@@ -657,7 +660,6 @@ public class ExternalCustomMapperToPASSEasy
 					}
 				}
 				
-//				AssetUnit
 				if( riskType.equals(EnumRiskType.URBAN_BUS) || riskType.equals(EnumRiskType.OUT_OF_TOWN_TURISTIC_BUS) )
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA11.value());						
@@ -666,8 +668,7 @@ public class ExternalCustomMapperToPASSEasy
 						riskType.equals(EnumRiskType.TRUCK_UPTO_60000KG))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeUnit.CODE_RCA1.value());
-					
-//					unitinstance factor
+//					unitinstance factor Value
 					if(riskType.equals(EnumRiskType.CAR) || riskType.equals(EnumRiskType.MOTORBIKE) )
 					{
 						if(covTemp.getDeductible() != null)
@@ -740,6 +741,15 @@ public class ExternalCustomMapperToPASSEasy
 //				}
 				assetUnitTemp.setSelection(tybT);
 				
+//				set clauses into Unitinstance 
+				WsClause clauseUnitInstance = new WsClause();
+				clauseUnitInstance.setCode(numberOfYoungDriver.toString());
+				if(numberOfYoungDriver > 0)
+					clauseUnitInstance.setSelected(tybT);
+				else
+					clauseUnitInstance.setSelected(tybF);
+				unitInstanceToAdd.getClauses().add(clauseUnitInstance );
+				
 				resultS1.getUnits().add(assetUnitTemp);
 			}
 			else if(covTemp.getCode().equals(EnumCoverageCode.MOTOR_BONUS_PROTECTED))
@@ -751,6 +761,7 @@ public class ExternalCustomMapperToPASSEasy
 			}
 			
 		}
+//		TODO manca Other vehicle
 		
 		if(resultS1.getUnits().isEmpty())
 		{
