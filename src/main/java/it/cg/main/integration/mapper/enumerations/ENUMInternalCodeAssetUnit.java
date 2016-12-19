@@ -1,6 +1,6 @@
 package it.cg.main.integration.mapper.enumerations;
 
-public enum ENUMInternalCodeUnit {
+public enum ENUMInternalCodeAssetUnit {
 	
 	CODE_AS1("AS1"),
 	CODE_AV1("AV1"),
@@ -36,7 +36,7 @@ public enum ENUMInternalCodeUnit {
 	
 	private String value;
 
-	ENUMInternalCodeUnit(String value) {
+	ENUMInternalCodeAssetUnit(String value) {
         this.value = value;
     }
 
