@@ -272,7 +272,7 @@ public class ExternalCustomMapperToPASSEasy
 	private WsAssetSection getS6(List<ICoverage> listCov, EnumRiskType riskType)
 	{
 		WsAssetSection assetSectionResultS6 = new WsAssetSection();
-		assetSectionResultS6.setCode(ENUMInternalCodeSection.CODE_S5.value());
+		assetSectionResultS6.setCode(ENUMInternalCodeSection.CODE_S6.value());
 		
 		for (ICoverage covTemp : listCov)
 		{
@@ -343,7 +343,7 @@ public class ExternalCustomMapperToPASSEasy
 						if(riskType.equals(EnumRiskType.CAR))
 						{
 							String valueCoinsCode = "";
-							switch (covTemp.getLimit().getCode())
+							switch (covTemp.getCoinsurance().getCode())
 							{
 								case "5":
 									valueCoinsCode= "1";
@@ -433,7 +433,7 @@ public class ExternalCustomMapperToPASSEasy
 	private WsAssetSection getS4(List<ICoverage> listCov, EnumRiskType riskType)
 	{
 		WsAssetSection assetSectionResultS4 = new WsAssetSection();
-		assetSectionResultS4.setCode(ENUMInternalCodeSection.CODE_S3.value());
+		assetSectionResultS4.setCode(ENUMInternalCodeSection.CODE_S4.value());
 		
 		for (ICoverage covTemp : listCov)
 		{
@@ -712,7 +712,7 @@ public class ExternalCustomMapperToPASSEasy
 						if(riskType.equals(EnumRiskType.CAR))
 						{
 							String valueCoinsCode = "";
-							switch (covTemp.getCoinsurance().getCode())
+							switch ( covTemp.getLimit().getCode())
 							{
 								case "1":
 									valueCoinsCode= "1";

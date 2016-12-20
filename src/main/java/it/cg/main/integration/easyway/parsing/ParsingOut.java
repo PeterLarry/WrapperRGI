@@ -68,6 +68,7 @@ public class ParsingOut
 			getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON(), asset);
 //			populate assetSection and assetUnit and UnitInstance
 			mapperEasy.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0), responseCalculatePremium.getProduct().getCode());
+			responseCalculatePremium.getProduct().getAssets().add(asset);
 		}
 		catch(NullPointerException ex)
 		{
