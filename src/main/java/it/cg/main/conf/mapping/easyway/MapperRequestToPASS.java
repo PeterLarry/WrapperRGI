@@ -17,7 +17,7 @@ import it.cg.main.dto.main.Quote;
 
 
 
-@Mapper(uses=ExternalCustomMapper.class)
+@Mapper(uses=MapperProductAssetToPASS.class)
 public interface MapperRequestToPASS
 {
 	
@@ -28,7 +28,7 @@ public interface MapperRequestToPASS
 	
 	@Mappings({
 		@Mapping(source="inboundQuoteDTO", target = "instances"),
-		@Mapping(source="inboundQuoteDTO.context.riskType", target = "code"),//In questa riga mappo il code dell'asset relativo al WsProduct
+//		@Mapping(source="inboundQuoteDTO.context.riskType", target = "code"),//In questa riga mappo il code dell'asset relativo al WsProduct
 		@Mapping(source="inbound", target = "vehicles")
 	})
 	void quoteDtoToAsset(InboundRequestHttpJSON inbound, @MappingTarget WsAsset asset);

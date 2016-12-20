@@ -19,7 +19,7 @@ import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeSection;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeAssetUnit;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalUnitInstanceFactors;
 
-public class ExternalCustomMapperToPASSEasy
+public class MapperAssetSectionToPASS
 {
 	private TypeBooleano tybT = new TypeBooleano();
 	private TypeBooleano tybF = new TypeBooleano();

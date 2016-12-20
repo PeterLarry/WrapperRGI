@@ -6,18 +6,19 @@ import com.pass.global.GetTechnicalData;
 import com.pass.global.TypeBooleano;
 import com.pass.global.WsAsset;
 import com.pass.global.WsCalculatePremiumInput;
-import com.pass.global.WsUnitInstance;
 
-import it.cg.main.conf.mapping.easyway.ExternalCustomMapperToPASSEasy;
+import it.cg.main.conf.mapping.easyway.MapperAssetSectionToPASS;
+import it.cg.main.conf.mapping.easyway.MapperAssetToPASS;
 import it.cg.main.conf.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.dto.RoutingDTO;
+import it.cg.main.dto.main.Quote;
 
 public class ParsingOut
 {
 	private Logger logger = Logger.getLogger(getClass());
 
 	private MapperRequestToPASS easyMapperMapstruct;
-	private ExternalCustomMapperToPASSEasy mapperEasy;
+	private MapperAssetSectionToPASS mapperEasy;
 	
 	
 	/**
@@ -50,23 +51,25 @@ public class ParsingOut
 	{
 		logger.info("Request form DL to parse : " + request);
 
+		Quote quoteRequest = request.getInboundRequestHttpJSON().getInboundQuoteDTO();
 		TypeBooleano tybF = new TypeBooleano();
 		tybF.setBoolean(false);
 		TypeBooleano tybT = new TypeBooleano();
 		tybT.setBoolean(true);
-		mapperEasy = new ExternalCustomMapperToPASSEasy();
+		mapperEasy = new MapperAssetSectionToPASS();
 		
 //		mapping instance
 		WsCalculatePremiumInput responseCalculatePremium = new WsCalculatePremiumInput();
-		WsAsset asset = new WsAsset();
-		WsUnitInstance uInst = new WsUnitInstance();
+		MapperAssetToPASS mapAsset = new MapperAssetToPASS();
+		WsAsset asset = mapAsset.getInitWsAsset(quoteRequest);
+		
 		try
 		{
 //			populate product
 			getMapper().quoteDtoToProduct(request.getInboundRequestHttpJSON(), responseCalculatePremium);
 //			populate assetInstance
 			getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON(), asset);
-//			populate assetSection and assetUnit and UnitInstance
+//			populate assetUnit and UnitInstance
 			mapperEasy.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0), responseCalculatePremium.getProduct().getCode());
 			responseCalculatePremium.getProduct().getAssets().add(asset);
 		}

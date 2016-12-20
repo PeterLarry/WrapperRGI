@@ -1,4 +1,4 @@
-package it.cg.main.conf.mapping.easyway;
+package it.cg.main.conf.mapping.easyway.response;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -23,7 +23,7 @@ public interface MapperResponseToDL
 	 */
 	@Mappings({
 //		@Mapping(source="return.output.product", target = "quote"),
-		@Mapping(source="return.output.product.premium.annual", target = "quote.premium"),
+//		@Mapping(source="return.output.product.premium.annual", target = "quote.premium"),
 	})
 	InboundResponseHttpJSON getResponseJsonFromProd(CalculatePremiumResponse cp);
 	

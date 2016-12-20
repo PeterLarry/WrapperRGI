@@ -1,19 +1,52 @@
-package it.cg.main.conf.mapping.easyway;
+package it.cg.main.conf.mapping.easyway.utilities;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Map2Loyal
+/**
+ * Mapping for fields 2loyal and last3years
+ * @author RiccardoEstia
+ *
+ */
+public class MapUty
 {
 	
 	Map<String, String> mapLoyal = new HashMap<String, String>();
+	Map<String, String> mapLast3_6Years = new HashMap<String, String>();
 	
-	public Map2Loyal()
+	public String get2Loyal(String companyChangeDetailsSelected)
+	{
+		String result = "";
+		
+		result = mapLoyal.get(companyChangeDetailsSelected);
+		return result;
+	}
+	
+	public String getLast3Years(String last3YearsSelected)
+	{
+		String result = "";
+		
+		result = mapLast3_6Years.get(last3YearsSelected);
+		return result;
+	}
+	
+	public String getLast6Years(String last6YearsSelected)
+	{
+		String result = "";
+		
+		result = mapLast3_6Years.get(last6YearsSelected);
+		return result;
+	}
+	
+	public MapUty()
 	{
 		if(!mapLoyal.isEmpty())
 		{
 			return;
 		}
+//		last 3 and 6 years
+		this.mapLast3_6Years = getMapLastYears();
+//		2 loyal
 		mapLoyal.put("3T00","1");
 		mapLoyal.put("4T00","2");
 		mapLoyal.put("4T01","3");
@@ -2816,15 +2849,118 @@ public class Map2Loyal
 		mapLoyal.put("6T12","2800");
 		mapLoyal.put("6T13","2801");
 		mapLoyal.put("6T22","2802");
-		
 	}
 	
-	public String get2Loyal(String companyChangeDetails)
+	public Map<String,String> getMapLastYears()
 	{
-		String result = "";
-		
-		result = mapLoyal.get(companyChangeDetails);
-		return result;
-	}
+		Map<String, String> mapLast3_6Years = new HashMap<>();
+		mapLast3_6Years.put("0","1");
+		mapLast3_6Years.put("1","2");
+		mapLast3_6Years.put("2","3");
+		mapLast3_6Years.put("3","4");
+		mapLast3_6Years.put("4","5");
+		mapLast3_6Years.put("5","6");
+		mapLast3_6Years.put("6","7");
+		mapLast3_6Years.put("7","8");
+		mapLast3_6Years.put("8","9");
+		mapLast3_6Years.put("9","10");
+		mapLast3_6Years.put("10","11");
+		mapLast3_6Years.put("11","12");
+		mapLast3_6Years.put("12","13");
+		mapLast3_6Years.put("13","14");
+		mapLast3_6Years.put("14","15");
+		mapLast3_6Years.put("15","16");
+		mapLast3_6Years.put("16","17");
+		mapLast3_6Years.put("17","18");
+		mapLast3_6Years.put("18","19");
+		mapLast3_6Years.put("19","20");
+		mapLast3_6Years.put("20","21");
+		mapLast3_6Years.put("21","22");
+		mapLast3_6Years.put("22","23");
+		mapLast3_6Years.put("23","24");
+		mapLast3_6Years.put("24","25");
+		mapLast3_6Years.put("25","26");
+		mapLast3_6Years.put("26","27");
+		mapLast3_6Years.put("27","28");
+		mapLast3_6Years.put("28","29");
+		mapLast3_6Years.put("29","30");
+		mapLast3_6Years.put("30","31");
+		mapLast3_6Years.put("31","32");
+		mapLast3_6Years.put("32","33");
+		mapLast3_6Years.put("33","34");
+		mapLast3_6Years.put("34","35");
+		mapLast3_6Years.put("35","36");
+		mapLast3_6Years.put("36","37");
+		mapLast3_6Years.put("37","38");
+		mapLast3_6Years.put("38","39");
+		mapLast3_6Years.put("39","40");
+		mapLast3_6Years.put("40","41");
+		mapLast3_6Years.put("41","42");
+		mapLast3_6Years.put("42","43");
+		mapLast3_6Years.put("43","44");
+		mapLast3_6Years.put("44","45");
+		mapLast3_6Years.put("45","46");
+		mapLast3_6Years.put("46","47");
+		mapLast3_6Years.put("47","48");
+		mapLast3_6Years.put("48","49");
+		mapLast3_6Years.put("49","50");
+		mapLast3_6Years.put("50","51");
+		mapLast3_6Years.put("51","52");
+		mapLast3_6Years.put("52","53");
+		mapLast3_6Years.put("53","54");
+		mapLast3_6Years.put("54","55");
+		mapLast3_6Years.put("55","56");
+		mapLast3_6Years.put("56","57");
+		mapLast3_6Years.put("57","58");
+		mapLast3_6Years.put("58","59");
+		mapLast3_6Years.put("59","60");
+		mapLast3_6Years.put("60","61");
+		mapLast3_6Years.put("61","62");
+		mapLast3_6Years.put("62","63");
+		mapLast3_6Years.put("63","64");
+		mapLast3_6Years.put("64","65");
+		mapLast3_6Years.put("65","66");
+		mapLast3_6Years.put("66","67");
+		mapLast3_6Years.put("67","68");
+		mapLast3_6Years.put("68","69");
+		mapLast3_6Years.put("69","70");
+		mapLast3_6Years.put("70","71");
+		mapLast3_6Years.put("71","72");
+		mapLast3_6Years.put("72","73");
+		mapLast3_6Years.put("73","74");
+		mapLast3_6Years.put("74","75");
+		mapLast3_6Years.put("75","76");
+		mapLast3_6Years.put("76","77");
+		mapLast3_6Years.put("77","78");
+		mapLast3_6Years.put("78","79");
+		mapLast3_6Years.put("79","80");
+		mapLast3_6Years.put("80","81");
+		mapLast3_6Years.put("81","82");
+		mapLast3_6Years.put("82","83");
+		mapLast3_6Years.put("83","84");
+		mapLast3_6Years.put("84","85");
+		mapLast3_6Years.put("85","86");
+		mapLast3_6Years.put("86","87");
+		mapLast3_6Years.put("87","88");
+		mapLast3_6Years.put("88","89");
+		mapLast3_6Years.put("89","90");
+		mapLast3_6Years.put("90","91");
+		mapLast3_6Years.put("91","92");
+		mapLast3_6Years.put("92","93");
+		mapLast3_6Years.put("93","94");
+		mapLast3_6Years.put("94","95");
+		mapLast3_6Years.put("95","96");
+		mapLast3_6Years.put("96","97");
+		mapLast3_6Years.put("97","98");
+		mapLast3_6Years.put("98","99");
+		mapLast3_6Years.put("99","100");
+		mapLast3_6Years.put("ND","101");
+		mapLast3_6Years.put("non valorizzato","102");
 
+		return mapLast3_6Years;
+	}
+	
+	
+	
+	
 }
