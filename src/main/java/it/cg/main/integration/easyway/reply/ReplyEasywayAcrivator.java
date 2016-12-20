@@ -7,7 +7,7 @@ import org.springframework.messaging.Message;
 
 import com.pass.global.CalculatePremiumResponse;
 
-import it.cg.main.conf.mapping.easyway.MapperResponseToDL;
+import it.cg.main.conf.mapping.easyway.response.MapperResponseToDL;
 import it.cg.main.dto.InboundResponseHttpJSON;
 import it.cg.main.integration.easyway.parsing.ParsingIn;
 import it.cg.main.integration.interfaces.ActivatorHandler;

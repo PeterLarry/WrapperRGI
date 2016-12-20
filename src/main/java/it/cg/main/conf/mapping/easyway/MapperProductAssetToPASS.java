@@ -30,6 +30,7 @@ import com.pass.global.WsFactor;
 import com.pass.global.WsProduct;
 import com.pass.global.WsVehicle;
 
+import it.cg.main.conf.mapping.easyway.utilities.MapUty;
 import it.cg.main.dto.InboundRequestHttpJSON;
 import it.cg.main.dto.main.Quote;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalAssetInstanceFactors;
@@ -38,7 +39,7 @@ import it.cg.main.integration.mapper.enumerations.ENUMInternalUnitInstanceFactor
 import it.cg.main.integration.mapper.enumerations.ENUMInternalWsProductFactors;
 
 @Service
-public class ExternalCustomMapper
+public class MapperProductAssetToPASS
 {
 	private Logger logger = Logger.getLogger(getClass());
 	
@@ -150,7 +151,7 @@ public class ExternalCustomMapper
 			prod.setPaymentFrequencyCode("000002");
 		}
 
-		//		Operation code
+//				Operation code
 		String opCode = null;
 		if(quote.getContext().getFlowType().equals(EnumFlowType.REVIEW_GENERATION))
 		{
@@ -163,7 +164,7 @@ public class ExternalCustomMapper
 		prod.setOperationCode(opCode);
 		
 		
-		//code product
+//		code product
 		if(quote.getContext().getRiskType() != null && quote.getContext().getProductType() != null && 
 				quote.getContext().getDirectlineSelfService() != null)
 		{
@@ -205,22 +206,12 @@ public class ExternalCustomMapper
 //		Factors
 		ArrayList<WsFactor> factProp = new ArrayList<WsFactor>();
 		WsFactor wsFactor = new WsFactor();
-			
 		if(quote.getAffinity() != null)
 		{
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1AFF.value());
 			wsFactor.setValue(quote.getAffinity());
 			factProp.add(wsFactor);
 		}
-//		FATTORE ELIMINATO
-//		if(quote.getEffectiveDate() != null)
-//		{
-//			wsFactor = new WsFactor();
-//			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR__1PEFF.value());
-//			wsFactor.setValue(dateFormat.format(quote.getEffectiveDate()));	
-//			factProp.add(wsFactor);
-//		}
-
 		if(quote.getRenewalYears() != null)
 		{
 			wsFactor = new WsFactor();
@@ -228,8 +219,6 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getRenewalYears().toString());
 			factProp.add(wsFactor);
 		}
-		
-		// Aggiunto fattore  mamarino
 		if(quote.getPreviousRenewalYears() != null )
 		{
 			wsFactor = new WsFactor();
@@ -237,12 +226,10 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getPreviousRenewalYears().toString());
 			factProp.add(wsFactor);
 		}
-		// Aggiunto fattore  mamarino
 		if(quote.getCampaign() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1CSC.value());
-			
 			//wsFactor.setValue(figureTemp.getOccupation().getWrapperCode().toString());
 			wsFactor.setValue(quote.getCampaign().toString());
 			factProp.add(wsFactor);
@@ -282,14 +269,6 @@ public class ExternalCustomMapper
 					wsFactor.setValue(figureTemp.getAge().toString());
 					listFactor.add(wsFactor);
 				}
-//				FATTORE ELIMINATO
-//				if(figureTemp.getBirthDate() != null)
-//				{
-//					wsFactor = new WsFactor();
-//					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CNAS.value());
-//					wsFactor.setValue(dateFormat.format(figureTemp.getBirthDate()));
-//					listFactor.add(wsFactor);
-//				}
 				if(figureTemp.getResidenceAddress() != null)
 				{
 					if(figureTemp.getResidenceAddress().getCap() != null)
@@ -300,19 +279,6 @@ public class ExternalCustomMapper
 						listFactor.add(wsFactor);
 					}
 				}
-//				FATTORE ELIMATO
-//				wsFactor = new WsFactor();
-//				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CTPF.value());
-//				if(figureTemp.getPersonType().equals(EnumPersonType.NATURAL_PERSON))
-//				{
-//					wsFactor.setValue("true");
-//				}
-//				else if(figureTemp.getPersonType().equals(EnumPersonType.LEGAL_PERSON))
-//				{
-//					wsFactor.setValue("false");
-//				}
-//				listFactor.add(wsFactor);
-				
 				if(figureTemp.getYearsWithLicense() != null)
 				{
 					wsFactor = new WsFactor();
@@ -348,14 +314,6 @@ public class ExternalCustomMapper
 					wsFactor.setValue(figureTemp.getAge().toString());
 					listFactor.add(wsFactor);
 				}
-//				FATTORE ELIMINATO
-//				if(figureTemp.getBirthDate() != null)
-//				{
-//					wsFactor = new WsFactor();
-//					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2PNAS.value());
-//					wsFactor.setValue(dateFormat.format(figureTemp.getBirthDate()));
-//					listFactor.add(wsFactor);
-//				}
 				if(figureTemp.getResidenceAddress() != null)
 				{
 					if(figureTemp.getResidenceAddress().getCap() != null)
@@ -366,19 +324,6 @@ public class ExternalCustomMapper
 						listFactor.add(wsFactor);
 					}
 				}
-//				FATTORE ELIMINATO
-//				wsFactor = new WsFactor();
-//				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2PTPF.value());
-//				if(figureTemp.getPersonType().equals(EnumPersonType.NATURAL_PERSON))
-//				{
-//					wsFactor.setValue("true");
-//				}
-//				else if(figureTemp.getPersonType().equals(EnumPersonType.LEGAL_PERSON))
-//				{
-//					wsFactor.setValue("false");
-//				}
-//				listFactor.add(wsFactor);
-				
 				if(figureTemp.getYearsWithLicense() != null)
 				{
 					wsFactor = new WsFactor();
@@ -393,11 +338,6 @@ public class ExternalCustomMapper
 					}
 					listFactor.add(wsFactor);
 				}
-//				FATTORE ELIMINATO
-//				wsFactor = new WsFactor();
-//				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2OWPR.value());
-//				wsFactor.setValue(figureTemp.getOccupation().getWrapperCode().toString());
-//				listFactor.add(wsFactor);
 				
 				wsFactor = new WsFactor();
 				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2OWSC.value());
@@ -496,16 +436,29 @@ public class ExternalCustomMapper
 	 */
 	public List<WsAssetInstance> quoteToWsAsset(Quote quote)
 	{
-		List<WsAssetInstance> listAssetInst = new ArrayList<WsAssetInstance>();
-		WsAssetInstance assetInstance = new WsAssetInstance();
+		List<WsAssetInstance> listAssetInstResponse = new ArrayList<WsAssetInstance>();
+		WsAssetInstance assetInstanceresponse = new WsAssetInstance();
 		
-//		factor 2Loyal
-		Map2Loyal map2Loyal = new Map2Loyal();
-		String loyalCode = map2Loyal.get2Loyal(quote.getRatingInfo().getCompanyChangesDetails());
+//		factor 2Loyal and lastYears 3 and 6
+		MapUty mapUty = new MapUty();
+
+		String loyalCode = mapUty.get2Loyal(quote.getRatingInfo().getCompanyChangesDetails());
 		WsFactor factorToAdd2Loyal = new WsFactor();
-		factorToAdd2Loyal.setCode(ENUMInternalUnitInstanceFactors.FACTOR_2LOYAL.value());
+		factorToAdd2Loyal.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2LOYAL.value());
 		factorToAdd2Loyal.setValue(loyalCode);
-		assetInstance.getFactors().add(factorToAdd2Loyal);
+		assetInstanceresponse.getFactors().add(factorToAdd2Loyal);
+		
+		String last3YearsCode = mapUty.getLast3Years(quote.getRatingInfo().getLast3YearsAggregatedClaims());
+		WsFactor factorToAddLast3Years = new WsFactor();
+		factorToAddLast3Years.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2SIN3.value());
+		factorToAddLast3Years.setValue(last3YearsCode);
+		assetInstanceresponse.getFactors().add(factorToAddLast3Years);
+		
+		String last6YearsCode = mapUty.getLast6Years(quote.getRatingInfo().getAggregatedClaims());
+		WsFactor factorToAddLast6Years = new WsFactor();
+		factorToAddLast6Years.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2SIN6.value());
+		factorToAddLast6Years.setValue(last6YearsCode);
+		assetInstanceresponse.getFactors().add(factorToAddLast6Years);
 		
 		List<WsFactor> factAsset= new ArrayList<WsFactor>();
 		WsFactor wsFactor = new WsFactor();
@@ -517,7 +470,6 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getNumberOfClaimsInLastYear().toString());
 			factAsset.add(wsFactor);
 		}
-		
 		if(quote.getUsualDriverOwnerRelationship().getWrapperCode() != null)
 		{
 			wsFactor = new WsFactor();
@@ -548,7 +500,7 @@ public class ExternalCustomMapper
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_3FRC1.value());
 			
-			//TODO CAMBIARE IL SET DENTRO QUESTA CONDIZIONE!!
+//			TODO CAMBIARE IL SET DENTRO QUESTA CONDIZIONE!!
 			if(quote.getPreviousFlagClaimsInLastYear()==true){
 				
 				wsFactor.setValue("false");
@@ -560,7 +512,7 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getPreviousFlagClaimsInLastYear().toString());
 			factAsset.add(wsFactor);
 		}
-		//Non è sicuro se il mappaggio è giusto
+//		TODO Non è sicuro se il mappaggio è giusto
 		if(quote.getPreviousCleanIn5()!= null)
 		{
 			wsFactor = new WsFactor();
@@ -568,23 +520,20 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getPreviousCleanIn5().toString());
 			factAsset.add(wsFactor);
 		}
-		
-//		if(quote.getBmalType() != null)
-//		{
-//			wsFactor = new WsFactor();
-//			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2BERS.value());
-//			wsFactor.setValue(quote.getBmalType().getWrapperCode().toString());
-//			factAsset.add(wsFactor);
-//		}
-		
+		if(quote.getBmalType() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2BERS.value());
+			wsFactor.setValue(quote.getBmalType().getWrapperCode().toString());
+			factAsset.add(wsFactor);
+		}
 		if(quote.getVehicle().getMatriculationYearMonth() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2DIMM.value());
-			wsFactor.setValue(quote.getVehicle().getMatriculationYearMonth().toString());
+			wsFactor.setValue(dateFormat.format(quote.getVehicle().getMatriculationYearMonth()));
 			factAsset.add(wsFactor);
 		}
-		
 		if(quote.getVehicle().getVehicleAge() != null)
 		{
 			wsFactor = new WsFactor();
@@ -592,7 +541,6 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getVehicle().getVehicleAge().toString());
 			factAsset.add(wsFactor);
 		}
-		
 		if(quote.getVehicle().getHabitualUse() != null)
 		{
 			wsFactor = new WsFactor();
@@ -600,7 +548,6 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getVehicle().getHabitualUse().getWrapperCode().toString());
 			factAsset.add(wsFactor);
 		}
-		
 		if(quote.getVehicle().getCarAgeAtPurchase() != null)
 		{
 			wsFactor = new WsFactor();
@@ -739,7 +686,7 @@ public class ExternalCustomMapper
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2ANTIF.value());
-			wsFactor.setValue(quote.getVehicle().getAntitheftType().toString());
+			wsFactor.setValue(quote.getVehicle().getAntitheftType().getWrapperCode().toString());
 			factAsset.add(wsFactor);
 		}
 		
@@ -763,7 +710,7 @@ public class ExternalCustomMapper
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2NAIRB.value());
-			wsFactor.setValue(quote.getVehicle().getTechnicalData().getAirbagType().toString());
+			wsFactor.setValue(quote.getVehicle().getTechnicalData().getAirbagType().getWrapperCode().toString());
 			factAsset.add(wsFactor);
 		}
 		
@@ -775,7 +722,7 @@ public class ExternalCustomMapper
 			factAsset.add(wsFactor);
 		}
 		
-		//Controllare se lato DL ci passano 10 anzichè 10000
+//		TODO Controllare se lato DL ci passano 10 anzichè 10000
 		if(quote.getVehicle().getKmPerYear() != null)
 		{
 			wsFactor = new WsFactor();
@@ -783,7 +730,7 @@ public class ExternalCustomMapper
 			wsFactor.setValue(quote.getVehicle().getKmPerYear().toString());
 			factAsset.add(wsFactor);
 		}
-		
+//		TODO prevdere un enum, aspettare risp
 		if(quote.getRatingInfo().getPromocode() != null)
 		{
 			wsFactor = new WsFactor();
@@ -895,18 +842,18 @@ public class ExternalCustomMapper
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2ALIM.value());
-			wsFactor.setValue(quote.getVehicle().getTechnicalData().getAlimentation().toString());
+			wsFactor.setValue(quote.getVehicle().getTechnicalData().getAlimentation().getWrapperCode().toString());
 			factAsset.add(wsFactor);
 		}
 		
-		assetInstance.getFactors().addAll(factAsset);
+		assetInstanceresponse.getFactors().addAll(factAsset);
 		
 		List<WsFactor> listFactorFigures =  getFactorForFigureFromRoleAssetInstance(quote.getFigures());
-		assetInstance.getFactors().addAll(listFactorFigures);
+		assetInstanceresponse.getFactors().addAll(listFactorFigures);
 		
-		listAssetInst.add(assetInstance);
+		listAssetInstResponse.add(assetInstanceresponse);
 				
-		return listAssetInst;
+		return listAssetInstResponse;
 	}
 	
 	

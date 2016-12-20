@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.jboss.spring.integration.wrapper</groupId>
 	<artifactId>WrapperRGI</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.5.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>WrapperDL-RGI</name>
 	<!-- distributionManagement -->
@@ -180,7 +180,7 @@
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-		<!-- Common -->
+		<!-- Common proxy -->
 		<dependency>
 			<groupId>mapfre-rating-engine</groupId>
 			<artifactId>rating-engine-proxy-business-objects</artifactId>
@@ -263,6 +263,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
+				 	<includes>
+						<include>src/main/java/**/*.java</include>
+                    </includes>
 					<source>1.8</source>
 					<target>1.8</target>
 					<annotationProcessorPaths>

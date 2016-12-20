@@ -7,6 +7,7 @@ package it.cg.main.integration.mapper.enumerations;
  */
 public enum ENUMInternalAssetInstanceFactors
 {
+	FACTOR_2LOYAL("2LOYAL"),
 	FACTOR__2AAVE("_2AAVE"),
 	FACTOR__2ALIM("_2ALIM"),
 	FACTOR__2BM("_2BM"),

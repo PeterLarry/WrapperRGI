@@ -75,7 +75,7 @@ public abstract class DtoImpl implements Serializable
 	 */
 	public boolean bindPassError(MsgResponseHeader msgError)
 	{
-		boolean isErrorsFound = true;
+		boolean isErrorsFound = false;
 		
 		if(msgError != null)
 		{

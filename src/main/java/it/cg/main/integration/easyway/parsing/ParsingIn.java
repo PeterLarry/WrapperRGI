@@ -4,11 +4,10 @@ package it.cg.main.integration.easyway.parsing;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.mapfre.engines.rating.business.objects.wrapper.Coverage;
 import com.pass.global.CalculatePremiumResponse;
-import com.pass.global.WsUnitInstance;
 
-import it.cg.main.conf.mapping.easyway.MapperResponseToDL;
+import it.cg.main.conf.mapping.easyway.response.MapperResponsePremiumToDL;
+import it.cg.main.conf.mapping.easyway.response.MapperResponseToDL;
 import it.cg.main.dto.InboundResponseHttpJSON;
 
 /**
@@ -50,28 +49,30 @@ public class ParsingIn
 		if(response.getSuccess())
 		{
 //			mapping
-			response = getMapper().getResponseJsonFromProd(responseCalculate);
+//			response = getMapper().getResponseJsonFromProd(responseCalculate);
+			MapperResponsePremiumToDL mappingResponse = new MapperResponsePremiumToDL();
+			response.setQuote(mappingResponse.getInitQuoteResponse(responseCalculate));
 			
-			WsUnitInstance unitInstance = new WsUnitInstance();
-			Coverage coverageOut = new Coverage();
-			try
-			{
-				unitInstance = responseCalculate.getReturn().getOutput().getProduct().
-						getAssets().get(0).getInstances().get(0).
-						getSections().get(0).getUnits().get(0).getInstances().get(0);
-//				mapping
-				getMapper().getResponseJsonFromUnitInstance(unitInstance, coverageOut);
-				
-				response.getQuote().getCoverages().add(coverageOut);
-			}
-			catch(NullPointerException ex)
-			{
-				logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
-			}
-			catch(ArrayIndexOutOfBoundsException ex)
-			{
-				logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
-			}
+//			WsUnitInstance unitInstance = new WsUnitInstance();
+//			Coverage coverageOut = new Coverage();
+//			try
+//			{
+//				unitInstance = responseCalculate.getReturn().getOutput().getProduct().
+//						getAssets().get(0).getInstances().get(0).
+//						getSections().get(0).getUnits().get(0).getInstances().get(0);
+////				mapping
+//				getMapper().getResponseJsonFromUnitInstance(unitInstance, coverageOut);
+//				
+//				response.getQuote().getCoverages().add(coverageOut);
+//			}
+//			catch(NullPointerException ex)
+//			{
+//				logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
+//			}
+//			catch(ArrayIndexOutOfBoundsException ex)
+//			{
+//				logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
+//			}
 		}
 		
 		logger.info("parseCalculatePremiumResponse out with response :"+response);

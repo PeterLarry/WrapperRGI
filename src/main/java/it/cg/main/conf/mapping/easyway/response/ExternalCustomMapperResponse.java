@@ -1,4 +1,4 @@
-package it.cg.main.conf.mapping.easyway;
+package it.cg.main.conf.mapping.easyway.response;
 
 import org.springframework.stereotype.Service;
 
