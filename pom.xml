@@ -263,9 +263,6 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
-				 	<includes>
-						<include>src/main/java/**/*.java</include>
-                    </includes>
 					<source>1.8</source>
 					<target>1.8</target>
 					<annotationProcessorPaths>
