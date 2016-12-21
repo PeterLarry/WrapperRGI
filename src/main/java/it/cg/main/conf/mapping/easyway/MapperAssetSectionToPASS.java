@@ -5,6 +5,8 @@ import java.util.List;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ICoverage;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumCoverageCode;
+import com.mapfre.engines.rating.common.enums.EnumDeductibleOtherVehicle;
+import com.mapfre.engines.rating.common.enums.EnumLimitOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumRiskType;
 import com.pass.global.TypeBooleano;
 import com.pass.global.WsAssetInstance;
@@ -15,8 +17,8 @@ import com.pass.global.WsFactor;
 import com.pass.global.WsUnitInstance;
 
 import it.cg.main.dto.InboundRequestHttpJSON;
-import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeSection;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeAssetUnit;
+import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeSection;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalUnitInstanceFactors;
 
 public class MapperAssetSectionToPASS
@@ -692,20 +694,15 @@ public class MapperAssetSectionToPASS
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA11.value());						
 				}
-				else if(riskType.equals(EnumRiskType.CAR) || riskType.equals(EnumRiskType.MOTORBIKE) || 
-							riskType.equals(EnumRiskType.TRUCK_UPTO_60000KG))
+				else if(riskType.equals(EnumRiskType.CAR) || riskType.equals(EnumRiskType.MOTORBIKE))
 				{
 //					TODO controllare MOPED, non presente come in RCA1 che 
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA1.value());
 //					unitinstance factor Value
 					if(covTemp.getDeductible() != null && covTemp.getDeductible().getCode() != null)
 					{
-						if(riskType.equals(EnumRiskType.CAR) || riskType.equals(EnumRiskType.MOTORBIKE) )
-						{
-							factorsUnitInstanceToAdd3RCFRA.setValue(covTemp.getDeductible().getCode());
-							
-							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
-						}
+						factorsUnitInstanceToAdd3RCFRA.setValue(covTemp.getDeductible().getCode());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(covTemp.getLimit() != null && covTemp.getLimit().getCode() != null)
 					{
@@ -735,6 +732,24 @@ public class MapperAssetSectionToPASS
 						{
 							factorsUnitInstanceToAdd3MASS.setValue(covTemp.getLimit().getCode());
 						}
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
+				}
+				//TODO Aggiungere i set delle unit instance 3MASS e 3RCFRA per tutti gli "other vehicle"
+				else if(riskType.equals(EnumRiskType.TRUCK_UPTO_60000KG))
+				{
+					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA1.value());
+					
+					if(covTemp.getDeductible() != null && covTemp.getDeductible().getCode() != null)
+					{
+//							factorsUnitInstanceToAdd3RCFRA.setValue(EnumDeductibleOtherVehicle);
+							
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(covTemp.getLimit() != null && covTemp.getLimit().getCode() != null)
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(EnumLimitOtherVehicle.values().toString());
+						
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
