@@ -764,10 +764,9 @@ public class MapperAssetSectionToPASS
 				}
 				else if(riskType.equals(EnumRiskType.TRUCK_TRAILER))
 				{
-//					TODO sul documento weight è un int
-					if(new Integer(otherVehicle.getWeight()) <= 60)
+					if(otherVehicle.getWeight() <= 60)
 						assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA3.value());
-					if(new Integer(otherVehicle.getWeight()) > 60)
+					if(otherVehicle.getWeight() > 60)
 						assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA4.value());
 				}
 				else if(riskType.equals(EnumRiskType.CAMPER))

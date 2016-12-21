@@ -735,7 +735,7 @@ public class MapperProductAssetToPASS
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2PROMC.value());
-			wsFactor.setValue(quote.getRatingInfo().getPromocode());
+			wsFactor.setValue(quote.getRatingInfo().getPromocode().getWrapperCode().toString());
 			factAsset.add(wsFactor);
 		}
 		
