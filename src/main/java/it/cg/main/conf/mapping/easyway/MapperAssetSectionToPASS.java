@@ -698,13 +698,13 @@ public class MapperAssetSectionToPASS
 				factorsUnitInstanceToAdd3RCFRA.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3RCFRA.value());
 				factorsUnitInstanceToAdd3MASS.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3MASS.value());
 				
+				//TODO Controllare se per RCA11 sia da associare il riskType RIAB (rimorchiio autobus)
 				if( riskType.equals(EnumRiskType.URBAN_BUS) || riskType.equals(EnumRiskType.OUT_OF_TOWN_TURISTIC_BUS) )
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA11.value());						
 				}
 				else if(riskType.equals(EnumRiskType.CAR) || riskType.equals(EnumRiskType.MOTORBIKE))
 				{
-//					TODO controllare MOPED, non presente come in RCA1 che 
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA1.value());
 //					unitinstance factor Value
 					if(covTemp.getDeductible() != null && covTemp.getDeductible().getCode() != null)
@@ -748,65 +748,195 @@ public class MapperAssetSectionToPASS
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA1.value());
 					
-					if(covTemp.getDeductible() != null && covTemp.getDeductible().getCode() != null)
+					if(otherVehicle.getSelectedDeductible() != null )
 					{
-//							factorsUnitInstanceToAdd3RCFRA.setValue(EnumDeductibleOtherVehicle);
-							
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
-					if(covTemp.getLimit() != null && covTemp.getLimit().getCode() != null)
+					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(EnumLimitOtherVehicle.values().toString());
-						
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
 				else if(riskType.equals(EnumRiskType.TAXI))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA12.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.SPECIAL_VEHICLE))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA14.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.AGRICULTURAL_MACHINERY))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA15.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.AGRICULTURAL_MACHINERY_TRAILER))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA16.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.SPECIAL_VEHICLE_TRAILER))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA17.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.TRUCK_MORE_THAN_60000KG))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA2.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.TRUCK_TRAILER))
 				{
 					if(otherVehicle.getWeight() <= 60)
 						assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA3.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 					if(otherVehicle.getWeight() > 60)
 						assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA4.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.CAMPER))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA5.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.MOTORCYCLE_FREIGHT_TRANSPORT))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA7.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.URBAN_BUS))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA8.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.OUT_OF_TOWN_TURISTIC_BUS))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA9.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
 				}
 				else if(riskType.equals(EnumRiskType.MOPED))
 				{
