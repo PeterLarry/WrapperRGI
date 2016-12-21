@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.AbstractResource;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
 
 @WebListener
 @Configuration
@@ -49,6 +48,7 @@ public class ApplicationContextConfig implements ServletContextListener
 //        };
 //		^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //		Internal conf files
+		
         AbstractResource resources[] = new AbstractResource[] {
         		new ClassPathResource(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()),
         		new ClassPathResource("log4j.properties")

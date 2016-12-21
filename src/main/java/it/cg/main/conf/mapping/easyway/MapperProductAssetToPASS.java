@@ -44,7 +44,7 @@ public class MapperProductAssetToPASS
 	private Logger logger = Logger.getLogger(getClass());
 	
 	private TypeBooleano typeB =  new TypeBooleano();
-	//Pattern aggiornato
+//	Pattern aggiornato to PASS
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 	
 	/**
@@ -82,19 +82,6 @@ public class MapperProductAssetToPASS
 						listFactor.add(wsFactor);
 					}
 				}
-//				FATTORE ELIMINATO
-//				wsFactor = new WsFactor();
-//				wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR__1CTPF.value());
-//				if(figureTemp.getPersonType().equals(EnumPersonType.NATURAL_PERSON))
-//				{
-//					wsFactor.setValue("true");
-//				}
-//				else if(figureTemp.getPersonType().equals(EnumPersonType.LEGAL_PERSON))
-//				{
-//					wsFactor.setValue("false");
-//				}
-//				listFactor.add(wsFactor);
-				
 				if(figureTemp.getYearsWithLicense() != null)
 				{
 					wsFactor = new WsFactor();
@@ -109,12 +96,7 @@ public class MapperProductAssetToPASS
 					}
 					listFactor.add(wsFactor);
 				}
-//				FATTORE ELIMINATO
-//				wsFactor = new WsFactor();
-//				wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1PHPR.value());
-//				wsFactor.setValue(figureTemp.getOccupation().getWrapperCode().toString());
-//				listFactor.add(wsFactor);
-
+				
 				wsFactor = new WsFactor();
 				wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1PHSC.value());
 				wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());

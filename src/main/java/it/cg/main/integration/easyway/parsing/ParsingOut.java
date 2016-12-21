@@ -19,6 +19,7 @@ public class ParsingOut
 
 	private MapperRequestToPASS easyMapperMapstruct;
 	private MapperAssetSectionToPASS mapperEasy;
+	private boolean isEnableTariffFormulaLogActive;
 	
 	
 	/**
@@ -26,9 +27,10 @@ public class ParsingOut
 	 * <i>@Autowired <br> org.mapstruct.@Mapper </i>
 	 * @param mapper
 	 */
-	public ParsingOut(MapperRequestToPASS easyMapperMapstruct)
+	public ParsingOut(MapperRequestToPASS easyMapperMapstruct, boolean isEnableTariffFormulaLogActive)
 	{
 		this.easyMapperMapstruct = easyMapperMapstruct;
+		this.isEnableTariffFormulaLogActive = isEnableTariffFormulaLogActive;
 	}
 	
 	/**
@@ -70,7 +72,8 @@ public class ParsingOut
 //			populate assetInstance
 			getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON(), asset);
 //			populate assetUnit and UnitInstance
-			mapperEasy.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0), responseCalculatePremium.getProduct().getCode());
+			mapperEasy.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0),
+									responseCalculatePremium.getProduct().getCode(), isEnableTariffFormulaLogActive);
 			responseCalculatePremium.getProduct().getAssets().add(asset);
 		}
 		catch(NullPointerException ex)

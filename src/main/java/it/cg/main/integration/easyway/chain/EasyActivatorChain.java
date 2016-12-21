@@ -4,6 +4,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,8 @@ import it.cg.main.integration.interfaces.ActivatorHandler;
 public class EasyActivatorChain extends ActivatorHandler
 {
 	private Logger logger = Logger.getLogger(getClass());
+	@Value("${isEnableTariffFormulaLogActive}")
+	private boolean isEnableTariffFormulaLogActive;
 	
 	@Autowired
 	private MapperRequestToPASS easyMapperMapstruct;
@@ -37,7 +40,7 @@ public class EasyActivatorChain extends ActivatorHandler
 	{
 		logger.info("Into gotoEasyCall call , input="+request);
 		
-		ParsingOut pout = new ParsingOut(easyMapperMapstruct);
+		ParsingOut pout = new ParsingOut(easyMapperMapstruct,isEnableTariffFormulaLogActive);
 //		parse object
 		WsCalculatePremiumInput calcPremium = pout.getQuoteToPass(request);
 //		set request WS		

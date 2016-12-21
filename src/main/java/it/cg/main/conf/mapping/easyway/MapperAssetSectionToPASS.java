@@ -2,10 +2,11 @@ package it.cg.main.conf.mapping.easyway;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ICoverage;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumCoverageCode;
-import com.mapfre.engines.rating.common.enums.EnumDeductibleOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumLimitOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumRiskType;
 import com.pass.global.TypeBooleano;
@@ -25,6 +26,7 @@ public class MapperAssetSectionToPASS
 {
 	private TypeBooleano tybT = new TypeBooleano();
 	private TypeBooleano tybF = new TypeBooleano();
+	private boolean isEnableTariffFormulaLogActive;
 	
 
 	/**
@@ -32,7 +34,7 @@ public class MapperAssetSectionToPASS
 	 * @param inb
 	 * @return
 	 */
-	public void getAssetSections(InboundRequestHttpJSON inb, WsAssetInstance instance, String codeAssetUnit) throws NullPointerException
+	public void getAssetSections(InboundRequestHttpJSON inb, WsAssetInstance instance, String codeAssetUnit, boolean isEnableTariffFormulaLogActive) throws NullPointerException
 	{
 		EnumRiskType riskType = inb.getInboundQuoteDTO().getContext().getRiskType();
 		List<ICoverage> listCov = inb.getInboundQuoteDTO().getCoverages();
@@ -71,13 +73,19 @@ public class MapperAssetSectionToPASS
 	}
 	
 	/**
-	 * 
-	 * @param companyChangeDetails
-	 * @return
+	 * Init new UnitInstace with  isEnableTariffFormulaLogActive for test mode
+	 * @param 
+	 * @return new WsUnitInstance
 	 */
 	private WsUnitInstance getUnitInstanceInit()
 	{
 		WsUnitInstance unitInstance = new WsUnitInstance();
+		if(isEnableTariffFormulaLogActive)
+			unitInstance.setEnableTariffFormulaLog(tybT);
+		else
+			unitInstance.setEnableTariffFormulaLog(tybF);
+		
+//		unitInstance.setExceptionCode();
 		
 		return unitInstance;
 	}
