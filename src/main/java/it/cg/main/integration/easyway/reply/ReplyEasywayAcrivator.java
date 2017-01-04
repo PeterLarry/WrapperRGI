@@ -17,9 +17,6 @@ public class ReplyEasywayAcrivator extends ActivatorHandler
 
 	private Logger logger = Logger.getLogger(getClass());
 	
-	@Autowired
-	private MapperResponseToDL mapperToDL;
-	
 	/**
 	 * Method to access to the mapping object from PASS to DL reply
 	 * @param calculateResponse
@@ -30,7 +27,7 @@ public class ReplyEasywayAcrivator extends ActivatorHandler
 	{
 		logger.info("gotoEasyWay input DTO "+calculateResponse);
 		
-		ParsingIn pIn = new ParsingIn(mapperToDL);
+		ParsingIn pIn = new ParsingIn();
 		InboundResponseHttpJSON responseJson  = pIn.parseCalculatePremiumResponse(calculateResponse);
 		
 		Message<InboundResponseHttpJSON> message = createMessage(responseJson);

@@ -1,13 +1,15 @@
 package it.cg.main.integration.easyway.parsing;
 
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ICoverage;
 import com.pass.global.CalculatePremiumResponse;
 
 import it.cg.main.conf.mapping.easyway.response.MapperResponsePremiumToDL;
-import it.cg.main.conf.mapping.easyway.response.MapperResponseToDL;
 import it.cg.main.dto.InboundResponseHttpJSON;
 
 /**
@@ -20,8 +22,6 @@ public class ParsingIn
 {
 	private Logger logger = Logger.getLogger(getClass());
 	
-	private MapperResponseToDL mapperToDL;
-	
 	/**
 	 * The param is parsed using mapstruct custom classes, check the errors from pass
 	 * Set the "success" field if no errors into the param, else bind the errors to the errorsdto included
@@ -31,81 +31,39 @@ public class ParsingIn
 	public InboundResponseHttpJSON parseCalculatePremiumResponse(CalculatePremiumResponse responseCalculate)
 	{
 		logger.info("parseCalculatePremiumResponse enter with parameters :"+responseCalculate);
-		InboundResponseHttpJSON response = new InboundResponseHttpJSON();
+		InboundResponseHttpJSON responseCalculatePremium = new InboundResponseHttpJSON();
 		boolean isErrorFromPass = false;
-//		ceck for errors
+//		check for errors
 		try
 		{
-			isErrorFromPass = response.bindPassError(responseCalculate.getReturn().getServiceInfo());
+			isErrorFromPass = responseCalculatePremium.bindPassError(responseCalculate.getReturn().getServiceInfo());
 		}
 		catch(NullPointerException ex)
 		{
 			logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
 			throw new NullPointerException("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
 		}
-		
-		response.setSuccess(!isErrorFromPass);
-		
-		if(response.getSuccess())
+		catch(ArrayIndexOutOfBoundsException ex)
 		{
-//			mapping
-//			response = getMapper().getResponseJsonFromProd(responseCalculate);
+			logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
+			throw new ArrayIndexOutOfBoundsException("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
+		}
+		
+		responseCalculatePremium.setSuccess(!isErrorFromPass);
+		
+		if(responseCalculatePremium.getSuccess())
+		{
 			MapperResponsePremiumToDL mappingResponse = new MapperResponsePremiumToDL();
-			response.setQuote(mappingResponse.getInitQuoteResponse(responseCalculate));
+//			create and set generic quote premium
+			responseCalculatePremium.setQuote(mappingResponse.getInitQuoteResponse(responseCalculate));
+//			create and set coverages premium
+			List<ICoverage> coveragesMapped = mappingResponse.getCoveragesFromPass(responseCalculate);
+			responseCalculatePremium.getQuote().setCoverages(coveragesMapped);
 			
-//			WsUnitInstance unitInstance = new WsUnitInstance();
-//			Coverage coverageOut = new Coverage();
-//			try
-//			{
-//				unitInstance = responseCalculate.getReturn().getOutput().getProduct().
-//						getAssets().get(0).getInstances().get(0).
-//						getSections().get(0).getUnits().get(0).getInstances().get(0);
-////				mapping
-//				getMapper().getResponseJsonFromUnitInstance(unitInstance, coverageOut);
-//				
-//				response.getQuote().getCoverages().add(coverageOut);
-//			}
-//			catch(NullPointerException ex)
-//			{
-//				logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
-//			}
-//			catch(ArrayIndexOutOfBoundsException ex)
-//			{
-//				logger.error("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
-//			}
 		}
 		
-		logger.info("parseCalculatePremiumResponse out with response :"+response);
-		return response;
+		logger.info("parseCalculatePremiumResponse out with response :"+responseCalculatePremium);
+		return responseCalculatePremium;
 	}
 	
-	
-	/**
-	 * Costruttore che necessita del mapper factory :<br>
-	 * <i>@Autowired <br> org.mapstruct.@Mapper </i>
-	 * @param mapper
-	 */
-	public ParsingIn(MapperResponseToDL mapperToDL)
-	{
-		this.mapperToDL = mapperToDL;
-	}
-
-	
-	/**
-	 * Ritorna il Mapper di mapperstruct
-	 * <b>org.mapstruct.@Mapper</b>
-	 * @return Mapper
-	 * @throws NullPointerException nel caso sia null
-	 */
-	private MapperResponseToDL getMapper() throws NullPointerException
-	{
-		if(mapperToDL == null)
-		{
-			throw new NullPointerException("mapper null from super implementation");
-		}
-		
-		return mapperToDL;
-	}
-	
-
 }
