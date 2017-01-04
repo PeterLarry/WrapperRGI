@@ -20,6 +20,7 @@ import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IRatingInfo;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ITechnicalData;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IVehicle;
 import com.mapfre.engines.rating.common.enums.EnumAlimentation;
+import com.mapfre.engines.rating.common.enums.EnumProductType;
 import com.mapfre.engines.rating.common.enums.EnumPromoCode;
 import com.mapfre.engines.rating.common.enums.EnumRestrictionType;
 import com.mapfre.engines.rating.common.enums.EnumRiskType;
@@ -79,14 +80,15 @@ public class TestGson
 		
 		testQuote.setRatingInfo(testRating);
 		testQuote.setVehicle(testVehicle);
-//		testQuote.setCoverages(listCov);
+		testQuote.setCoverages(listCov);
 		
 		responseInbound.setInboundQuoteDTO(testQuote);
 		responseInbound.setServiceType("easy");
 		
 		
 		IContext contextAddon = new Context();
-		contextAddon.setRiskType(EnumRiskType.MOPED);
+		contextAddon.setRiskType(EnumRiskType.CAR);
+		contextAddon.setProductType(EnumProductType.DLI);
 		//		TODO ADDON
 //		"context": {
 //		      "platform": "QOL",
