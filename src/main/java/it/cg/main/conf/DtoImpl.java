@@ -59,7 +59,7 @@ public abstract class DtoImpl implements Serializable
 		}
 		finally
 		{
-			logger.error("The follow is the real error into integration flush : ");
+			logger.error("The follow is the real error into integration flush : "+errorMessage.getMessage());
 			errorMessage.printStackTrace();
 		}
 		
@@ -93,6 +93,7 @@ public abstract class DtoImpl implements Serializable
 				bindingErrorMesssage.setCustomTipoErroreOccorso(msgError.getTipoErroreOccorso());
 				
 				getErrorResponseDTO().add(bindingErrorMesssage);
+				logger.info("bindPassError error from PASS : " + msgError.getDescrizioneErroreOccorso());
 			}
 		}
 		
