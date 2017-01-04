@@ -452,7 +452,7 @@ public class MapperProductAssetToPASS
 			wsFactor.setValue(quote.getNumberOfClaimsInLastYear().toString());
 			factAsset.add(wsFactor);
 		}
-		if(quote.getUsualDriverOwnerRelationship().getWrapperCode() != null)
+		if(quote.getUsualDriverOwnerRelationship() != null && quote.getUsualDriverOwnerRelationship().getWrapperCode() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2ROWMD.value());
@@ -672,64 +672,67 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getTechnicalData().getBodyType().getWrapperCode() != null)
+		if(quote.getVehicle().getTechnicalData() != null && quote.getVehicle().getTechnicalData() != null )
 		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2BOMBK.value());
-			wsFactor.setValue(quote.getVehicle().getTechnicalData().getBodyType().getWrapperCode().toString());
-			factAsset.add(wsFactor);
+			if(quote.getVehicle().getTechnicalData().getBodyType() != null &&
+					quote.getVehicle().getTechnicalData().getBodyType().getWrapperCode() != null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2BOMBK.value());
+				wsFactor.setValue(quote.getVehicle().getTechnicalData().getBodyType().getWrapperCode().toString());
+				factAsset.add(wsFactor);
+			}
+			if(quote.getVehicle().getTechnicalData().getTheftAndFireRiskClass() != null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2MKMDL.value());
+				wsFactor.setValue(quote.getVehicle().getTechnicalData().getTheftAndFireRiskClass().toString());
+				factAsset.add(wsFactor);
+			}
+			
+			if(quote.getVehicle().getTechnicalData().getAirbagType() != null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2NAIRB.value());
+				wsFactor.setValue(quote.getVehicle().getTechnicalData().getAirbagType().getWrapperCode().toString());
+				factAsset.add(wsFactor);
+			}
+			if(quote.getVehicle().getShelterType() != null && quote.getVehicle().getShelterType().getWrapperCode() != null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2PARKN.value());
+				wsFactor.setValue(quote.getVehicle().getShelterType().getWrapperCode().toString());
+				factAsset.add(wsFactor);
+			}
+//			TODO Controllare se lato DL ci passano 10 anzichè 10000
+			if(quote.getVehicle().getKmPerYear() != null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2KMAN.value());
+				wsFactor.setValue(quote.getVehicle().getKmPerYear().toString());
+				factAsset.add(wsFactor);
+			}
 		}
-		
-		if(quote.getVehicle().getTechnicalData().getTheftAndFireRiskClass() != null)
+
+		if(quote.getRatingInfo() != null)
 		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2MKMDL.value());
-			wsFactor.setValue(quote.getVehicle().getTechnicalData().getTheftAndFireRiskClass().toString());
-			factAsset.add(wsFactor);
+//			TODO prevdere un enum, aspettare risp
+			if(quote.getRatingInfo().getPromocode() != null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2PROMC.value());
+				wsFactor.setValue(quote.getRatingInfo().getPromocode().getWrapperCode().toString());
+				factAsset.add(wsFactor);
+			}
+			if(quote.getRatingInfo().getRegressionClass() != null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2REGRE.value());
+				wsFactor.setValue(quote.getRatingInfo().getRegressionClass());
+				factAsset.add(wsFactor);
+			}
 		}
-		
-		if(quote.getVehicle().getTechnicalData().getAirbagType() != null)
-		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2NAIRB.value());
-			wsFactor.setValue(quote.getVehicle().getTechnicalData().getAirbagType().getWrapperCode().toString());
-			factAsset.add(wsFactor);
-		}
-		
-		if(quote.getVehicle().getShelterType().getWrapperCode() != null)
-		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2PARKN.value());
-			wsFactor.setValue(quote.getVehicle().getShelterType().getWrapperCode().toString());
-			factAsset.add(wsFactor);
-		}
-		
-//		TODO Controllare se lato DL ci passano 10 anzichè 10000
-		if(quote.getVehicle().getKmPerYear() != null)
-		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2KMAN.value());
-			wsFactor.setValue(quote.getVehicle().getKmPerYear().toString());
-			factAsset.add(wsFactor);
-		}
-//		TODO prevdere un enum, aspettare risp
-		if(quote.getRatingInfo().getPromocode() != null)
-		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2PROMC.value());
-			wsFactor.setValue(quote.getRatingInfo().getPromocode().getWrapperCode().toString());
-			factAsset.add(wsFactor);
-		}
-		
-		if(quote.getRatingInfo().getRegressionClass() != null)
-		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2REGRE.value());
-			wsFactor.setValue(quote.getRatingInfo().getRegressionClass());
-			factAsset.add(wsFactor);
-		}
-		
-		if(quote.getContext().getSection().getWrapperCode() != null)
+		if(quote.getContext().getSection() != null && quote.getContext().getSection().getWrapperCode() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2TIPGU.value());
@@ -819,8 +822,9 @@ public class MapperProductAssetToPASS
 	
 		}
 
-//// Aggiunto fattore  mamarino ->  _2alim
-		if(quote.getVehicle().getTechnicalData() != null && quote.getVehicle().getTechnicalData().getAlimentation() != null)
+
+		if(quote.getVehicle() != null &&
+				quote.getVehicle().getTechnicalData() != null && quote.getVehicle().getTechnicalData().getAlimentation() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2ALIM.value());
@@ -846,28 +850,41 @@ public class MapperProductAssetToPASS
 	 */
 	public List<WsVehicle> quoteToWsVehicle(InboundRequestHttpJSON inb)
 	{
+		logger.debug("quoteToWsVehicle set frome vehicle with input : "+inb);
 		ArrayList<WsVehicle> ve = new ArrayList<WsVehicle>();
 		WsVehicle wsVe = new WsVehicle();
 
 		String sectorCode = "" ;
 		String ccode = getRiskTypeAsset(inb, sectorCode);
 		
+		logger.debug("ClassCode = "+ccode);
 		wsVe.setClassCode(ccode);
+		logger.debug("SectorCode = "+sectorCode);
 		wsVe.setSectorCode(sectorCode);
 		
 		String useCode = "";
-		if(inb.getInboundQuoteDTO().getVehicle().getTechnicalData().getPraUse().equals(EnumPublicRegisterUse.MIXED))
+		try
 		{
-			useCode = "000007";
+			if(inb.getInboundQuoteDTO().getVehicle().getTechnicalData().getPraUse().equals(EnumPublicRegisterUse.MIXED))
+			{
+				useCode = "000007";
+			}
+			else if(inb.getInboundQuoteDTO().getVehicle().getTechnicalData().getPraUse().equals(EnumPublicRegisterUse.PRIVATE_CAR))
+			{
+				useCode = "000005";
+			}
 		}
-		else if(inb.getInboundQuoteDTO().getVehicle().getTechnicalData().getPraUse().equals(EnumPublicRegisterUse.PRIVATE_CAR))
+		catch(NullPointerException ex)
 		{
-			useCode = "000005";
+			logger.error("Into quoteToWsVehicle something null into quote, impossible set useCode for Vehicle : "+ex.getMessage());
 		}
+		
+		logger.debug("UseCode = "+useCode);
 		wsVe.setUseCode(useCode);
 		
 		ve.add(wsVe);
 		
+		logger.debug("quoteToWsVehicle set from vehicle with output : "+ve);
 		return ve;
 	}
 	
@@ -878,6 +895,8 @@ public class MapperProductAssetToPASS
 	 */
 	private String getRiskTypeAsset(InboundRequestHttpJSON inb, String sectorCode)
 	{
+		logger.debug("getRiskTypeAsset with input : "+inb);
+		
 //		TODO da definire bene tutti i casi, alcuni sull'excel non sono chiari
 		String response = "" ;
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.CAR) ||
@@ -952,6 +971,7 @@ public class MapperProductAssetToPASS
 			sectorCode = "000007";
 		}
 		
+		logger.debug("getRiskTypeAsset with output : "+response+" and sectorCode : "+sectorCode);
 		return response;
 	}
 	

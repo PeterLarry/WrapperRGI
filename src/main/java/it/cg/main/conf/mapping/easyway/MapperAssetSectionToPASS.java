@@ -692,7 +692,7 @@ public class MapperAssetSectionToPASS
 			WsFactor factorsUnitInstanceToAdd3MASS  = new WsFactor();
 			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp);
 			
-			if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_RCA))
+			if( covTemp != null && covTemp.getCode() != null && covTemp.getCode().equals(EnumCoverageCode.MOTOR_RCA))
 			{
 //				CODE Factor for Unitinstance 
 				factorsUnitInstanceToAdd3RCFRA.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3RCFRA.value());
@@ -970,7 +970,7 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection for MOTOR_RCA
 				assetSectionResultS1.getUnits().add(assetUnitTemp);
 			}
-			else if(covTemp.getCode().equals(EnumCoverageCode.MOTOR_BONUS_PROTECTED))
+			else if( covTemp != null && covTemp.getCode() != null && covTemp.getCode().equals(EnumCoverageCode.MOTOR_BONUS_PROTECTED))
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_BP1.value());						
 				assetUnitTemp.setSelection(tybT);
