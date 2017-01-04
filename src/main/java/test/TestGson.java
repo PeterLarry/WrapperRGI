@@ -20,6 +20,8 @@ import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IRatingInfo;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ITechnicalData;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IVehicle;
 import com.mapfre.engines.rating.common.enums.EnumAlimentation;
+import com.mapfre.engines.rating.common.enums.EnumCoverageCode;
+import com.mapfre.engines.rating.common.enums.EnumFlowType;
 import com.mapfre.engines.rating.common.enums.EnumProductType;
 import com.mapfre.engines.rating.common.enums.EnumPromoCode;
 import com.mapfre.engines.rating.common.enums.EnumRestrictionType;
@@ -69,6 +71,8 @@ public class TestGson
 		
 		List<ICoverage> listCov = new ArrayList<ICoverage>();
 			ICoverage testCov = new Coverage();
+//			TODO ADDON
+			testCov.setCode(EnumCoverageCode.MOTOR_THEFT);
 			testCov.setFiddleFactor(0.0);
 			testCov.setDiscount(null);
 			testCov.setPreviousNetAmount(5.6808);
@@ -82,14 +86,14 @@ public class TestGson
 		testQuote.setVehicle(testVehicle);
 		testQuote.setCoverages(listCov);
 		
-		responseInbound.setInboundQuoteDTO(testQuote);
-		responseInbound.setServiceType("easy");
 		
-		
+//		TODO ADDON
+		testQuote.setInstallments(1);
+		testQuote.setRateFromDate(new Date());
 		IContext contextAddon = new Context();
 		contextAddon.setRiskType(EnumRiskType.CAR);
 		contextAddon.setProductType(EnumProductType.DLI);
-		//		TODO ADDON
+		contextAddon.setFlowType(EnumFlowType.REVIEW_GENERATION);
 //		"context": {
 //		      "platform": "QOL",
 //		      "riskType": "CAR",
@@ -103,8 +107,10 @@ public class TestGson
 //		      "userSessionId": "223E721691659AD51EF6E0526FF35CA9",
 //		      "directlineSelfService": false
 //		    }
-		testQuote.setContext(contextAddon);
 		
+		responseInbound.setInboundQuoteDTO(testQuote);
+		responseInbound.setServiceType("easy");
+		testQuote.setContext(contextAddon);
 		
 		return responseInbound;
 	}
