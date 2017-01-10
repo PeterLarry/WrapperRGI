@@ -213,6 +213,7 @@ public class MapperProductAssetToPASS
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1CSC.value());
 			//wsFactor.setValue(figureTemp.getOccupation().getWrapperCode().toString());
+//			TODO da avere il ENUM da proxy
 			wsFactor.setValue(quote.getCampaign().toString());
 			factProp.add(wsFactor);
 		}
@@ -564,7 +565,7 @@ public class MapperProductAssetToPASS
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2BM.value());
-			wsFactor.setValue(quote.getGoodDriverClass());// diventa un enum 
+			wsFactor.setValue(quote.getGoodDriverClass());// TODO diventa un enum 
 			factAsset.add(wsFactor);
 		}
 				
@@ -820,6 +821,17 @@ public class MapperProductAssetToPASS
 				}
 			}
 	
+		}
+//		TODO da controllare le regole per l'other vheicle
+		if(quote.getOtherVehiclesInsuredWithUs() != null)
+		{
+			wsFactor = new WsFactor();
+			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2ALAUT.value());
+			if(quote.getOtherVehiclesInsuredWithUs())
+				wsFactor.setValue("true");
+			else
+				wsFactor.setValue("false");
+			factAsset.add(wsFactor);
 		}
 
 
