@@ -46,6 +46,7 @@ public class MapperProductAssetToPASS
 	private TypeBooleano typeB =  new TypeBooleano();
 //	Pattern aggiornato to PASS
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	private String sectorCode = "";
 	
 	/**
 	 * Get factors for WsProduct from FIGURES
@@ -866,13 +867,12 @@ public class MapperProductAssetToPASS
 		ArrayList<WsVehicle> ve = new ArrayList<WsVehicle>();
 		WsVehicle wsVe = new WsVehicle();
 
-		String sectorCode = "" ;
-		String ccode = getRiskTypeAsset(inb, sectorCode);
+		String ccode = getRiskTypeAsset(inb);
 		
 		logger.debug("ClassCode = "+ccode);
 		wsVe.setClassCode(ccode);
-		logger.debug("SectorCode = "+sectorCode);
-		wsVe.setSectorCode(sectorCode);
+		logger.debug("SectorCode = " + this.sectorCode);
+		wsVe.setSectorCode(this.sectorCode);
 		
 		String useCode = "";
 		try
@@ -905,7 +905,7 @@ public class MapperProductAssetToPASS
 	 * @param inb
 	 * @return ClassCode and edit sectorCode
 	 */
-	private String getRiskTypeAsset(InboundRequestHttpJSON inb, String sectorCode)
+	private String getRiskTypeAsset(InboundRequestHttpJSON inb)
 	{
 		logger.debug("getRiskTypeAsset with input : "+inb);
 		
@@ -915,75 +915,75 @@ public class MapperProductAssetToPASS
 				inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.CAR_TRAILER) )
 		{
 			response = "01";
-			sectorCode = "000001";
+			this.sectorCode = "000001";
 		}
 		else if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.MOTORBIKE))
 		{
 			response = "991";
-			sectorCode = "000005";
+			this.sectorCode = "000005";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.MOPED))
 		{
 			response = "30";
-			sectorCode = "000005";
+			this.sectorCode = "000005";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.URBAN_BUS))
 		{
 			response = "06";
-			sectorCode = "000004";
+			this.sectorCode = "000004";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.OUT_OF_TOWN_TURISTIC_BUS))
 		{
 			response = "02";
-			sectorCode = "000004";
+			this.sectorCode = "000004";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.BUS_TRAILER))
 		{
 			response = "988";
-			sectorCode = "000004";
+			this.sectorCode = "000004";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.TRUCK_UPTO_60000KG))
 		{
 			response = "09";
-			sectorCode = "000006";
+			this.sectorCode = "000006";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.TRUCK_MORE_THAN_60000KG))
 		{
 			response = "10";
-			sectorCode = "000006";
+			this.sectorCode = "000006";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.CAMPER))
 		{
 			response = "11";
-			sectorCode = "000006";
+			this.sectorCode = "000006";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.MOTORCYCLE_FREIGHT_TRANSPORT))
 		{
 			response = "995";
-			sectorCode = "000006";
+			this.sectorCode = "000006";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.SPECIAL_VEHICLE))
 		{
 			response = "980";
-			sectorCode = "000007";
+			this.sectorCode = "000007";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.AGRICULTURAL_MACHINERY))
 		{
 			response = "19";
-			sectorCode = "000008";
+			this.sectorCode = "000008";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.AGRICULTURAL_MACHINERY_TRAILER))
 		{
 			response = "76";
-			sectorCode = "000008";
+			this.sectorCode = "000008";
 		}
 		if(inb.getInboundQuoteDTO().getContext().getRiskType().equals(EnumRiskType.SPECIAL_VEHICLE_TRAILER))
 		{
 			response = "22";
-			sectorCode = "000007";
+			this.sectorCode = "000007";
 		}
 		
-		logger.debug("getRiskTypeAsset with output : "+response+" and sectorCode : "+sectorCode);
+		logger.debug("getRiskTypeAsset with output : "+response+" and sectorCode : "+this.sectorCode);
 		return response;
 	}
 	
