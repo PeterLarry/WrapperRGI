@@ -87,7 +87,7 @@ public class MapperAssetSectionToPASS
 		else
 			unitInstance.setEnableTariffFormulaLog(tybF);
 		
-		// Il proprietario si identifica tramite Oggetto Figure - Campo Role = OWNER
+		// TODO Il proprietario si identifica tramite Oggetto Figure - Campo Role = OWNER
 //		unitInstance.setExceptionCode();
 		
 		return unitInstance;
