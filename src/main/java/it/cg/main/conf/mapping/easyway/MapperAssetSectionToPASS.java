@@ -34,12 +34,14 @@ public class MapperAssetSectionToPASS
 	 * @param inb
 	 * @return
 	 */
-	public void getAssetSections(InboundRequestHttpJSON inb, WsAssetInstance instance, String codeAssetUnit, boolean isEnableTariffFormulaLogActive) throws NullPointerException
+	public void getAssetSections(InboundRequestHttpJSON inb, WsAssetInstance instance, String codeAssetUnit,
+										 boolean isEnableTariffFormulaLogActive) throws NullPointerException
 	{
 		EnumRiskType riskType = inb.getInboundQuoteDTO().getContext().getRiskType();
 		List<ICoverage> listCov = inb.getInboundQuoteDTO().getCoverages();
 		tybT.setBoolean(true);
 		tybF.setBoolean(false);
+		this.isEnableTariffFormulaLogActive = isEnableTariffFormulaLogActive;
 		
 		WsAssetSection assetSectionSx = getS1(listCov, riskType, inb.getInboundQuoteDTO().getNumberOfYoungDriver(), inb.getInboundQuoteDTO().getOtherVehicle() );
 		if(assetSectionSx != null)
@@ -85,6 +87,7 @@ public class MapperAssetSectionToPASS
 		else
 			unitInstance.setEnableTariffFormulaLog(tybF);
 		
+		// Il proprietario si identifica tramite Oggetto Figure - Campo Role = OWNER
 //		unitInstance.setExceptionCode();
 		
 		return unitInstance;
