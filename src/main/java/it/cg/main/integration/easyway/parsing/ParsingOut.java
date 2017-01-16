@@ -2,13 +2,14 @@ package it.cg.main.integration.easyway.parsing;
 
 import org.apache.log4j.Logger;
 
+import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
 import com.pass.global.GetTechnicalData;
 import com.pass.global.TypeBooleano;
 import com.pass.global.WsAsset;
 import com.pass.global.WsCalculatePremiumInput;
 
 import it.cg.main.conf.mapping.easyway.MapperAssetSectionToPASS;
-import it.cg.main.conf.mapping.easyway.MapperAssetToPASS;
+import it.cg.main.conf.mapping.easyway.MapperUtilityToPASS;
 import it.cg.main.conf.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.dto.RoutingDTO;
 import it.cg.main.dto.main.Quote;
@@ -18,9 +19,8 @@ public class ParsingOut
 	private Logger logger = Logger.getLogger(getClass());
 
 	private MapperRequestToPASS easyMapperMapstruct;
-	private MapperAssetSectionToPASS mapperEasy;
+	private MapperAssetSectionToPASS mapperAssetSection;
 	private boolean isEnableTariffFormulaLogActive;
-	
 	
 	/**
 	 * Costruttore che necessita del mapper factory :<br>
@@ -58,12 +58,13 @@ public class ParsingOut
 		tybF.setBoolean(false);
 		TypeBooleano tybT = new TypeBooleano();
 		tybT.setBoolean(true);
-		mapperEasy = new MapperAssetSectionToPASS();
+		mapperAssetSection = new MapperAssetSectionToPASS();
 		
 //		mapping instance
 		WsCalculatePremiumInput responseCalculatePremium = new WsCalculatePremiumInput();
-		MapperAssetToPASS mapAsset = new MapperAssetToPASS();
-		WsAsset asset = mapAsset.getInitWsAsset(quoteRequest);
+		MapperUtilityToPASS mapperUtility = new MapperUtilityToPASS();
+		WsAsset asset = mapperUtility.getInitWsAsset(quoteRequest);
+		IFigure figureOwner = mapperUtility.getFigureOwner(quoteRequest); 
 		
 		try
 		{
@@ -72,8 +73,9 @@ public class ParsingOut
 //			populate assetInstance
 			getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON(), asset);
 //			populate assetUnit and UnitInstance
-			mapperEasy.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0),
-									responseCalculatePremium.getProduct().getCode(), isEnableTariffFormulaLogActive);
+			mapperAssetSection.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0),
+													responseCalculatePremium.getProduct().getCode(), isEnableTariffFormulaLogActive, figureOwner);
+			
 			responseCalculatePremium.getProduct().getAssets().add(asset);
 		}
 		catch(NullPointerException ex)

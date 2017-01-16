@@ -59,7 +59,6 @@ public class ParsingIn
 //			create and set coverages premium
 			List<ICoverage> coveragesMapped = mappingResponse.getCoveragesFromPass(responseCalculate);
 			responseCalculatePremium.getQuote().setCoverages(coveragesMapped);
-			
 		}
 		
 		logger.info("parseCalculatePremiumResponse out with response :"+responseCalculatePremium);
