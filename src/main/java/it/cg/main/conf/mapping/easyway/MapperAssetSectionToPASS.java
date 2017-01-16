@@ -2,12 +2,12 @@ package it.cg.main.conf.mapping.easyway;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.apache.log4j.Logger;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ICoverage;
+import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumCoverageCode;
-import com.mapfre.engines.rating.common.enums.EnumLimitOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumRiskType;
 import com.pass.global.TypeBooleano;
 import com.pass.global.WsAssetInstance;
@@ -24,77 +24,104 @@ import it.cg.main.integration.mapper.enumerations.ENUMInternalUnitInstanceFactor
 
 public class MapperAssetSectionToPASS
 {
+	private Logger logger = Logger.getLogger(getClass());
+
 	private TypeBooleano tybT = new TypeBooleano();
 	private TypeBooleano tybF = new TypeBooleano();
 	private boolean isEnableTariffFormulaLogActive;
+	private IFigure figureOwner;
 	
 
 	/**
 	 * Return a list of asset section -> asset unit -> unit instance.
-	 * @param inb
+	 * @param inbJsonRequest
 	 * @return
 	 */
-	public void getAssetSections(InboundRequestHttpJSON inb, WsAssetInstance instance, String codeAssetUnit,
-										 boolean isEnableTariffFormulaLogActive) throws NullPointerException
+	public void getAssetSections(InboundRequestHttpJSON inbJsonRequest, WsAssetInstance assetInReqest, String codeAssetUnitReqest,
+										 boolean isEnableTariffFormulaLogActiveRequest, IFigure figureOwnerRequest) throws NullPointerException
 	{
-		EnumRiskType riskType = inb.getInboundQuoteDTO().getContext().getRiskType();
-		List<ICoverage> listCov = inb.getInboundQuoteDTO().getCoverages();
-		tybT.setBoolean(true);
-		tybF.setBoolean(false);
-		this.isEnableTariffFormulaLogActive = isEnableTariffFormulaLogActive;
+		logger.info("into getAssetSections with > inbJsonRequest: "+inbJsonRequest+
+				" assetInReqest:"+assetInReqest+" codeAssetUnitReqest:"+codeAssetUnitReqest+
+				" isEnableTariffFormulaLogActiveRequest:"+isEnableTariffFormulaLogActiveRequest+" figureOwnerRequest:"+figureOwnerRequest);
+
+		EnumRiskType riskType = inbJsonRequest.getInboundQuoteDTO().getContext().getRiskType();
+		logger.debug("init riskType :"+riskType);
+		List<ICoverage> listCov = inbJsonRequest.getInboundQuoteDTO().getCoverages();
+		logger.debug("init listCov with coverages :"+listCov);
 		
-		WsAssetSection assetSectionSx = getS1(listCov, riskType, inb.getInboundQuoteDTO().getNumberOfYoungDriver(), inb.getInboundQuoteDTO().getOtherVehicle() );
+		this.tybT.setBoolean(true);
+		this.tybF.setBoolean(false);
+		logger.debug("init isEnableTariffFormulaLogActive :"+isEnableTariffFormulaLogActive);
+		this.isEnableTariffFormulaLogActive = isEnableTariffFormulaLogActiveRequest;
+		logger.debug("init figureOwner :"+figureOwner);
+		this.figureOwner = figureOwnerRequest;
+		
+		WsAssetSection assetSectionSx = getS1( listCov, riskType, inbJsonRequest.getInboundQuoteDTO().getNumberOfYoungDriver(),
+												inbJsonRequest.getInboundQuoteDTO().getOtherVehicle() );
 		if(assetSectionSx != null)
-			instance.getSections().add(assetSectionSx);
+			assetInReqest.getSections().add(assetSectionSx);
 		
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS2(listCov, riskType);
 		if(assetSectionSx != null)
-			instance.getSections().add(assetSectionSx);
+			assetInReqest.getSections().add(assetSectionSx);
 		
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS3(listCov, riskType);
 		if(assetSectionSx != null)
-			instance.getSections().add(assetSectionSx);
+			assetInReqest.getSections().add(assetSectionSx);
 		
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS4(listCov, riskType);
 		if(assetSectionSx != null)
-			instance.getSections().add(assetSectionSx);
+			assetInReqest.getSections().add(assetSectionSx);
 		
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS5(listCov, riskType);
 		if(assetSectionSx != null)
-			instance.getSections().add(assetSectionSx);
+			assetInReqest.getSections().add(assetSectionSx);
 		
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS6(listCov, riskType);
 		if(assetSectionSx != null)
-			instance.getSections().add(assetSectionSx);
+			assetInReqest.getSections().add(assetSectionSx);
 		
 	}
 	
 	/**
 	 * Init new UnitInstace with  isEnableTariffFormulaLogActive for test mode
+	 * and exceptionCode from figure type Owner (province)
 	 * @param 
 	 * @return new WsUnitInstance
 	 */
 	private WsUnitInstance getUnitInstanceInit()
 	{
+		logger.info("into getUnitInstanceInit");
+		
 		WsUnitInstance unitInstance = new WsUnitInstance();
+		
+		logger.debug("New instance of UnitInstance with isEnableTariffFormulaLogActive : "+isEnableTariffFormulaLogActive);
 		if(isEnableTariffFormulaLogActive)
-			unitInstance.setEnableTariffFormulaLog(tybT);
+			unitInstance.setEnableTariffFormulaLog(this.tybT);
 		else
-			unitInstance.setEnableTariffFormulaLog(tybF);
+			unitInstance.setEnableTariffFormulaLog(this.tybF);
 		
-		// TODO Il proprietario si identifica tramite Oggetto Figure - Campo Role = OWNER
-//		unitInstance.setExceptionCode();
+		if(figureOwner != null && figureOwner.getResidenceAddress() != null)
+		{
+			logger.debug("set into unitInstance ExceptionCode : "+figureOwner.getResidenceAddress().getProvince());
+			unitInstance.setExceptionCode(figureOwner.getResidenceAddress().getProvince());
+		}
 		
+		logger.info("out getUnitInstanceInit with response : "+unitInstance);
 		return unitInstance;
 	}
+	
 	/**
 	 * Set the unitinstance factors for all the asset unit
-	 * Edit the initinstance 
+	 * Edit the initinstance
+	 *  
+	 * @param unitInstanceToEdit
+	 * @param coverage
 	 */
 	private void getFactorsForUnitInstanceGeneric(WsUnitInstance unitInstanceToEdit, ICoverage coverage)
 	{
