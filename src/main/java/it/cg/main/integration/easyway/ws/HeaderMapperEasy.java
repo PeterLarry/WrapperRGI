@@ -20,7 +20,7 @@ public class HeaderMapperEasy extends SoapHeadersHandler
 	@Override
 	public void fromHeadersToRequest(MessageHeaders headers, SoapMessage target)
 	{
-		target.setSoapAction(headerOutboundPass);
+//		target.setSoapAction(headerOutboundPass);
 	}
 
 	
