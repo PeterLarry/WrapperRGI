@@ -1,4 +1,4 @@
-package it.cg.main.conf.mapping.hardway;
+package it.cg.main.process.mapping.hardway;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

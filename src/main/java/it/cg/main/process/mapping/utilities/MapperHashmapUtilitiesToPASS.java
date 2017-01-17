@@ -1,4 +1,4 @@
-package it.cg.main.conf.mapping.easyway.utilities;
+package it.cg.main.process.mapping.utilities;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,11 +8,11 @@ import java.util.Map;
  * @author RiccardoEstia
  *
  */
-public class MapUty
+public class MapperHashmapUtilitiesToPASS
 {
 	
-	Map<String, String> mapLoyal = new HashMap<String, String>();
-	Map<String, String> mapLast3_6Years = new HashMap<String, String>();
+	private static final Map<String, String> mapLoyal = new HashMap<String, String>();
+	private static final Map<String, String> mapLast3_6Years = new HashMap<String, String>();
 	
 	public String get2Loyal(String companyChangeDetailsSelected)
 	{
@@ -38,14 +38,14 @@ public class MapUty
 		return result;
 	}
 	
-	public MapUty()
+	public MapperHashmapUtilitiesToPASS()
 	{
 		if(!mapLoyal.isEmpty())
 		{
 			return;
 		}
 //		last 3 and 6 years
-		this.mapLast3_6Years = getMapLastYears();
+		getMapLastYears();
 //		2 loyal
 		mapLoyal.put("3T00","1");
 		mapLoyal.put("4T00","2");
@@ -2851,9 +2851,8 @@ public class MapUty
 		mapLoyal.put("6T22","2802");
 	}
 	
-	public Map<String,String> getMapLastYears()
+	private static final Map<String,String> getMapLastYears()
 	{
-		Map<String, String> mapLast3_6Years = new HashMap<>();
 		mapLast3_6Years.put("0","1");
 		mapLast3_6Years.put("1","2");
 		mapLast3_6Years.put("2","3");

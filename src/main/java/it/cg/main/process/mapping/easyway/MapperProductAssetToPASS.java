@@ -1,4 +1,4 @@
-package it.cg.main.conf.mapping.easyway;
+package it.cg.main.process.mapping.easyway;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,13 +30,13 @@ import com.pass.global.WsFactor;
 import com.pass.global.WsProduct;
 import com.pass.global.WsVehicle;
 
-import it.cg.main.conf.mapping.easyway.utilities.MapUty;
 import it.cg.main.dto.InboundRequestHttpJSON;
 import it.cg.main.dto.main.Quote;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalAssetInstanceFactors;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeProduct;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalUnitInstanceFactors;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalWsProductFactors;
+import it.cg.main.process.mapping.utilities.MapperHashmapUtilitiesToPASS;
 
 @Service
 public class MapperProductAssetToPASS
@@ -87,21 +87,27 @@ public class MapperProductAssetToPASS
 				{
 					wsFactor = new WsFactor();
 					wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1PHAP.value());
-					if(figureTemp.getLicensed())
+					if(figureTemp.getYearsWithLicense() == 0)
 					{
-						wsFactor.setValue(figureTemp.getYearsWithLicense().toString());
+						if(figureTemp.getLicensed() != null && figureTemp.getLicensed())
+							wsFactor.setValue(figureTemp.getYearsWithLicense().toString());
+						else
+							wsFactor.setValue("-1");
 					}
 					else
 					{
-						wsFactor.setValue("-1");
+						wsFactor.setValue(figureTemp.getYearsWithLicense().toString());
 					}
 					listFactor.add(wsFactor);
 				}
 				
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1PHSC.value());
-				wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
-				listFactor.add(wsFactor);
+				if(figureTemp.getMaritalStatus() != null)
+				{
+					wsFactor = new WsFactor();
+					wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1PHSC.value());
+					wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
+					listFactor.add(wsFactor);
+				}
 				
 				break;
 			}
@@ -213,7 +219,6 @@ public class MapperProductAssetToPASS
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1CSC.value());
-			//wsFactor.setValue(figureTemp.getOccupation().getWrapperCode().toString());
 //			TODO da avere il ENUM da proxy
 			wsFactor.setValue(quote.getCampaign().toString());
 			factProp.add(wsFactor);
@@ -243,6 +248,23 @@ public class MapperProductAssetToPASS
 		
 		for (IFigure figureTemp : listFigure)
 		{
+//			years with licensed calculated
+			String valForYearsWithLicensedFactor = "";
+			if(figureTemp.getYearsWithLicense() != null && figureTemp.getYearsWithLicense() == 0)
+			{
+				if(figureTemp.getLicensed() != null && figureTemp.getLicensed())
+					valForYearsWithLicensedFactor = figureTemp.getYearsWithLicense().toString();
+				else
+					valForYearsWithLicensedFactor = "-1";
+			}
+			else
+			{
+				valForYearsWithLicensedFactor = figureTemp.getYearsWithLicense() == null ? 
+											"" : figureTemp.getYearsWithLicense().toString() ;
+			}
+			logger.debug("set yearsOfLicensce for all figure->factors : "+valForYearsWithLicensedFactor);
+			
+			
 //			USUAL_DRIVER 
 			if(figureTemp.getRole().equals(EnumRole.USUAL_DRIVER))
 			{
@@ -267,26 +289,25 @@ public class MapperProductAssetToPASS
 				{
 					wsFactor = new WsFactor();
 					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2MDAP.value());
-					if(figureTemp.getLicensed())
-					{
-						wsFactor.setValue(figureTemp.getYearsWithLicense().toString());
-					}
-					else
-					{
-						wsFactor.setValue("-1");
-					}
+					wsFactor.setValue(valForYearsWithLicensedFactor);
 					listFactor.add(wsFactor);
 				}
 				
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2MDPR.value());
-				wsFactor.setValue(figureTemp.getOccupation().getWrapperCode().toString());
-				listFactor.add(wsFactor);
+				if(figureTemp.getOccupation() != null)
+				{
+					wsFactor = new WsFactor();
+					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2MDPR.value());
+					wsFactor.setValue(figureTemp.getOccupation().getWrapperCode().toString());
+					listFactor.add(wsFactor);
+				}
 				
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2MDSC.value());
-				wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
-				listFactor.add(wsFactor);
+				if(figureTemp.getMaritalStatus() != null)
+				{
+					wsFactor = new WsFactor();
+					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2MDSC.value());
+					wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
+					listFactor.add(wsFactor);
+				}
 			}
 //			OWNER
 			if(figureTemp.getRole().equals(EnumRole.OWNER))
@@ -312,21 +333,17 @@ public class MapperProductAssetToPASS
 				{
 					wsFactor = new WsFactor();
 					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2OWAP.value());
-					if(figureTemp.getLicensed())
-					{
-						wsFactor.setValue(figureTemp.getYearsWithLicense().toString());
-					}
-					else
-					{
-						wsFactor.setValue("-1");
-					}
+					wsFactor.setValue(valForYearsWithLicensedFactor);
 					listFactor.add(wsFactor);
 				}
 				
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2OWSC.value());
-				wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
-				listFactor.add(wsFactor);
+				if(figureTemp.getMaritalStatus() != null)
+				{
+					wsFactor = new WsFactor();
+					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2OWSC.value());
+					wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
+					listFactor.add(wsFactor);
+				}
 			}
 //			FIRST YOUNG DRIVER
 			if(figureTemp.getRole().equals(EnumRole.FIRST_YOUNG_DRIVER))
@@ -335,14 +352,7 @@ public class MapperProductAssetToPASS
 				{
 					wsFactor = new WsFactor();
 					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2RD1AP.value());
-					if(figureTemp.getLicensed())
-					{
-						wsFactor.setValue(figureTemp.getYearsWithLicense().toString());
-					}
-					else
-					{
-						wsFactor.setValue("-1");
-					}
+					wsFactor.setValue(valForYearsWithLicensedFactor);
 					listFactor.add(wsFactor);
 				}
 				if(figureTemp.getResidenceAddress() != null)
@@ -363,10 +373,13 @@ public class MapperProductAssetToPASS
 					listFactor.add(wsFactor);
 				}
 				
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2RD1SC.value());
-				wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
-				listFactor.add(wsFactor);
+				if(figureTemp.getMaritalStatus() != null)
+				{
+					wsFactor = new WsFactor();
+					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2RD1SC.value());
+					wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
+					listFactor.add(wsFactor);
+				}
 			}
 //			FIRST_YOUNG_DRIVER
 			if(figureTemp.getRole().equals(EnumRole.FIRST_YOUNG_DRIVER))
@@ -375,14 +388,7 @@ public class MapperProductAssetToPASS
 				{
 					wsFactor = new WsFactor();
 					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2RD2AP.value());
-					if(figureTemp.getLicensed())
-					{
-						wsFactor.setValue(figureTemp.getYearsWithLicense().toString());
-					}
-					else
-					{
-						wsFactor.setValue("-1");
-					}
+					wsFactor.setValue(valForYearsWithLicensedFactor);
 					listFactor.add(wsFactor);
 				}
 				if(figureTemp.getResidenceAddress() != null)
@@ -403,10 +409,13 @@ public class MapperProductAssetToPASS
 					listFactor.add(wsFactor);
 				}
 				
-				wsFactor = new WsFactor();
-				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2RD2SC.value());
-				wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
-				listFactor.add(wsFactor);
+				if(figureTemp.getMaritalStatus() != null)
+				{
+					wsFactor = new WsFactor();
+					wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2RD2SC.value());
+					wsFactor.setValue(figureTemp.getMaritalStatus().getWrapperCode().toString());
+					listFactor.add(wsFactor);
+				}
 			}
 		}
 		
@@ -424,7 +433,7 @@ public class MapperProductAssetToPASS
 		WsAssetInstance assetInstanceresponse = new WsAssetInstance();
 		
 //		factor 2Loyal and lastYears 3 and 6
-		MapUty mapUty = new MapUty();
+		MapperHashmapUtilitiesToPASS mapUty = new MapperHashmapUtilitiesToPASS();
 
 		String loyalCode = mapUty.get2Loyal(quote.getRatingInfo().getCompanyChangesDetails());
 		WsFactor factorToAdd2Loyal = new WsFactor();
@@ -986,27 +995,27 @@ public class MapperProductAssetToPASS
 		logger.debug("getRiskTypeAsset with output : "+response+" and sectorCode : "+this.sectorCode);
 		return response;
 	}
-	
-	/**
-	 * Metodo custom di quoteDtoToUnitInst
-	 * @param inb
-	 * @return
-	 */
-	public List<WsClause> quoteToClause(InboundRequestHttpJSON inb)
-	{
-		ArrayList<WsClause> listClause = new ArrayList<WsClause>();
-		WsClause cla = new WsClause();
-		typeB =  new TypeBooleano();
-//		xx11 rimappa e togli da parsingout
-//		typeB.setBoolean(inb.isSelectedClause());
-		
-//		cla.setCode(inb.getCodeClause());
-		cla.setSelected(typeB);
-		
-		listClause.add(cla);
-		
-		return listClause;
-	}
+//	
+//	/**
+//	 * Metodo custom di quoteDtoToUnitInst
+//	 * @param inb
+//	 * @return
+//	 */
+//	public List<WsClause> quoteToClause(InboundRequestHttpJSON inb)
+//	{
+//		ArrayList<WsClause> listClause = new ArrayList<WsClause>();
+////		WsClause cla = new WsClause();
+////		typeB =  new TypeBooleano();
+////		xx11 rimappa e togli da parsingout
+////		typeB.setBoolean(inb.isSelectedClause());
+//		
+////		cla.setCode(inb.getCodeClause());
+////		cla.setSelected(typeB);
+//		
+////		listClause.add(cla);
+//		
+//		return listClause;
+//	}
 	
 	/**
 	 * Metodo custom di quoteDtoToUnitInst

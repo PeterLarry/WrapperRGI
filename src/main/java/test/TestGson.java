@@ -59,7 +59,7 @@ public class TestGson
 		testRating.setUwClass("1");
 		
 		IVehicle testVehicle = new Vehicle();
-		testVehicle.setKmPerYear(1);
+		testVehicle.setKmPerYear(1L);
 		testVehicle.setHabitualUse(null);
 		testVehicle.setPreviousVehicleAgeInMonth(5);
 		testVehicle.setVehicleAge(0);
@@ -72,7 +72,7 @@ public class TestGson
 		List<ICoverage> listCov = new ArrayList<ICoverage>();
 			ICoverage testCov = new Coverage();
 //			TODO ADDON
-			testCov.setCode(EnumCoverageCode.MOTOR_THEFT);
+			testCov.setCode(EnumCoverageCode.MOTOR_COLLISION);
 			testCov.setFiddleFactor(0.0);
 			testCov.setDiscount(null);
 			testCov.setPreviousNetAmount(5.6808);
