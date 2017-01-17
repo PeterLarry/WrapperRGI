@@ -1,4 +1,4 @@
-package it.cg.main.process.mapping.utilities;
+package it.cg.main.conf.mapping.easyway;
 
 import java.util.List;
 

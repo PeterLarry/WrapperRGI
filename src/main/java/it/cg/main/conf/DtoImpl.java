@@ -1,4 +1,4 @@
-package it.cg.main.process;
+package it.cg.main.conf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import org.springframework.integration.dispatcher.AggregateMessageDeliveryExcept
 
 import com.pass.global.MsgResponseHeader;
 
-import it.cg.main.process.error.ErrorIntegrationDTO;
+import it.cg.main.conf.error.ErrorIntegrationDTO;
 
 public abstract class DtoImpl implements Serializable
 {

@@ -13,10 +13,10 @@ import com.pass.global.CalculatePremium;
 import com.pass.global.MsgCalculatePremiumRequest;
 import com.pass.global.WsCalculatePremiumInput;
 
+import it.cg.main.conf.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.dto.RoutingDTO;
 import it.cg.main.integration.easyway.parsing.ParsingOut;
 import it.cg.main.integration.interfaces.ActivatorHandler;
-import it.cg.main.process.mapping.easyway.MapperRequestToPASS;
 
 @Component
 public class EasyActivatorChain extends ActivatorHandler
@@ -40,15 +40,13 @@ public class EasyActivatorChain extends ActivatorHandler
 	{
 		logger.info("Into gotoEasyCall call , input="+request);
 		
-		logger.error("TIMEtest - BEFORE parsing from DL to PASS");
 		ParsingOut pout = new ParsingOut(easyMapperMapstruct,isEnableTariffFormulaLogActive);
-//		parse object to PASS
+//		parse object
 		WsCalculatePremiumInput calcPremium = pout.getQuoteToPass(request);
-//		set request WS to PASS		
+//		set request WS		
 		CalculatePremium cp = new CalculatePremium();
 		cp.setArg0(new MsgCalculatePremiumRequest());
 		cp.getArg0().setInput(calcPremium);
-		logger.error("TIMEtest - AFTER parsing from DL to PASS");
 
 //		create message response
 		Message<CalculatePremium> messageResponse = createMessage(cp);

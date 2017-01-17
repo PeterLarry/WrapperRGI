@@ -1,4 +1,4 @@
-package it.cg.main.process.mapping.easyway;
+package it.cg.main.conf.mapping.easyway;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -34,7 +34,7 @@ public interface MapperRequestToPASS
 	void quoteDtoToAsset(InboundRequestHttpJSON inbound, @MappingTarget WsAsset asset);
 	
 	@Mappings({
-//		@Mapping(source="inbound", target = "clauses"),
+		@Mapping(source="inbound", target = "clauses"),
 		@Mapping(source="inboundQuoteDTO", target = "factors")
 	})
 	void quoteDtoToUnitInst(InboundRequestHttpJSON inbound, @MappingTarget WsUnitInstance uInst);

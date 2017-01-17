@@ -1,4 +1,4 @@
-package it.cg.main.process.error;
+package it.cg.main.conf.error;
 
 import org.apache.log4j.Logger;
 import org.springframework.integration.dispatcher.AggregateMessageDeliveryException;

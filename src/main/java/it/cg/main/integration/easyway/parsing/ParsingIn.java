@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ICoverage;
 import com.pass.global.CalculatePremiumResponse;
 
+import it.cg.main.conf.mapping.easyway.response.MapperResponsePremiumToDL;
 import it.cg.main.dto.InboundResponseHttpJSON;
-import it.cg.main.process.mapping.easyway.response.MapperResponsePremiumToDL;
 
 /**
  * Handling recived response from PASS to parse to DL

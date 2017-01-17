@@ -1,4 +1,4 @@
-package it.cg.main.process.error;
+package it.cg.main.conf.error;
 
 import java.io.Serializable;
 import java.util.List;

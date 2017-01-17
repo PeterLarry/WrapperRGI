@@ -1,4 +1,4 @@
-package it.cg.main.process;
+package it.cg.main.conf;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
