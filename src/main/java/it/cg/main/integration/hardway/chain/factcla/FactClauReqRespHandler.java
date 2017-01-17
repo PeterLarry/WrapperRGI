@@ -14,10 +14,10 @@ import com.pass.global.GetFactors;
 import com.pass.global.GetFactorsResponse;
 import com.pass.global.GetTechnicalDataResponse;
 
-import it.cg.main.conf.mapping.hardway.GetTechnicalDataMapstruct;
 import it.cg.main.init.StaticGeneralConfig;
 import it.cg.main.integration.hardway.mapping.MappingRequests;
 import it.cg.main.integration.interfaces.ActivatorHandler;
+import it.cg.main.process.mapping.hardway.GetTechnicalDataMapstruct;
 
 @Component
 public class FactClauReqRespHandler extends ActivatorHandler

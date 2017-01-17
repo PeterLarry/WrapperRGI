@@ -1,6 +1,6 @@
 package it.cg.main.dto;
 
-import it.cg.main.conf.DtoImpl;
+import it.cg.main.process.DtoImpl;
 
 public class RoutingDTO extends DtoImpl
 {
