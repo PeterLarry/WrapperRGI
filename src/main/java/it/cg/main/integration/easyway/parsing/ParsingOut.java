@@ -8,11 +8,11 @@ import com.pass.global.TypeBooleano;
 import com.pass.global.WsAsset;
 import com.pass.global.WsCalculatePremiumInput;
 
-import it.cg.main.conf.mapping.easyway.MapperAssetSectionToPASS;
-import it.cg.main.conf.mapping.easyway.MapperUtilityToPASS;
-import it.cg.main.conf.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.dto.RoutingDTO;
 import it.cg.main.dto.main.Quote;
+import it.cg.main.process.mapping.easyway.MapperAssetSectionToPASS;
+import it.cg.main.process.mapping.easyway.MapperRequestToPASS;
+import it.cg.main.process.mapping.utilities.MapperUtilityToPASS;
 
 public class ParsingOut
 {
@@ -89,15 +89,6 @@ public class ParsingOut
 			ex.printStackTrace();
 		}
 		
-
-//		TODO da rimappare su custom xx11
-//		uInst.getClauses().get(0).setCode("RCA001");
-//		uInst.getClauses().get(0).setSelected(tybF);
-//		
-//		responseCalculatePremium.getProduct().getAssets().add(asset);
-//		responseCalculatePremium.getProduct().getAssets().get(0).getInstances().add(asset.getInstances().get(0));
-//		responseCalculatePremium.getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0).getUnits().get(0).getInstances().add(uInst);
-//		
 		logger.info("PASS object parsed : " + responseCalculatePremium);
 		return responseCalculatePremium;
 	}
