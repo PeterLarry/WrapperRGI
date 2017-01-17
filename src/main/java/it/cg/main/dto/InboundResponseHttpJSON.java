@@ -1,7 +1,7 @@
 package it.cg.main.dto;
 
-import it.cg.main.conf.DtoImpl;
 import it.cg.main.dto.main.Quote;
+import it.cg.main.process.DtoImpl;
 
 /**
  * DTO response to Direct Line

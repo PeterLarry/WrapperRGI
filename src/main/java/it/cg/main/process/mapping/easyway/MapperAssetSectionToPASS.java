@@ -1,4 +1,4 @@
-package it.cg.main.conf.mapping.easyway;
+package it.cg.main.process.mapping.easyway;
 
 import java.util.List;
 
@@ -30,8 +30,8 @@ public class MapperAssetSectionToPASS
 	private TypeBooleano tybF = new TypeBooleano();
 	private boolean isEnableTariffFormulaLogActive;
 	private IFigure figureOwner;
+	private Integer numberOfYoungDriver;
 	
-
 	/**
 	 * Return a list of asset section -> asset unit -> unit instance.
 	 * @param inbJsonRequest
@@ -55,9 +55,9 @@ public class MapperAssetSectionToPASS
 		this.isEnableTariffFormulaLogActive = isEnableTariffFormulaLogActiveRequest;
 		logger.debug("init figureOwner :"+figureOwner);
 		this.figureOwner = figureOwnerRequest;
+		this.numberOfYoungDriver = inbJsonRequest.getInboundQuoteDTO().getNumberOfYoungDriver();
 		
-		WsAssetSection assetSectionSx = getS1( listCov, riskType, inbJsonRequest.getInboundQuoteDTO().getNumberOfYoungDriver(),
-												inbJsonRequest.getInboundQuoteDTO().getOtherVehicle() );
+		WsAssetSection assetSectionSx = getS1( listCov, riskType, inbJsonRequest.getInboundQuoteDTO().getOtherVehicle() );
 		if(assetSectionSx != null)
 			assetInReqest.getSections().add(assetSectionSx);
 		
@@ -91,26 +91,37 @@ public class MapperAssetSectionToPASS
 	/**
 	 * Init new UnitInstace with  isEnableTariffFormulaLogActive for test mode
 	 * and exceptionCode from figure type Owner (province)
+	 * Add Clauses for unitinstance
 	 * @param 
 	 * @return new WsUnitInstance
 	 */
 	private WsUnitInstance getUnitInstanceInit()
 	{
-		logger.info("into getUnitInstanceInit");
+		logger.info("into getUnitInstanceInit, init unitinstace");
 		
 		WsUnitInstance unitInstance = new WsUnitInstance();
-		
+//		EnableTariffFormulalog
 		logger.debug("New instance of UnitInstance with isEnableTariffFormulaLogActive : "+isEnableTariffFormulaLogActive);
 		if(isEnableTariffFormulaLogActive)
 			unitInstance.setEnableTariffFormulaLog(this.tybT);
 		else
 			unitInstance.setEnableTariffFormulaLog(this.tybF);
-		
+//		ExceptionCode
 		if(figureOwner != null && figureOwner.getResidenceAddress() != null)
 		{
 			logger.debug("set into unitInstance ExceptionCode : "+figureOwner.getResidenceAddress().getProvince());
 			unitInstance.setExceptionCode(figureOwner.getResidenceAddress().getProvince());
 		}
+		
+//		Clauses
+		WsClause clauseUnitInstance = new WsClause();
+		clauseUnitInstance.setCode("RCA001");
+		if(this.numberOfYoungDriver != null && this.numberOfYoungDriver > 0)
+			clauseUnitInstance.setSelected(tybT);
+		else
+			clauseUnitInstance.setSelected(tybF);
+		logger.debug("Add clauses "+clauseUnitInstance+" into unitinstance"+unitInstance);
+		unitInstance.getClauses().add(clauseUnitInstance);
 		
 		logger.info("out getUnitInstanceInit with response : "+unitInstance);
 		return unitInstance;
@@ -328,8 +339,9 @@ public class MapperAssetSectionToPASS
 				assetUnitTemp.setSelection(tybT);
 
 				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_AV1.value(), riskType);
-				
+//				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS6.getUnits().add(assetUnitTemp);
 			}
 			else if(covTemp.getCode().equals(EnumCoverageCode.MOTOR_COLLISION))
@@ -339,8 +351,9 @@ public class MapperAssetSectionToPASS
 				assetUnitTemp.setSelection(tybT);
 
 				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_COLL1.value(), riskType);
-				
+//				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS6.getUnits().add(assetUnitTemp);
 			}
 			else if(covTemp.getCode().equals(EnumCoverageCode.MOTOR_CRYSTALS))
@@ -350,8 +363,9 @@ public class MapperAssetSectionToPASS
 				assetUnitTemp.setSelection(tybT);
 
 				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_CRI1.value(), riskType);
-				
+//				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS6.getUnits().add(assetUnitTemp);
 			}
 			else if(covTemp.getCode().equals(EnumCoverageCode.MOTOR_NATURAL_EVENTS))
@@ -361,8 +375,9 @@ public class MapperAssetSectionToPASS
 				assetUnitTemp.setSelection(tybT);
 
 				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_EN1.value(), riskType);
-				
+//				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS6.getUnits().add(assetUnitTemp);
 			}
 			else if(covTemp.getCode().equals(EnumCoverageCode.MOTOR_KASKO))
@@ -398,13 +413,13 @@ public class MapperAssetSectionToPASS
 									break;
 							}
 							unitInstanceFactorToAdd.setValue(valueCoinsCode);
-							
 							unitInstanceToAdd.getFactors().add(unitInstanceFactorToAdd);
+//							add Unitinstance tu AssetUnit
 							assetUnitTemp.getInstances().add(unitInstanceToAdd);
 						}
 					}
 				}
-				
+//				add AssetUnit to AssetSection
 				assetSectionResultS6.getUnits().add(assetUnitTemp);
 			}
 		}
@@ -440,8 +455,9 @@ public class MapperAssetSectionToPASS
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_TG1.value());
 				assetUnitTemp.setSelection(tybT);
-				
+//				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS5.getUnits().add(assetUnitTemp);
 			}
 			else if( (covTemp.getCode().equals(EnumCoverageCode.MOTOR_LEGAL_PROTECTION_BASE) ||
@@ -450,8 +466,9 @@ public class MapperAssetSectionToPASS
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_TG2.value());
 				assetUnitTemp.setSelection(tybT);
-				
+//				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS5.getUnits().add(assetUnitTemp);
 			}
 		}
@@ -486,8 +503,9 @@ public class MapperAssetSectionToPASS
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_AS1.value());
 				assetUnitTemp.setSelection(tybT);
-				
+//				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS4.getUnits().add(assetUnitTemp);
 			}
 		}
@@ -551,8 +569,9 @@ public class MapperAssetSectionToPASS
 						unitInstanceToAdd.getFactors().add(unitInstanceFactorToAdd);
 					}
 				}
-						
+//				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS3.getUnits().add(assetUnitTemp);
 			}
 			else if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_DEATH_DRIVER) )
@@ -585,7 +604,9 @@ public class MapperAssetSectionToPASS
 						unitInstanceToAdd.getFactors().add(unitInstanceFactorToAdd);
 					}
 				}
-				
+//				add Unitinstance tu AssetUnit
+				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS3.getUnits().add(assetUnitTemp);
 			}
 			
@@ -642,17 +663,18 @@ public class MapperAssetSectionToPASS
 							factorsUnitInstanceToAdd.setValue(valueCoinsCode);
 							
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd);
-							assetUnitTemp.getInstances().add(unitInstanceToAdd);
 						}
 						else if(riskType.equals(EnumRiskType.CAR))
 						{
 							factorsUnitInstanceToAdd.setValue(covTemp.getCoinsurance().getCode());
 							
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd);
-							assetUnitTemp.getInstances().add(unitInstanceToAdd);
 						}
 				}
 				
+//				add Unitinstance tu AssetUnit
+				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS2.getUnits().add(assetUnitTemp);
 			}
 			else if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_FIRE) )
@@ -680,17 +702,17 @@ public class MapperAssetSectionToPASS
 						factorsUnitInstanceToAdd.setValue(valueCoinsCode);
 						
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd);
-						assetUnitTemp.getInstances().add(unitInstanceToAdd);
 					}
 					else if(riskType.equals(EnumRiskType.CAR))
 					{
 						factorsUnitInstanceToAdd.setValue(covTemp.getCoinsurance().getCode());
 						
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd);
-						assetUnitTemp.getInstances().add(unitInstanceToAdd);
 					}
 				}
-				
+//				add Unitinstance tu AssetUnit
+				assetUnitTemp.getInstances().add(unitInstanceToAdd);
+//				add AssetUnit to AssetSection
 				assetSectionResultS2.getUnits().add(assetUnitTemp);
 			}
 		}
@@ -709,7 +731,7 @@ public class MapperAssetSectionToPASS
 	 * @param RiskType
 	 * @return AssetSection S1 , if no S1 present return null
 	 */
-	private WsAssetSection getS1(List<ICoverage> listCov, EnumRiskType riskType, Integer numberOfYoungDriver, IOtherVehicle otherVehicle)
+	private WsAssetSection getS1(List<ICoverage> listCov, EnumRiskType riskType, IOtherVehicle otherVehicle)
 	{
 		WsAssetSection assetSectionResultS1 = new WsAssetSection();
 		assetSectionResultS1.setCode(ENUMInternalCodeSection.CODE_S1.value());
@@ -985,15 +1007,6 @@ public class MapperAssetSectionToPASS
 					
 				}
 				assetUnitTemp.setSelection(tybT);
-				
-//				set clauses into UnitInstance 
-				WsClause clauseUnitInstance = new WsClause();
-				clauseUnitInstance.setCode(numberOfYoungDriver.toString());
-				if(numberOfYoungDriver > 0)
-					clauseUnitInstance.setSelected(tybT);
-				else
-					clauseUnitInstance.setSelected(tybF);
-				unitInstanceToAdd.getClauses().add(clauseUnitInstance);
 				
 //				add Unitinstance to AssetUnit for MOTOR_RCA
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);

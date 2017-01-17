@@ -1,4 +1,4 @@
-package it.cg.main.conf.mapping.easyway.response;
+package it.cg.main.process.mapping.easyway.response;
 
 import java.util.ArrayList;
 import java.util.List;

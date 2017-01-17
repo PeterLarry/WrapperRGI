@@ -27,7 +27,7 @@
 					 input-channel="transformerHandlingErrorChannel"
 					 ref="exceptionTransformer"
 					 method="createErrorResponse" />
-	<bean id="exceptionTransformer" class="it.cg.main.conf.error.ErrorMessageHandler" />
+	<bean id="exceptionTransformer" class="it.cg.main.process.error.ErrorMessageHandler" />
 	
 
 	
@@ -47,7 +47,7 @@
 	    <bean class="org.springframework.http.converter.StringHttpMessageConverter" />
 	    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 	</util:list>
-	<bean id="customJack" class="it.cg.main.conf.CustomMapperJackson" factory-method="getMapper" >
+	<bean id="customJack" class="it.cg.main.process.CustomMapperJackson" factory-method="getMapper" >
 	</bean>
 	<!-- _______________ -->
     <!-- TRANSFORMER json TO object -->
