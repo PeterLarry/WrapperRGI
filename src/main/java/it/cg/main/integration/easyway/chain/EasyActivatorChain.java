@@ -4,7 +4,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
@@ -22,8 +21,6 @@ import it.cg.main.process.mapping.easyway.MapperRequestToPASS;
 public class EasyActivatorChain extends ActivatorHandler
 {
 	private Logger logger = Logger.getLogger(getClass());
-	@Value("${isEnableTariffFormulaLogActive}")
-	private boolean isEnableTariffFormulaLogActive;
 	
 	@Autowired
 	private MapperRequestToPASS easyMapperMapstruct;
@@ -40,15 +37,15 @@ public class EasyActivatorChain extends ActivatorHandler
 	{
 		logger.info("Into gotoEasyCall call , input="+request);
 		
-		logger.error("TIMEtest - BEFORE parsing from DL to PASS");
-		ParsingOut pout = new ParsingOut(easyMapperMapstruct,isEnableTariffFormulaLogActive);
+		logger.debug("TIMEtest - BEFORE parsing from DL to PASS");
+		ParsingOut pout = new ParsingOut(easyMapperMapstruct);
 //		parse object to PASS
 		WsCalculatePremiumInput calcPremium = pout.getQuoteToPass(request);
 //		set request WS to PASS		
 		CalculatePremium cp = new CalculatePremium();
 		cp.setArg0(new MsgCalculatePremiumRequest());
 		cp.getArg0().setInput(calcPremium);
-		logger.error("TIMEtest - AFTER parsing from DL to PASS");
+		logger.debug("TIMEtest - AFTER parsing from DL to PASS");
 
 //		create message response
 		Message<CalculatePremium> messageResponse = createMessage(cp);

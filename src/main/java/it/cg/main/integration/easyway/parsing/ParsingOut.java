@@ -20,17 +20,15 @@ public class ParsingOut
 
 	private MapperRequestToPASS easyMapperMapstruct;
 	private MapperAssetSectionToPASS mapperAssetSection;
-	private boolean isEnableTariffFormulaLogActive;
 	
 	/**
 	 * Costruttore che necessita del mapper factory :<br>
 	 * <i>@Autowired <br> org.mapstruct.@Mapper </i>
 	 * @param mapper
 	 */
-	public ParsingOut(MapperRequestToPASS easyMapperMapstruct, boolean isEnableTariffFormulaLogActive)
+	public ParsingOut(MapperRequestToPASS easyMapperMapstruct)
 	{
 		this.easyMapperMapstruct = easyMapperMapstruct;
-		this.isEnableTariffFormulaLogActive = isEnableTariffFormulaLogActive;
 	}
 	
 	/**
@@ -74,7 +72,7 @@ public class ParsingOut
 			getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON(), asset);
 //			populate assetUnit and UnitInstance
 			mapperAssetSection.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0),
-													responseCalculatePremium.getProduct().getCode(), isEnableTariffFormulaLogActive, figureOwner);
+													responseCalculatePremium.getProduct().getCode(), figureOwner);
 			
 			responseCalculatePremium.getProduct().getAssets().add(asset);
 		}

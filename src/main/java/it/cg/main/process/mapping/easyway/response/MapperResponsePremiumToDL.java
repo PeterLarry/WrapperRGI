@@ -9,9 +9,13 @@ import com.mapfre.engines.rating.business.objects.wrapper.Coverage;
 import com.mapfre.engines.rating.business.objects.wrapper.Premium;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ICoverage;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IPremium;
+import com.mapfre.engines.rating.common.enums.EnumCoverageCode;
 import com.pass.global.CalculatePremiumResponse;
+import com.pass.global.WsAsset;
+import com.pass.global.WsAssetInstance;
 import com.pass.global.WsAssetSection;
 import com.pass.global.WsAssetUnit;
+import com.pass.global.WsUnitInstance;
 
 import it.cg.main.dto.main.Quote;
 
@@ -35,7 +39,11 @@ private Logger logger = Logger.getLogger(getClass());
 		premiumObjResponse.setTax(responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
 		premiumObjResponse.setSsn(responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
 		
-		responseQuote.setPremium(premiumObjResponse );
+		responseQuote.setPremium(premiumObjResponse);
+		
+//		log messages response
+		String logTariffFormulaLogFormatted = getLogTariffFormulaLog(responsePremium);
+		responseQuote.setDebuggingLog(logTariffFormulaLogFormatted);
 		
 		logger.info("into getInitQuoteResponse with output : "+responseQuote);
 		return responseQuote;
@@ -50,20 +58,29 @@ private Logger logger = Logger.getLogger(getClass());
 	{
 		logger.info("into getCoveragesFromPass with input : "+responsePremium);
 		List<ICoverage> responseListCoverages = new ArrayList<>(0);
-		WsAssetSection assetSection = getAssetUnitsValorized(responsePremium);
-		if(assetSection == null)
+		List<WsAssetSection> assetSectionList = getAssetUnitsValorized(responsePremium);
+		if(assetSectionList == null)
 		{
 			responseListCoverages = null ;
 		}
 		else
 		{
-			for (WsAssetUnit assetUnitTemp : assetSection.getUnits())
+			for (WsAssetSection wsAssetSectionTemp : assetSectionList)
 			{
-				ICoverage coverageToAdd = new Coverage();
-				coverageToAdd.getAmount().setNet(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getNet());
-				coverageToAdd.getAmount().setGross(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getGross());
-				coverageToAdd.getAmount().setSsn(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getSSN());
-				coverageToAdd.getAmount().setTax(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getTaxes());
+				for (WsAssetUnit assetUnitTemp : wsAssetSectionTemp.getUnits())
+				{
+					ICoverage coverageToAdd = new Coverage();
+					
+					EnumCoverageCode coverageCode = getCoverageCode(assetUnitTemp);
+					coverageToAdd.setCode(coverageCode);
+					
+					coverageToAdd.getAmount().setNet(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getNet());
+					coverageToAdd.getAmount().setGross(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getGross());
+					coverageToAdd.getAmount().setSsn(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getSSN());
+					coverageToAdd.getAmount().setTax(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getTaxes());
+					
+					responseListCoverages.add(coverageToAdd);
+				}
 			}
 		}
 		
@@ -71,30 +88,91 @@ private Logger logger = Logger.getLogger(getClass());
 		return responseListCoverages;
 	}
 	
-	
+	/**
+	 * Return coverageCode
+	 * @param assetUnitTemp
+	 * @return EnumCoverageCode
+	 */
+	private EnumCoverageCode getCoverageCode(WsAssetUnit assetUnitTemp)
+	{
+		EnumCoverageCode covCodeResponse = null ;
+		for (WsUnitInstance unitInstanceTemp : assetUnitTemp.getInstances())
+		{
+			String nameUnitInstance = unitInstanceTemp.getName();
+			if(nameUnitInstance != null)
+			{
+				covCodeResponse = EnumCoverageCode.getEnumFromCode(unitInstanceTemp.getName());
+				logger.debug("Coverage code output found : "+covCodeResponse);
+			}
+		}
+		
+		return covCodeResponse;
+	}
+
 	/**
 	 * If The assetsection or the unitinstaces or the assetunit are empty, the return is null
 	 * @param cpResponse
 	 * @return AssetSection with unitinstances
 	 */
-	private WsAssetSection getAssetUnitsValorized(CalculatePremiumResponse cpResponse)
+	private List<WsAssetSection> getAssetUnitsValorized(CalculatePremiumResponse cpResponse)
 	{
-		WsAssetSection responseAssetSection = null; 
+		List<WsAssetSection> responseListAssetSection = null; 
 		try
 		{
-			responseAssetSection = cpResponse.getReturn().getOutput().getProduct().getAssets().get(0).getInstances().get(0).getSections().get(0);
-			if(responseAssetSection.getUnits().isEmpty() || responseAssetSection.getUnits().get(0).getInstances().isEmpty())
-			{
-				logger.debug("no UnitInstance or AssetUnit found on response CalculatePremium");
-				responseAssetSection = null;
-			}
+			responseListAssetSection = cpResponse.getReturn().getOutput().getProduct().getAssets().get(0).getInstances().get(0).getSections();
+			logger.debug("Found "+responseListAssetSection.size()+" AssetSections");
 		}
 		catch(NullPointerException ex)
 		{
-			logger.debug("no AssetSections found on response CalculatePremium");
+			logger.debug("no AssetSections found in response CalculatePremium : "+cpResponse);
 		}
 		
-		return responseAssetSection;
+		responseListAssetSection = new ArrayList<WsAssetSection>();
+		for (WsAssetSection assetSectionTemp : responseListAssetSection)
+		{
+			if(assetSectionTemp.getUnits().isEmpty() || assetSectionTemp.getUnits().get(0).getInstances().isEmpty())
+			{
+				responseListAssetSection = null;
+				logger.debug("no UnitInstance or AssetUnit found on response CalculatePremium");
+			}
+			else
+			{
+				responseListAssetSection.add(assetSectionTemp);
+				logger.debug("add assetSectionTemp to response : "+assetSectionTemp);
+			}
+			
+		}
+		
+		return responseListAssetSection;
+	}
+	
+	/**
+	 * Log all the tariffFormulaLog, 
+	 * @param responsePremium
+	 * @return logTariffFormattedResponse formatted
+	 */
+	private String getLogTariffFormulaLog(CalculatePremiumResponse responsePremium)
+	{
+		String logTariffFormattedResponse = "";
+		
+		for (WsAsset wsAssetTemp : responsePremium.getReturn().getOutput().getProduct().getAssets())
+		{
+			for (WsAssetInstance wsAssetInstanceTemp : wsAssetTemp.getInstances())
+			{
+				for (WsAssetSection wsAssetSectionTemp : wsAssetInstanceTemp.getSections())
+				{
+					for (WsAssetUnit wsAssetUnitTemp : wsAssetSectionTemp.getUnits())
+					{
+						for (WsUnitInstance wsUnitInstanceTemp : wsAssetUnitTemp.getInstances())
+						{
+							logTariffFormattedResponse += wsUnitInstanceTemp.getTariffFormulaLog();
+							logger.debug("Log for tariffFormulaLog output => "+wsUnitInstanceTemp.getTariffFormulaLog());
+						}
+					}
+				}
+			}
+		}
+		return logTariffFormattedResponse;
 	}
 	
 

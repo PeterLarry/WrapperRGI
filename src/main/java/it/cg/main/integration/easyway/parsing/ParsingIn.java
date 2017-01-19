@@ -23,7 +23,7 @@ public class ParsingIn
 	private Logger logger = Logger.getLogger(getClass());
 	
 	/**
-	 * The param is parsed using mapstruct custom classes, check the errors from pass
+	 * The param is parsed using custom classes, check the errors from pass
 	 * Set the "success" field if no errors into the param, else bind the errors to the errorsdto included
 	 * @param CalculatePremiumResponse
 	 * @return InboundResponseHttpJSON parsed
@@ -49,6 +49,7 @@ public class ParsingIn
 			throw new ArrayIndexOutOfBoundsException("Get Output from PASS error, no unitinstance populated "+ex.getMessage());
 		}
 		
+		logger.debug("Some PASS error occurs ? "+isErrorFromPass);
 		responseCalculatePremium.setSuccess(!isErrorFromPass);
 		
 		if(responseCalculatePremium.getSuccess())
