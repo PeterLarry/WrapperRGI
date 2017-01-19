@@ -52,7 +52,8 @@ public class MapperAssetSectionToPASS
 		
 		this.tybT.setBoolean(true);
 		this.tybF.setBoolean(false);
-		isEnableTariffFormulaLogActive = inbJsonRequest.getInboundQuoteDTO().getEnableDebugging();
+		this.isEnableTariffFormulaLogActive = inbJsonRequest.getInboundQuoteDTO().getEnableDebugging() == null ? 
+														false : inbJsonRequest.getInboundQuoteDTO().getEnableDebugging();
 		logger.debug("init isEnableTariffFormulaLogActive :"+isEnableTariffFormulaLogActive);
 		this.figureOwner = figureOwnerRequest;
 		logger.debug("init figureOwner :"+figureOwner);
