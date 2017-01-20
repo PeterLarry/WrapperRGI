@@ -101,5 +101,14 @@ public enum ENUMInternalAssetInstanceFactors
     public String value() {
         return value;
     }
+    
+    public static ENUMInternalAssetInstanceFactors getEnumFromCode(String enumCode) {
+        for (ENUMInternalAssetInstanceFactors element : ENUMInternalAssetInstanceFactors.values()) {
+            if (element.value.equals(enumCode)) {
+                return element;
+            }
+        }
+        throw new IllegalArgumentException("Unknow Code: '" + enumCode + "'");
+    }
 
 }

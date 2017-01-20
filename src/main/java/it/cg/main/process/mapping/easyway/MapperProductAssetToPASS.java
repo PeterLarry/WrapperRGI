@@ -219,8 +219,7 @@ public class MapperProductAssetToPASS
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1CSC.value());
-//			TODO da avere il ENUM da proxy
-			wsFactor.setValue(quote.getCampaign().toString());
+			wsFactor.setValue(quote.getCampaign().getWrapperCode().toString());
 			factProp.add(wsFactor);
 		}
 		
@@ -260,7 +259,7 @@ public class MapperProductAssetToPASS
 			else
 			{
 				valForYearsWithLicensedFactor = figureTemp.getYearsWithLicense() == null ? 
-											"" : figureTemp.getYearsWithLicense().toString() ;
+													"" : figureTemp.getYearsWithLicense().toString() ;
 			}
 			logger.debug("set yearsOfLicensce for all figure->factors : "+valForYearsWithLicensedFactor);
 			
@@ -575,7 +574,7 @@ public class MapperProductAssetToPASS
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2BM.value());
-			wsFactor.setValue(quote.getGoodDriverClass());// TODO diventa un enum 
+			wsFactor.setValue(quote.getGoodDriverClass().getWrapperCode().toString()); 
 			factAsset.add(wsFactor);
 		}
 				
@@ -727,7 +726,6 @@ public class MapperProductAssetToPASS
 
 		if(quote.getRatingInfo() != null)
 		{
-//			TODO prevdere un enum, aspettare risp
 			if(quote.getRatingInfo().getPromocode() != null)
 			{
 				wsFactor = new WsFactor();
@@ -739,7 +737,7 @@ public class MapperProductAssetToPASS
 			{
 				wsFactor = new WsFactor();
 				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2REGRE.value());
-				wsFactor.setValue(quote.getRatingInfo().getRegressionClass());
+				wsFactor.setValue(quote.getRatingInfo().getRegressionClass().getWrapperCode().toString());
 				factAsset.add(wsFactor);
 			}
 		}

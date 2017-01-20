@@ -46,5 +46,14 @@ public enum ENUMInternalWsProductFactors
     public String value() {
         return value;
     }
+    
+    public static ENUMInternalWsProductFactors getEnumFromCode(String enumCode) {
+        for (ENUMInternalWsProductFactors element : ENUMInternalWsProductFactors.values()) {
+            if (element.value.equals(enumCode)) {
+                return element;
+            }
+        }
+        throw new IllegalArgumentException("Unknow Code: '" + enumCode + "'");
+    }
 
 }
