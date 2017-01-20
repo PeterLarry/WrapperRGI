@@ -12,6 +12,7 @@ import com.pass.global.CalculatePremium;
 import com.pass.global.MsgCalculatePremiumRequest;
 import com.pass.global.WsCalculatePremiumInput;
 
+import it.cg.main.dto.QuoteInternalComponent;
 import it.cg.main.dto.RoutingDTO;
 import it.cg.main.integration.easyway.parsing.ParsingOut;
 import it.cg.main.integration.interfaces.ActivatorHandler;
@@ -24,6 +25,9 @@ public class EasyActivatorChain extends ActivatorHandler
 	
 	@Autowired
 	private MapperRequestToPASS easyMapperMapstruct;
+	
+	@Autowired
+	private QuoteInternalComponent quoteInternal;
 	
 	/**
 	 * Parsing Input PASS
@@ -45,12 +49,13 @@ public class EasyActivatorChain extends ActivatorHandler
 		CalculatePremium cp = new CalculatePremium();
 		cp.setArg0(new MsgCalculatePremiumRequest());
 		cp.getArg0().setInput(calcPremium);
+		this.quoteInternal.setQuoteInternal(request.getInboundRequestHttpJSON().getInboundQuoteDTO());
 		logger.debug("TIMEtest - AFTER parsing from DL to PASS");
 
 //		create message response
 		Message<CalculatePremium> messageResponse = createMessage(cp);
 		
- 		logger.info("Outof method gotoEasyCall , output="+cp);
+ 		logger.info("Outof method gotoEasyCall than call WS to PASS , output="+cp);
 		return messageResponse;
 	}
 

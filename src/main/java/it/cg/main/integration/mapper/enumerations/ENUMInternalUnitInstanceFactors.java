@@ -23,6 +23,7 @@ public enum ENUMInternalUnitInstanceFactors {
 	FACTOR_3TIPTL("3TIPTL"),
 	FACTOR_FRRCA("FRRCA"),
 	FACTOR_QDRCA("QDRCA"),
+	FACTOR_3YD("3YD"),
 	;
 
 	
@@ -35,6 +36,15 @@ public enum ENUMInternalUnitInstanceFactors {
 
     public String value() {
         return value;
+    }
+    
+    public static ENUMInternalUnitInstanceFactors getEnumFromCode(String enumCode) {
+        for (ENUMInternalUnitInstanceFactors element : ENUMInternalUnitInstanceFactors.values()) {
+            if (element.value.equals(enumCode)) {
+                return element;
+            }
+        }
+        throw new IllegalArgumentException("Unknow Code: '" + enumCode + "'");
     }
 
 }

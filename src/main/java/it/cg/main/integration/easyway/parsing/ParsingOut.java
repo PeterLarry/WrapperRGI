@@ -14,6 +14,11 @@ import it.cg.main.process.mapping.easyway.MapperAssetSectionToPASS;
 import it.cg.main.process.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.process.mapping.utilities.MapperUtilityToPASS;
 
+/**
+ * Handling request From DL , parsing to PASS
+ * @author RiccardoEstia
+ *
+ */
 public class ParsingOut
 {
 	private Logger logger = Logger.getLogger(getClass());

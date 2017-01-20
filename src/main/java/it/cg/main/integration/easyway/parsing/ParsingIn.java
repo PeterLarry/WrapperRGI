@@ -7,13 +7,15 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ICoverage;
+import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
 import com.pass.global.CalculatePremiumResponse;
 
 import it.cg.main.dto.InboundResponseHttpJSON;
+import it.cg.main.dto.main.Quote;
 import it.cg.main.process.mapping.easyway.response.MapperResponsePremiumToDL;
 
 /**
- * Handling recived response from PASS to parse to DL
+ * Handling response recived from PASS to parse to DL
  * @author RiccardoEstia
  *
  */
@@ -28,15 +30,15 @@ public class ParsingIn
 	 * @param CalculatePremiumResponse
 	 * @return InboundResponseHttpJSON parsed
 	 */
-	public InboundResponseHttpJSON parseCalculatePremiumResponse(CalculatePremiumResponse responseCalculate)
+	public InboundResponseHttpJSON parseCalculatePremiumResponse(CalculatePremiumResponse responseCalculateFromPASS, Quote quoteInternal)
 	{
-		logger.info("parseCalculatePremiumResponse enter with parameters :"+responseCalculate);
-		InboundResponseHttpJSON responseCalculatePremium = new InboundResponseHttpJSON();
+		logger.info("parseCalculatePremiumResponse enter with parameters :"+responseCalculateFromPASS);
+		InboundResponseHttpJSON responseCalculateToDL = new InboundResponseHttpJSON();
 		boolean isErrorFromPass = false;
 //		check for errors
 		try
 		{
-			isErrorFromPass = responseCalculatePremium.bindPassError(responseCalculate.getReturn().getServiceInfo());
+			isErrorFromPass = responseCalculateToDL.bindPassError(responseCalculateFromPASS.getReturn().getServiceInfo());
 		}
 		catch(NullPointerException ex)
 		{
@@ -50,20 +52,29 @@ public class ParsingIn
 		}
 		
 		logger.debug("Some PASS error occurs ? "+isErrorFromPass);
-		responseCalculatePremium.setSuccess(!isErrorFromPass);
+		responseCalculateToDL.setSuccess(!isErrorFromPass);
 		
-		if(responseCalculatePremium.getSuccess())
+		if(responseCalculateToDL.getSuccess())
 		{
-			MapperResponsePremiumToDL mappingResponse = new MapperResponsePremiumToDL();
+//			init mapper
+			MapperResponsePremiumToDL mappingResponse = new MapperResponsePremiumToDL(responseCalculateFromPASS);
 //			create and set generic quote premium
-			responseCalculatePremium.setQuote(mappingResponse.getInitQuoteResponse(responseCalculate));
+			responseCalculateToDL.setQuote(mappingResponse.getInitQuoteResponse());
 //			create and set coverages premium
-			List<ICoverage> coveragesMapped = mappingResponse.getCoveragesFromPass(responseCalculate);
-			responseCalculatePremium.getQuote().setCoverages(coveragesMapped);
+			List<ICoverage> coveragesMapped = mappingResponse.getCoveragesFromPass();
+			logger.debug("parseCalculatePremiumResponse, create : "+coveragesMapped.size() +" coverages ");
+			responseCalculateToDL.getQuote().setCoverages(coveragesMapped);
+//			set input figures into response
+//			logger.debug("parseCalculatePremiumResponse, found : "+quoteInternal.getFigures().size()+" figures");
+//			responseCalculatePremium.getQuote().setFigures(quoteInternal.getFigures());
+//			figures
+			List<IFigure> figuresListMapped = mappingResponse.getFiguresMapped();
+			logger.debug("parseCalculatePremiumResponse, found : "+figuresListMapped.size() +" figures ");
+			responseCalculateToDL.getQuote().setFigures(figuresListMapped);
 		}
 		
-		logger.info("parseCalculatePremiumResponse out with response :"+responseCalculatePremium);
-		return responseCalculatePremium;
+		logger.info("parseCalculatePremiumResponse out with response :"+responseCalculateToDL);
+		return responseCalculateToDL;
 	}
 	
 }
