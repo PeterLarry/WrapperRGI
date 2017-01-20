@@ -350,7 +350,7 @@ public class MapperAssetSectionToPASS
 			{
 //			assetunit MOTOR_VANDALISM
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_AV1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 
 				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_AV1.value(), riskType);
 //				add Unitinstance tu AssetUnit
@@ -362,7 +362,7 @@ public class MapperAssetSectionToPASS
 			{
 //			assetunit MOTOR_COLLISION
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_COLL1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 
 				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_COLL1.value(), riskType);
 //				add Unitinstance tu AssetUnit
@@ -374,7 +374,7 @@ public class MapperAssetSectionToPASS
 			{
 //			assetunit MOTOR_CRYSTALS
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_CRI1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 
 				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_CRI1.value(), riskType);
 //				add Unitinstance tu AssetUnit
@@ -386,7 +386,7 @@ public class MapperAssetSectionToPASS
 			{
 //			assetunit MOTOR_NATURAL_EVENTS
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_EN1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 
 				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_EN1.value(), riskType);
 //				add Unitinstance tu AssetUnit
@@ -398,7 +398,7 @@ public class MapperAssetSectionToPASS
 			{
 //			assetunit MOTOR_KASKO
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_KAS1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 				
 				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_EN1.value(), riskType);
 
@@ -468,7 +468,7 @@ public class MapperAssetSectionToPASS
 						(riskType.equals(EnumRiskType.CAR) || riskType.equals(EnumRiskType.MOTORBIKE)) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_TG1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 //				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
 //				add AssetUnit to AssetSection
@@ -479,7 +479,7 @@ public class MapperAssetSectionToPASS
 							riskType.equals(EnumRiskType.MOPED) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_TG2.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 //				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
 //				add AssetUnit to AssetSection
@@ -516,7 +516,7 @@ public class MapperAssetSectionToPASS
 					covTemp.getCode().equals(EnumCoverageCode.MOTOR_ROAD_ASSISTANCE_DELUXE) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_AS1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 //				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
 //				add AssetUnit to AssetSection
@@ -555,7 +555,7 @@ public class MapperAssetSectionToPASS
 			if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_PERMANENT_INVALIDITY_DRIVER) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_IIP1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 				
 				if(covTemp.getLimit() != null && covTemp.getLimit().getCode() != null)
 				{
@@ -591,7 +591,7 @@ public class MapperAssetSectionToPASS
 			else if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_DEATH_DRIVER) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_IM1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 				if(covTemp.getLimit() != null && covTemp.getLimit().getCode() != null)
 				{
 					if(riskType.equals(EnumRiskType.MOTORBIKE))
@@ -655,7 +655,7 @@ public class MapperAssetSectionToPASS
 			if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_THEFT) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_FUR1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 				
 				if(covTemp.getCoinsurance() != null && covTemp.getCoinsurance().getCode() != null)
 				{
@@ -694,7 +694,7 @@ public class MapperAssetSectionToPASS
 			else if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_FIRE) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_INC1.value());
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 				
 				if(covTemp.getCoinsurance() != null && covTemp.getCoinsurance().getCode() != null)
 				{
@@ -1020,7 +1020,7 @@ public class MapperAssetSectionToPASS
 					}
 					
 				}
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 				
 //				add Unitinstance to AssetUnit for MOTOR_RCA
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
@@ -1030,7 +1030,7 @@ public class MapperAssetSectionToPASS
 			else if( covTemp != null && covTemp.getCode() != null && covTemp.getCode().equals(EnumCoverageCode.MOTOR_BONUS_PROTECTED))
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_BP1.value());						
-				assetUnitTemp.setSelection(tybT);
+				assetUnitTemp.setSelection(covTemp.getSelected() ? tybT : tybF);
 				
 //				add Unitinstance to AssetUnit for MOTOR_BONUS_PROTECTED
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
