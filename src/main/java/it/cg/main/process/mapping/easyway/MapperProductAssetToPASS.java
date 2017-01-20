@@ -25,7 +25,6 @@ import com.mapfre.engines.rating.common.enums.EnumRole;
 import com.pass.global.TypeBooleano;
 import com.pass.global.TypeData;
 import com.pass.global.WsAssetInstance;
-import com.pass.global.WsClause;
 import com.pass.global.WsFactor;
 import com.pass.global.WsProduct;
 import com.pass.global.WsVehicle;
@@ -63,6 +62,7 @@ public class MapperProductAssetToPASS
 		
 		for (IFigure figureTemp : listFigure)
 		{
+//			POLICY_HOLDER
 //			Il wsproduct prevede che i dati vengano presi dal PH per i factors 
 			if(figureTemp.getRole().equals(EnumRole.POLICY_HOLDER))
 			{
@@ -381,8 +381,8 @@ public class MapperProductAssetToPASS
 					listFactor.add(wsFactor);
 				}
 			}
-//			FIRST_YOUNG_DRIVER
-			if(figureTemp.getRole().equals(EnumRole.FIRST_YOUNG_DRIVER))
+//			SECOND_YOUNG_DRIVER
+			if(figureTemp.getRole().equals(EnumRole.SECOND_YOUNG_DRIVER))
 			{
 				if(figureTemp.getYearsWithLicense() != null)
 				{
@@ -470,7 +470,7 @@ public class MapperProductAssetToPASS
 			wsFactor.setValue(quote.getUsualDriverOwnerRelationship().getWrapperCode().toString());
 			factAsset.add(wsFactor);
 		}
-		//Non è sicuro se il mappaggio è giusto
+//		TODO Non è sicuro se il mappaggio è giusto
 		if(quote.getVehicle().getPreviousVehicleAgeInMonth()!= null)
 		{
 			wsFactor = new WsFactor();
@@ -479,7 +479,7 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		//Non è sicuro se il mappaggio è giusto
+//		TODO Non è sicuro se il mappaggio è giusto
 		if(quote.getFiddleFactorCalculationRequired()!= null)
 		{
 			wsFactor = new WsFactor();
@@ -487,20 +487,20 @@ public class MapperProductAssetToPASS
 			wsFactor.setValue(quote.getFiddleFactorCalculationRequired().toString());
 			factAsset.add(wsFactor);
 		}
-		//Non è sicuro se il mappaggio è giusto. Controllare se ci sono novità
+//		TODO Non è sicuro se il mappaggio è giusto. Controllare se ci sono novità
 		if(quote.getPreviousFlagClaimsInLastYear()!= null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_3FRC1.value());
 			
 //			TODO CAMBIARE IL SET DENTRO QUESTA CONDIZIONE!!
-			if(quote.getPreviousFlagClaimsInLastYear()==true){
-				
+			if(quote.getPreviousFlagClaimsInLastYear()==true)
+			{
 				wsFactor.setValue("false");
-			}else {
-				
+			}
+			else
+			{
 				wsFactor.setValue("true");
-				
 			}
 			wsFactor.setValue(quote.getPreviousFlagClaimsInLastYear().toString());
 			factAsset.add(wsFactor);
