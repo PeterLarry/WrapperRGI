@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.ICoverage;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
+import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IRatingInfo;
 import com.pass.global.CalculatePremiumResponse;
 
 import it.cg.main.dto.InboundResponseHttpJSON;
-import it.cg.main.dto.main.Quote;
 import it.cg.main.process.mapping.easyway.response.MapperResponsePremiumToDL;
 
 /**
@@ -30,14 +30,15 @@ public class ParsingIn
 	 * @param CalculatePremiumResponse
 	 * @return InboundResponseHttpJSON parsed
 	 */
-	public InboundResponseHttpJSON parseCalculatePremiumResponse(CalculatePremiumResponse responseCalculateFromPASS, Quote quoteInternal)
+	public InboundResponseHttpJSON parseCalculatePremiumResponse(CalculatePremiumResponse responseCalculateFromPASS)
 	{
-		logger.info("parseCalculatePremiumResponse enter with parameters :"+responseCalculateFromPASS);
+		logger.info("into parseCalculatePremiumResponse enter with parameters :"+responseCalculateFromPASS);
 		InboundResponseHttpJSON responseCalculateToDL = new InboundResponseHttpJSON();
 		boolean isErrorFromPass = false;
 //		check for errors
 		try
 		{
+			logger.debug("parseCalculatePremiumResponse check for errors into response");
 			isErrorFromPass = responseCalculateToDL.bindPassError(responseCalculateFromPASS.getReturn().getServiceInfo());
 		}
 		catch(NullPointerException ex)
@@ -60,17 +61,18 @@ public class ParsingIn
 			MapperResponsePremiumToDL mappingResponse = new MapperResponsePremiumToDL(responseCalculateFromPASS);
 //			create and set generic quote premium
 			responseCalculateToDL.setQuote(mappingResponse.getInitQuoteResponse());
-//			create and set coverages premium
+//			Coverages create and set
 			List<ICoverage> coveragesMapped = mappingResponse.getCoveragesFromPass();
 			logger.debug("parseCalculatePremiumResponse, create : "+coveragesMapped.size() +" coverages ");
 			responseCalculateToDL.getQuote().setCoverages(coveragesMapped);
-//			set input figures into response
-//			logger.debug("parseCalculatePremiumResponse, found : "+quoteInternal.getFigures().size()+" figures");
-//			responseCalculatePremium.getQuote().setFigures(quoteInternal.getFigures());
-//			figures
+//			Figures create and set
 			List<IFigure> figuresListMapped = mappingResponse.getFiguresMapped();
 			logger.debug("parseCalculatePremiumResponse, found : "+figuresListMapped.size() +" figures ");
 			responseCalculateToDL.getQuote().setFigures(figuresListMapped);
+//			RatingInfo create and set
+			logger.debug("parseCalculatePremiumResponse, create ratingInfo");
+			IRatingInfo ratingInfo = mappingResponse.getRatingInfo();
+			responseCalculateToDL.getQuote().setRatingInfo(ratingInfo);
 		}
 		
 		logger.info("parseCalculatePremiumResponse out with response :"+responseCalculateToDL);

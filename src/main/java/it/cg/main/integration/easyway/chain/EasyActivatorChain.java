@@ -9,10 +9,8 @@ import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
 import com.pass.global.CalculatePremium;
-import com.pass.global.MsgCalculatePremiumRequest;
 import com.pass.global.WsCalculatePremiumInput;
 
-import it.cg.main.dto.QuoteInternalComponent;
 import it.cg.main.dto.RoutingDTO;
 import it.cg.main.integration.easyway.parsing.ParsingOut;
 import it.cg.main.integration.interfaces.ActivatorHandler;
@@ -25,9 +23,6 @@ public class EasyActivatorChain extends ActivatorHandler
 	
 	@Autowired
 	private MapperRequestToPASS easyMapperMapstruct;
-	
-	@Autowired
-	private QuoteInternalComponent quoteInternal;
 	
 	/**
 	 * Parsing Input PASS
@@ -47,9 +42,8 @@ public class EasyActivatorChain extends ActivatorHandler
 		WsCalculatePremiumInput calcPremium = pout.getQuoteToPass(request);
 //		set request WS to PASS		
 		CalculatePremium cp = new CalculatePremium();
-		cp.setArg0(new MsgCalculatePremiumRequest());
+		cp.setArg0(pout.getQuoteToMsgCalculate());
 		cp.getArg0().setInput(calcPremium);
-		this.quoteInternal.setQuoteInternal(request.getInboundRequestHttpJSON().getInboundQuoteDTO());
 		logger.debug("TIMEtest - AFTER parsing from DL to PASS");
 
 //		create message response

@@ -4,7 +4,10 @@ import org.apache.log4j.Logger;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
 import com.pass.global.GetTechnicalData;
+import com.pass.global.MsgCalculatePremiumRequest;
+import com.pass.global.MsgRequestHeader;
 import com.pass.global.TypeBooleano;
+import com.pass.global.TypeProperty;
 import com.pass.global.WsAsset;
 import com.pass.global.WsCalculatePremiumInput;
 
@@ -52,6 +55,11 @@ public class ParsingOut
 		return easyMapperMapstruct;
 	}
 	
+	/**
+	 * Parse the quote request for the PASS calculate premium request
+	 * @param request
+	 * @return WsCalculatePremiumInput from Quote
+	 */
 	public WsCalculatePremiumInput getQuoteToPass(RoutingDTO request)
 	{
 		logger.info("Request form DL to parse : " + request);
@@ -96,7 +104,27 @@ public class ParsingOut
 		return responseCalculatePremium;
 	}
 	
-	
+	/**
+	 * Create  msgFor more output factors 
+	 * @return MsgCalculatePremiumRequest
+	 */
+	public MsgCalculatePremiumRequest getQuoteToMsgCalculate()
+	{
+		MsgCalculatePremiumRequest msgResponse = new MsgCalculatePremiumRequest();
+		logger.info("into getQuoteToMsgCalculate with no request ");
+		
+		msgResponse.setServiceInfo(new MsgRequestHeader());
+		TypeProperty returnFactorsProperty = new TypeProperty();
+		
+		returnFactorsProperty.setChiave("RETURN_FACTORS");
+		returnFactorsProperty.setValore("true");
+		
+		msgResponse.getServiceInfo().getProperties().add(returnFactorsProperty);
+		logger.debug("getQuoteToMsgCalculate setted new property : "+returnFactorsProperty.getChiave() +" -> "+returnFactorsProperty.getValore());
+		
+		logger.info("out getQuoteToMsgCalculate with response : "+msgResponse);
+		return msgResponse;
+	}
 	
 	/**
 	 * Hard way GET TECHNICAL DATA

@@ -6,14 +6,9 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
 import com.pass.global.WsAsset;
-import com.pass.global.WsAssetInstance;
-import com.pass.global.WsAssetSection;
-import com.pass.global.WsAssetUnit;
 import com.pass.global.WsCalculatePremiumInput;
-import com.pass.global.WsUnitInstance;
 
 import it.cg.main.dto.InboundRequestHttpJSON;
-import it.cg.main.dto.main.Quote;
 
 
 
@@ -33,11 +28,11 @@ public interface MapperRequestToPASS
 	})
 	void quoteDtoToAsset(InboundRequestHttpJSON inbound, @MappingTarget WsAsset asset);
 	
-	@Mappings({
-//		@Mapping(source="inbound", target = "clauses"),
-		@Mapping(source="inboundQuoteDTO", target = "factors")
-	})
-	void quoteDtoToUnitInst(InboundRequestHttpJSON inbound, @MappingTarget WsUnitInstance uInst);
+//	@Mappings({
+////		@Mapping(source="inbound", target = "clauses"),
+//		@Mapping(source="inboundQuoteDTO", target = "factors")
+//	})
+//	void quoteDtoToUnitInst(InboundRequestHttpJSON inbound, @MappingTarget WsUnitInstance uInst);
 	
 	}
 

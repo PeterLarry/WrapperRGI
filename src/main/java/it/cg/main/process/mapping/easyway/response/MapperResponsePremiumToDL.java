@@ -17,6 +17,7 @@ import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IPremium;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IRatingInfo;
 import com.mapfre.engines.rating.common.enums.EnumCoverageCode;
 import com.mapfre.engines.rating.common.enums.EnumRole;
+import com.mapfre.engines.rating.common.enums.EnumTaxCode;
 import com.pass.global.CalculatePremiumResponse;
 import com.pass.global.WsAsset;
 import com.pass.global.WsAssetInstance;
@@ -37,7 +38,10 @@ public class MapperResponsePremiumToDL
 	
 	private CalculatePremiumResponse responsePremium;
 	
-	
+	/**
+	 * Create rating info with  2WCAP and 2WPR mapped
+	 * @return IRatingInfo
+	 */
 	public IRatingInfo getRatingInfo()
 	{
 		IRatingInfo ratingInfoResponse = new RatingInfo();
@@ -57,7 +61,6 @@ public class MapperResponsePremiumToDL
 						String worstProvince = MapperHashmapUtilitiesToDL.getWorstProvince(factorAssetInstanceTemp.getValue());
 						ratingInfoResponse.setWorstProvince(worstProvince);
 					}
-					
 				}
 			}
 		}
@@ -65,10 +68,9 @@ public class MapperResponsePremiumToDL
 		return ratingInfoResponse;
 	}
 	
-	
-	
 	/**
-	 * Init responsePremium for class
+	 * Init responsePremium for this class
+	 * If null, exception occurred in other methods 
 	 * @param responsePremium
 	 */
 	public MapperResponsePremiumToDL(CalculatePremiumResponse responsePremium)
@@ -77,9 +79,10 @@ public class MapperResponsePremiumToDL
 	}
 
 	/**
-	 * Create a list of figures
+	 * Create a list of figures with high risk driver, from PASS response
+	 * 
 	 * @param this.responsePremium
-	 * @return
+	 * @return List\<IFigure\>
 	 */
 	public List<IFigure> getFiguresMapped()
 	{
@@ -114,11 +117,18 @@ public class MapperResponsePremiumToDL
 		Quote responseQuote = new Quote();
 		
 		IPremium premiumObjResponse = new Premium();
-		premiumObjResponse.setGross(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getGross());
+		
 		premiumObjResponse.setNet(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
+		premiumObjResponse.setGross(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getGross());
 		premiumObjResponse.setTax(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
 		premiumObjResponse.setSsn(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
 		
+		logger.debug("getInitQuoteResponse setted NET : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
+		logger.debug("getInitQuoteResponse setted GROSS : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getGross());
+		logger.debug("getInitQuoteResponse setted TAX : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
+		logger.debug("getInitQuoteResponse setted SSN : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
+		
+		logger.debug("getInitQuoteResponse set premium : "+premiumObjResponse);
 		responseQuote.setPremium(premiumObjResponse);
 		
 //		log messages response
@@ -155,11 +165,42 @@ public class MapperResponsePremiumToDL
 					
 					EnumCoverageCode coverageCode = getCoverageCode(assetUnitTemp);
 					coverageToAdd.setCode(coverageCode);
+					logger.debug("getCoveragesFromPass found coverageCode : "+coverageCode);
+					Double fiddleFactor = getFiddleFactor(assetUnitTemp);
+					coverageToAdd.setFiddleFactor(fiddleFactor);
+					logger.debug("getCoveragesFromPass Set FiddleFactor : "+fiddleFactor+" for coverage : "+coverageCode);
+					
+//					TODO TAXcode1 da fare, controllare perchè come fare a farlo se abbiamo pure la lista , visto il code è 1 solo
+//					EnumTaxCode taxCode1 = null;
+//					List<PassProWarrantyUnitShare> listWarrantyUnitShares = assetUnitTemp.getWarrantyUnitShares();
+//					for (PassProWarrantyUnitShare passProWarrantyUnitShareTemp : listWarrantyUnitShares)
+//					{
+//						taxCode1 = passProWarrantyUnitShareTemp.getTaxTypeTariffArticle();
+//					}
+//					coverageToAdd.getAmount().setTaxCode1(taxCode1);
+					
+					Double antiracket = assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getAntiracket();
+					coverageToAdd.getAmount().setAntiracket(antiracket);
+					logger.debug("getCoveragesFromPass "+coverageCode+" setted antiracket : "+antiracket);
+					
+					EnumTaxCode taxCode2 = null;
+					Double amountSSN = assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getSSN();
+					if(antiracket.compareTo(0D) > 0 )
+						taxCode2 = EnumTaxCode.ANTI_RACKET_TAX;
+					else if(amountSSN > 0)
+						taxCode2 = EnumTaxCode.SSN_HEALTH_TAX;
+					logger.debug("getCoveragesFromPass "+coverageCode+" setted taxCode2 : "+taxCode2);
+					coverageToAdd.getAmount().setTaxCode2(taxCode2);
 					
 					coverageToAdd.getAmount().setNet(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getNet());
 					coverageToAdd.getAmount().setGross(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getGross());
-					coverageToAdd.getAmount().setSsn(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getSSN());
+					coverageToAdd.getAmount().setSsn(amountSSN);
 					coverageToAdd.getAmount().setTax(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getTaxes());
+					
+					logger.debug("getCoveragesFromPass "+coverageCode+" setted NET : "+assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getNet());
+					logger.debug("getCoveragesFromPass "+coverageCode+"  setted GROSS : "+assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getGross()+" for coverage : "+coverageCode);
+					logger.debug("getCoveragesFromPass "+coverageCode+"  setted SSN : "+amountSSN+" for coverage : "+coverageCode);
+					logger.debug("getCoveragesFromPass "+coverageCode+"  setted TAX : "+assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getTaxes()+" for coverage : "+coverageCode);
 					
 					responseListCoverages.add(coverageToAdd);
 				}
@@ -171,7 +212,26 @@ public class MapperResponsePremiumToDL
 	}
 	
 	/**
-	 * Return coverageCode
+	 * Return the right fiddleFactor from unitinstance , factor : 3FIDRC 
+	 * @param assetUnitTemp
+	 * @return 3FIDRC -> fiddleFactor, null if not found
+	 */
+	private Double getFiddleFactor(WsAssetUnit assetUnitTemp)
+	{
+		Double fiddleFactorResponse = null;
+		for (WsUnitInstance unitInstanceTemp : assetUnitTemp.getInstances())
+		{
+			for (WsFactor factorUnitInstanceTemp : unitInstanceTemp.getFactors())
+			{
+				if(factorUnitInstanceTemp.getCode().equals(ENUMInternalUnitInstanceFactors.FACTOR_3FIDRC.value()))
+					fiddleFactorResponse = new Double(factorUnitInstanceTemp.getValue());
+			}
+		}
+		return fiddleFactorResponse;
+	}
+
+	/**
+	 * Return coverageCode from unitInstance list
 	 * @param assetUnitTemp
 	 * @return EnumCoverageCode
 	 */
@@ -182,10 +242,7 @@ public class MapperResponsePremiumToDL
 		{
 			String nameUnitInstance = unitInstanceTemp.getName();
 			if(nameUnitInstance != null)
-			{
 				covCodeResponse = EnumCoverageCode.getEnumFromCode(unitInstanceTemp.getName());
-				logger.debug("Coverage code output found : "+covCodeResponse);
-			}
 		}
 		
 		return covCodeResponse;
