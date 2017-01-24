@@ -51,7 +51,7 @@ public class MapperProductAssetToPASS
 	 * EnumRole.POLICY_HOLDER
 	 * @param role
 	 * @param listFigure
-	 * @return
+	 * @return  List<WsFactor> never null
 	 */
 	private List<WsFactor> getFactorForFigureFromRoleWSProduct(List<IFigure> listFigure)
 	{
@@ -122,126 +122,128 @@ public class MapperProductAssetToPASS
 	
 	/**
 	 * Metodo custom di quoteDtoToProduct
-	 * @param quote
-	 * @return
+	 * @param quoteRequest
+	 * @return WsProduct init
 	 */
-	public WsProduct quoteToListWsProduct(Quote quote)
+	public WsProduct quoteToListWsProduct(Quote quoteRequest)
 	{
-		WsProduct prod = new WsProduct();
+		WsProduct wsProductResponse = new WsProduct();
 		
 //		Fields
-		prod.setCurrencyCode("000001");
-		logger.debug("quoteToListWsProduct setted wsproduct.CurrencyCode : "+prod.getCurrencyCode());
-		prod.setOpenDate(dataToTypeData(quote.getRateFromDate()));
-		logger.debug("quoteToListWsProduct setted wsproduct.OpenDate : "+prod.getOpenDate());
+		wsProductResponse.setCurrencyCode("000001");
+		logger.debug("quoteToListWsProduct setted wsproduct.CurrencyCode : "+wsProductResponse.getCurrencyCode());
+		wsProductResponse.setOpenDate(dataToTypeData(quoteRequest.getRateFromDate()));
+		logger.debug("quoteToListWsProduct setted wsproduct.OpenDate : "+wsProductResponse.getOpenDate());
 
-		if(quote.getInstallments()==1)
+		if(quoteRequest.getInstallments()==1)
 		{
-			prod.setPaymentFrequencyCode("000001");
+			wsProductResponse.setPaymentFrequencyCode("000001");
 		}
-		else if(quote.getInstallments()==2)
+		else if(quoteRequest.getInstallments()==2)
 		{
-			prod.setPaymentFrequencyCode("000002");
+			wsProductResponse.setPaymentFrequencyCode("000002");
 		}
-		logger.debug("quoteToListWsProduct setted wsproduct.PaymentFrequencyCode : "+prod.getPaymentFrequencyCode());
+		logger.debug("quoteToListWsProduct setted wsproduct.PaymentFrequencyCode : "+wsProductResponse.getPaymentFrequencyCode());
 
 //				Operation code
 		String opCode = null;
-		if(quote.getContext() != null && quote.getContext().getFlowType() != null)
+		if(quoteRequest.getContext() != null && quoteRequest.getContext().getFlowType() != null)
 		{
-			if(quote.getContext().getFlowType().equals(EnumFlowType.REVIEW_GENERATION))
+			if(quoteRequest.getContext().getFlowType().equals(EnumFlowType.REVIEW_GENERATION))
 			{
 				opCode="000074";
 			}
-			else if(quote.getContext().getFlowType().equals(EnumFlowType.RENQUOTE_GENERATION))
+			else if(quoteRequest.getContext().getFlowType().equals(EnumFlowType.RENQUOTE_GENERATION))
 			{
 				opCode="000075";
 			}
 		}
 		logger.debug("quoteToListWsProduct set wsproduct.OperationCode : "+opCode);
-		prod.setOperationCode(opCode);
+		wsProductResponse.setOperationCode(opCode);
 		
 		
 //		code product
-		if(quote.getContext().getRiskType() != null && quote.getContext().getProductType() != null && 
-				quote.getContext().getDirectlineSelfService() != null)
+		if(quoteRequest.getContext().getRiskType() != null && quoteRequest.getContext().getProductType() != null && 
+				quoteRequest.getContext().getDirectlineSelfService() != null)
 		{
-			if(quote.getContext().getRiskType().equals(EnumRiskType.CAR) &&
-					quote.getContext().getProductType().equals(EnumProductType.DLI)&&
-					quote.getContext().getDirectlineSelfService()==false)
+			if(quoteRequest.getContext().getRiskType().equals(EnumRiskType.CAR) &&
+					quoteRequest.getContext().getProductType().equals(EnumProductType.DLI)&&
+					quoteRequest.getContext().getDirectlineSelfService()==false)
 			{
-				prod.setCode(ENUMInternalCodeProduct.CODE_AUTODLI.value());
+				wsProductResponse.setCode(ENUMInternalCodeProduct.CODE_AUTODLI.value());
 			}
-			else if(  quote.getContext().getProductType().equals(EnumProductType.DLI) &&
-					  	( quote.getContext().getRiskType().equals(EnumRiskType.MOTORBIKE) ||
-					  		quote.getContext().getRiskType().equals(EnumRiskType.MOPED) ) &&
-					  		quote.getContext().getDirectlineSelfService()==false)
+			else if(  quoteRequest.getContext().getProductType().equals(EnumProductType.DLI) &&
+					  	( quoteRequest.getContext().getRiskType().equals(EnumRiskType.MOTORBIKE) ||
+					  		quoteRequest.getContext().getRiskType().equals(EnumRiskType.MOPED) ) &&
+					  		quoteRequest.getContext().getDirectlineSelfService()==false)
 			{
-				prod.setCode(ENUMInternalCodeProduct.CODE_MOTOCICLODLI.value());
+				wsProductResponse.setCode(ENUMInternalCodeProduct.CODE_MOTOCICLODLI.value());
 			}
-			else if(quote.getContext().getRiskType().equals(EnumRiskType.CAR) &&
-						quote.getContext().getProductType().equals(EnumProductType.DLI)&&
-						quote.getContext().getDirectlineSelfService()==true)
+			else if(quoteRequest.getContext().getRiskType().equals(EnumRiskType.CAR) &&
+						quoteRequest.getContext().getProductType().equals(EnumProductType.DLI)&&
+						quoteRequest.getContext().getDirectlineSelfService()==true)
 			{
-				prod.setCode(ENUMInternalCodeProduct.CODE_AUTODLSS.value());
+				wsProductResponse.setCode(ENUMInternalCodeProduct.CODE_AUTODLSS.value());
 			}
-			else if ( (quote.getContext().getProductType().equals(EnumProductType.ADI))&&
-					   		quote.getContext().getRiskType().equals(EnumRiskType.CAR) &&
-					   		quote.getContext().getDirectlineSelfService()==false)
+			else if ( (quoteRequest.getContext().getProductType().equals(EnumProductType.ADI))&&
+					   		quoteRequest.getContext().getRiskType().equals(EnumRiskType.CAR) &&
+					   		quoteRequest.getContext().getDirectlineSelfService()==false)
 			{
-				prod.setCode(ENUMInternalCodeProduct.CODE_AUTOADI.value());
+				wsProductResponse.setCode(ENUMInternalCodeProduct.CODE_AUTOADI.value());
 			}
-			else if ( ( !quote.getContext().getRiskType().equals(EnumRiskType.CAR) &&
-							  !quote.getContext().getRiskType().equals(EnumRiskType.MOTORBIKE) &&
-							  !quote.getContext().getRiskType().equals(EnumRiskType.MOPED) ) &&
-							    quote.getContext().getProductType().equals(EnumProductType.DLI) &&
-							    quote.getContext().getDirectlineSelfService()==false)
+			else if ( ( !quoteRequest.getContext().getRiskType().equals(EnumRiskType.CAR) &&
+							  !quoteRequest.getContext().getRiskType().equals(EnumRiskType.MOTORBIKE) &&
+							  !quoteRequest.getContext().getRiskType().equals(EnumRiskType.MOPED) ) &&
+							    quoteRequest.getContext().getProductType().equals(EnumProductType.DLI) &&
+							    quoteRequest.getContext().getDirectlineSelfService()==false)
 			{
-				prod.setCode(ENUMInternalCodeProduct.CODE_ALTRIVEICOLIDLI.value());
+				wsProductResponse.setCode(ENUMInternalCodeProduct.CODE_ALTRIVEICOLIDLI.value());
 			}
-			logger.debug("quoteToListWsProduct setted wsproduct.code : "+prod.getCode());
+			logger.debug("quoteToListWsProduct setted wsproduct.code : "+wsProductResponse.getCode());
 		}
 //		Factors
 		logger.debug("quoteToListWsProduct begin factor wsproduct");
 		ArrayList<WsFactor> factProp = new ArrayList<WsFactor>();
 		WsFactor wsFactor = new WsFactor();
-		if(quote.getAffinity() != null)
+		if(quoteRequest.getAffinity() != null)
 		{
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1AFF.value());
-			wsFactor.setValue(quote.getAffinity());
+			wsFactor.setValue(quoteRequest.getAffinity());
 			logger.debug("quoteToListWsProduct add to wsproduct factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
 			factProp.add(wsFactor);
 		}
-		if(quote.getRenewalYears() != null)
+		if(quoteRequest.getRenewalYears() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1ANRIN.value());
-			wsFactor.setValue(quote.getRenewalYears().toString());
+			wsFactor.setValue(quoteRequest.getRenewalYears().toString());
 			logger.debug("quoteToListWsProduct add to wsproduct factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
 			factProp.add(wsFactor);
 		}
-		if(quote.getPreviousRenewalYears() != null )
+		if(quoteRequest.getPreviousRenewalYears() != null )
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1FRRIN.value());
-			wsFactor.setValue(quote.getPreviousRenewalYears().toString());
+			wsFactor.setValue(quoteRequest.getPreviousRenewalYears().toString());
 			logger.debug("quoteToListWsProduct add to wsproduct factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
 			factProp.add(wsFactor);
 		}
-		if(quote.getCampaign() != null)
+		if(quoteRequest.getCampaign() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1CSC.value());
-			wsFactor.setValue(quote.getCampaign().getWrapperCode().toString());
+			wsFactor.setValue(quoteRequest.getCampaign().getWrapperCode().toString());
 			logger.debug("quoteToListWsProduct add to wsproduct factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
 			factProp.add(wsFactor);
 		}
 		
-		prod.getFactors().addAll(factProp);
-		List<WsFactor> listFactorsFigures = getFactorForFigureFromRoleWSProduct(quote.getFigures());
-		prod.getFactors().addAll(listFactorsFigures);
+		logger.debug("quoteToListWsProduct add "+factProp.size()+" factors to product");
+		wsProductResponse.getFactors().addAll(factProp);
+		List<WsFactor> listFactorsFigures = getFactorForFigureFromRoleWSProduct(quoteRequest.getFigures());
+		logger.debug("quoteToListWsProduct add "+listFactorsFigures.size()+" factors to product");
+		wsProductResponse.getFactors().addAll(listFactorsFigures);
 		
-		return prod;
+		return wsProductResponse;
 	}
 	
 	
@@ -828,11 +830,13 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if (  quote.getOtherVehicle() != null && (		
+		if (  quote.getOtherVehicle() != null && (
 					!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 				    !quote.getContext().getRiskType().equals(EnumRiskType.MOTORBIKE) ||
 				    !quote.getContext().getRiskType().equals(EnumRiskType.MOPED))  )
 		{
+			logger.debug("quoteToWsAsset is othervehicle, risktype :"+quote.getContext().getRiskType());
+			
 			if(quote.getOtherVehicle().getTaxableHorsePower() != null)
 			{
 				wsFactor = new WsFactor();
@@ -915,8 +919,6 @@ public class MapperProductAssetToPASS
 				}
 			}
 		}
-		
-//		TODO da controllare le regole per l'other vehicle
 		if(quote.getOtherVehiclesInsuredWithUs() != null)
 		{
 			wsFactor = new WsFactor();
@@ -928,7 +930,6 @@ public class MapperProductAssetToPASS
 			logger.debug("quoteToWsAsset add factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
-
 		if(quote.getVehicle() != null &&
 				quote.getVehicle().getTechnicalData() != null && quote.getVehicle().getTechnicalData().getAlimentation() != null)
 		{
@@ -938,6 +939,7 @@ public class MapperProductAssetToPASS
 			logger.debug("quoteToWsAsset add factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
+		
 		logger.debug("quoteToWsAsset add "+factAsset.size()+" to assetInstance");
 		assetInstanceResponse.getFactors().addAll(factAsset);
 		

@@ -364,7 +364,7 @@ public class MapperAssetSectionToPASS
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			WsFactor unitInstanceFactorToAdd  = new WsFactor();
 			EnumCoverageCode coverageCode = covTemp.getCode();
-			logger.debug("getS6 add factors generic to "+covTemp);
+			logger.debug("getS6 add factors generic to "+coverageCode);
 			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, coverageCode);
 
 			if(coverageCode.equals(EnumCoverageCode.MOTOR_VANDALISM))
@@ -486,7 +486,7 @@ public class MapperAssetSectionToPASS
 			WsAssetUnit assetUnitTemp = new WsAssetUnit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			EnumCoverageCode coverageCode = covTemp.getCode();
-			logger.debug("getS5 add factors generic to "+covTemp);
+			logger.debug("getS5 add factors generic to "+coverageCode);
 			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, coverageCode);
 			
 			if( (coverageCode.equals(EnumCoverageCode.MOTOR_LEGAL_PROTECTION_BASE) ||
@@ -538,11 +538,12 @@ public class MapperAssetSectionToPASS
 		{
 			WsAssetUnit assetUnitTemp = new WsAssetUnit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
-			logger.debug("getS4 add factors generic to "+covTemp);
-			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, covTemp.getCode());
+			EnumCoverageCode coverageCode = covTemp.getCode();
+			logger.debug("getS4 add factors generic to "+coverageCode);
+			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, coverageCode);
 			
-			if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_ROAD_ASSISTANCE_BASE) ||
-					covTemp.getCode().equals(EnumCoverageCode.MOTOR_ROAD_ASSISTANCE_DELUXE) )
+			if( coverageCode.equals(EnumCoverageCode.MOTOR_ROAD_ASSISTANCE_BASE) ||
+					coverageCode.equals(EnumCoverageCode.MOTOR_ROAD_ASSISTANCE_DELUXE) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_AS1.value());
 				assetUnitTemp.setSelection((covTemp.getSelected() != null && covTemp.getSelected()) ? tybT : tybF);
@@ -551,7 +552,7 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection
 				assetSectionResultS4.getUnits().add(assetUnitTemp);
 			}
-			logger.debug("getS4 coverage="+covTemp.getCode()+" assetUnit : "+assetUnitTemp.getCode());
+			logger.debug("getS4 coverage="+coverageCode+" assetUnit : "+assetUnitTemp.getCode());
 		}
 		
 		if(assetSectionResultS4.getUnits().isEmpty())
@@ -580,11 +581,12 @@ public class MapperAssetSectionToPASS
 			WsAssetUnit assetUnitTemp = new WsAssetUnit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			WsFactor unitInstanceFactorToAdd  = new WsFactor();
-			logger.debug("getS3 add factors generic to "+covTemp);
-			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, covTemp.getCode());
+			EnumCoverageCode coverageCode = covTemp.getCode();
+			logger.debug("getS3 add factors generic to "+coverageCode);
+			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, coverageCode);
 			unitInstanceFactorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3SAINP.value());
 			
-			if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_PERMANENT_INVALIDITY_DRIVER) )
+			if( coverageCode.equals(EnumCoverageCode.MOTOR_PERMANENT_INVALIDITY_DRIVER) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_IIP1.value());
 				assetUnitTemp.setSelection((covTemp.getSelected() != null && covTemp.getSelected()) ? tybT : tybF);
@@ -620,7 +622,7 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection
 				assetSectionResultS3.getUnits().add(assetUnitTemp);
 			}
-			else if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_DEATH_DRIVER) )
+			else if( coverageCode.equals(EnumCoverageCode.MOTOR_DEATH_DRIVER) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_IM1.value());
 				assetUnitTemp.setSelection((covTemp.getSelected() != null && covTemp.getSelected()) ? tybT : tybF);
@@ -655,7 +657,7 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection
 				assetSectionResultS3.getUnits().add(assetUnitTemp);
 			}
-			logger.debug("getS3 coverage="+covTemp.getCode()+" assetUnit : "+assetUnitTemp.getCode());
+			logger.debug("getS3 coverage="+coverageCode+" assetUnit : "+assetUnitTemp.getCode());
 			logger.debug("getS3 factor to add to unitinstance="+unitInstanceFactorToAdd.getCode()+" value ="+unitInstanceFactorToAdd.getValue());
 			
 		}
@@ -685,10 +687,11 @@ public class MapperAssetSectionToPASS
 			WsAssetUnit assetUnitTemp = new WsAssetUnit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			WsFactor factorsUnitInstanceToAdd  = new WsFactor();
-			logger.debug("getS2 add factors generic to "+covTemp);
-			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, covTemp.getCode());
+			EnumCoverageCode coverageCode = covTemp.getCode();
+			logger.debug("getS2 add factors generic to "+coverageCode);
+			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, coverageCode);
 			
-			if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_THEFT) )
+			if( coverageCode.equals(EnumCoverageCode.MOTOR_THEFT) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_FUR1.value());
 				assetUnitTemp.setSelection((covTemp.getSelected() != null && covTemp.getSelected()) ? tybT : tybF);
@@ -727,7 +730,7 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection
 				assetSectionResultS2.getUnits().add(assetUnitTemp);
 			}
-			else if( covTemp.getCode().equals(EnumCoverageCode.MOTOR_FIRE) )
+			else if( coverageCode.equals(EnumCoverageCode.MOTOR_FIRE) )
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_INC1.value());
 				assetUnitTemp.setSelection((covTemp.getSelected() != null && covTemp.getSelected()) ? tybT : tybF);
@@ -765,7 +768,7 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection
 				assetSectionResultS2.getUnits().add(assetUnitTemp);
 			}
-			logger.debug("getS2 coverage="+covTemp.getCode()+" assetUnit : "+assetUnitTemp.getCode());
+			logger.debug("getS2 coverage="+coverageCode+" assetUnit : "+assetUnitTemp.getCode());
 			logger.debug("getS2 factor to add to unitinstance="+factorsUnitInstanceToAdd.getCode()+" value ="+factorsUnitInstanceToAdd.getValue());
 			
 		}
@@ -798,10 +801,11 @@ public class MapperAssetSectionToPASS
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			WsFactor factorsUnitInstanceToAdd3RCFRA  = new WsFactor();
 			WsFactor factorsUnitInstanceToAdd3MASS  = new WsFactor();
-			logger.debug("getS1 add factors generic to "+covTemp);
-			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, covTemp.getCode());
+			EnumCoverageCode coverageCode = covTemp.getCode();
+			logger.debug("getS1 add factors generic to "+coverageCode);
+			getFactorsForUnitInstanceGeneric(unitInstanceToAdd, covTemp, coverageCode);
 			
-			if( covTemp != null && covTemp.getCode() != null && covTemp.getCode().equals(EnumCoverageCode.MOTOR_RCA))
+			if( covTemp != null && coverageCode != null && coverageCode.equals(EnumCoverageCode.MOTOR_RCA))
 			{
 //				CODE Factor for Unitinstance 
 				factorsUnitInstanceToAdd3RCFRA.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3RCFRA.value());
@@ -861,7 +865,6 @@ public class MapperAssetSectionToPASS
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
-				//TODO Aggiungere i set delle unit instance 3MASS e 3RCFRA per tutti gli "other vehicle"
 				else if(riskType.equals(EnumRiskType.TRUCK_UPTO_60000KG))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA1.value());
@@ -873,7 +876,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -888,7 +891,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -903,7 +906,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -918,7 +921,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -933,7 +936,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -948,7 +951,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -963,7 +966,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -979,7 +982,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 					if(otherVehicle.getWeight() > 60)
@@ -992,7 +995,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1007,7 +1010,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1022,7 +1025,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1037,7 +1040,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1052,7 +1055,7 @@ public class MapperAssetSectionToPASS
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
-						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1070,7 +1073,6 @@ public class MapperAssetSectionToPASS
 						factorsUnitInstanceToAdd3MASS.setValue(covTemp.getLimit().getCode());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
-					
 				}
 				assetUnitTemp.setSelection((covTemp.getSelected() != null && covTemp.getSelected())  ? tybT : tybF);
 				
@@ -1080,7 +1082,7 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection for MOTOR_RCA
 				assetSectionResultS1.getUnits().add(assetUnitTemp);
 			}
-			else if( covTemp != null && covTemp.getCode() != null && covTemp.getCode().equals(EnumCoverageCode.MOTOR_BONUS_PROTECTED))
+			else if( covTemp != null && coverageCode != null && coverageCode.equals(EnumCoverageCode.MOTOR_BONUS_PROTECTED))
 			{
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_BP1.value());						
 				assetUnitTemp.setSelection((covTemp.getSelected() != null && covTemp.getSelected()) ? tybT : tybF);
@@ -1090,13 +1092,12 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection for MOTOR_BONUS_PROTECTED
 				assetSectionResultS1.getUnits().add(assetUnitTemp);
 			}
-			logger.debug("getS1 coverage="+covTemp.getCode()+" assetUnit : "+assetUnitTemp.getCode());
+//			logging
+			logger.debug("getS1 coverage="+coverageCode+" assetUnit : "+assetUnitTemp.getCode());
 			logger.debug("getS1 factorsUnitInstanceToAdd3MASS to add to unitinstance="+factorsUnitInstanceToAdd3MASS.getCode()+" value ="+factorsUnitInstanceToAdd3MASS.getValue());
 			logger.debug("getS1 factorsUnitInstanceToAdd3RCFRA to add to unitinstance="+factorsUnitInstanceToAdd3RCFRA.getCode()+" value ="+factorsUnitInstanceToAdd3RCFRA.getValue());
 			
-			
 		}
-//		TODO manca Other vehicle
 		
 		if(assetSectionResultS1.getUnits().isEmpty())
 		{

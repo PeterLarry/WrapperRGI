@@ -25,6 +25,7 @@ public class MapperUtilityToPASS
 		WsAsset assetResponse = new  WsAsset();
 
 		assetResponse.setCode(requestQuote.getContext().getRiskType().getWrapperCode());
+		logger.debug("getInitWsAsset init wsAsset with code:"+assetResponse.getCode());
 		
 		logger.info("out getInitWsAsset with response : "+assetResponse);
 		return assetResponse;
