@@ -1095,8 +1095,9 @@ public class MapperProductAssetToPASS
 			responseClassCodeForPASS = "22";
 			this.sectorCode = "000007";
 		}
+		logger.debug("getRiskTypeAsset for  riskType :"+riskTypeQuoteEnum);
 		
-		logger.info("getRiskTypeAsset with output : "+responseClassCodeForPASS+" and sectorCode : "+this.sectorCode);
+		logger.info("getRiskTypeAsset with output classCode : "+responseClassCodeForPASS+" and sectorCode : "+this.sectorCode);
 		return responseClassCodeForPASS;
 	}
 //	
@@ -1188,13 +1189,17 @@ public class MapperProductAssetToPASS
 		
 		TypeData dataOpenTypeData  = new TypeData(); 
 		GregorianCalendar c = new GregorianCalendar();
-		c.setTime(data); // dopo ottobre
 		XMLGregorianCalendar dataOpen = null;
 		try
 		{
+			c.setTime(data);
 			dataOpen = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
 		}
-		catch (DatatypeConfigurationException e)
+		catch (NullPointerException ex)
+		{
+			logger.error("Date passed is null : "+data+" ");
+		}
+		catch (DatatypeConfigurationException ex)
 		{
 			logger.error("Error conversion for data : "+data+" ");
 		}
