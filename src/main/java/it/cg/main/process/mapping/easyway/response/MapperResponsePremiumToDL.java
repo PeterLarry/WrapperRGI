@@ -44,6 +44,8 @@ public class MapperResponsePremiumToDL
 	 */
 	public IRatingInfo getRatingInfo()
 	{
+		logger.info("into getRatingInfo");
+		
 		IRatingInfo ratingInfoResponse = new RatingInfo();
 		
 		for (WsAsset wsAssetTemp : this.responsePremium.getReturn().getOutput().getProduct().getAssets())
@@ -55,16 +57,19 @@ public class MapperResponsePremiumToDL
 					if(factorAssetInstanceTemp.getCode().equals("2WCAP"))
 					{
 						ratingInfoResponse.setWorstCap(factorAssetInstanceTemp.getValue());
+						logger.debug("getRatingInfo factor assetinstance worstCap="+ratingInfoResponse.getWorstCap());
 					}
 					else if(factorAssetInstanceTemp.getCode().equals("2WPR"))
 					{
 						String worstProvince = MapperHashmapUtilitiesToDL.getWorstProvince(factorAssetInstanceTemp.getValue());
 						ratingInfoResponse.setWorstProvince(worstProvince);
+						logger.debug("getRatingInfo factor assetinstance worstProvince="+ratingInfoResponse.getWorstProvince());
 					}
 				}
 			}
 		}
 		
+		logger.info("out getRatingInfo with response ratingInfoResponse:"+ratingInfoResponse);
 		return ratingInfoResponse;
 	}
 	
@@ -73,9 +78,9 @@ public class MapperResponsePremiumToDL
 	 * If null, exception occurred in other methods 
 	 * @param responsePremium
 	 */
-	public MapperResponsePremiumToDL(CalculatePremiumResponse responsePremium)
+	public MapperResponsePremiumToDL(CalculatePremiumResponse responsePremiumRequest)
 	{
-		this.responsePremium = responsePremium;
+		this.responsePremium = responsePremiumRequest;
 	}
 
 	/**
@@ -93,11 +98,13 @@ public class MapperResponsePremiumToDL
 		
 		figuresListResponse.addAll(mapFigures.values());
 		logger.debug("figuresListResponse Found "+figuresListResponse.size()+" figures");
+		
 		for (IFigure figureTemp : figuresListResponse)
 		{
+			logger.debug("getFiguresMapped for role:"+figureTemp.getRole());
+			
 			Boolean higRiskDriver =  getHighRiskDriver(figureTemp.getRole());
 			figureTemp.setHighRiskDriver(higRiskDriver);
-			
 		}
 		
 		logger.info("getFiguresMapped return figures "+figuresListResponse);
@@ -115,18 +122,17 @@ public class MapperResponsePremiumToDL
 		logger.info("into getInitQuoteResponse with input : "+this.responsePremium);
 		
 		Quote responseQuote = new Quote();
-		
 		IPremium premiumObjResponse = new Premium();
 		
 		premiumObjResponse.setNet(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
 		premiumObjResponse.setGross(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getGross());
 		premiumObjResponse.setTax(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
 		premiumObjResponse.setSsn(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
-		
-		logger.debug("getInitQuoteResponse setted NET : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
-		logger.debug("getInitQuoteResponse setted GROSS : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getGross());
-		logger.debug("getInitQuoteResponse setted TAX : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
-		logger.debug("getInitQuoteResponse setted SSN : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
+//		loggging
+		logger.debug("getInitQuoteResponse setted generic NET : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
+		logger.debug("getInitQuoteResponse setted generic GROSS : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getGross());
+		logger.debug("getInitQuoteResponse setted generic TAX : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
+		logger.debug("getInitQuoteResponse setted generic SSN : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
 		
 		logger.debug("getInitQuoteResponse set premium : "+premiumObjResponse);
 		responseQuote.setPremium(premiumObjResponse);
@@ -189,7 +195,7 @@ public class MapperResponsePremiumToDL
 						taxCode2 = EnumTaxCode.ANTI_RACKET_TAX;
 					else if(amountSSN > 0)
 						taxCode2 = EnumTaxCode.SSN_HEALTH_TAX;
-					logger.debug("getCoveragesFromPass "+coverageCode+" setted taxCode2 : "+taxCode2);
+					logger.debug("getCoveragesFromPass for coverageCode = "+coverageCode+" setted taxCode2 : "+taxCode2);
 					coverageToAdd.getAmount().setTaxCode2(taxCode2);
 					
 					coverageToAdd.getAmount().setNet(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getNet());
@@ -198,9 +204,9 @@ public class MapperResponsePremiumToDL
 					coverageToAdd.getAmount().setTax(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getTaxes());
 					
 					logger.debug("getCoveragesFromPass "+coverageCode+" setted NET : "+assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getNet());
-					logger.debug("getCoveragesFromPass "+coverageCode+"  setted GROSS : "+assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getGross()+" for coverage : "+coverageCode);
-					logger.debug("getCoveragesFromPass "+coverageCode+"  setted SSN : "+amountSSN+" for coverage : "+coverageCode);
-					logger.debug("getCoveragesFromPass "+coverageCode+"  setted TAX : "+assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getTaxes()+" for coverage : "+coverageCode);
+					logger.debug("getCoveragesFromPass "+coverageCode+" setted GROSS : "+assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getGross()+" for coverage : "+coverageCode);
+					logger.debug("getCoveragesFromPass "+coverageCode+" setted SSN : "+amountSSN+" for coverage : "+coverageCode);
+					logger.debug("getCoveragesFromPass "+coverageCode+" setted TAX : "+assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getTaxes()+" for coverage : "+coverageCode);
 					
 					responseListCoverages.add(coverageToAdd);
 				}
@@ -276,6 +282,7 @@ public class MapperResponsePremiumToDL
 	 */
 	private String getLogTariffFormulaLog()
 	{
+		logger.info("into getLogTariffFormulaLog");
 		String logTariffFormattedResponse = "";
 		
 		for (WsAsset wsAssetTemp : this.responsePremium.getReturn().getOutput().getProduct().getAssets())
@@ -295,6 +302,8 @@ public class MapperResponsePremiumToDL
 				}
 			}
 		}
+		
+		logger.info("out getLogTariffFormulaLog");
 		return logTariffFormattedResponse;
 	}
 	
@@ -306,6 +315,9 @@ public class MapperResponsePremiumToDL
 	 */
 	private boolean getHighRiskDriver(EnumRole roleSelected)
 	{
+		logger.info("into getHighRiskDriver");
+		
+		logger.debug("getHighRiskDriver roleSelected="+roleSelected);
 		boolean higRiskResponse = false;
 		
 		for (WsAsset wsAssetTemp : this.responsePremium.getReturn().getOutput().getProduct().getAssets())
@@ -364,8 +376,7 @@ public class MapperResponsePremiumToDL
 			}
 		}
 		
-		
-		
+		logger.info("out getHighRiskDriver with response="+higRiskResponse);
 		return higRiskResponse;
 	}
 
@@ -380,6 +391,7 @@ public class MapperResponsePremiumToDL
 		
 //		EnumRole.POLICY_HOLDER
 		List<WsFactor> factorsProduct = this.responsePremium.getReturn().getOutput().getProduct().getFactors();
+		logger.debug("createMapFiguresPASS check the wsFactor.wsFactors");
 		for (WsFactor factorProductTemp : factorsProduct)
 		{
 			IFigure figureToAdd = new Figure();
@@ -399,7 +411,8 @@ public class MapperResponsePremiumToDL
 			{
 				figureToAdd.setRole(EnumRole.POLICY_HOLDER);
 				mapFiguresResponse.put(EnumRole.POLICY_HOLDER, figureToAdd);
-				logger.debug("Add figure : "+EnumRole.POLICY_HOLDER+" ");
+				
+				logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" ");
 				break;
 			}
 		}
@@ -434,8 +447,8 @@ public class MapperResponsePremiumToDL
 							figureToAdd = new Figure();
 							figureToAdd.setRole(EnumRole.USUAL_DRIVER);
 							mapFiguresResponse.put(EnumRole.USUAL_DRIVER, figureToAdd);
-							logger.debug("Add figure : "+EnumRole.USUAL_DRIVER+" ");
 							
+							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for factor pass:"+codeFactorEnumPASSTemp);
 							continue;
 						}
 						
@@ -453,7 +466,8 @@ public class MapperResponsePremiumToDL
 							figureToAdd = new Figure();
 							figureToAdd.setRole(EnumRole.OWNER);
 							mapFiguresResponse.put(EnumRole.OWNER, figureToAdd);
-							logger.debug("Add figure : "+EnumRole.OWNER+" ");
+							
+							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for factor pass:"+codeFactorEnumPASSTemp);
 							continue;
 						}
 						
@@ -471,7 +485,8 @@ public class MapperResponsePremiumToDL
 							figureToAdd = new Figure();
 							figureToAdd.setRole(EnumRole.FIRST_YOUNG_DRIVER);
 							mapFiguresResponse.put(EnumRole.FIRST_YOUNG_DRIVER, figureToAdd);
-							logger.debug("Add figure : "+EnumRole.FIRST_YOUNG_DRIVER+" ");
+							
+							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for factor pass:"+codeFactorEnumPASSTemp);
 							continue;
 						}
 						
@@ -489,10 +504,10 @@ public class MapperResponsePremiumToDL
 							figureToAdd = new Figure();
 							figureToAdd.setRole(EnumRole.SECOND_YOUNG_DRIVER);
 							mapFiguresResponse.put(EnumRole.SECOND_YOUNG_DRIVER, figureToAdd);
-							logger.debug("Add figure : "+EnumRole.SECOND_YOUNG_DRIVER+" ");
+							
+							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for factor pass:"+codeFactorEnumPASSTemp);
 							continue;
 						}
-						
 					}
 				}
 			}

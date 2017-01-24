@@ -280,7 +280,7 @@ public class MapperProductAssetToPASS
 				valForYearsWithLicensedFactor = figureTemp.getYearsWithLicense() == null ? 
 													"" : figureTemp.getYearsWithLicense().toString() ;
 			}
-			logger.debug("getFactorForFigureFromRoleAssetInstance set yearsOfLicensce for all figure->factors : "+valForYearsWithLicensedFactor);
+			logger.debug("getFactorForFigureFromRoleAssetInstance set YearsWithLicense for all figure->factors : "+valForYearsWithLicensedFactor);
 			
 			logger.debug("getFactorForFigureFromRoleAssetInstance factors for "+figureTemp.getRole()+" ROLE (quote.figure value)");
 //			USUAL_DRIVER 
@@ -940,11 +940,11 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		logger.debug("quoteToWsAsset add "+factAsset.size()+" to assetInstance");
+		logger.debug("quoteToWsAsset add "+factAsset.size()+" factors to assetInstance");
 		assetInstanceResponse.getFactors().addAll(factAsset);
 		
 		List<WsFactor> listFactorFigures =  getFactorForFigureFromRoleAssetInstance(quote.getFigures());
-		logger.debug("quoteToWsAsset add "+listFactorFigures.size()+" to assetInstance");
+		logger.debug("quoteToWsAsset add "+listFactorFigures.size()+" factors from figures to assetInstance");
 		assetInstanceResponse.getFactors().addAll(listFactorFigures);
 
 		listAssetInstResponse.add(assetInstanceResponse);
@@ -1102,71 +1102,8 @@ public class MapperProductAssetToPASS
 		logger.info("getRiskTypeAsset with output classCode : "+responseClassCodeForPASS+" and sectorCode : "+this.sectorCode);
 		return responseClassCodeForPASS;
 	}
-//	
-//	/**
-//	 * Metodo custom di quoteDtoToUnitInst
-//	 * @param inb
-//	 * @return
-//	 */
-//	public List<WsClause> quoteToClause(InboundRequestHttpJSON inb)
-//	{
-//		ArrayList<WsClause> listClause = new ArrayList<WsClause>();
-////		WsClause cla = new WsClause();
-////		typeB =  new TypeBooleano();
-////		xx11 rimappa e togli da parsingout
-////		typeB.setBoolean(inb.isSelectedClause());
-//		
-////		cla.setCode(inb.getCodeClause());
-////		cla.setSelected(typeB);
-//		
-////		listClause.add(cla);
-//		
-//		return listClause;
-//	}
-	
-	/**
-	 * Metodo custom di quoteDtoToUnitInst
-	 * @param quoteRequest
-	 * @return
-	 */
-//	public List<WsFactor> quoteToUnitFactor(Quote quoteRequest)
-//	{
-//		logger.info("into quoteToUnitFactor with request : "+quoteRequest);
-//		
-//		ArrayList<WsFactor> factorUnit = new ArrayList<WsFactor>();
-//		WsFactor wsFactor = new WsFactor();
-//		
-//		List<ICoverage> listCoverage = quoteRequest.getCoverages();
-//		for (ICoverage coverageTemp : listCoverage)
-//		{
-//			if( coverageTemp.getLimit() != null &&
-//					coverageTemp.getLimit().getCode() != null)
-//			{
-//				wsFactor = new WsFactor();
-//				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CRLMT.value());
-//				wsFactor.setValue(coverageTemp.getLimit().getCode());
-//				logger.debug("quoteToUnitFactor add factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
-//				factorUnit.add(wsFactor);
-//			}
-//			
-//			if( coverageTemp.getDeductible() != null &&
-//					coverageTemp.getDeductible().getCode() != null)
-//			{
-//				wsFactor = new WsFactor();
-//				wsFactor.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3CRDED.value());
-//				wsFactor.setValue(coverageTemp.getDeductible().getCode());
-//				logger.debug("quoteToUnitFactor add factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
-//				factorUnit.add(wsFactor);
-//			}
-//			
-//		}
-//		
-//		logger.info("out quoteToUnitFactor with response : "+factorUnit);
-//		return factorUnit;
-//	
-//	}
-	
-//	Types mappings 
+
+//	Generic types mappings 
 	
 	/**
 	 * Return a TypeBooleano from input for PASS

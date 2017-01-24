@@ -160,7 +160,6 @@ public class MapperAssetSectionToPASS
 		{
 			factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_1FIDRC.value());
 			factorToAdd.setValue(coverage.getFiddleFactor().toString());
-			logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
 			unitInstanceToEdit.getFactors().add(factorToAdd);
 		}
 		if(coverage.getDiscount() != null)
@@ -168,7 +167,6 @@ public class MapperAssetSectionToPASS
 			factorToAdd = new WsFactor();
 			factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3ADJ.value());
 			factorToAdd.setValue(coverage.getDiscount().toString());
-			logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
 			unitInstanceToEdit.getFactors().add(factorToAdd);
 		}
 		if(coverage.getQuickAndDirty() != null)
@@ -176,7 +174,6 @@ public class MapperAssetSectionToPASS
 			factorToAdd = new WsFactor();
 			factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3QD.value());
 			factorToAdd.setValue(coverage.getQuickAndDirty().toString());
-			logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
 			unitInstanceToEdit.getFactors().add(factorToAdd);
 		}
 		if(coverage.getPreviousNetAmount() != null)
@@ -184,7 +181,6 @@ public class MapperAssetSectionToPASS
 			factorToAdd = new WsFactor();
 			factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_FRRCA.value());
 			factorToAdd.setValue(coverage.getPreviousNetAmount().toString());
-			logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
 			unitInstanceToEdit.getFactors().add(factorToAdd);
 		}
 		if(coverage.getCode() != null )
@@ -452,7 +448,7 @@ public class MapperAssetSectionToPASS
 						}
 					}
 				}
-				
+				logger.debug("getS6 assetUnit "+assetUnitTemp.getCode()+" is selected ? "+assetUnitTemp.getSelection());
 				logger.debug("getS6 coverage="+coverageCode+" factor unitinstance : "+unitInstanceFactorToAdd.getCode()+" - value :"+unitInstanceFactorToAdd.getValue());
 //				add Unitinstance tu AssetUnit
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
@@ -464,7 +460,7 @@ public class MapperAssetSectionToPASS
 		if(assetSectionResultS6.getUnits().isEmpty())
 		{
 			assetSectionResultS6 = null;
-			logger.debug("S6 is empty");
+			logger.debug("getS6 S6 is empty");
 		}
 		
 		return assetSectionResultS6;
@@ -511,13 +507,14 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection
 				assetSectionResultS5.getUnits().add(assetUnitTemp);
 			}
+			logger.debug("getS5 assetUnit "+assetUnitTemp.getCode()+" is selected ? "+assetUnitTemp.getSelection());
 			logger.debug("getS5 coverage="+coverageCode+" assetUnit : "+assetUnitTemp.getCode());
 		}
 		
 		if(assetSectionResultS5.getUnits().isEmpty())
 		{
 			assetSectionResultS5 = null;
-			logger.debug("S5 is empty");
+			logger.debug("getS5 S5 is empty");
 		}
 		
 		return assetSectionResultS5;
@@ -552,13 +549,14 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection
 				assetSectionResultS4.getUnits().add(assetUnitTemp);
 			}
+			logger.debug("getS4 assetUnit "+assetUnitTemp.getCode()+" is selected ? "+assetUnitTemp.getSelection());
 			logger.debug("getS4 coverage="+coverageCode+" assetUnit : "+assetUnitTemp.getCode());
 		}
 		
 		if(assetSectionResultS4.getUnits().isEmpty())
 		{
 			assetSectionResultS4 = null;
-			logger.debug("S4 is empty");
+			logger.debug("getS4 S4 is empty");
 		}
 		
 		return assetSectionResultS4;
@@ -657,6 +655,7 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection
 				assetSectionResultS3.getUnits().add(assetUnitTemp);
 			}
+			logger.debug("getS3 assetUnit "+assetUnitTemp.getCode()+" is selected ? "+assetUnitTemp.getSelection());
 			logger.debug("getS3 coverage="+coverageCode+" assetUnit : "+assetUnitTemp.getCode());
 			logger.debug("getS3 factor to add to unitinstance="+unitInstanceFactorToAdd.getCode()+" value ="+unitInstanceFactorToAdd.getValue());
 			
@@ -665,7 +664,7 @@ public class MapperAssetSectionToPASS
 		if(assetSectionResultS3.getUnits().isEmpty())
 		{
 			assetSectionResultS3 = null;
-			logger.debug("S3 is empty");
+			logger.debug("getS3 S3 is empty");
 		}
 		
 		return assetSectionResultS3;
@@ -768,6 +767,7 @@ public class MapperAssetSectionToPASS
 //				add AssetUnit to AssetSection
 				assetSectionResultS2.getUnits().add(assetUnitTemp);
 			}
+			logger.debug("getS2 assetUnit "+assetUnitTemp.getCode()+" is selected ? "+assetUnitTemp.getSelection());
 			logger.debug("getS2 coverage="+coverageCode+" assetUnit : "+assetUnitTemp.getCode());
 			logger.debug("getS2 factor to add to unitinstance="+factorsUnitInstanceToAdd.getCode()+" value ="+factorsUnitInstanceToAdd.getValue());
 			
@@ -776,7 +776,7 @@ public class MapperAssetSectionToPASS
 		if(assetSectionResultS2.getUnits().isEmpty())
 		{
 			assetSectionResultS2 = null;
-			logger.debug("S2 is empty");
+			logger.debug("getS2 S2 is empty");
 		}
 		
 		return assetSectionResultS2;
@@ -1093,6 +1093,7 @@ public class MapperAssetSectionToPASS
 				assetSectionResultS1.getUnits().add(assetUnitTemp);
 			}
 //			logging
+			logger.debug("getS1 assetUnit "+assetUnitTemp.getCode()+" is selected ? "+assetUnitTemp.getSelection());
 			logger.debug("getS1 coverage="+coverageCode+" assetUnit : "+assetUnitTemp.getCode());
 			logger.debug("getS1 factorsUnitInstanceToAdd3MASS to add to unitinstance="+factorsUnitInstanceToAdd3MASS.getCode()+" value ="+factorsUnitInstanceToAdd3MASS.getValue());
 			logger.debug("getS1 factorsUnitInstanceToAdd3RCFRA to add to unitinstance="+factorsUnitInstanceToAdd3RCFRA.getCode()+" value ="+factorsUnitInstanceToAdd3RCFRA.getValue());
@@ -1102,7 +1103,7 @@ public class MapperAssetSectionToPASS
 		if(assetSectionResultS1.getUnits().isEmpty())
 		{
 			assetSectionResultS1 = null;
-			logger.debug("S1 is empty");
+			logger.debug("getS1 S1 is empty");
 		}
 		
 		return assetSectionResultS1;
