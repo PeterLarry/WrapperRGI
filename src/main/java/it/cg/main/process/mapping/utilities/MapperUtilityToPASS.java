@@ -1,11 +1,18 @@
 package it.cg.main.process.mapping.utilities;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.log4j.Logger;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
 import com.mapfre.engines.rating.common.enums.EnumRole;
+import com.pass.global.TypeData;
 import com.pass.global.WsAsset;
 
 import it.cg.main.dto.main.Quote;
@@ -56,6 +63,37 @@ public class MapperUtilityToPASS
 		
 		logger.info("out getFigureOwner with response : "+responseFigure);
 		return responseFigure;
+	}
+	
+	/**
+	 * TODO da usare al posto di quello di mapstract qundo si toglierà mapstracut
+	 * Return a TypeData for PASS from a passed Date
+	 * @param Date data
+	 * @return TypeData from input
+	 */
+	public TypeData dataToTypeData(Date data)
+	{
+		
+		TypeData dataOpenTypeData  = new TypeData(); 
+		GregorianCalendar c = new GregorianCalendar();
+		XMLGregorianCalendar dataOpen = null;
+		try
+		{
+			c.setTime(data);
+			dataOpen = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		}
+		catch (NullPointerException ex)
+		{
+			logger.error("Date passed is null : "+data+" ");
+		}
+		catch (DatatypeConfigurationException ex)
+		{
+			logger.error("Error conversion for data : "+data+" ");
+		}
+		dataOpenTypeData.setData(dataOpen);
+		
+		return dataOpenTypeData;
+	
 	}
 
 }

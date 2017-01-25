@@ -1,5 +1,6 @@
 package it.cg.main.process.mapping.easyway;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -10,6 +11,7 @@ import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumCoverageCode;
 import com.mapfre.engines.rating.common.enums.EnumRiskType;
 import com.pass.global.TypeBooleano;
+import com.pass.global.TypeData;
 import com.pass.global.WsAssetInstance;
 import com.pass.global.WsAssetSection;
 import com.pass.global.WsAssetUnit;
@@ -21,6 +23,7 @@ import it.cg.main.dto.InboundRequestHttpJSON;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeAssetUnit;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeSection;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalUnitInstanceFactors;
+import it.cg.main.process.mapping.utilities.MapperUtilityToPASS;
 
 public class MapperAssetSectionToPASS
 {
@@ -31,7 +34,10 @@ public class MapperAssetSectionToPASS
 	private boolean isEnableTariffFormulaLogActive;
 	private IFigure figureOwner;
 	private Integer numberOfYoungDriver;
-	
+	private MapperUtilityToPASS utilityToPass = new MapperUtilityToPASS();
+
+	private Date rateFromDate;
+
 	/**
 	 * Return a list of asset section -> asset unit -> unit instance.
 	 * @param inbJsonRequest
@@ -43,12 +49,13 @@ public class MapperAssetSectionToPASS
 		logger.info("into getAssetSections with > inbJsonRequest: "+inbJsonRequest+
 				" assetInReqest:"+assetInReqest+" codeAssetUnitReqest:"+codeAssetUnitReqest+
 				" figureOwnerRequest:"+figureOwnerRequest);
-
 		
 		EnumRiskType riskType = inbJsonRequest.getInboundQuoteDTO().getContext().getRiskType();
-		logger.debug("init riskType :"+riskType);
+		logger.debug("getAssetSections init riskType :"+riskType);
 		List<ICoverage> listCov = inbJsonRequest.getInboundQuoteDTO().getCoverages();
-		logger.debug("init listCov with coverages :"+listCov);
+		logger.debug("getAssetSections init listCov with coverages :"+listCov);
+		this.rateFromDate = inbJsonRequest.getInboundQuoteDTO().getRateFromDate();
+		logger.debug("getAssetSections set rateFromDate="+rateFromDate);
 		
 		this.tybT.setBoolean(true);
 		this.tybF.setBoolean(false);
@@ -116,6 +123,21 @@ public class MapperAssetSectionToPASS
 		
 		logger.info("out getUnitInstanceInit with response : "+unitInstance);
 		return unitInstance;
+	}
+	
+	/**
+	 * Init the wsAssetUnit
+	 * @return
+	 */
+	private WsAssetUnit getAssetUnitInit()
+	{
+		WsAssetUnit assetUnitResponse = new WsAssetUnit();
+//		TODO è DAVVERO corretto il rate from date in asset unit ?
+		TypeData data = this.utilityToPass.dataToTypeData(this.rateFromDate);
+		assetUnitResponse.setTariffDate(data);
+		logger.debug("getAssetUnitInit setted tariffDate="+data);
+		
+		return assetUnitResponse;
 	}
 	
 	/**
@@ -356,7 +378,7 @@ public class MapperAssetSectionToPASS
 		
 		for (ICoverage covTemp : listCov)
 		{
-			WsAssetUnit assetUnitTemp = new WsAssetUnit();
+			WsAssetUnit assetUnitTemp = getAssetUnitInit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			WsFactor unitInstanceFactorToAdd  = new WsFactor();
 			EnumCoverageCode coverageCode = covTemp.getCode();
@@ -479,7 +501,7 @@ public class MapperAssetSectionToPASS
 		
 		for (ICoverage covTemp : listCov)
 		{
-			WsAssetUnit assetUnitTemp = new WsAssetUnit();
+			WsAssetUnit assetUnitTemp = getAssetUnitInit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			EnumCoverageCode coverageCode = covTemp.getCode();
 			logger.debug("getS5 add factors generic to "+coverageCode);
@@ -533,7 +555,7 @@ public class MapperAssetSectionToPASS
 		
 		for (ICoverage covTemp : listCov)
 		{
-			WsAssetUnit assetUnitTemp = new WsAssetUnit();
+			WsAssetUnit assetUnitTemp = getAssetUnitInit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			EnumCoverageCode coverageCode = covTemp.getCode();
 			logger.debug("getS4 add factors generic to "+coverageCode);
@@ -576,7 +598,7 @@ public class MapperAssetSectionToPASS
 		
 		for (ICoverage covTemp : listCov)
 		{
-			WsAssetUnit assetUnitTemp = new WsAssetUnit();
+			WsAssetUnit assetUnitTemp = getAssetUnitInit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			WsFactor unitInstanceFactorToAdd  = new WsFactor();
 			EnumCoverageCode coverageCode = covTemp.getCode();
@@ -683,7 +705,7 @@ public class MapperAssetSectionToPASS
 		
 		for (ICoverage covTemp : listCov)
 		{
-			WsAssetUnit assetUnitTemp = new WsAssetUnit();
+			WsAssetUnit assetUnitTemp = getAssetUnitInit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			WsFactor factorsUnitInstanceToAdd  = new WsFactor();
 			EnumCoverageCode coverageCode = covTemp.getCode();
@@ -797,7 +819,7 @@ public class MapperAssetSectionToPASS
 		
 		for (ICoverage covTemp : listCov)
 		{
-			WsAssetUnit assetUnitTemp = new WsAssetUnit();
+			WsAssetUnit assetUnitTemp = getAssetUnitInit();
 			WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
 			WsFactor factorsUnitInstanceToAdd3RCFRA  = new WsFactor();
 			WsFactor factorsUnitInstanceToAdd3MASS  = new WsFactor();
