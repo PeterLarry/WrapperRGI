@@ -19,7 +19,7 @@ import it.cg.main.dto.main.Quote;
 
 public class MapperUtilityToPASS
 {
-	private Logger logger = Logger.getLogger(getClass());
+	private static final Logger logger = Logger.getLogger(MapperUtilityToPASS.class.getName());
 
 	/**
 	 * Set inizialized asset code with risk type (wrapper code)

@@ -22,7 +22,7 @@ import org.springframework.core.io.ClassPathResource;
 //@ComponentScan(basePackages={"it.cg.*"})
 public class ApplicationContextConfig implements ServletContextListener
 { 
-	private static Logger logger = Logger.getLogger("it.cg.main.init.ApplicationContextConfig");
+	private static final Logger logger = Logger.getLogger("it.cg.main.init.ApplicationContextConfig");
 	
 	/**
 	 * Load configuration external and internal
