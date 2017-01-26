@@ -237,10 +237,10 @@ public class MapperProductAssetToPASS
 			factProp.add(wsFactor);
 		}
 		
-		logger.debug("quoteToListWsProduct add "+factProp.size()+" factors to product");
+		logger.debug("quoteToListWsProduct add "+factProp.size()+" factors from quote to product");
 		wsProductResponse.getFactors().addAll(factProp);
 		List<WsFactor> listFactorsFigures = getFactorForFigureFromRoleWSProduct(quoteRequest.getFigures());
-		logger.debug("quoteToListWsProduct add "+listFactorsFigures.size()+" factors to product");
+		logger.debug("quoteToListWsProduct add "+listFactorsFigures.size()+" factors from figures to product");
 		wsProductResponse.getFactors().addAll(listFactorsFigures);
 		
 		return wsProductResponse;
