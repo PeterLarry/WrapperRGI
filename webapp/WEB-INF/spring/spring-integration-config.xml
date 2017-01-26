@@ -41,10 +41,12 @@
 		<int:service-activator id="chainEasyActivator" >
 			<bean id="chainEasyActivatorBean" class="it.cg.main.integration.easyway.chain.EasyActivatorChain" ></bean>
 		</int:service-activator>
-		<int-ws:outbound-gateway
-				marshaller="marshallerOutboundJaxb"  unmarshaller="marshallerOutboundJaxb" 
-				uri="${endpointOut}" 
-				header-mapper="headerMapperEasy" >
+		<!-- di default aspetta un tempo indefinito  -->
+		<int-ws:outbound-gateway id="outboundGatewayToPASS"
+								 marshaller="marshallerOutboundJaxb"
+								 unmarshaller="marshallerOutboundJaxb" 
+								 uri="${endpointOut}" 
+								 header-mapper="headerMapperEasy" >
 		</int-ws:outbound-gateway>
 		
 	</int:chain>

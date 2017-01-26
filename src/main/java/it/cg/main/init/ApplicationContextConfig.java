@@ -11,7 +11,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -50,8 +49,7 @@ public class ApplicationContextConfig implements ServletContextListener
 //		Internal conf files
 		
         AbstractResource resources[] = new AbstractResource[] {
-        		new ClassPathResource(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()),
-        		new ClassPathResource("log4j.properties")
+        		new ClassPathResource(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value())
         };
 		
 		propConf.setLocations(resources);
@@ -98,6 +96,8 @@ public class ApplicationContextConfig implements ServletContextListener
 	@Override
 	public void contextInitialized(ServletContextEvent event)
 	{
+		logger.info("contextInitialized begin initialize context:"+event);
+		
 		ServletContext context = event.getServletContext();
 		Properties properties = new Properties();
 		try
@@ -110,26 +110,15 @@ public class ApplicationContextConfig implements ServletContextListener
 			logger.error("GRAVE Impossibile caricare le configurazioni principali del main.properties"+ex.getMessage());
 			ex.printStackTrace();
 		}
-		ClassPathResource resources = new ClassPathResource("log4j.properties");
-	        
-		String log4jConfigFile =  resources.getPath();
-//				properties.getProperty(StaticGeneralConfig.LOG4J_PARAM_MAIN_PROPERTIES.value());
-				
-		PropertyConfigurator.configureAndWatch(log4jConfigFile);
 		
-		logger.info("contextLoaded");
-		
+
+		logger.info("contextInitialized finish initialize context");
 	}
-
-
 
 	@Override
-	public void contextDestroyed(ServletContextEvent sce) {
-		// TODO Auto-generated method stub
-		
+	public void contextDestroyed(ServletContextEvent arg0)
+	{
+		logger.info("contextDestroyed Destroyed");
 	}
 
-	
-	
-	
 }

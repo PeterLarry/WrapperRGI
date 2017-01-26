@@ -33,7 +33,8 @@
 	
 <!-- MAIN integration -->
 	<!-- Gateway HTTP -->
-	<int-http:inbound-gateway id="inboundGateway"
+	<!-- request-reply timeout = 1Secondo -->
+	<int-http:inbound-gateway id="inboundGatewayFromDL"
 			                  request-channel="channelInputRequestJson"
 			                  path="${mainUrlPatternWebXml}"
 			                  request-payload-type="java.lang.String"
