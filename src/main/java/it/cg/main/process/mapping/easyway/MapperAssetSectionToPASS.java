@@ -833,19 +833,7 @@ public class MapperAssetSectionToPASS
 				factorsUnitInstanceToAdd3RCFRA.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3RCFRA.value());
 				factorsUnitInstanceToAdd3MASS.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3MASS.value());
 				
-				if( riskType.equals(EnumRiskType.URBAN_BUS) )
-				{
-					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA8.value());
-				}
-				else if(riskType.equals(EnumRiskType.OUT_OF_TOWN_TURISTIC_BUS) )
-				{
-					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA9.value());
-				}
-				else if(riskType.equals(EnumRiskType.BUS_TRAILER))
-				{
-					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA11.value());
-				}
-				else if(riskType.equals(EnumRiskType.CAR) || riskType.equals(EnumRiskType.MOTORBIKE))
+				if(riskType.equals(EnumRiskType.CAR) || riskType.equals(EnumRiskType.MOTORBIKE))
 				{
 					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA1.value());
 //					unitinstance factor Value
@@ -884,6 +872,21 @@ public class MapperAssetSectionToPASS
 						}
 						
 						unitInstanceToAdd.getClauses().add(getClauseRCA());
+						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
+					}
+				}
+				else if(riskType.equals(EnumRiskType.BUS_TRAILER))
+				{
+					assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_RCA11.value());
+					
+					if(otherVehicle.getSelectedDeductible() != null )
+					{
+							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
+					}
+					if(otherVehicle.getSelectedLimit()!= null )
+					{
+						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
