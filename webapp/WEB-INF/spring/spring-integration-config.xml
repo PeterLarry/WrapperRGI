@@ -45,7 +45,8 @@
 		<int-ws:outbound-gateway id="outboundGatewayToPASS"
 								 marshaller="marshallerOutboundJaxb"
 								 unmarshaller="marshallerOutboundJaxb" 
-								 uri="${endpointOut}" 
+								 uri="${endpointOut}"
+								 reply-timeout="${replyTymeoutOutbound}"
 								 header-mapper="headerMapperEasy" >
 		</int-ws:outbound-gateway>
 		
