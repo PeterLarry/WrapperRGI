@@ -24,6 +24,7 @@ public enum ENUMInternalUnitInstanceFactors {
 	FACTOR_FRRCA("FRRCA"),
 	FACTOR_QDRCA("QDRCA"),
 	FACTOR_3YD("3YD"),
+	FACTOR_3HD("3HD"),
 	;
 
 	

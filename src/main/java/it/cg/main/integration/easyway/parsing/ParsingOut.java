@@ -121,6 +121,14 @@ public class ParsingOut
 		
 		msgResponse.getServiceInfo().getProperties().add(returnFactorsProperty);
 		logger.debug("getQuoteToMsgCalculate setted new property : "+returnFactorsProperty.getChiave() +" -> "+returnFactorsProperty.getValore());
+//		____________________________
+		returnFactorsProperty = new TypeProperty();
+		
+		returnFactorsProperty.setChiave("MANAGE_TAXTYPE_TARIFFARTICLE");
+		returnFactorsProperty.setValore("true");
+		
+		msgResponse.getServiceInfo().getProperties().add(returnFactorsProperty);
+		logger.debug("getQuoteToMsgCalculate setted new property : "+returnFactorsProperty.getChiave() +" -> "+returnFactorsProperty.getValore());
 		
 		logger.info("out getQuoteToMsgCalculate with response : "+msgResponse);
 		return msgResponse;

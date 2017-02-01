@@ -19,6 +19,7 @@ import com.mapfre.engines.rating.common.enums.EnumCoverageCode;
 import com.mapfre.engines.rating.common.enums.EnumRole;
 import com.mapfre.engines.rating.common.enums.EnumTaxCode;
 import com.pass.global.CalculatePremiumResponse;
+import com.pass.global.PassProWarrantyUnitShare;
 import com.pass.global.WsAsset;
 import com.pass.global.WsAssetInstance;
 import com.pass.global.WsAssetSection;
@@ -37,6 +38,7 @@ public class MapperResponsePremiumToDL
 	private Logger logger = Logger.getLogger(getClass());
 	
 	private CalculatePremiumResponse responsePremium;
+	private MapperHashmapUtilitiesToDL mapperHashmapUtilitiesToDL = new MapperHashmapUtilitiesToDL();
 	
 	/**
 	 * Create rating info with  2WCAP and 2WPR mapped
@@ -61,9 +63,9 @@ public class MapperResponsePremiumToDL
 					}
 					else if(factorAssetInstanceTemp.getCode().equals("2WPR"))
 					{
-						String worstProvince = MapperHashmapUtilitiesToDL.getWorstProvince(factorAssetInstanceTemp.getValue());
+						String worstProvince = mapperHashmapUtilitiesToDL.getWorstProvince(factorAssetInstanceTemp.getValue());
 						ratingInfoResponse.setWorstProvince(worstProvince);
-						logger.debug("getRatingInfo factor assetinstance worstProvince="+ratingInfoResponse.getWorstProvince());
+						logger.debug("getRatingInfo factor assetinstance 2WPR value to decode:"+factorAssetInstanceTemp.getValue()+" result worstProvince="+ratingInfoResponse.getWorstProvince());
 					}
 				}
 			}
@@ -176,14 +178,22 @@ public class MapperResponsePremiumToDL
 					coverageToAdd.setFiddleFactor(fiddleFactor);
 					logger.debug("getCoveragesFromPass Set FiddleFactor : "+fiddleFactor+" for coverage : "+coverageCode);
 					
-//					TODO TAXcode1 da fare, controllare perchè come fare a farlo se abbiamo pure la lista , visto il code è 1 solo
-//					EnumTaxCode taxCode1 = null;
-//					List<PassProWarrantyUnitShare> listWarrantyUnitShares = assetUnitTemp.getWarrantyUnitShares();
-//					for (PassProWarrantyUnitShare passProWarrantyUnitShareTemp : listWarrantyUnitShares)
-//					{
-//						taxCode1 = passProWarrantyUnitShareTemp.getTaxTypeTariffArticle();
-//					}
-//					coverageToAdd.getAmount().setTaxCode1(taxCode1);
+					EnumTaxCode taxCode1 = null;
+					List<PassProWarrantyUnitShare> listWarrantyUnitShares = assetUnitTemp.getWarrantyUnitShares();
+					for (PassProWarrantyUnitShare passProWarrantyUnitShareTemp : listWarrantyUnitShares)
+					{
+						try
+						{
+							logger.debug("getCoveragesFromPass for coverageCode:"+coverageCode+" output TaxTypeTariffArticle:"+passProWarrantyUnitShareTemp.getTaxTypeTariffArticle());
+							taxCode1 = EnumTaxCode.getEnumFromCode(passProWarrantyUnitShareTemp.getTaxTypeTariffArticle());
+						}
+						catch(IllegalArgumentException ix)
+						{
+							logger.error("getCoveragesFromPass error settingup taxCode1 with:"+passProWarrantyUnitShareTemp.getTaxTypeTariffArticle()+" not corresponding");
+						}
+					}
+					logger.debug("getCoveragesFromPass settingup taxCode1 with value :"+taxCode1);
+					coverageToAdd.getAmount().setTaxCode1(taxCode1);
 					
 					Double antiracket = assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getAntiracket();
 					coverageToAdd.getAmount().setAntiracket(antiracket);
@@ -247,8 +257,15 @@ public class MapperResponsePremiumToDL
 		for (WsUnitInstance unitInstanceTemp : assetUnitTemp.getInstances())
 		{
 			String nameUnitInstance = unitInstanceTemp.getName();
-			if(nameUnitInstance != null)
-				covCodeResponse = EnumCoverageCode.getEnumFromCode(unitInstanceTemp.getName());
+			try
+			{
+				if(nameUnitInstance != null)
+					covCodeResponse = EnumCoverageCode.getEnumFromCode(unitInstanceTemp.getName());
+			}
+			catch(IllegalArgumentException ix)
+			{
+				logger.error("getCoverageCode the code"+unitInstanceTemp.getName()+" its not a CoverageCode, probably input problems (no coverages?)");
+			}
 		}
 		
 		return covCodeResponse;
@@ -309,7 +326,7 @@ public class MapperResponsePremiumToDL
 	
 
 	/**
-	 * Check the 3YD factor from UnitInstance
+	 * Check the 3Hd factor from UnitInstance
 	 * @param roleSelected
 	 * @return higRiskResponse 
 	 */
@@ -336,30 +353,30 @@ public class MapperResponsePremiumToDL
 								{
 									ENUMInternalUnitInstanceFactors codeUnitInstance = 
 											ENUMInternalUnitInstanceFactors.getEnumFromCode(factorUnitInstanceTemp.getCode());
-									if(codeUnitInstance.equals(ENUMInternalUnitInstanceFactors.FACTOR_3YD))
+									if(codeUnitInstance.equals(ENUMInternalUnitInstanceFactors.FACTOR_3HD))
 									{
-										String value3YD = factorUnitInstanceTemp.getValue();
-										if(EnumRole.FIRST_YOUNG_DRIVER.equals(roleSelected) && value3YD.equals("4RD1"))
+										String value3HD = factorUnitInstanceTemp.getValue();
+										if(EnumRole.FIRST_YOUNG_DRIVER.equals(roleSelected) && value3HD.equals("4"))
 										{
 											higRiskResponse = true;
 											break;
 										}
-										else if(EnumRole.OWNER.equals(roleSelected) && value3YD.equals("3OW"))
+										else if(EnumRole.OWNER.equals(roleSelected) && value3HD.equals("3"))
 										{
 											higRiskResponse = true;
 											break;
 										}
-										else if(EnumRole.POLICY_HOLDER.equals(roleSelected) && value3YD.equals("2PH"))
+										else if(EnumRole.POLICY_HOLDER.equals(roleSelected) && value3HD.equals("2"))
 										{
 											higRiskResponse = true;
 											break;
 										}
-										else if(EnumRole.SECOND_YOUNG_DRIVER.equals(roleSelected) && value3YD.equals("5RD2"))
+										else if(EnumRole.SECOND_YOUNG_DRIVER.equals(roleSelected) && value3HD.equals("5"))
 										{
 											higRiskResponse = true;
 											break;
 										}
-										else if(EnumRole.USUAL_DRIVER.equals(roleSelected) && value3YD.equals("1MD"))
+										else if(EnumRole.USUAL_DRIVER.equals(roleSelected) && value3HD.equals("1"))
 										{
 											higRiskResponse = true;
 											break;

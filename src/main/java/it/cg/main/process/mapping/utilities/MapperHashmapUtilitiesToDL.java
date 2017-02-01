@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class MapperHashmapUtilitiesToDL
 {
-	private static final Map<String, String> mapWorstProvince = new HashMap<String, String>();
+	private Map<String, String> mapWorstProvince = new HashMap<String, String>();
 	
-	public static String getWorstProvince(String idProvincePASS)
+	public String getWorstProvince(String idProvincePASS)
 	{
 		String result = "";
-		
+
 		result = mapWorstProvince.get(idProvincePASS);
 		
 		return result;

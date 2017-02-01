@@ -135,7 +135,7 @@ public class MapperAssetSectionToPASS
 //		TODO è DAVVERO corretto il rate from date in asset unit ?
 		TypeData data = this.utilityToPass.dataToTypeData(this.rateFromDate);
 		assetUnitResponse.setTariffDate(data);
-		logger.debug("getAssetUnitInit setted tariffDate="+data);
+		logger.debug("getAssetUnitInit setted tariffDate="+data+" from rateFromDate:"+rateFromDate);
 		
 		return assetUnitResponse;
 	}
