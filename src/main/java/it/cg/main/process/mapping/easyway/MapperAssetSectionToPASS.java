@@ -1105,7 +1105,6 @@ public class MapperAssetSectionToPASS
 				}
 				assetUnitTemp.setSelection((covTemp.getSelected() != null && covTemp.getSelected())  ? tybT : tybF);
 				
-				unitInstanceToAdd.getClauses().add(getClauseRCA());
 //				add Unitinstance to AssetUnit for MOTOR_RCA
 				assetUnitTemp.getInstances().add(unitInstanceToAdd);
 //				add AssetUnit to AssetSection for MOTOR_RCA

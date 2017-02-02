@@ -17,7 +17,20 @@ public class MapperHashmapUtilitiesToPASS
 	public String get2Loyal(String companyChangeDetailsSelected)
 	{
 		String result = "";
-		
+//		mapLoyal.put("non valorizzato","33");
+		if(companyChangeDetailsSelected == null)
+		{
+			result ="33";
+		}
+		else if(companyChangeDetailsSelected.isEmpty())
+		{
+			result ="33";
+		}
+		else
+		{
+			result = mapLast3_6Years.get(companyChangeDetailsSelected);
+		}
+			
 		result = mapLoyal.get(companyChangeDetailsSelected);
 		return result;
 	}
@@ -25,16 +38,38 @@ public class MapperHashmapUtilitiesToPASS
 	public String getLast3Years(String last3YearsSelected)
 	{
 		String result = "";
-		
-		result = mapLast3_6Years.get(last3YearsSelected);
+//		mapLast3_6Years.put("","102");
+		if(last3YearsSelected == null)
+		{
+			result ="102";
+		}
+		else if(last3YearsSelected.isEmpty())
+		{
+			result ="102";
+		}
+		else
+		{
+			result = mapLast3_6Years.get(last3YearsSelected);
+		}
 		return result;
 	}
 	
 	public String getLast6Years(String last6YearsSelected)
 	{
 		String result = "";
-		
-		result = mapLast3_6Years.get(last6YearsSelected);
+//		mapLast3_6Years.put("","102");
+		if(last6YearsSelected == null)
+		{
+			result ="102";
+		}
+		else if(last6YearsSelected.isEmpty())
+		{
+			result ="102";
+		}
+		else
+		{
+			result = mapLast3_6Years.get(last6YearsSelected);
+		}
 		return result;
 	}
 	
@@ -79,7 +114,6 @@ public class MapperHashmapUtilitiesToPASS
 		mapLoyal.put("6D10","30");
 		mapLoyal.put("6D11","31");
 		mapLoyal.put("6D20","32");
-		mapLoyal.put("non valorizzato","33");
 		mapLoyal.put("NDND","34");
 		mapLoyal.put("0T00","35");
 		mapLoyal.put("0T01","36");
@@ -2954,7 +2988,7 @@ public class MapperHashmapUtilitiesToPASS
 		mapLast3_6Years.put("98","99");
 		mapLast3_6Years.put("99","100");
 		mapLast3_6Years.put("ND","101");
-		mapLast3_6Years.put("non valorizzato","102");
+		
 
 		return mapLast3_6Years;
 	}
