@@ -182,6 +182,7 @@ public class MapperAssetSectionToPASS
 		{
 			factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_1FIDRC.value());
 			factorToAdd.setValue(coverage.getFiddleFactor().toString());
+			logger.debug("getFactorsForUnitInstanceGeneric add factor code:"+factorToAdd.getCode()+" value:"+factorToAdd.getValue());
 			unitInstanceToEdit.getFactors().add(factorToAdd);
 		}
 		if(coverage.getDiscount() != null)
@@ -189,6 +190,7 @@ public class MapperAssetSectionToPASS
 			factorToAdd = new WsFactor();
 			factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3ADJ.value());
 			factorToAdd.setValue(coverage.getDiscount().toString());
+			logger.debug("getFactorsForUnitInstanceGeneric add factor code:"+factorToAdd.getCode()+" value:"+factorToAdd.getValue());
 			unitInstanceToEdit.getFactors().add(factorToAdd);
 		}
 		if(coverage.getQuickAndDirty() != null)
@@ -196,6 +198,7 @@ public class MapperAssetSectionToPASS
 			factorToAdd = new WsFactor();
 			factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3QD.value());
 			factorToAdd.setValue(coverage.getQuickAndDirty().toString());
+			logger.debug("getFactorsForUnitInstanceGeneric add factor code:"+factorToAdd.getCode()+" value:"+factorToAdd.getValue());
 			unitInstanceToEdit.getFactors().add(factorToAdd);
 		}
 		if(coverage.getPreviousNetAmount() != null)
@@ -203,6 +206,7 @@ public class MapperAssetSectionToPASS
 			factorToAdd = new WsFactor();
 			factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_FRRCA.value());
 			factorToAdd.setValue(coverage.getPreviousNetAmount().toString());
+			logger.debug("getFactorsForUnitInstanceGeneric add factor code:"+factorToAdd.getCode()+" value:"+factorToAdd.getValue());
 			unitInstanceToEdit.getFactors().add(factorToAdd);
 		}
 		if(coverage.getCode() != null )
