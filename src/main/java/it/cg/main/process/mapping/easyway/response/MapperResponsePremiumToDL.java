@@ -106,6 +106,7 @@ public class MapperResponsePremiumToDL
 			logger.debug("getFiguresMapped for role:"+figureTemp.getRole());
 			
 			Boolean higRiskDriver =  getHighRiskDriver(figureTemp.getRole());
+			logger.debug("getFiguresMapped set HighRiskDriver:"+figureTemp.getRole());
 			figureTemp.setHighRiskDriver(higRiskDriver);
 		}
 		
@@ -223,7 +224,7 @@ public class MapperResponsePremiumToDL
 			}
 		}
 		
-		logger.info("into getCoveragesFromPass with input : "+responseListCoverages);
+		logger.info("out getCoveragesFromPass with output responseListCoverages:"+responseListCoverages);
 		return responseListCoverages;
 	}
 	
@@ -282,11 +283,11 @@ public class MapperResponsePremiumToDL
 		try
 		{
 			responseListAssetSection = cpResponse.getReturn().getOutput().getProduct().getAssets().get(0).getInstances().get(0).getSections();
-			logger.debug("into getAssetUnitsValorized Found "+responseListAssetSection.size()+" AssetSections");
+			logger.debug("getAssetUnitsValorized Found "+responseListAssetSection.size()+" AssetSections");
 		}
 		catch(NullPointerException ex)
 		{
-			logger.debug("no AssetSections found in response CalculatePremium : "+cpResponse);
+			logger.debug("getAssetUnitsValorized NO AssetSections found in response CalculatePremium : "+cpResponse);
 		}
 		
 		return responseListAssetSection;
@@ -313,7 +314,7 @@ public class MapperResponsePremiumToDL
 						for (WsUnitInstance wsUnitInstanceTemp : wsAssetUnitTemp.getInstances())
 						{
 							logTariffFormattedResponse += wsUnitInstanceTemp.getTariffFormulaLog();
-							logger.debug("Log for tariffFormulaLog output => "+wsUnitInstanceTemp.getTariffFormulaLog());
+							logger.debug("getLogTariffFormulaLog Log for tariffFormulaLog output => "+wsUnitInstanceTemp.getTariffFormulaLog());
 						}
 					}
 				}
@@ -393,7 +394,6 @@ public class MapperResponsePremiumToDL
 			}
 		}
 		
-		logger.info("out getHighRiskDriver with response="+higRiskResponse);
 		return higRiskResponse;
 	}
 
@@ -429,7 +429,7 @@ public class MapperResponsePremiumToDL
 				figureToAdd.setRole(EnumRole.POLICY_HOLDER);
 				mapFiguresResponse.put(EnumRole.POLICY_HOLDER, figureToAdd);
 				
-				logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" ");
+				logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for codeFactorEnumPASSTemp:"+codeFactorEnumPASSTemp);
 				break;
 			}
 		}

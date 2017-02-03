@@ -21,11 +21,6 @@ public class ActivatorInboundGatewayImpl extends ActivatorHandler
 	 */
 	@Value("${easyFieldRouting:vuoto}")
 	private String externalTypeForEasyWay;
-	/**
-	 * external constant for the HARD way field check
-	 */
-	@Value("${hardFieldRouting:vuoto}")
-	private String externalTypeForHardWay;
 	
 	/**
 	 * Set the routing's type and the external request object into RoutingDTO.<br>
@@ -41,7 +36,6 @@ public class ActivatorInboundGatewayImpl extends ActivatorHandler
 		
 		RoutingDTO routingDto = new RoutingDTO();
 		routingDto.setExternalTypeForEasyWay(externalTypeForEasyWay);
-		routingDto.setExternalTypeForHardWay(externalTypeForHardWay);
 		routingDto.setTypeOf(request.getServiceType());
 		routingDto.setInboundRequestHttpJSON(request);
 		

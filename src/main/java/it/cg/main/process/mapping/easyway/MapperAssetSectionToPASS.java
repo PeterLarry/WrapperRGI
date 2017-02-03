@@ -61,39 +61,51 @@ public class MapperAssetSectionToPASS
 		this.tybF.setBoolean(false);
 		this.isEnableTariffFormulaLogActive = inbJsonRequest.getInboundQuoteDTO().getEnableDebugging() == null ? 
 														false : inbJsonRequest.getInboundQuoteDTO().getEnableDebugging();
-		logger.debug("init isEnableTariffFormulaLogActive :"+isEnableTariffFormulaLogActive);
+		logger.debug("getAssetSections init isEnableTariffFormulaLogActive :"+isEnableTariffFormulaLogActive);
 		this.figureOwner = figureOwnerRequest;
-		logger.debug("init figureOwner :"+figureOwner);
+		logger.debug("getAssetSections init figureOwner :"+figureOwner);
 		this.numberOfYoungDriver = inbJsonRequest.getInboundQuoteDTO().getNumberOfYoungDriver();
 		
+		logger.debug("getAssetSections begin S1");
 		WsAssetSection assetSectionSx = getS1( listCov, riskType, inbJsonRequest.getInboundQuoteDTO().getOtherVehicle() );
 		if(assetSectionSx != null)
 			assetInReqest.getSections().add(assetSectionSx);
+		logger.debug("getAssetSections end S1:"+assetSectionSx);
 		
+		logger.debug("getAssetSections begin S2");
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS2(listCov, riskType);
 		if(assetSectionSx != null)
 			assetInReqest.getSections().add(assetSectionSx);
+		logger.debug("getAssetSections end S2:"+assetSectionSx);
 		
+		logger.debug("getAssetSections begin S3");
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS3(listCov, riskType);
 		if(assetSectionSx != null)
 			assetInReqest.getSections().add(assetSectionSx);
+		logger.debug("getAssetSections end S3:"+assetSectionSx);
 		
+		logger.debug("getAssetSections begin S4");
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS4(listCov, riskType);
 		if(assetSectionSx != null)
 			assetInReqest.getSections().add(assetSectionSx);
+		logger.debug("getAssetSections end S4:"+assetSectionSx);
 		
+		logger.debug("getAssetSections begin S5");
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS5(listCov, riskType);
 		if(assetSectionSx != null)
 			assetInReqest.getSections().add(assetSectionSx);
+		logger.debug("getAssetSections end S5:"+assetSectionSx);
 		
+		logger.debug("getAssetSections begin S6");
 		assetSectionSx = new WsAssetSection();
 		assetSectionSx = getS6(listCov, riskType);
 		if(assetSectionSx != null)
 			assetInReqest.getSections().add(assetSectionSx);
+		logger.debug("getAssetSections end S6:"+assetSectionSx);
 		
 	}
 	

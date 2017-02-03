@@ -1097,9 +1097,9 @@ public class MapperProductAssetToPASS
 			responseClassCodeForPASS = "22";
 			this.sectorCode = "000007";
 		}
-		logger.debug("getRiskTypeAsset for  riskType :"+riskTypeQuoteEnum);
+		logger.debug("getRiskTypeAsset for riskType :"+riskTypeQuoteEnum+" set sectorCode:"+sectorCode+" and ClassCode:"+responseClassCodeForPASS);
 		
-		logger.info("getRiskTypeAsset with output classCode : "+responseClassCodeForPASS+" and sectorCode : "+this.sectorCode);
+		logger.info("out getRiskTypeAsset");
 		return responseClassCodeForPASS;
 	}
 

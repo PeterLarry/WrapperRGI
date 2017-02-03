@@ -62,8 +62,10 @@ public class ParsingOut
 	 */
 	public WsCalculatePremiumInput getQuoteToPass(RoutingDTO request)
 	{
-		logger.info("Request form DL to parse : " + request);
+		logger.info("getQuoteToPass Request form DL to parse : " + request);
 
+		logger.debug("getQuoteToPass Begin Parsing to PASS");
+		
 		Quote quoteRequest = request.getInboundRequestHttpJSON().getInboundQuoteDTO();
 		TypeBooleano tybF = new TypeBooleano();
 		tybF.setBoolean(false);
@@ -75,32 +77,38 @@ public class ParsingOut
 		WsCalculatePremiumInput responseCalculatePremium = new WsCalculatePremiumInput();
 		MapperUtilityToPASS mapperUtility = new MapperUtilityToPASS();
 		WsAsset asset = mapperUtility.getInitWsAsset(quoteRequest);
+		logger.debug("getQuoteToPass wsAsset created");
 		IFigure figureOwner = mapperUtility.getFigureOwner(quoteRequest); 
+		logger.debug("getQuoteToPass figureOwner fount");
 		
 		try
 		{
 //			populate product
 			getMapper().quoteDtoToProduct(request.getInboundRequestHttpJSON(), responseCalculatePremium);
+			logger.debug("getQuoteToPass wsProduct setted");
 //			populate assetInstance
 			getMapper().quoteDtoToAsset(request.getInboundRequestHttpJSON(), asset);
+			logger.debug("getQuoteToPass wsAssetInstance setted");
 //			populate assetUnit and UnitInstance
 			mapperAssetSection.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0),
 													responseCalculatePremium.getProduct().getCode(), figureOwner);
-			
+			logger.debug("getQuoteToPass wsAssetUnit and wsUnitInstance setted");
 			responseCalculatePremium.getProduct().getAssets().add(asset);
+			
+			logger.debug("getQuoteToPass End Parsing to PASS");
 		}
 		catch(NullPointerException ex)
 		{
-			logger.error("Error during create asset section "+ex.getMessage()+"\n"+ ex.getCause());
+			logger.error("Error getQuoteToPass during create asset section "+ex.getMessage()+" - "+ ex.getCause());
 			ex.printStackTrace();
 		}
 		catch(ArrayIndexOutOfBoundsException ex)
 		{
-			logger.error("Error during create asset section "+ex.getMessage()+"\n"+ ex.getCause());
+			logger.error("Error getQuoteToPass during create asset section "+ex.getMessage()+" - "+ ex.getCause());
 			ex.printStackTrace();
 		}
 		
-		logger.info("PASS object parsed : " + responseCalculatePremium);
+		logger.info("getQuoteToPass PASS object parsed : " + responseCalculatePremium);
 		return responseCalculatePremium;
 	}
 	
@@ -133,18 +141,6 @@ public class ParsingOut
 		logger.info("out getQuoteToMsgCalculate with response : "+msgResponse);
 		return msgResponse;
 	}
-	
-	/**
-	 * Hard way GET TECHNICAL DATA
-	 * @param request
-	 * @return
-	 */
-	public GetTechnicalData getGetTechnicalDataParse(RoutingDTO request)
-	{
-		GetTechnicalData technicalData = new GetTechnicalData();
-		
-		return technicalData;
-		
-	}
+
 
 }

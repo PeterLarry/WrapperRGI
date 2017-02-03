@@ -28,7 +28,6 @@
 	<!-- Routing -->
 	<int:recipient-list-router id="listRouter" input-channel="activatorForRouterChannel">
 	    <int:recipient channel="routerEasyChannel" selector-expression="payload.typeOf.equals(payload.externalTypeForEasyWay)"/>
-	    <int:recipient channel="routerHardChannel" selector-expression="payload.typeOf.equals(payload.externalTypeForHardWay)"/>
  	</int:recipient-list-router>
 	
 	<!-- - EASY way -->
@@ -59,9 +58,6 @@
 	</int:service-activator>
 	
 		<!-- chain easy END -->
-	<!-- - HARD way -->
- 	<import resource="spring-integration-hardway-config.xml"/>
-	
 	
 </beans>
 
