@@ -302,6 +302,7 @@ public class MapperResponsePremiumToDL
 	{
 		logger.info("into getLogTariffFormulaLog");
 		String logTariffFormattedResponse = "";
+		EnumCoverageCode covCodeProxy = null;
 		
 		for (WsAsset wsAssetTemp : this.responsePremium.getReturn().getOutput().getProduct().getAssets())
 		{
@@ -314,7 +315,14 @@ public class MapperResponsePremiumToDL
 						for (WsUnitInstance wsUnitInstanceTemp : wsAssetUnitTemp.getInstances())
 						{
 							logTariffFormattedResponse += wsUnitInstanceTemp.getTariffFormulaLog();
-							logger.debug("getLogTariffFormulaLog Log for tariffFormulaLog output => "+wsUnitInstanceTemp.getTariffFormulaLog());
+							try
+							{
+								covCodeProxy = EnumCoverageCode.getEnumFromCode(wsUnitInstanceTemp.getName());
+							}
+							catch(IllegalArgumentException ix)
+							{ }
+							logger.debug("getLogTariffFormulaLog tarifformulalog for CoverageCode:"+covCodeProxy+" , name:"+wsUnitInstanceTemp.getName());
+							logger.debug("getLogTariffFormulaLog Log for tariffFormulaLog output XML => "+wsUnitInstanceTemp.getTariffFormulaLog());
 						}
 					}
 				}
