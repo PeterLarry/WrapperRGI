@@ -467,6 +467,9 @@ public class MapperProductAssetToPASS
 		List<WsAssetInstance> listAssetInstResponse = new ArrayList<WsAssetInstance>();
 		WsAssetInstance assetInstanceResponse = new WsAssetInstance();
 		
+		boolean isOtherVehicleEmpty = isOtherVehicleEmpty(quote);
+		logger.debug("quoteToWsAsset isOtherVehicleEmpty:"+isOtherVehicleEmpty);
+		
 //		factor 2Loyal and lastYears 3 and 6
 		MapperHashmapUtilitiesToPASS mapUty = new MapperHashmapUtilitiesToPASS();
 
@@ -558,14 +561,6 @@ public class MapperProductAssetToPASS
 			logger.debug("quoteToWsAsset add factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
-		if(quote.getVehicle().getMatriculationYearMonth() != null)
-		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2DIMM.value());
-			wsFactor.setValue(dateFormat.format(quote.getVehicle().getMatriculationYearMonth()));
-			logger.debug("quoteToWsAsset add factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
-			factAsset.add(wsFactor);
-		}
 		if(quote.getVehicle().getVehicleAge() != null)
 		{
 			wsFactor = new WsFactor();
@@ -595,14 +590,6 @@ public class MapperProductAssetToPASS
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2ANUCF.value());
 			wsFactor.setValue(quote.getNumberOfVehiclesOwned().toString());
-			logger.debug("quoteToWsAsset add factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
-			factAsset.add(wsFactor);
-		}
-		if(quote.getRatingInfo().getUwClass() != null)
-		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2CLUWR.value());
-			wsFactor.setValue(quote.getRatingInfo().getUwClass());
 			logger.debug("quoteToWsAsset add factor : "+wsFactor.getCode()+" - value :"+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
@@ -830,7 +817,7 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if (  quote.getOtherVehicle() != null && (
+		if (  !isOtherVehicleEmpty && (
 					!quote.getContext().getRiskType().equals(EnumRiskType.CAR) ||
 				    !quote.getContext().getRiskType().equals(EnumRiskType.MOTORBIKE) ||
 				    !quote.getContext().getRiskType().equals(EnumRiskType.MOPED))  )
@@ -1067,11 +1054,11 @@ public class MapperProductAssetToPASS
 		}
 		if(riskTypeQuoteEnum.equals(EnumRiskType.TRUCK_TRAILER))
 		{
-			if(iOtherVehicle != null && iOtherVehicle.getWeight() > 60)
+			if(iOtherVehicle != null && iOtherVehicle.getWeight()!= null && iOtherVehicle.getWeight() > 60)
 			{
 				responseClassCodeForPASS = "15";
 			}
-			else if(iOtherVehicle != null && iOtherVehicle.getWeight() <= 60)
+			else if(iOtherVehicle != null && iOtherVehicle.getWeight() != null && iOtherVehicle.getWeight() <= 60)
 			{
 				responseClassCodeForPASS = "996";
 			}
@@ -1146,6 +1133,18 @@ public class MapperProductAssetToPASS
 		
 		return dataOpenTypeData;
 	
+	}
+	
+	private boolean isOtherVehicleEmpty(Quote quote)
+	{
+		boolean isEmptyOtherVehicle = false ;
+		
+		IOtherVehicle otherVehicle = quote.getOtherVehicle();
+		
+		if(otherVehicle == null || otherVehicle.getOwnBehalf() == null )
+			isEmptyOtherVehicle = true;
+		
+		return isEmptyOtherVehicle;
 	}
 
 

@@ -828,7 +828,8 @@ public class MapperAssetSectionToPASS
 	 */
 	private WsAssetSection getS1(List<ICoverage> listCov, EnumRiskType riskType, IOtherVehicle otherVehicle)
 	{
-		logger.info("into getS1 with request : listCov="+listCov+" riskType="+riskType+" otherVehicle="+otherVehicle);
+		logger.info("into getS1 with request : listCov="+listCov+
+						" riskType="+riskType+" otherVehicle="+otherVehicle);
 		
 		WsAssetSection assetSectionResultS1 = new WsAssetSection();
 		assetSectionResultS1.setCode(ENUMInternalCodeSection.CODE_S1.value());
