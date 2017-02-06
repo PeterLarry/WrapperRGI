@@ -34,9 +34,9 @@ public class EasyActivatorChain extends ActivatorHandler
 	@Gateway
 	public Message<CalculatePremium> gotoEasyCallChain(RoutingDTO request) throws DatatypeConfigurationException
 	{
-		logger.info("Into gotoEasyCall call , input="+request);
+		logger.info("Into gotoEasyCall Start easy call with input="+request+" Received request from Proxy");
 		
-		logger.debug("TIMEtest - BEFORE parsing from DL to PASS");
+		logger.debug("time test - before parsing from DL to PASS");
 		ParsingOut pout = new ParsingOut(easyMapperMapstruct);
 //		parse object to PASS
 		WsCalculatePremiumInput calcPremium = pout.getQuoteToPass(request);
@@ -44,12 +44,12 @@ public class EasyActivatorChain extends ActivatorHandler
 		CalculatePremium cp = new CalculatePremium();
 		cp.setArg0(pout.getQuoteToMsgCalculate());
 		cp.getArg0().setInput(calcPremium);
-		logger.debug("TIMEtest - AFTER parsing from DL to PASS");
+		logger.debug("time test - after parsing from DL to PASS");
 
 //		create message response
 		Message<CalculatePremium> messageResponse = createMessage(cp);
 		
- 		logger.info("Outof method gotoEasyCall than call WS to PASS , output="+cp);
+ 		logger.info("Outof method gotoEasyCall than call WS to PASS , output="+cp+" Sent request to Pass");
 		return messageResponse;
 	}
 

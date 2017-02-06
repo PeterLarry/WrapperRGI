@@ -3,6 +3,8 @@ package it.cg.main.process.mapping.utilities;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Mapping for fields 2loyal and last3years
  * @author RiccardoEstia
@@ -18,11 +20,7 @@ public class MapperHashmapUtilitiesToPASS
 	{
 		String result = "";
 //		mapLoyal.put("non valorizzato","33");
-		if(companyChangeDetailsSelected == null)
-		{
-			result ="33";
-		}
-		else if(companyChangeDetailsSelected.isEmpty())
+		if(StringUtils.isEmpty(companyChangeDetailsSelected))
 		{
 			result ="33";
 		}
@@ -39,11 +37,7 @@ public class MapperHashmapUtilitiesToPASS
 	{
 		String result = "";
 //		mapLast3_6Years.put("","102");
-		if(last3YearsSelected == null)
-		{
-			result ="102";
-		}
-		else if(last3YearsSelected.isEmpty())
+		if(StringUtils.isEmpty(last3YearsSelected))
 		{
 			result ="102";
 		}
@@ -58,11 +52,7 @@ public class MapperHashmapUtilitiesToPASS
 	{
 		String result = "";
 //		mapLast3_6Years.put("","102");
-		if(last6YearsSelected == null)
-		{
-			result ="102";
-		}
-		else if(last6YearsSelected.isEmpty())
+		if(StringUtils.isEmpty(last6YearsSelected))
 		{
 			result ="102";
 		}

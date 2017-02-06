@@ -338,6 +338,7 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setValue(coverage.getDeductible().getCode());
 				
 				unitInstanceToEdit.getFactors().add(factorToAdd);
+				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
 			}
 			if(coverage.getLimit() != null && coverage.getLimit().getCode() != null)
 			{
@@ -346,8 +347,8 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setValue(coverage.getLimit().getCode());
 				
 				unitInstanceToEdit.getFactors().add(factorToAdd);
+				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
 			}
-			logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
 		}
 		if(codeAssetUnit.equals(ENUMInternalCodeAssetUnit.CODE_EN1.value()) && EnumRiskType.CAR.equals(riskType))
 		{

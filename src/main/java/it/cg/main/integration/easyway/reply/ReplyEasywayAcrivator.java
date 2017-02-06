@@ -23,15 +23,16 @@ public class ReplyEasywayAcrivator extends ActivatorHandler
 	@Gateway(requestChannel="easyChainActivatorResultChannel")
 	public Message<InboundResponseHttpJSON> gotoEasyWay(CalculatePremiumResponse calculateResponse)
 	{
-		logger.info("gotoEasyWay input DTO "+calculateResponse);
+		logger.info("gotoEasyWay input DTO "+calculateResponse+" Received response from Pass");
 		
-		logger.debug("TIMEtest (a1) - response arrived, before parsing from PASS to DL");
+		logger.debug("time test response - response arrived, before parsing from PASS to DL");
 		ParsingIn pIn = new ParsingIn();
 		InboundResponseHttpJSON responseJson  = pIn.parseCalculatePremiumResponse(calculateResponse);
 		
 		Message<InboundResponseHttpJSON> message = createMessage(responseJson);
-		logger.debug("TIMEtest (a2) - after parsing response from PASS to DL");
+		logger.debug("time test response - after parsing response from PASS to DL");
 		
+		logger.info("Into easyChainActivatorResultChannel easy call finished, ready to response proxy - Sent response to Proxy");
 		logger.info("gotoEasyWay response DTO "+message);
 		return message;
 	}

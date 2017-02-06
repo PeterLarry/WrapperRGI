@@ -478,21 +478,24 @@ public class MapperProductAssetToPASS
 		factorToAdd2Loyal.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2LOYAL.value());
 		factorToAdd2Loyal.setValue(loyalCode);
 		assetInstanceResponse.getFactors().add(factorToAdd2Loyal);
-		logger.debug("quoteToWsAsset setted factor : "+factorToAdd2Loyal.getCode()+" value : "+factorToAdd2Loyal.getValue());
+		logger.debug("quoteToWsAsset setted factor : "+factorToAdd2Loyal.getCode()+" value : "+factorToAdd2Loyal.getValue()+
+						" from value quote.getRatingInfo().getCompanyChangesDetails():"+quote.getRatingInfo().getCompanyChangesDetails()+" mapped");
 		
 		String last3YearsCode = mapUty.getLast3Years(quote.getRatingInfo().getLast3YearsAggregatedClaims());
 		WsFactor factorToAddLast3Years = new WsFactor();
 		factorToAddLast3Years.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2SIN3.value());
 		factorToAddLast3Years.setValue(last3YearsCode);
 		assetInstanceResponse.getFactors().add(factorToAddLast3Years);
-		logger.debug("quoteToWsAsset setted factor : "+factorToAddLast3Years.getCode()+" value : "+factorToAddLast3Years.getValue());
+		logger.debug("quoteToWsAsset setted factor : "+factorToAddLast3Years.getCode()+" value : "+factorToAddLast3Years.getValue()+
+						" from value quote.getRatingInfo().getLast3YearsAggregatedClaims():"+quote.getRatingInfo().getLast3YearsAggregatedClaims()+" mapped");
 		
 		String last6YearsCode = mapUty.getLast6Years(quote.getRatingInfo().getAggregatedClaims());
 		WsFactor factorToAddLast6Years = new WsFactor();
 		factorToAddLast6Years.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2SIN6.value());
 		factorToAddLast6Years.setValue(last6YearsCode);
 		assetInstanceResponse.getFactors().add(factorToAddLast6Years);
-		logger.debug("quoteToWsAsset setted factor : "+factorToAddLast6Years.getCode()+" value : "+factorToAddLast6Years.getValue());
+		logger.debug("quoteToWsAsset setted factor : "+factorToAddLast6Years.getCode()+" value : "+factorToAddLast6Years.getValue()+
+				" from value quote.getRatingInfo().getAggregatedClaims():"+quote.getRatingInfo().getAggregatedClaims()+" mapped");
 		
 		List<WsFactor> factAsset= new ArrayList<WsFactor>();
 		WsFactor wsFactor = new WsFactor();
@@ -1135,13 +1138,18 @@ public class MapperProductAssetToPASS
 	
 	}
 	
+	/**
+	 * check the field ownBehalf that seams is never null
+	 * @param quote
+	 * @return if otherVehicle or OwnBehalf are null
+	 */
 	private boolean isOtherVehicleEmpty(Quote quote)
 	{
 		boolean isEmptyOtherVehicle = false ;
 		
 		IOtherVehicle otherVehicle = quote.getOtherVehicle();
 		
-		if(otherVehicle == null || otherVehicle.getOwnBehalf() == null )
+		if(otherVehicle == null || otherVehicle.getBmClass() == null )
 			isEmptyOtherVehicle = true;
 		
 		return isEmptyOtherVehicle;
