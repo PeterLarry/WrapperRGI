@@ -303,7 +303,7 @@ public class MapperAssetSectionToPASS
 						break;
 				}
 				factorToAdd.setValue(valueCoinsCode);
-				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : " + "coverage.getCoinsurance()" + " = " +coverage.getCoinsurance().getCode()+" --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 				
 				unitInstanceToEdit.getFactors().add(factorToAdd);
 			}
@@ -333,7 +333,7 @@ public class MapperAssetSectionToPASS
 						break;
 				}
 				factorToAdd.setValue(valueCoinsCode);
-				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : " + "coverage.getCoinsurance()" + " = " +coverage.getCoinsurance().getCode()+" --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 				
 				unitInstanceToEdit.getFactors().add(factorToAdd);
 			}
@@ -347,7 +347,8 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setValue(coverage.getDeductible().getCode());
 				
 				unitInstanceToEdit.getFactors().add(factorToAdd);
-				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+//				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : " + "coverage.getDeductible()" + " = " +coverage.getDeductible().getCode()+" --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 			}
 			if(coverage.getLimit() != null && coverage.getLimit().getCode() != null)
 			{
@@ -356,7 +357,7 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setValue(coverage.getLimit().getCode());
 				
 				unitInstanceToEdit.getFactors().add(factorToAdd);
-				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : " + "coverage.getLimit()" + " = " +coverage.getLimit().getCode()+" --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 			}
 		}
 		if(codeAssetUnit.equals(ENUMInternalCodeAssetUnit.CODE_EN1.value()) && EnumRiskType.CAR.equals(riskType))
@@ -384,7 +385,7 @@ public class MapperAssetSectionToPASS
 						break;
 				}
 				factorToAdd.setValue(valueCoinsCode);
-				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+				logger.debug("getFactorsForUnitInstanceNotS1S5 coverage="+coverageCode+" factor : " + "coverage.getCoinsurance()" + " = " +coverage.getCoinsurance().getCode()+" --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 				
 				unitInstanceToEdit.getFactors().add(factorToAdd);
 			}
@@ -492,6 +493,8 @@ public class MapperAssetSectionToPASS
 									break;
 							}
 							unitInstanceFactorToAdd.setValue(valueCoinsCode);
+							//TODO Controllare
+							logger.debug("getS6 coverage="+coverageCode+" factor : " + "coverage.getCoinsurance()" + " = " +covTemp.getCoinsurance().getCode()+" --> "+unitInstanceFactorToAdd.getCode()+" = "+unitInstanceFactorToAdd.getValue());
 							unitInstanceToAdd.getFactors().add(unitInstanceFactorToAdd);
 						}
 					}
@@ -838,8 +841,9 @@ public class MapperAssetSectionToPASS
 							factorsUnitInstanceToAdd.setValue(valueCoinsCode);
 							
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd);
-							logger.debug("getS2 covTemp.getCoinsurance().getCode()="+covTemp.getCoinsurance().getCode()+
-											"-->"+factorsUnitInstanceToAdd.getCode()+"="+factorsUnitInstanceToAdd.getValue());
+//							logger.debug("getS2 covTemp.getCoinsurance().getCode()="+covTemp.getCoinsurance().getCode()+
+//											"-->"+factorsUnitInstanceToAdd.getCode()+"="+factorsUnitInstanceToAdd.getValue());
+							logger.debug("getS2 coverage="+coverageCode+" factor : " + "coverage.getCoinsurance()" + " = " +covTemp.getCoinsurance().getCode()+" --> "+factorsUnitInstanceToAdd.getCode()+" = "+factorsUnitInstanceToAdd.getValue());
 						}
 						else if(riskType.equals(EnumRiskType.CAR))
 						{
@@ -848,8 +852,9 @@ public class MapperAssetSectionToPASS
 							factorsUnitInstanceToAdd.setValue(covTemp.getCoinsurance().getCode());
 							
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd);
-							logger.debug("getS2 covTemp.getCoinsurance().getCode()="+covTemp.getCoinsurance().getCode()+
-									"-->"+factorsUnitInstanceToAdd.getCode()+"="+factorsUnitInstanceToAdd.getValue());
+//							logger.debug("getS2 covTemp.getCoinsurance().getCode()="+covTemp.getCoinsurance().getCode()+
+//									"-->"+factorsUnitInstanceToAdd.getCode()+"="+factorsUnitInstanceToAdd.getValue());
+							logger.debug("getS2 coverage="+coverageCode+" factor : " + "coverage.getCoinsurance()" + " = " +covTemp.getCoinsurance().getCode()+" --> "+factorsUnitInstanceToAdd.getCode()+" = "+factorsUnitInstanceToAdd.getValue());
 						}
 				}
 				
@@ -899,8 +904,9 @@ public class MapperAssetSectionToPASS
 						
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd);
 						
-						logger.debug("getS2 covTemp.getCoinsurance().getCode()="+covTemp.getCoinsurance().getCode()+
-								"-->"+factorsUnitInstanceToAdd.getCode()+"="+factorsUnitInstanceToAdd.getValue());
+//						logger.debug("getS2 covTemp.getCoinsurance().getCode()="+covTemp.getCoinsurance().getCode()+
+//								"-->"+factorsUnitInstanceToAdd.getCode()+"="+factorsUnitInstanceToAdd.getValue());
+						logger.debug("getS2 coverage="+coverageCode+" factor : " + "coverage.getCoinsurance()" + " = " +covTemp.getCoinsurance().getCode()+" --> "+factorsUnitInstanceToAdd.getCode()+" = "+factorsUnitInstanceToAdd.getValue());
 					}
 					else if(riskType.equals(EnumRiskType.CAR))
 					{
@@ -910,8 +916,9 @@ public class MapperAssetSectionToPASS
 						
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd);
 						
-						logger.debug("getS2 covTemp.getCoinsurance().getCode()="+covTemp.getCoinsurance().getCode()+
-								"-->"+factorsUnitInstanceToAdd.getCode()+"="+factorsUnitInstanceToAdd.getValue());
+//						logger.debug("getS2 covTemp.getCoinsurance().getCode()="+covTemp.getCoinsurance().getCode()+
+//								"-->"+factorsUnitInstanceToAdd.getCode()+"="+factorsUnitInstanceToAdd.getValue());
+						logger.debug("getS2 coverage="+coverageCode+" factor : " + "coverage.getCoinsurance()" + " = " +covTemp.getCoinsurance().getCode()+" --> "+factorsUnitInstanceToAdd.getCode()+" = "+factorsUnitInstanceToAdd.getValue());
 					}
 				}
 //				add Unitinstance tu AssetUnit
@@ -976,6 +983,7 @@ public class MapperAssetSectionToPASS
 					if(covTemp.getDeductible() != null && covTemp.getDeductible().getCode() != null)
 					{
 						factorsUnitInstanceToAdd3RCFRA.setValue(covTemp.getDeductible().getCode());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "coverage.getDeductible()" + " = " +covTemp.getDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(covTemp.getLimit() != null && covTemp.getLimit().getCode() != null)
@@ -1003,12 +1011,14 @@ public class MapperAssetSectionToPASS
 									break;
 							}
 							factorsUnitInstanceToAdd3MASS.setValue(valueCoinsCode);
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "coverage.getLimit()" + " = " +covTemp.getLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						}
 						else if(riskType.equals(EnumRiskType.MOTORBIKE) )
 						{
 							logger.debug("getS1 riskType="+riskType);
 							
 							factorsUnitInstanceToAdd3MASS.setValue(covTemp.getLimit().getCode());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "coverage.getLimit()" + " = " +covTemp.getLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						}
 						
 						unitInstanceToAdd.getClauses().add(getClauseRCA());
@@ -1024,11 +1034,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1041,11 +1053,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 						factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1058,11 +1072,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1075,11 +1091,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1092,11 +1110,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1109,11 +1129,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1126,11 +1148,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1143,11 +1167,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1161,11 +1187,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 					if(otherVehicle.getWeight() > 60)
@@ -1174,11 +1202,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1191,11 +1221,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1208,11 +1240,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1225,11 +1259,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1242,11 +1278,13 @@ public class MapperAssetSectionToPASS
 					if(otherVehicle.getSelectedDeductible() != null )
 					{
 							factorsUnitInstanceToAdd3RCFRA.setValue(otherVehicle.getSelectedDeductible().getWrapperCode().toString());
+							logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedDeductible()" + " = " +otherVehicle.getSelectedDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 							unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(otherVehicle.getSelectedLimit()!= null )
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(otherVehicle.getSelectedLimit().getWrapperCode().toString());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "otherVehicle.getSelectedLimit()" + " = " +otherVehicle.getSelectedLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
@@ -1259,11 +1297,13 @@ public class MapperAssetSectionToPASS
 					if(covTemp.getDeductible() != null && covTemp.getDeductible().getCode() != null)
 					{
 						factorsUnitInstanceToAdd3RCFRA.setValue(covTemp.getDeductible().getCode());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "coverage.getDeductible()" + " = " +covTemp.getDeductible().getCode()+" --> "+factorsUnitInstanceToAdd3RCFRA.getCode()+" = "+factorsUnitInstanceToAdd3RCFRA.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3RCFRA);
 					}
 					if(covTemp.getLimit() != null && covTemp.getLimit().getCode() != null)
 					{
 						factorsUnitInstanceToAdd3MASS.setValue(covTemp.getLimit().getCode());
+						logger.debug("getS1 coverage="+coverageCode+" factor : " + "coverage.getLimit()" + " = " +covTemp.getLimit().getCode()+" --> "+factorsUnitInstanceToAdd3MASS.getCode()+" = "+factorsUnitInstanceToAdd3MASS.getValue());
 						unitInstanceToAdd.getFactors().add(factorsUnitInstanceToAdd3MASS);
 					}
 				}
