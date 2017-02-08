@@ -32,7 +32,23 @@ public class ReplyEasywayAcrivator extends ActivatorHandler
 		Message<InboundResponseHttpJSON> message = createMessage(responseJson);
 		logger.debug("time test response - after parsing response from PASS to DL");
 		
-		logger.info("Into easyChainActivatorResultChannel easy call finished, ready to response proxy - Sent response to Proxy");
+//		 Sent response to Proxy – tariffDate (ratefromdate), premio netto a livello di prodotto
+		try
+		{
+		logger.debug("Sent response to Proxy - product tariffDate="+
+						calculateResponse.getReturn().getOutput().getProduct().getOpenDate().getData()
+				+ " premium NET="+calculateResponse.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
+		}
+		catch(NullPointerException ex)
+		{
+			logger.error("something null during logging into gotoEasyWay");
+			logger.error(ex.getMessage()+" - "+ex.getCause());
+		}
+		catch(ArrayIndexOutOfBoundsException ex)
+		{
+			logger.error("outofbounds during logging into gotoEasyWay");
+			logger.error(ex.getMessage()+" - "+ex.getCause());
+		}
 		logger.info("gotoEasyWay response DTO "+message);
 		return message;
 	}

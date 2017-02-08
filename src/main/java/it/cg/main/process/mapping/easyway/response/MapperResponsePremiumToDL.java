@@ -303,7 +303,7 @@ public class MapperResponsePremiumToDL
 		logger.info("into getLogTariffFormulaLog");
 		String logTariffFormattedResponse = "";
 		EnumCoverageCode covCodeProxy = null;
-		
+//		TODO metti product code
 		for (WsAsset wsAssetTemp : this.responsePremium.getReturn().getOutput().getProduct().getAssets())
 		{
 			for (WsAssetInstance wsAssetInstanceTemp : wsAssetTemp.getInstances())
