@@ -36,8 +36,10 @@ public class EasyActivatorChain extends ActivatorHandler
 	{
 		logger.info("Into gotoEasyCall Start easy call with input="+request);
 //		Received request from Proxy – targa x, data e ora test (info ricevute dal Proxy)
-		logger.debug(" Received request from Proxy");
-		
+		String plateNumber = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getPlateNumber();
+		String internalIdPlatDate = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getProxyQuoteInternalId();
+		logger.debug("Received request from Proxy - "+plateNumber+" ,"+internalIdPlatDate);
+
 		logger.debug("time test - before parsing from DL to PASS");
 		ParsingOut pout = new ParsingOut(easyMapperMapstruct);
 //		parse object to PASS

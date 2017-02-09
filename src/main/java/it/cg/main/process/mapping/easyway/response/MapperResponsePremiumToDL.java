@@ -1,5 +1,7 @@
 package it.cg.main.process.mapping.easyway.response;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +38,7 @@ import it.cg.main.process.mapping.utilities.MapperHashmapUtilitiesToDL;
 public class MapperResponsePremiumToDL
 {
 	private Logger logger = Logger.getLogger(getClass());
+	private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	private CalculatePremiumResponse responsePremium;
 	private MapperHashmapUtilitiesToDL mapperHashmapUtilitiesToDL = new MapperHashmapUtilitiesToDL();
@@ -141,6 +144,11 @@ public class MapperResponsePremiumToDL
 		responseQuote.setPremium(premiumObjResponse);
 		
 //		log messages response
+		
+		String productCode = this.responsePremium.getReturn().getOutput().getProduct().getCode();
+		String dateProductOpenDate = 
+				this.responsePremium.getReturn().getOutput().getProduct().getOpenDate().getData().toString();
+		logger.debug("getInitQuoteResponse for getLogTariffFormulaLog productCode="+productCode+" product.OpenDate="+dateProductOpenDate);
 		String logTariffFormulaLogFormatted = getLogTariffFormulaLog();
 		responseQuote.setDebuggingLog(logTariffFormulaLogFormatted);
 		
@@ -303,7 +311,7 @@ public class MapperResponsePremiumToDL
 		logger.info("into getLogTariffFormulaLog");
 		String logTariffFormattedResponse = "";
 		EnumCoverageCode covCodeProxy = null;
-//		TODO metti product code
+
 		for (WsAsset wsAssetTemp : this.responsePremium.getReturn().getOutput().getProduct().getAssets())
 		{
 			for (WsAssetInstance wsAssetInstanceTemp : wsAssetTemp.getInstances())
