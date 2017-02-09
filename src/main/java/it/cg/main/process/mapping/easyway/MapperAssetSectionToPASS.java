@@ -234,7 +234,8 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3TIPAS.value());
 				factorToAdd.setValue("1");
 				unitInstanceToEdit.getFactors().add(factorToAdd);
-				logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+//				logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+				logger.debug("getFactorsForUnitInstanceGeneric coverage BASE o DELUXE = " + coverage.getCode() + " --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 			}
 			else if(coverage.getCode().equals(EnumCoverageCode.MOTOR_ROAD_ASSISTANCE_DELUXE) )
 			{
@@ -242,7 +243,7 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3TIPAS.value());
 				factorToAdd.setValue("2");
 				unitInstanceToEdit.getFactors().add(factorToAdd);
-				logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+				logger.debug("getFactorsForUnitInstanceGeneric coverage BASE o DELUXE = " + coverage.getCode() + " --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 			}
 			else if(coverage.getCode().equals(EnumCoverageCode.MOTOR_LEGAL_PROTECTION_BASE) )
 			{
@@ -250,7 +251,8 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3TIPTL.value());
 				factorToAdd.setValue("1");
 				unitInstanceToEdit.getFactors().add(factorToAdd);
-				logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+//				logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+				logger.debug("getFactorsForUnitInstanceGeneric coverage BASE o DELUXE = " + coverage.getCode() + " --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 			}
 			else if(coverage.getCode().equals(EnumCoverageCode.MOTOR_LEGAL_PROTECTION_DELUXE) )
 			{
@@ -258,7 +260,7 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3TIPTL.value());
 				factorToAdd.setValue("2");
 				unitInstanceToEdit.getFactors().add(factorToAdd);
-				logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
+				logger.debug("getFactorsForUnitInstanceGeneric coverage BASE o DELUXE = " + coverage.getCode() + " --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 			}
 		}
 		
@@ -681,10 +683,12 @@ public class MapperAssetSectionToPASS
 						logger.debug("getS3 riskType="+riskType);
 						
 						unitInstanceFactorToAdd.setValue(covTemp.getLimit().getCode());
+						logger.debug("getS3 coverage="+coverageCode+" factor : " + "coverage.getLimit()" + " = " +covTemp.getLimit().getCode()+" --> "+unitInstanceFactorToAdd.getCode()+" = "+unitInstanceFactorToAdd.getValue());
+						
 						unitInstanceToAdd.getFactors().add(unitInstanceFactorToAdd);
 						
-						logger.debug("getS3 covTemp.getLimit().getCode()="+covTemp.getLimit().getCode()+
-								"-->"+unitInstanceFactorToAdd.getCode()+"="+unitInstanceFactorToAdd.getValue());
+//						logger.debug("getS3 covTemp.getLimit().getCode()="+covTemp.getLimit().getCode()+
+//								"-->"+unitInstanceFactorToAdd.getCode()+"="+unitInstanceFactorToAdd.getValue());
 					}
 					else if(riskType.equals(EnumRiskType.CAR))
 					{
@@ -741,10 +745,12 @@ public class MapperAssetSectionToPASS
 						logger.debug("getS3 riskType="+riskType);
 						
 						unitInstanceFactorToAdd.setValue(covTemp.getLimit().getCode());
+						logger.debug("getS3 coverage="+coverageCode+" factor : " + "coverage.getLimit()" + " = " +covTemp.getLimit().getCode()+" --> "+unitInstanceFactorToAdd.getCode()+" = "+unitInstanceFactorToAdd.getValue());
+						
 						unitInstanceToAdd.getFactors().add(unitInstanceFactorToAdd);
 						
-						logger.debug("getS3 covTemp.getLimit().getCode()="+covTemp.getLimit().getCode()+
-										"-->"+unitInstanceFactorToAdd.getCode()+"="+unitInstanceFactorToAdd.getValue());
+//						logger.debug("getS3 covTemp.getLimit().getCode()="+covTemp.getLimit().getCode()+
+//										"-->"+unitInstanceFactorToAdd.getCode()+"="+unitInstanceFactorToAdd.getValue());
 					}
 					else if(riskType.equals(EnumRiskType.CAR))
 					{
