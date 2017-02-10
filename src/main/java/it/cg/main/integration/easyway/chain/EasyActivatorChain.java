@@ -34,11 +34,11 @@ public class EasyActivatorChain extends ActivatorHandler
 	@Gateway
 	public Message<CalculatePremium> gotoEasyCallChain(RoutingDTO request) throws DatatypeConfigurationException
 	{
-		logger.info("Into gotoEasyCall Start easy call with input="+request);
+		logger.info("into gotoEasyCall Start easy call with input="+request);
 //		Received request from Proxy – targa x, data e ora test (info ricevute dal Proxy)
 		String plateNumber = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getPlateNumber();
 		String internalIdPlatDate = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getProxyQuoteInternalId();
-		logger.debug("Received request from Proxy - "+plateNumber+" ,"+internalIdPlatDate);
+		logger.debug("Received request from Proxy - plateNumber="+plateNumber+" , internalid="+internalIdPlatDate);
 
 		logger.debug("time test - before parsing from DL to PASS");
 		ParsingOut pout = new ParsingOut(easyMapperMapstruct);
@@ -53,7 +53,7 @@ public class EasyActivatorChain extends ActivatorHandler
 //		create message response
 		Message<CalculatePremium> messageResponse = createMessage(cp);
 		
- 		logger.info("Outof method gotoEasyCall than call WS to PASS , output="+cp);
+ 		logger.info("out gotoEasyCall than call WS to PASS , output="+cp);
 		return messageResponse;
 	}
 

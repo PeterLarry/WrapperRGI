@@ -1,7 +1,5 @@
 package it.cg.main.process.mapping.easyway.response;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +36,6 @@ import it.cg.main.process.mapping.utilities.MapperHashmapUtilitiesToDL;
 public class MapperResponsePremiumToDL
 {
 	private Logger logger = Logger.getLogger(getClass());
-	private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	private CalculatePremiumResponse responsePremium;
 	private MapperHashmapUtilitiesToDL mapperHashmapUtilitiesToDL = new MapperHashmapUtilitiesToDL();
@@ -51,6 +48,8 @@ public class MapperResponsePremiumToDL
 	{
 		logger.info("into getRatingInfo");
 		
+		logger.debug("getRatingInfo wsProduct.WsAsset.WsAssetInstance.WsFactor --> proxyQuote.RatingInfo begin");
+		
 		IRatingInfo ratingInfoResponse = new RatingInfo();
 		
 		for (WsAsset wsAssetTemp : this.responsePremium.getReturn().getOutput().getProduct().getAssets())
@@ -62,17 +61,21 @@ public class MapperResponsePremiumToDL
 					if(factorAssetInstanceTemp.getCode().equals("2WCAP"))
 					{
 						ratingInfoResponse.setWorstCap(factorAssetInstanceTemp.getValue());
-						logger.debug("getRatingInfo factor assetinstance worstCap="+ratingInfoResponse.getWorstCap());
+						logger.debug("getRatingInfo factor 2WCAP = "+factorAssetInstanceTemp.getValue()+" --> "+
+												" assetinstance quote.WorstCap = "+ratingInfoResponse.getWorstCap());
 					}
 					else if(factorAssetInstanceTemp.getCode().equals("2WPR"))
 					{
 						String worstProvince = mapperHashmapUtilitiesToDL.getWorstProvince(factorAssetInstanceTemp.getValue());
 						ratingInfoResponse.setWorstProvince(worstProvince);
-						logger.debug("getRatingInfo factor assetinstance 2WPR value to decode:"+factorAssetInstanceTemp.getValue()+" result worstProvince="+ratingInfoResponse.getWorstProvince());
+						logger.debug("getRatingInfo factor assetinstance 2WPR = "+factorAssetInstanceTemp.getValue()+" --> "+
+											" (decode) --> quote.WorstProvince="+ratingInfoResponse.getWorstProvince());
 					}
 				}
 			}
 		}
+		
+		logger.debug("getRatingInfo wsProduct.WsAsset.WsAssetInstance.WsFactor --> proxyQuote.RatingInfo end");
 		
 		logger.info("out getRatingInfo with response ratingInfoResponse:"+ratingInfoResponse);
 		return ratingInfoResponse;
@@ -98,6 +101,8 @@ public class MapperResponsePremiumToDL
 	{
 		logger.info("getFiguresMapped for request : "+this.responsePremium);
 		
+		logger.debug("getFiguresMapped wsProduct --> proxyQuote.figures begin");
+		
 		List<IFigure> figuresListResponse = new ArrayList<>();
 		Map<EnumRole, IFigure> mapFigures = createMapFiguresPASS();
 		
@@ -109,9 +114,11 @@ public class MapperResponsePremiumToDL
 			logger.debug("getFiguresMapped for role:"+figureTemp.getRole());
 			
 			Boolean higRiskDriver =  getHighRiskDriver(figureTemp.getRole());
-			logger.debug("getFiguresMapped set HighRiskDriver:"+figureTemp.getRole());
 			figureTemp.setHighRiskDriver(higRiskDriver);
+			logger.debug("getFiguresMapped set HighRiskDriver="+higRiskDriver+" --> "+figureTemp.getRole());
 		}
+		
+		logger.debug("getFiguresMapped wsProduct --> proxyQuote.figures end");
 		
 		logger.info("getFiguresMapped return figures "+figuresListResponse);
 		return figuresListResponse;
@@ -127,6 +134,8 @@ public class MapperResponsePremiumToDL
 	{
 		logger.info("into getInitQuoteResponse with input : "+this.responsePremium);
 		
+		logger.debug("getInitQuoteResponse wsProduct --> proxyQuote begin");
+		
 		Quote responseQuote = new Quote();
 		IPremium premiumObjResponse = new Premium();
 		
@@ -140,19 +149,18 @@ public class MapperResponsePremiumToDL
 		logger.debug("getInitQuoteResponse setted generic TAX : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
 		logger.debug("getInitQuoteResponse setted generic SSN : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
 		
-		logger.debug("getInitQuoteResponse set premium : "+premiumObjResponse);
 		responseQuote.setPremium(premiumObjResponse);
 		
-//		log messages response
-		
 		String productCode = this.responsePremium.getReturn().getOutput().getProduct().getCode();
-		String dateProductOpenDate = 
-				this.responsePremium.getReturn().getOutput().getProduct().getOpenDate().getData().toString();
+		String dateProductOpenDate = this.responsePremium.getReturn().getOutput().getProduct().getOpenDate().getData().toString();
 		logger.debug("getInitQuoteResponse for getLogTariffFormulaLog productCode="+productCode+" product.OpenDate="+dateProductOpenDate);
+		
 		String logTariffFormulaLogFormatted = getLogTariffFormulaLog();
 		responseQuote.setDebuggingLog(logTariffFormulaLogFormatted);
 		
-		logger.info("into getInitQuoteResponse with output : "+responseQuote);
+		logger.debug("getInitQuoteResponse wsProduct --> proxyQuote end");
+		
+		logger.info("out getInitQuoteResponse with output : "+responseQuote);
 		return responseQuote;
 	}
 	
@@ -164,6 +172,8 @@ public class MapperResponsePremiumToDL
 	public List<ICoverage> getCoveragesFromPass()
 	{
 		logger.info("into getCoveragesFromPass with input : "+this.responsePremium);
+		
+		logger.debug("getCoveragesFromPass wsProduct --> proxyQuote.coverages begin");
 		
 		List<ICoverage> responseListCoverages = new ArrayList<>(0);
 		List<WsAssetSection> assetSectionList = getAssetUnitsValorized(this.responsePremium);
@@ -182,10 +192,11 @@ public class MapperResponsePremiumToDL
 					
 					EnumCoverageCode coverageCode = getCoverageCode(assetUnitTemp);
 					coverageToAdd.setCode(coverageCode);
-					logger.debug("getCoveragesFromPass found coverageCode : "+coverageCode);
+					logger.debug("getCoveragesFromPass found coverageCode : "+coverageCode+" begin");
+					
 					Double fiddleFactor = getFiddleFactor(assetUnitTemp);
 					coverageToAdd.setFiddleFactor(fiddleFactor);
-					logger.debug("getCoveragesFromPass Set FiddleFactor : "+fiddleFactor+" for coverage : "+coverageCode);
+					logger.debug("getCoveragesFromPass Set  FiddleFactor = "+fiddleFactor);
 					
 					EnumTaxCode taxCode1 = null;
 					List<PassProWarrantyUnitShare> listWarrantyUnitShares = assetUnitTemp.getWarrantyUnitShares();
@@ -214,7 +225,8 @@ public class MapperResponsePremiumToDL
 						taxCode2 = EnumTaxCode.ANTI_RACKET_TAX;
 					else if(amountSSN > 0)
 						taxCode2 = EnumTaxCode.SSN_HEALTH_TAX;
-					logger.debug("getCoveragesFromPass for coverageCode = "+coverageCode+" setted taxCode2 : "+taxCode2);
+					logger.debug("getCoveragesFromPass for coverageCode = "+coverageCode+" setted taxCode2 = "+taxCode2+
+									" (Annual.Antiracket="+antiracket+" annual.SSN="+amountSSN+")");
 					coverageToAdd.getAmount().setTaxCode2(taxCode2);
 					
 					coverageToAdd.getAmount().setNet(assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getNet());
@@ -228,9 +240,13 @@ public class MapperResponsePremiumToDL
 					logger.debug("getCoveragesFromPass "+coverageCode+" setted TAX : "+assetUnitTemp.getInstances().get(0).getPremium().getAnnual().getTaxes()+" for coverage : "+coverageCode);
 					
 					responseListCoverages.add(coverageToAdd);
+					
+					logger.debug("getCoveragesFromPass added coverageCode : "+coverageCode+" end");
 				}
 			}
 		}
+		
+		logger.debug("getCoveragesFromPass wsProduct --> proxyQuote.coverages end");
 		
 		logger.info("out getCoveragesFromPass with output responseListCoverages:"+responseListCoverages);
 		return responseListCoverages;
@@ -249,7 +265,11 @@ public class MapperResponsePremiumToDL
 			for (WsFactor factorUnitInstanceTemp : unitInstanceTemp.getFactors())
 			{
 				if(factorUnitInstanceTemp.getCode().equals(ENUMInternalUnitInstanceFactors.FACTOR_3FIDRC.value()))
+				{
 					fiddleFactorResponse = new Double(factorUnitInstanceTemp.getValue());
+					logger.debug("getFiddleFactor found factor "+factorUnitInstanceTemp.getCode()+" = "+factorUnitInstanceTemp.getValue());
+					break;
+				}
 			}
 		}
 		return fiddleFactorResponse;
@@ -326,11 +346,12 @@ public class MapperResponsePremiumToDL
 							try
 							{
 								covCodeProxy = EnumCoverageCode.getEnumFromCode(wsUnitInstanceTemp.getName());
+								logger.debug("getLogTariffFormulaLog tarifformulalog for CoverageCode:"+covCodeProxy+
+												" , wsUnitInstance.name from Proxy:"+wsUnitInstanceTemp.getName());
+								logger.debug("getLogTariffFormulaLog Log for tariffFormulaLog output XML => "+wsUnitInstanceTemp.getTariffFormulaLog());
 							}
 							catch(IllegalArgumentException ix)
 							{ }
-							logger.debug("getLogTariffFormulaLog tarifformulalog for CoverageCode:"+covCodeProxy+" , name:"+wsUnitInstanceTemp.getName());
-							logger.debug("getLogTariffFormulaLog Log for tariffFormulaLog output XML => "+wsUnitInstanceTemp.getTariffFormulaLog());
 						}
 					}
 				}
@@ -373,29 +394,41 @@ public class MapperResponsePremiumToDL
 									if(codeUnitInstance.equals(ENUMInternalUnitInstanceFactors.FACTOR_3HD))
 									{
 										String value3HD = factorUnitInstanceTemp.getValue();
+										logger.debug("getHighRiskDriver check for role"+roleSelected+" factor"+codeUnitInstance+
+												" value="+value3HD);
 										if(EnumRole.FIRST_YOUNG_DRIVER.equals(roleSelected) && value3HD.equals("4"))
 										{
 											higRiskResponse = true;
+											logger.debug("getHighRiskDriver found for factor"+codeUnitInstance+" --> "+
+															" role"+roleSelected+" Setted HighRiskDriver="+higRiskResponse);
 											break;
 										}
 										else if(EnumRole.OWNER.equals(roleSelected) && value3HD.equals("3"))
 										{
 											higRiskResponse = true;
+											logger.debug("getHighRiskDriver found for factor"+codeUnitInstance+" --> "+
+													" role"+roleSelected+" Setted HighRiskDriver="+higRiskResponse);
 											break;
 										}
 										else if(EnumRole.POLICY_HOLDER.equals(roleSelected) && value3HD.equals("2"))
 										{
 											higRiskResponse = true;
+											logger.debug("getHighRiskDriver found for factor"+codeUnitInstance+" --> "+
+													" role"+roleSelected+" Setted HighRiskDriver="+higRiskResponse);
 											break;
 										}
 										else if(EnumRole.SECOND_YOUNG_DRIVER.equals(roleSelected) && value3HD.equals("5"))
 										{
 											higRiskResponse = true;
+											logger.debug("getHighRiskDriver found for factor"+codeUnitInstance+" --> "+
+													" role"+roleSelected+" Setted HighRiskDriver="+higRiskResponse);
 											break;
 										}
 										else if(EnumRole.USUAL_DRIVER.equals(roleSelected) && value3HD.equals("1"))
 										{
 											higRiskResponse = true;
+											logger.debug("getHighRiskDriver found for factor"+codeUnitInstance+" --> "+
+													" role"+roleSelected+" Setted HighRiskDriver="+higRiskResponse);
 											break;
 										}
 									}
@@ -445,7 +478,7 @@ public class MapperResponsePremiumToDL
 				figureToAdd.setRole(EnumRole.POLICY_HOLDER);
 				mapFiguresResponse.put(EnumRole.POLICY_HOLDER, figureToAdd);
 				
-				logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for codeFactorEnumPASSTemp:"+codeFactorEnumPASSTemp);
+				logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole());
 				break;
 			}
 		}
@@ -462,6 +495,7 @@ public class MapperResponsePremiumToDL
 					try
 					{
 						codeFactorEnumPASSTemp = ENUMInternalAssetInstanceFactors.getEnumFromCode(factorAssetInstanceTemp.getCode());
+//						logger.debug("createMapFiguresPASS Figure check for value; CODE="+factorAssetInstanceTemp.getCode()+" value="+factorAssetInstanceTemp.getValue()); 
 					}
 					catch(IllegalArgumentException ix)
 					{ }
@@ -481,7 +515,7 @@ public class MapperResponsePremiumToDL
 							figureToAdd.setRole(EnumRole.USUAL_DRIVER);
 							mapFiguresResponse.put(EnumRole.USUAL_DRIVER, figureToAdd);
 							
-							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for factor pass:"+codeFactorEnumPASSTemp);
+							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole());
 							continue;
 						}
 						
@@ -500,7 +534,7 @@ public class MapperResponsePremiumToDL
 							figureToAdd.setRole(EnumRole.OWNER);
 							mapFiguresResponse.put(EnumRole.OWNER, figureToAdd);
 							
-							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for factor pass:"+codeFactorEnumPASSTemp);
+							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole());
 							continue;
 						}
 						
@@ -519,7 +553,7 @@ public class MapperResponsePremiumToDL
 							figureToAdd.setRole(EnumRole.FIRST_YOUNG_DRIVER);
 							mapFiguresResponse.put(EnumRole.FIRST_YOUNG_DRIVER, figureToAdd);
 							
-							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for factor pass:"+codeFactorEnumPASSTemp);
+							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole());
 							continue;
 						}
 						
@@ -538,7 +572,7 @@ public class MapperResponsePremiumToDL
 							figureToAdd.setRole(EnumRole.SECOND_YOUNG_DRIVER);
 							mapFiguresResponse.put(EnumRole.SECOND_YOUNG_DRIVER, figureToAdd);
 							
-							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole()+" for factor pass:"+codeFactorEnumPASSTemp);
+							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole());
 							continue;
 						}
 					}

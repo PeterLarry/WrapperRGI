@@ -35,7 +35,7 @@ public class ReplyEasywayAcrivator extends ActivatorHandler
 //		 Sent response to Proxy – tariffDate (ratefromdate), premio netto a livello di prodotto
 		try
 		{
-		logger.debug("Sent response to Proxy - product tariffDate="+
+			logger.debug("Sent response to Proxy - product tariffDate="+
 						calculateResponse.getReturn().getOutput().getProduct().getOpenDate().getData()
 				+ " premium NET="+calculateResponse.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
 		}

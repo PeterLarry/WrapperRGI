@@ -62,7 +62,7 @@ public class ParsingOut
 	 */
 	public WsCalculatePremiumInput getQuoteToPass(RoutingDTO request)
 	{
-		logger.info("getQuoteToPass Request form DL to parse : " + request);
+		logger.info("into getQuoteToPass Request form DL to parse : " + request);
 
 		logger.debug("getQuoteToPass Begin Parsing to PASS");
 		
@@ -108,7 +108,7 @@ public class ParsingOut
 			ex.printStackTrace();
 		}
 		
-		logger.info("getQuoteToPass PASS object parsed : " + responseCalculatePremium);
+		logger.info("out getQuoteToPass PASS object parsed : " + responseCalculatePremium);
 		return responseCalculatePremium;
 	}
 	
