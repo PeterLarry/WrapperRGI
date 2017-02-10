@@ -29,6 +29,7 @@ import com.pass.global.WsUnitInstance;
 
 import it.cg.main.dto.main.Quote;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalAssetInstanceFactors;
+import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeProduct;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalUnitInstanceFactors;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalWsProductFactors;
 import it.cg.main.process.mapping.utilities.MapperHashmapUtilitiesToDL;
@@ -153,7 +154,17 @@ public class MapperResponsePremiumToDL
 		
 		String productCode = this.responsePremium.getReturn().getOutput().getProduct().getCode();
 		String dateProductOpenDate = this.responsePremium.getReturn().getOutput().getProduct().getOpenDate().getData().toString();
-		logger.debug("getInitQuoteResponse for getLogTariffFormulaLog productCode="+productCode+" product.OpenDate="+dateProductOpenDate);
+		ENUMInternalCodeProduct decodeProductCodeEnum = null;
+		try
+		{
+			decodeProductCodeEnum = ENUMInternalCodeProduct.getEnumFromCode(productCode);
+		}
+		catch(IllegalArgumentException ix)
+		{
+			logger.error("getCoveragesFromPass error decode productCode from pass => "+productCode+" not corresponding");
+		}
+		logger.debug("getInitQuoteResponse productCode => "+productCode+" = "+decodeProductCodeEnum);
+		logger.debug("getInitQuoteResponse product.OpenDate = "+dateProductOpenDate);
 		
 		String logTariffFormulaLogFormatted = getLogTariffFormulaLog();
 		responseQuote.setDebuggingLog(logTariffFormulaLogFormatted);

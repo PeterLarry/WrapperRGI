@@ -21,5 +21,13 @@ public enum ENUMInternalCodeProduct {
         return value;
     }
     
+    public static ENUMInternalCodeProduct getEnumFromCode(String enumCode) {
+        for (ENUMInternalCodeProduct element : ENUMInternalCodeProduct.values()) {
+            if (element.value.equals(enumCode)) {
+                return element;
+            }
+        }
+        throw new IllegalArgumentException("Unknow Code: '" + enumCode + "'");
+    }
 
 }
