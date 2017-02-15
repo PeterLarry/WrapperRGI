@@ -46,18 +46,8 @@ public class Quote extends RatingQuote
     {
         this.figures = figures;
     }
+    
+    
 }
-
-//	Da qua in poi iniziano i nuovi attributi presi dalla versione 1.1 non presenti nel file di debora.
-
-//	private Boolean policyHolderEqualMainDriver;
-//	private Boolean policyHolderEqualVehicleOwner;
-//	private Boolean ownerEqualMainDriver;
-//	private Integer driverNumber;
-//	private Boolean clean1;
-//	private Boolean clean5;
-//	private Boolean enableDebugging;
-//	private String debuggingLog;
-
 
 

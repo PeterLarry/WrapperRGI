@@ -1,7 +1,5 @@
 package it.cg.main.process.mapping.easyway;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -43,7 +41,7 @@ public class MapperProductAssetToPASS
 	
 	private TypeBooleano typeB =  new TypeBooleano();
 //	Pattern aggiornato to PASS
-	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 	private String sectorCode = "";
 	
 	/**
@@ -55,8 +53,10 @@ public class MapperProductAssetToPASS
 	 */
 	private List<WsFactor> getFactorForFigureFromRoleWSProduct(List<IFigure> listFigure)
 	{
+		logger.debug("into getFactorForFigureFromRoleWSProduct");
 		List<WsFactor> listFactor = new ArrayList<WsFactor>();
 		WsFactor wsFactor = new WsFactor();
+		logger.debug("getFactorForFigureFromRoleWSProduct search for POLICY_HOLDER figures -> wsProduct.wsFactors");
 		
 		for (IFigure figureTemp : listFigure)
 		{
@@ -115,6 +115,7 @@ public class MapperProductAssetToPASS
 			}
 		}
 		
+		logger.debug("out getFactorForFigureFromRoleWSProduct");
 		return listFactor;
 	}
 	
@@ -557,38 +558,6 @@ public class MapperProductAssetToPASS
 			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getVehicle().getPreviousVehicleAgeInMonth()" + " = " +quote.getVehicle().getPreviousVehicleAgeInMonth()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
-//		if(quote.getFiddleFactorCalculationRequired()!= null)
-//		{
-//			wsFactor = new WsFactor();
-//			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_1FLRFF.value());
-//			wsFactor.setValue(quote.getFiddleFactorCalculationRequired().toString());
-//			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getFiddleFactorCalculationRequired()" + " = " +quote.getFiddleFactorCalculationRequired()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
-//			factAsset.add(wsFactor);
-//		}
-//		if(quote.getPreviousFlagClaimsInLastYear()!= null)
-//		{
-//			wsFactor = new WsFactor();
-//			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_3FRC1.value());
-//			if(quote.getPreviousFlagClaimsInLastYear()==true)
-//			{
-//				wsFactor.setValue("false");
-//			}
-//			else
-//			{
-//				wsFactor.setValue("true");
-//			}
-//			wsFactor.setValue(quote.getPreviousFlagClaimsInLastYear().toString());
-//			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getPreviousFlagClaimsInLastYear()" + " = " +quote.getPreviousFlagClaimsInLastYear()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
-//			factAsset.add(wsFactor);
-//		}
-//		if(quote.getPreviousCleanIn5()!= null)
-//		{
-//			wsFactor = new WsFactor();
-//			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_3FRC5.value());
-//			wsFactor.setValue(quote.getPreviousCleanIn5().toString());
-//			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getPreviousCleanIn5()" + " = " +quote.getPreviousCleanIn5()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
-//			factAsset.add(wsFactor);
-//		}
 		if(quote.getBmalType() != null)
 		{
 			wsFactor = new WsFactor();

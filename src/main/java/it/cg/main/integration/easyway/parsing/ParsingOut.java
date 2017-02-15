@@ -3,7 +3,6 @@ package it.cg.main.integration.easyway.parsing;
 import org.apache.log4j.Logger;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
-import com.pass.global.GetTechnicalData;
 import com.pass.global.MsgCalculatePremiumRequest;
 import com.pass.global.MsgRequestHeader;
 import com.pass.global.TypeBooleano;
