@@ -772,8 +772,8 @@ public class MapperAssetSectionToPASS
 						
 						unitInstanceToAdd.getFactors().add(unitInstanceFactorToAdd);
 						
-						logger.debug("getS3 covTemp.getCoinsurance().getCode()="+covTemp.getLimit().getCode()+
-										"-->"+unitInstanceFactorToAdd.getCode()+"="+unitInstanceFactorToAdd.getValue());
+						logger.debug("getS3 covTemp.getLimit().getCode()="+covTemp.getLimit().getCode()+
+										" --> "+unitInstanceFactorToAdd.getCode()+"="+unitInstanceFactorToAdd.getValue());
 					}
 				}
 //				add Unitinstance tu AssetUnit
