@@ -657,7 +657,10 @@ public class MapperProductAssetToPASS
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_3CLIN1.value());
-			wsFactor.setValue(quote.getClean1().toString());
+			
+			Boolean inverseClean1 = !quote.getClean1();
+			wsFactor.setValue(inverseClean1.toString());
+			
 			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getClean1()" + " = " +quote.getClean1()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
