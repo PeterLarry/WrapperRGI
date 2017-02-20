@@ -234,7 +234,6 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3TIPAS.value());
 				factorToAdd.setValue("1");
 				unitInstanceToEdit.getFactors().add(factorToAdd);
-//				logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
 				logger.debug("getFactorsForUnitInstanceGeneric coverage BASE o DELUXE = " + coverage.getCode() + " --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 			}
 			else if(coverage.getCode().equals(EnumCoverageCode.MOTOR_ROAD_ASSISTANCE_DELUXE) )
@@ -251,7 +250,6 @@ public class MapperAssetSectionToPASS
 				factorToAdd.setCode(ENUMInternalUnitInstanceFactors.FACTOR_3TIPTL.value());
 				factorToAdd.setValue("1");
 				unitInstanceToEdit.getFactors().add(factorToAdd);
-//				logger.debug("getFactorsForUnitInstanceGeneric coverage="+coverage.getCode()+" factor : "+factorToAdd.getCode()+" - value :"+factorToAdd.getValue());
 				logger.debug("getFactorsForUnitInstanceGeneric coverage BASE o DELUXE = " + coverage.getCode() + " --> "+factorToAdd.getCode()+" = "+factorToAdd.getValue());
 			}
 			else if(coverage.getCode().equals(EnumCoverageCode.MOTOR_LEGAL_PROTECTION_DELUXE) )
@@ -468,7 +466,7 @@ public class MapperAssetSectionToPASS
 				assetUnitTemp.setCode(ENUMInternalCodeAssetUnit.CODE_KAS1.value());
 				assetUnitTemp.setSelection((covTemp.getSelected() != null && covTemp.getSelected()) ? tybT : tybF);
 				
-				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_EN1.value(), riskType);
+				getFactorsForUnitInstanceNotS1S5(unitInstanceToAdd, covTemp, ENUMInternalCodeAssetUnit.CODE_KAS1.value(), riskType);
 
 				if(covTemp.getCoinsurance() != null)
 				{

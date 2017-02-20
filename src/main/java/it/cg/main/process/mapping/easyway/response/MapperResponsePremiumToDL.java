@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.mapfre.engines.rating.business.objects.wrapper.Coverage;
@@ -61,7 +62,9 @@ public class MapperResponsePremiumToDL
 				{
 					if(factorAssetInstanceTemp.getCode().equals("2WCAP"))
 					{
-						ratingInfoResponse.setWorstCap(factorAssetInstanceTemp.getValue());
+						String wcapValue = factorAssetInstanceTemp.getValue();
+						wcapValue = StringUtils.leftPad(wcapValue,5,'0');
+						ratingInfoResponse.setWorstCap(wcapValue);
 						logger.debug("getRatingInfo factor 2WCAP = "+factorAssetInstanceTemp.getValue()+" --> "+
 												" assetinstance quote.WorstCap = "+ratingInfoResponse.getWorstCap());
 					}
@@ -145,10 +148,10 @@ public class MapperResponsePremiumToDL
 		premiumObjResponse.setTax(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
 		premiumObjResponse.setSsn(this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
 //		loggging
-		logger.debug("getInitQuoteResponse setted generic NET : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
-		logger.debug("getInitQuoteResponse setted generic GROSS : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getGross());
-		logger.debug("getInitQuoteResponse setted generic TAX : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
-		logger.debug("getInitQuoteResponse setted generic SSN : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
+		logger.debug("getInitQuoteResponse set generic NET : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
+		logger.debug("getInitQuoteResponse set generic GROSS : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getGross());
+		logger.debug("getInitQuoteResponse set generic TAX : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getTaxes());
+		logger.debug("getInitQuoteResponse set generic SSN : "+this.responsePremium.getReturn().getOutput().getProduct().getPremium().getAnnual().getSSN());
 		
 		responseQuote.setPremium(premiumObjResponse);
 		
@@ -584,7 +587,6 @@ public class MapperResponsePremiumToDL
 							mapFiguresResponse.put(EnumRole.SECOND_YOUNG_DRIVER, figureToAdd);
 							
 							logger.debug("createMapFiguresPASS Add figure : "+figureToAdd.getRole());
-							continue;
 						}
 					}
 				}
