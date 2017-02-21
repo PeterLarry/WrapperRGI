@@ -922,7 +922,6 @@ public class MapperProductAssetToPASS
 			{
 				wsFactor.setValue("true");
 			}
-			wsFactor.setValue(quote.getPreviousFlagClaimsInLastYear().toString());
 			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getPreviousFlagClaimsInLastYear()" + " = " +quote.getPreviousFlagClaimsInLastYear()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
