@@ -620,15 +620,15 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getClean5() != null || quote.getClaimsInLast5Years() != null)
+		if(quote.getClean5() != null || quote.getClaimsInLast5YearInner() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_3CLIN5.value());
 			if(isVehicleMopedMotorbike)
 			{
-				wsFactor.setValue(quote.getClaimsInLast5Years().toString());
-				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getClaimsInLast5Years()" + " = "
-							+quote.getClaimsInLast5Years()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+				wsFactor.setValue(quote.getClaimsInLast5YearInner().toString());
+				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getClaimsInLast5YearInner()" + " = "
+							+quote.getClaimsInLast5YearInner()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			}
 			else
 			{
