@@ -661,7 +661,7 @@ public class MapperAssetSectionToPASS
 			if( coverageCode.equals(EnumCoverageCode.MOTOR_PERMANENT_INVALIDITY_DRIVER) )
 			{
 				logger.debug("getS3 begin create"+coverageCode);
-				logger.debug("getS5 riskType="+riskType);
+				logger.debug("getS3 riskType="+riskType);
 				
 				WsAssetUnit assetUnitTemp = getAssetUnitInit();
 				WsUnitInstance unitInstanceToAdd = getUnitInstanceInit();
