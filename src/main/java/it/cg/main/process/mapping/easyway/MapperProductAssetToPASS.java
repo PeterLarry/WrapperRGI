@@ -9,17 +9,15 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IVehicle;
+import com.mapfre.engines.rating.common.enums.*;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 //import javax.inject.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IOtherVehicle;
-import com.mapfre.engines.rating.common.enums.EnumFlowType;
-import com.mapfre.engines.rating.common.enums.EnumProductType;
-import com.mapfre.engines.rating.common.enums.EnumPublicRegisterUse;
-import com.mapfre.engines.rating.common.enums.EnumRiskType;
-import com.mapfre.engines.rating.common.enums.EnumRole;
 import com.pass.global.TypeBooleano;
 import com.pass.global.TypeData;
 import com.pass.global.WsAssetInstance;
@@ -476,6 +474,8 @@ public class MapperProductAssetToPASS
 	{
 		List<WsAssetInstance> listAssetInstResponse = new ArrayList<WsAssetInstance>();
 		WsAssetInstance assetInstanceResponse = new WsAssetInstance();
+
+		boolean isVehicleMopedMotorbike = isVehicleMopedMotorbike(quote.getContext().getRiskType());
 		
 		boolean isOtherVehicleEmpty = isOtherVehicleEmpty(quote);
 		logger.debug("quoteToWsAssetInstance isOtherVehicleEmpty:"+isOtherVehicleEmpty);
@@ -620,12 +620,22 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getClean5() != null)
+		if(quote.getClean5() != null || quote.getClaimsInLast5Years() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_3CLIN5.value());
-			wsFactor.setValue(quote.getClean5().toString());
-			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getClean5()" + " = " +quote.getClean5()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+			if(isVehicleMopedMotorbike)
+			{
+				wsFactor.setValue(quote.getClaimsInLast5Years().toString());
+				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getClaimsInLast5Years()" + " = "
+							+quote.getClaimsInLast5Years()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+			}
+			else
+			{
+				wsFactor.setValue(quote.getClean5().toString());
+				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getClean5()" + " = "
+							+quote.getClean5()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+			}
 			factAsset.add(wsFactor);
 		}
 		
@@ -925,12 +935,24 @@ public class MapperProductAssetToPASS
 			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getPreviousFlagClaimsInLastYear()" + " = " +quote.getPreviousFlagClaimsInLastYear()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
-		if(quote.getPreviousCleanIn5()!= null)
+		if(quote.getPreviousCleanIn5()!= null || quote.getPreviousClaimsInLast5Years() != null)
 		{
 			wsFactor = new WsFactor();
+
 			wsFactor.setCode(ENUMInternalWsProductFactors.FACTOR_3FRC5.value());
-			wsFactor.setValue(quote.getPreviousCleanIn5().toString());
-			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getPreviousCleanIn5()" + " = " +quote.getPreviousCleanIn5()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+			if(isVehicleMopedMotorbike)
+			{
+				wsFactor.setValue(quote.getPreviousClaimsInLast5Years().toString());
+				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getPreviousClaimsInLast5Years()" +
+						" = " +quote.getPreviousClaimsInLast5Years()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+			}
+			else
+			{
+				wsFactor.setValue(quote.getPreviousCleanIn5().toString());
+				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getPreviousCleanIn5()" +
+						" = " +quote.getPreviousCleanIn5()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+			}
+
 			factAsset.add(wsFactor);
 		}
 		
@@ -946,8 +968,25 @@ public class MapperProductAssetToPASS
 		logger.info("quoteToWsAssetInstance out with response : "+listAssetInstResponse);
 		return listAssetInstResponse;
 	}
-	
-	
+
+	/**
+	 * Analyze the risktype and, if is MBKE or MPED return true
+	 * @param EnumRiskType
+	 * @return true if MBKE or MPED
+	 */
+	private boolean isVehicleMopedMotorbike(EnumRiskType riskType)
+	{
+		boolean isMopedMotorbike = false;
+
+		if(riskType.equals(EnumRiskType.MOPED) || riskType.equals(EnumRiskType.MOTORBIKE))
+		{
+			isMopedMotorbike = true;
+		}
+
+		return isMopedMotorbike;
+	}
+
+
 	/**
 	 * Metodo custom di quoteDtoToAsset
 	 * @param inb

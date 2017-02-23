@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.jboss.spring.integration.wrapper</groupId>
 	<artifactId>WrapperRGI</artifactId>
-	<version>2.3.4-SNAPSHOT</version>
+	<version>2.4.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>WrapperDL-RGI</name>
 	<!-- distributionManagement -->
