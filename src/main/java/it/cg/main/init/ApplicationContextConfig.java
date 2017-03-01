@@ -31,7 +31,7 @@ public class ApplicationContextConfig implements ServletContextListener
 	@Bean
 	@PostConstruct
 	public static PropertySourcesPlaceholderConfigurer properties()
-	{
+		{
 		logger.info("Loading properties");
 		PropertySourcesPlaceholderConfigurer propConf = new PropertySourcesPlaceholderConfigurer();
 //		vvvvvvvvvvv TODO for external conf files vvvvvvvvvvv

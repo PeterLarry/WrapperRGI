@@ -25,7 +25,13 @@ public enum StaticGeneralConfig
 	 * routing-conf
 	 */
 //	ROUTING_PARAM_MAIN_PROPERTIES("routing-conf"),
-	
+
+	/**
+	 * name of header pamaram for
+	 * field ProxyQuoteInternalId
+	 */
+	HEADER_PARAM_INTERNAL_ID_PROXY("internalIdProxyParam")
+
 	;
 	
 	

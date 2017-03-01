@@ -1,14 +1,16 @@
 package it.cg.main.integration.easyway.reply;
 
+import com.pass.global.CalculatePremiumResponse;
+import it.cg.main.dto.InboundResponseHttpJSON;
+import it.cg.main.init.StaticGeneralConfig;
+import it.cg.main.integration.easyway.parsing.ParsingIn;
+import it.cg.main.integration.interfaces.ActivatorHandler;
 import org.apache.log4j.Logger;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.messaging.Message;
+import org.springframework.messaging.handler.annotation.Headers;
 
-import com.pass.global.CalculatePremiumResponse;
-
-import it.cg.main.dto.InboundResponseHttpJSON;
-import it.cg.main.integration.easyway.parsing.ParsingIn;
-import it.cg.main.integration.interfaces.ActivatorHandler;
+import java.util.Map;
 
 public class ReplyEasywayAcrivator extends ActivatorHandler
 {
@@ -21,10 +23,11 @@ public class ReplyEasywayAcrivator extends ActivatorHandler
 	 * @return InboundResponseHttpJSON
 	 */
 	@Gateway(requestChannel="easyChainActivatorResultChannel")
-	public Message<InboundResponseHttpJSON> gotoEasyWay(CalculatePremiumResponse calculateResponse)
+	public Message<InboundResponseHttpJSON> gotoEasyWay(CalculatePremiumResponse calculateResponse, @Headers Map<String, Object> headers)
 	{
-		logger.info("gotoEasyWay input DTO "+calculateResponse+" Received response from Pass");
-		
+		String internalIdProxyWrapper = headers.get(StaticGeneralConfig.HEADER_PARAM_INTERNAL_ID_PROXY.value()) == null ? "null" : headers.get(StaticGeneralConfig.HEADER_PARAM_INTERNAL_ID_PROXY.value()).toString();
+		logger.info("gotoEasyWay input DTO "+calculateResponse+" Received response from Pass internalidProxyWrapper="+internalIdProxyWrapper);
+
 		logger.debug("time test response - response arrived, before parsing from PASS to DL");
 		ParsingIn pIn = new ParsingIn();
 		InboundResponseHttpJSON responseJson  = pIn.parseCalculatePremiumResponse(calculateResponse);
@@ -37,7 +40,8 @@ public class ReplyEasywayAcrivator extends ActivatorHandler
 		{
 			logger.debug("Sent response to Proxy - product tariffDate="+
 						calculateResponse.getReturn().getOutput().getProduct().getOpenDate().getData()
-				+ " premium NET="+calculateResponse.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet());
+				+ " premium NET="+calculateResponse.getReturn().getOutput().getProduct().getPremium().getAnnual().getNet()+
+					" - internalidProxyWrapper="+internalIdProxyWrapper);
 		}
 		catch(NullPointerException ex)
 		{

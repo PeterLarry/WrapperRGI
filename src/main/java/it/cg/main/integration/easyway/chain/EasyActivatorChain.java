@@ -2,6 +2,7 @@ package it.cg.main.integration.easyway.chain;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 
+import it.cg.main.init.StaticGeneralConfig;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.Gateway;
@@ -38,21 +39,25 @@ public class EasyActivatorChain extends ActivatorHandler
 //		Received request from Proxy – targa x, data e ora test (info ricevute dal Proxy)
 		String plateNumber = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getPlateNumber();
 		String internalIdPlatDate = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getProxyQuoteInternalId();
-		logger.debug("Received request from Proxy - plateNumber="+plateNumber+" , internalid="+internalIdPlatDate);
+		logger.debug("Received request from Proxy - plateNumber="+plateNumber+" , internalidProxyWrapper="+internalIdPlatDate);
 
 		logger.debug("time test - before parsing from DL to PASS");
 		ParsingOut pout = new ParsingOut(easyMapperMapstruct);
 //		parse object to PASS
 		WsCalculatePremiumInput calcPremium = pout.getQuoteToPass(request);
-//		set request WS to PASS		
+//		set request WS to PASS
 		CalculatePremium cp = new CalculatePremium();
 		cp.setArg0(pout.getQuoteToMsgCalculate());
 		cp.getArg0().setInput(calcPremium);
 		logger.debug("time test - after parsing from DL to PASS");
 
 //		create message response
-		Message<CalculatePremium> messageResponse = createMessage(cp);
-		
+		//Message<CalculatePremium> messageResponse = createMessage(cp);
+		Message<CalculatePremium> messageResponse = createMessageWithHeader(cp,
+						StaticGeneralConfig.HEADER_PARAM_INTERNAL_ID_PROXY.value(), internalIdPlatDate);
+
+		logger.debug("Sent request to Pass, internalidProxyWrapper="+internalIdPlatDate);
+
  		logger.info("out gotoEasyCall than call WS to PASS , output="+cp);
 		return messageResponse;
 	}
