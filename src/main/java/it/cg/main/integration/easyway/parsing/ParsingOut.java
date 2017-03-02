@@ -1,20 +1,17 @@
 package it.cg.main.integration.easyway.parsing;
 
+import com.pass.global.*;
 import org.apache.log4j.Logger;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
-import com.pass.global.MsgCalculatePremiumRequest;
-import com.pass.global.MsgRequestHeader;
-import com.pass.global.TypeBooleano;
-import com.pass.global.TypeProperty;
-import com.pass.global.WsAsset;
-import com.pass.global.WsCalculatePremiumInput;
 
 import it.cg.main.dto.RoutingDTO;
 import it.cg.main.dto.main.Quote;
 import it.cg.main.process.mapping.easyway.MapperAssetSectionToPASS;
 import it.cg.main.process.mapping.easyway.MapperRequestToPASS;
 import it.cg.main.process.mapping.utilities.MapperUtilityToPASS;
+
+import java.util.List;
 
 /**
  * Handling request From DL , parsing to PASS
@@ -91,6 +88,7 @@ public class ParsingOut
 //			populate assetUnit and UnitInstance
 			mapperAssetSection.getAssetSections(request.getInboundRequestHttpJSON(), asset.getInstances().get(0),
 													responseCalculatePremium.getProduct().getCode(), figureOwner);
+			writeSummaryAssetSection(asset.getInstances().get(0));
 			logger.debug("getQuoteToPass wsAssetUnit and wsUnitInstance setted");
 			responseCalculatePremium.getProduct().getAssets().add(asset);
 			
@@ -110,7 +108,36 @@ public class ParsingOut
 		logger.info("out getQuoteToPass PASS object parsed : " + responseCalculatePremium);
 		return responseCalculatePremium;
 	}
-	
+
+	/**
+	 * Write into the log a summary of AssetSection and AssetUnit
+	 * @param wsAssetInstance
+	 */
+	private void writeSummaryAssetSection(WsAssetInstance wsAssetInstance)
+	{
+		logger.info("writeSummaryAssetSection begin");
+
+		if(wsAssetInstance.getSections() != null && !wsAssetInstance.getSections().isEmpty())
+		{
+			List<WsAssetSection> assetSectionsList = wsAssetInstance.getSections();
+			logger.debug("writeSummaryAssetSection AssetSection added : "+assetSectionsList.size());
+			String sectionAddedCodesAndSelected = "" ;
+			for(WsAssetSection assetSectionTemp : assetSectionsList)
+			{
+				String assetUnitSummary = "";
+				for(WsAssetUnit assetUnitTemp : assetSectionTemp.getUnits())
+				{
+					assetUnitSummary += assetSectionTemp.getCode()+"."+assetUnitTemp.getCode() +" = "+assetUnitTemp.getSelection().isBoolean()+" ";
+				}
+				sectionAddedCodesAndSelected += assetUnitSummary +"||" ;
+			}
+			logger.debug(sectionAddedCodesAndSelected);
+		}
+
+
+		logger.info("writeSummaryAssetSection end");
+	}
+
 	/**
 	 * Create  msgFor more output factors 
 	 * @return MsgCalculatePremiumRequest
