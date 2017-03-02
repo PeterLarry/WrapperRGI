@@ -39,9 +39,14 @@ public class EasyActivatorChain extends ActivatorHandler
 //		Received request from Proxy – targa x, data e ora test (info ricevute dal Proxy)
 		String plateNumber = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getPlateNumber();
 		String internalIdPlatDate = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getProxyQuoteInternalId();
+		Long policyNumber = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getPolicyNumber();
+		Long quoteNumber = request.getInboundRequestHttpJSON().getInboundQuoteDTO().getQuoteNumber();
+		
 		logger.debug("Received request from Proxy - plateNumber="+plateNumber+" , internalidProxyWrapper="+internalIdPlatDate);
+		logger.debug("with policyNumber = "+policyNumber + " and quoteNumber = "+quoteNumber);
 
 		logger.debug("time test - before parsing from DL to PASS");
+		
 		ParsingOut pout = new ParsingOut(easyMapperMapstruct);
 //		parse object to PASS
 		WsCalculatePremiumInput calcPremium = pout.getQuoteToPass(request);
