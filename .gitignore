@@ -2,3 +2,7 @@
 /.classpath
 /.factorypath
 /wrapperPASSdaily.log
+
+*.prefs
+.classpath
+*.prefs
