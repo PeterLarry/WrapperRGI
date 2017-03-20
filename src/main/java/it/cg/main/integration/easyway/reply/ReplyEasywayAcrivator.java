@@ -26,7 +26,7 @@ public class ReplyEasywayAcrivator extends ActivatorHandler
 	public Message<InboundResponseHttpJSON> gotoEasyWay(CalculatePremiumResponse calculateResponse, @Headers Map<String, Object> headers)
 	{
 		String internalIdProxyWrapper = headers.get(StaticGeneralConfig.HEADER_PARAM_INTERNAL_ID_PROXY.value()) == null ? "null" : headers.get(StaticGeneralConfig.HEADER_PARAM_INTERNAL_ID_PROXY.value()).toString();
-		logger.info("gotoEasyWay input DTO "+calculateResponse+" Received response from Pass internalidProxyWrapper="+internalIdProxyWrapper);
+		logger.info("Received response from Pass internalidProxyWrapper="+internalIdProxyWrapper);
 
 		logger.debug("time test response - response arrived, before parsing from PASS to DL");
 		ParsingIn pIn = new ParsingIn();
