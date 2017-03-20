@@ -26,10 +26,9 @@ public class MapperHashmapUtilitiesToPASS
 		}
 		else
 		{
-			result = mapLast3_6Years.get(companyChangeDetailsSelected);
+			result = mapLoyal.get(companyChangeDetailsSelected);
 		}
 			
-		result = mapLoyal.get(companyChangeDetailsSelected);
 		return result;
 	}
 	
@@ -45,6 +44,7 @@ public class MapperHashmapUtilitiesToPASS
 		{
 			result = mapLast3_6Years.get(last3YearsSelected);
 		}
+
 		return result;
 	}
 	
@@ -60,6 +60,7 @@ public class MapperHashmapUtilitiesToPASS
 		{
 			result = mapLast3_6Years.get(last6YearsSelected);
 		}
+
 		return result;
 	}
 	

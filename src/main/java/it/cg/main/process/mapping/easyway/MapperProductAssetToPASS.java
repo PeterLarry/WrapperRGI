@@ -488,24 +488,24 @@ public class MapperProductAssetToPASS
 		factorToAdd2Loyal.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2LOYAL.value());
 		factorToAdd2Loyal.setValue(loyalCode);
 		assetInstanceResponse.getFactors().add(factorToAdd2Loyal);
-		logger.debug("quoteToWsAssetInstance setted factor : "+factorToAdd2Loyal.getCode()+" value : "+factorToAdd2Loyal.getValue()+
-						" from value quote.getRatingInfo().getCompanyChangesDetails():"+quote.getRatingInfo().getCompanyChangesDetails()+" mapped");
+		logger.debug("quoteToWsAssetInstance add factor : quote.getRatingInfo().getCompanyChangesDetails() = "+quote.getRatingInfo().getCompanyChangesDetails()+
+						" --> (mapped) --> "+factorToAdd2Loyal.getCode()+" = "+factorToAdd2Loyal.getValue()+" ");
 		
 		String last3YearsCode = mapUty.getLast3Years(quote.getRatingInfo().getLast3YearsAggregatedClaims());
 		WsFactor factorToAddLast3Years = new WsFactor();
 		factorToAddLast3Years.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2SIN3.value());
 		factorToAddLast3Years.setValue(last3YearsCode);
 		assetInstanceResponse.getFactors().add(factorToAddLast3Years);
-		logger.debug("quoteToWsAssetInstance setted factor : "+factorToAddLast3Years.getCode()+" value : "+factorToAddLast3Years.getValue()+
-						" from value quote.getRatingInfo().getLast3YearsAggregatedClaims():"+quote.getRatingInfo().getLast3YearsAggregatedClaims()+" mapped");
+		logger.debug("quoteToWsAssetInstance add factor : quote.getRatingInfo().getLast3YearsAggregatedClaims() = "+quote.getRatingInfo().getLast3YearsAggregatedClaims()+
+						" --> (mapped) --> "+factorToAddLast3Years.getCode()+" = "+factorToAddLast3Years.getValue()+"");
 		
 		String last6YearsCode = mapUty.getLast6Years(quote.getRatingInfo().getAggregatedClaims());
 		WsFactor factorToAddLast6Years = new WsFactor();
 		factorToAddLast6Years.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2SIN6.value());
 		factorToAddLast6Years.setValue(last6YearsCode);
 		assetInstanceResponse.getFactors().add(factorToAddLast6Years);
-		logger.debug("quoteToWsAssetInstance setted factor : "+factorToAddLast6Years.getCode()+" value : "+factorToAddLast6Years.getValue()+
-				" from value quote.getRatingInfo().getAggregatedClaims():"+quote.getRatingInfo().getAggregatedClaims()+" mapped");
+		logger.debug("quoteToWsAssetInstance add factor : quote.getRatingInfo().getAggregatedClaims() = "+quote.getRatingInfo().getAggregatedClaims()+
+				" --> (mapped) --> "+factorToAddLast6Years.getCode()+" = "+factorToAddLast6Years.getValue()+" ");
 		
 		List<WsFactor> factAsset= new ArrayList<WsFactor>();
 		WsFactor wsFactor = new WsFactor();
