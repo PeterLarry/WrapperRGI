@@ -526,7 +526,7 @@ public class MapperProductAssetToPASS
 			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getUsualDriverOwnerRelationship()" + " = " + quote.getUsualDriverOwnerRelationship() +" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
-		if(quote.getVehicle().getPreviousVehicleAgeInMonth()!= null)
+		if(quote.getVehicle() != null && quote.getVehicle().getPreviousVehicleAgeInMonth()!= null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2MIMM.value());
@@ -542,7 +542,8 @@ public class MapperProductAssetToPASS
 			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getBmalType()" + " = " +quote.getBmalType()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
-		if(quote.getVehicle().getVehicleAge() != null)
+		if(quote.getVehicle() != null &&
+		   quote.getVehicle().getVehicleAge() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2ETAV.value());
@@ -550,7 +551,8 @@ public class MapperProductAssetToPASS
 			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getVehicle().getVehicleAge()" + " = " +quote.getVehicle().getVehicleAge()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
-		if(quote.getVehicle().getHabitualUse() != null)
+		if(quote.getVehicle() != null &&
+		   quote.getVehicle().getHabitualUse() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2USOVE.value());
@@ -558,7 +560,8 @@ public class MapperProductAssetToPASS
 			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getVehicle().getHabitualUse()" + " = " +quote.getVehicle().getHabitualUse()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			factAsset.add(wsFactor);
 		}
-		if(quote.getVehicle().getCarAgeAtPurchase() != null)
+		if(quote.getVehicle() != null &&
+		   quote.getVehicle().getCarAgeAtPurchase() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2EVACQ.value());
@@ -652,7 +655,9 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getTechnicalData().getMakerId() != null)
+		if(quote.getVehicle() != null &&
+		   quote.getVehicle().getTechnicalData() != null &&
+	       quote.getVehicle().getTechnicalData().getMakerId() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CMAR.value());
@@ -661,7 +666,9 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getTechnicalData().getType() != null)
+		if(quote.getVehicle() != null &&
+		   quote.getVehicle().getTechnicalData() != null &&
+		   quote.getVehicle().getTechnicalData().getType() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2RROAD.value());
@@ -670,7 +677,9 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getTechnicalData().getModelId() != null)
+		if(quote.getVehicle() != null &&
+				quote.getVehicle().getTechnicalData() != null &&
+				quote.getVehicle().getTechnicalData().getModelId() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CMOD.value());
@@ -679,7 +688,9 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getTechnicalData().getKw() != null)
+		if(quote.getVehicle() != null &&
+				quote.getVehicle().getTechnicalData() != null &&
+				quote.getVehicle().getTechnicalData().getKw() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2KW.value());
@@ -688,7 +699,8 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getInsuredValue() != null)
+		if(quote.getVehicle() != null &&
+				quote.getVehicle().getInsuredValue() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2VVAL.value());
@@ -697,7 +709,8 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getLeasingType() != null)
+		if(quote.getVehicle() != null &&
+				quote.getVehicle().getLeasingType() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2TVINC.value());
@@ -706,7 +719,8 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getMatriculationYear() != null)
+		if(quote.getVehicle() != null &&
+				quote.getVehicle().getMatriculationYear() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2APIMM.value());
@@ -715,7 +729,8 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getAntitheftType() != null)
+		if(quote.getVehicle() != null &&
+				quote.getVehicle().getAntitheftType() != null)
 		{
 			wsFactor = new WsFactor();
 			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2ANTIF.value());
@@ -724,7 +739,7 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 		
-		if(quote.getVehicle().getTechnicalData() != null && quote.getVehicle().getTechnicalData() != null )
+		if(quote.getVehicle() != null && quote.getVehicle().getTechnicalData() != null )
 		{
 			if(quote.getVehicle().getTechnicalData().getBodyType() != null &&
 					quote.getVehicle().getTechnicalData().getBodyType().getWrapperCode() != null)
@@ -877,6 +892,21 @@ public class MapperProductAssetToPASS
 					factAsset.add(wsFactor);
 				}
 				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getOtherVehicle().getOwnBehalf()" + " = " +quote.getOtherVehicle().getOwnBehalf()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+			}
+			if(!StringUtils.isEmpty(quote.getOtherVehicle().getProvince())&&
+			  (quote.getContext().getRiskType().equals(EnumRiskType.TAXI)||
+			   quote.getContext().getRiskType().equals(EnumRiskType.TRUCK_MORE_THAN_60000KG)|| 
+			   quote.getContext().getRiskType().equals(EnumRiskType.TRUCK_UPTO_60000KG) || 
+			   quote.getContext().getRiskType().equals(EnumRiskType.CAMPER)	|| 
+			   quote.getContext().getRiskType().equals(EnumRiskType.MOTORCYCLE_FREIGHT_TRANSPORT)))
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR_2PVOW.value());
+				
+				String otherVehicleProvince = mapUty.getOtherVehicleProvince(quote.getOtherVehicle().getProvince());
+				wsFactor.setValue(otherVehicleProvince);
+				factAsset.add(wsFactor);
+				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getOtherVehicle().getProvince()" + " = " +quote.getOtherVehicle().getProvince()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
 			}
 		}
 		else

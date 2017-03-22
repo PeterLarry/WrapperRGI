@@ -15,6 +15,7 @@ public class MapperHashmapUtilitiesToPASS
 	
 	private static final Map<String, String> mapLoyal = new HashMap<String, String>();
 	private static final Map<String, String> mapLast3_6Years = new HashMap<String, String>();
+	private static final Map<String, String> mapOtherVehicleProvince = new HashMap<String,String>();
 	
 	public String get2Loyal(String companyChangeDetailsSelected)
 	{
@@ -64,6 +65,17 @@ public class MapperHashmapUtilitiesToPASS
 		return result;
 	}
 	
+	public String getOtherVehicleProvince(String otherProvince)
+	{
+		String result ="";
+		
+		result = mapOtherVehicleProvince.get(otherProvince);
+		
+		return result; 
+		
+	}
+	
+	
 	public MapperHashmapUtilitiesToPASS()
 	{
 		if(!mapLoyal.isEmpty())
@@ -72,6 +84,8 @@ public class MapperHashmapUtilitiesToPASS
 		}
 //		last 3 and 6 years
 		getMapLastYears();
+//		otherVehicle province
+		getMapOtherProvince();
 //		2 loyal
 		mapLoyal.put("3T00","1");
 		mapLoyal.put("4T00","2");
@@ -2982,6 +2996,127 @@ public class MapperHashmapUtilitiesToPASS
 		
 
 		return mapLast3_6Years;
+	}
+	
+	
+	private static final Map<String,String> getMapOtherProvince()
+	{
+		mapOtherVehicleProvince.put("TO","1");
+		mapOtherVehicleProvince.put("VC","2");
+		mapOtherVehicleProvince.put("NO","3");
+		mapOtherVehicleProvince.put("CN","4");
+		mapOtherVehicleProvince.put("AT","5");
+		mapOtherVehicleProvince.put("AL","6");
+		mapOtherVehicleProvince.put("AO","7");
+		mapOtherVehicleProvince.put("IM","8");
+		mapOtherVehicleProvince.put("SV","9");
+		mapOtherVehicleProvince.put("GE","10");
+		mapOtherVehicleProvince.put("SP","11");
+		mapOtherVehicleProvince.put("VA","12");
+		mapOtherVehicleProvince.put("CO","13");
+		mapOtherVehicleProvince.put("SO","14");
+		mapOtherVehicleProvince.put("MI","15");
+		mapOtherVehicleProvince.put("BG","16");
+		mapOtherVehicleProvince.put("BS","17");
+		mapOtherVehicleProvince.put("PV","18");
+		mapOtherVehicleProvince.put("CR","19");
+		mapOtherVehicleProvince.put("MN","20");
+		mapOtherVehicleProvince.put("BZ","21");
+		mapOtherVehicleProvince.put("TN","22");
+		mapOtherVehicleProvince.put("VR","23");
+		mapOtherVehicleProvince.put("VI","24");
+		mapOtherVehicleProvince.put("BL","25");
+		mapOtherVehicleProvince.put("TV","26");
+		mapOtherVehicleProvince.put("VE","27");
+		mapOtherVehicleProvince.put("PD","28");
+		mapOtherVehicleProvince.put("RO","29");
+		mapOtherVehicleProvince.put("UD","30");
+		mapOtherVehicleProvince.put("GO","31");
+		mapOtherVehicleProvince.put("TS","32");
+		mapOtherVehicleProvince.put("PC","33");
+		mapOtherVehicleProvince.put("PR","34");
+		mapOtherVehicleProvince.put("RE","35");
+		mapOtherVehicleProvince.put("MO","36");
+		mapOtherVehicleProvince.put("BO","37");
+		mapOtherVehicleProvince.put("FE","38");
+		mapOtherVehicleProvince.put("RA","39");
+		mapOtherVehicleProvince.put("FC","40");
+		mapOtherVehicleProvince.put("PU","41");
+		mapOtherVehicleProvince.put("AN","42");
+		mapOtherVehicleProvince.put("MC","43");
+		mapOtherVehicleProvince.put("AP","44");
+		mapOtherVehicleProvince.put("MS","45");
+		mapOtherVehicleProvince.put("LU","46");
+		mapOtherVehicleProvince.put("PT","47");
+		mapOtherVehicleProvince.put("FI","48");
+		mapOtherVehicleProvince.put("LI","49");
+		mapOtherVehicleProvince.put("PI","50");
+		mapOtherVehicleProvince.put("AR","51");
+		mapOtherVehicleProvince.put("SI","52");
+		mapOtherVehicleProvince.put("GR","53");
+		mapOtherVehicleProvince.put("PG","54");
+		mapOtherVehicleProvince.put("TR","55");
+		mapOtherVehicleProvince.put("VT","56");
+		mapOtherVehicleProvince.put("RI","57");
+		mapOtherVehicleProvince.put("RM","58");
+		mapOtherVehicleProvince.put("LT","59");
+		mapOtherVehicleProvince.put("FR","60");
+		mapOtherVehicleProvince.put("CE","61");
+		mapOtherVehicleProvince.put("BN","62");
+		mapOtherVehicleProvince.put("NA","63");
+		mapOtherVehicleProvince.put("AV","64");
+		mapOtherVehicleProvince.put("SA","65");
+		mapOtherVehicleProvince.put("AQ","66");
+		mapOtherVehicleProvince.put("TE","67");
+		mapOtherVehicleProvince.put("PE","68");
+		mapOtherVehicleProvince.put("CH","69");
+		mapOtherVehicleProvince.put("CB","70");
+		mapOtherVehicleProvince.put("FG","71");
+		mapOtherVehicleProvince.put("BA","72");
+		mapOtherVehicleProvince.put("TA","73");
+		mapOtherVehicleProvince.put("BR","74");
+		mapOtherVehicleProvince.put("LE","75");
+		mapOtherVehicleProvince.put("PZ","76");
+		mapOtherVehicleProvince.put("MT","77");
+		mapOtherVehicleProvince.put("CS","78");
+		mapOtherVehicleProvince.put("CZ","79");
+		mapOtherVehicleProvince.put("RC","80");
+		mapOtherVehicleProvince.put("TP","81");
+		mapOtherVehicleProvince.put("PA","82");
+		mapOtherVehicleProvince.put("ME","83");
+		mapOtherVehicleProvince.put("AG","84");
+		mapOtherVehicleProvince.put("CL","85");
+		mapOtherVehicleProvince.put("EN","86");
+		mapOtherVehicleProvince.put("CT","87");
+		mapOtherVehicleProvince.put("RG","88");
+		mapOtherVehicleProvince.put("SR","89");
+		mapOtherVehicleProvince.put("SS","90");
+		mapOtherVehicleProvince.put("NU","91");
+		mapOtherVehicleProvince.put("CA","92");
+		mapOtherVehicleProvince.put("PN","93");
+		mapOtherVehicleProvince.put("IS","94");
+		mapOtherVehicleProvince.put("OR","95");
+		mapOtherVehicleProvince.put("BI","96");
+		mapOtherVehicleProvince.put("LC","97");
+		mapOtherVehicleProvince.put("LO","98");
+		mapOtherVehicleProvince.put("RN","99");
+		mapOtherVehicleProvince.put("PO","100");
+		mapOtherVehicleProvince.put("KR","101");
+		mapOtherVehicleProvince.put("VV","102");
+		mapOtherVehicleProvince.put("VB","103");
+		mapOtherVehicleProvince.put("OT","104");
+		mapOtherVehicleProvince.put("OG","105");
+		mapOtherVehicleProvince.put("VS","106");
+		mapOtherVehicleProvince.put("CI","107");
+		mapOtherVehicleProvince.put("BT","108");
+		mapOtherVehicleProvince.put("FM","109");
+		mapOtherVehicleProvince.put("MB","110");
+		mapOtherVehicleProvince.put("ZY","910");
+		mapOtherVehicleProvince.put("ZZ","993");
+		
+		
+		return mapOtherVehicleProvince;
+		
 	}
 	
 	
