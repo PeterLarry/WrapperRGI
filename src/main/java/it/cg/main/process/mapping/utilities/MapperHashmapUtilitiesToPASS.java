@@ -2892,16 +2892,16 @@ public class MapperHashmapUtilitiesToPASS
 	
 	private static final Map<String,String> getMapLastYears()
 	{
-		mapLast3_6Years.put("0","1");
-		mapLast3_6Years.put("1","2");
-		mapLast3_6Years.put("2","3");
-		mapLast3_6Years.put("3","4");
-		mapLast3_6Years.put("4","5");
-		mapLast3_6Years.put("5","6");
-		mapLast3_6Years.put("6","7");
-		mapLast3_6Years.put("7","8");
-		mapLast3_6Years.put("8","9");
-		mapLast3_6Years.put("9","10");
+		mapLast3_6Years.put("00","1");
+		mapLast3_6Years.put("01","2");
+		mapLast3_6Years.put("02","3");
+		mapLast3_6Years.put("03","4");
+		mapLast3_6Years.put("04","5");
+		mapLast3_6Years.put("05","6");
+		mapLast3_6Years.put("06","7");
+		mapLast3_6Years.put("07","8");
+		mapLast3_6Years.put("08","9");
+		mapLast3_6Years.put("09","10");
 		mapLast3_6Years.put("10","11");
 		mapLast3_6Years.put("11","12");
 		mapLast3_6Years.put("12","13");
