@@ -1,11 +1,11 @@
 package it.cg.main.init;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -13,9 +13,8 @@ import javax.servlet.annotation.WebListener;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.AbstractResource;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 
 @WebListener
 @Configuration
@@ -30,87 +29,48 @@ public class ApplicationContextConfig implements ServletContextListener
 	 */
 	@Bean
 	@PostConstruct
-	public static PropertySourcesPlaceholderConfigurer properties()
-		{
-		logger.info("Loading properties");
-		PropertySourcesPlaceholderConfigurer propConf = new PropertySourcesPlaceholderConfigurer();
-//		vvvvvvvvvvv TODO for external conf files vvvvvvvvvvv
-//		String pathLog4j = getPropertyValue(StaticGeneralConfig.LOG4J_PARAM_MAIN_PROPERTIES.value());
-//		String pathEndpoint = getPropertyValue(StaticGeneralConfig.WEBSERVICE_PARAM_MAIN_PROPERTIES.value());
-//		String pathRouting = getPropertyValue(StaticGeneralConfig.ROUTING_PARAM_MAIN_PROPERTIES.value());
-		
-//        AbstractResource resources[] = new AbstractResource[] {
-//        		new ClassPathResource(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()),
-//        		new FileSystemResource(pathLog4j),
-//        		new FileSystemResource(pathEndpoint),
-//        		new FileSystemResource(pathRouting)
-//        };
-//		^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//		Internal conf files
-		
-        AbstractResource resources[] = new AbstractResource[] {
-        		new ClassPathResource(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value())
-        };
-		
+	public static PropertyPlaceholderConfigurerProxy properties()
+	{
+		logger.info("WrapperPASS-init Loading properties begin");
+		PropertyPlaceholderConfigurerProxy propConf = new PropertyPlaceholderConfigurerProxy();
+
+        AbstractResource resources[] ;
+
+		resources = new AbstractResource[] {
+			new FileSystemResource(SystemEnvironmentBean.getFullPathNameConfigFile())
+		};
 		propConf.setLocations(resources);
+		logger.info("WrapperPASS-init "+SystemEnvironmentBean.getFullPathNameConfigFile()+" loaded");
 		propConf.setIgnoreUnresolvablePlaceholders(true);
-		
+		logger.info("WrapperPASS-init set ignoreUnresolvablePlaceholders true");
+
+		logger.info("WrapperPASS-init Loading properties finish");
+
 		return propConf;
 	}
-	
-	/**
-	 * main.properties contiene i path delle configurazioni esterne
-	 * @param resourceRequest
-	 * @return
-	 */
-	private static String getPropertyValue(String resourceRequest)
-	{
-		String paramValue = "";
-		try
-		{
-			InputStream input =  ApplicationContextConfig.class.
-							getClassLoader().getResourceAsStream(StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value());
-			Properties properties = new Properties();
-			
-			properties.load(input);
-			
-			paramValue = properties.getProperty(resourceRequest);
-		}
-		catch (IOException ex) {
-			logger.error("GRAVE Impossibile caricare le configurazioni principali"+ex.getMessage());
-			ex.printStackTrace();
-		}
-		catch (NullPointerException ex) {
-			logger.error("GRAVE Impossibile caricare le configurazioni principali, null pointer exception "+ex.getMessage());
-			ex.printStackTrace();
-		}
-		
-		return paramValue;
-	}
-
 
 
 	/**
-	 * Inizializzo il log4j
+	 * Inizializzo il main.properties
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent event)
 	{
 		logger.info("contextInitialized begin initialize context:"+event);
 		
-		ServletContext context = event.getServletContext();
 		Properties properties = new Properties();
 		try
 		{
-			properties.load(context.getResourceAsStream(StaticGeneralConfig.MAIN_PROPERTIES_CLASSPATH.value()+
-								StaticGeneralConfig.MAIN_PROPERTIES_FILE_NAME.value()));
+			InputStream input = new FileInputStream(SystemEnvironmentBean.getFullPathNameConfigFile());
+			properties.load(input);
+
+			logger.info("contextInitialized "+SystemEnvironmentBean.getFullPathNameConfigFile()+" loaded");
 		}
 		catch (IOException ex)
 		{
-			logger.error("GRAVE Impossibile caricare le configurazioni principali del main.properties"+ex.getMessage());
+			logger.error("GRAVE Impossibile caricare le configurazioni principali del main.properties "+ex.getMessage());
 			ex.printStackTrace();
 		}
-		
 
 		logger.info("contextInitialized finish initialize context");
 	}

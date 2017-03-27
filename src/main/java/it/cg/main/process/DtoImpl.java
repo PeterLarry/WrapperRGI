@@ -37,7 +37,7 @@ public abstract class DtoImpl implements Serializable
 	/**
 	 * Binding error
 	 * 
-	 * @param AggregateMessageDeliveryException
+	 * @param errorMessage AggregateMessageDeliveryException
 	 */
 	public void bindAggregateError(AggregateMessageDeliveryException errorMessage)
 	{
@@ -70,7 +70,7 @@ public abstract class DtoImpl implements Serializable
 	/**
 	 * Every pass response have a message error object,<br>
 	 *  this method set the right fields to return to DL
-	 * @param MsgResponseHeader
+	 * @param msgError MsgResponseHeader
 	 * @return boolean, if true = there are errors, else no errors found
 	 */
 	public boolean bindPassError(MsgResponseHeader msgError)

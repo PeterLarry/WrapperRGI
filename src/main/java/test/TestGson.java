@@ -45,10 +45,10 @@ public class TestGson
 		testQuote.setAffinity("0");
 		testQuote.setOtherVehiclesInsuredWithUs(true);
 		testQuote.setNumberOfClaimsInLastYear(0);
-		testQuote.setCampaign("A");
+		//testQuote.setCampaign("A");
 		testQuote.setRenewalYears(0);
 		testQuote.setOtherVehiclesInsuredWithUs(true);
-		testQuote.setGoodDriverClass("02");
+		//testQuote.setGoodDriverClass("02");
 		testQuote.setInnerClass("2");
 		testQuote.setPreviousRenewalYears(0);
 		testQuote.setFiddleFactorCalculationRequired(null);
