@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.jboss.spring.integration.wrapper</groupId>
 	<artifactId>WrapperRGI</artifactId>
-	<version>3.0.1-SNAPSHOT</version>
+	<version>3.3.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>WrapperDL-RGI</name>
 	<!-- distributionManagement -->
@@ -16,24 +16,7 @@
 			<url>http://vbbolly.directline.italy:8080/nexus-2.2-01/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
-	<!-- Profiles configurable for jenkins, part 1 -->
-	<profiles>
-		<profile>
-			<id>DEV</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<build.profile.id>DEV</build.profile.id>
-			</properties>
-		</profile>
-		<profile>
-			<id>SYS</id>
-			<properties>
-				<build.profile.id>SYS</build.profile.id>
-			</properties>
-		</profile>
-	</profiles>
+	
 	<!-- DEPENDENCIES -->
 	<dependencies>
 		<dependency>
@@ -205,13 +188,9 @@
 	</properties>
 	<!-- Build MAVEN -->
 	<build>
-		<filters>
-			<filter>profiles/${build.profile.id}/config.properties</filter>
-		</filters>
 		<!-- The name of the generated war from main.properties -->
 		<finalName>${m2e.app.name}</finalName>
 		<resources>
-			<!-- Profiles configurable for jenkins, part 2 -->
 			<resource>
 				<directory>${basedir}/src/main/resurces</directory>
 				<filtering>true</filtering>

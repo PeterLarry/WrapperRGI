@@ -35,7 +35,9 @@ public class MapperAssetSectionToPASS
 	private IFigure figureOwner;
 	private Integer numberOfYoungDriver;
 	private MapperUtilityToPASS utilityToPass = new MapperUtilityToPASS();
-
+	private boolean otherVehicle;
+	private String otherProvince;
+	
 	private Date rateFromDate;
 
 	/**
@@ -50,6 +52,10 @@ public class MapperAssetSectionToPASS
 				" assetInReqest:"+assetInReqest+" codeAssetUnitReqest:"+codeAssetUnitReqest+
 				" figureOwnerRequest:"+figureOwnerRequest);
 		
+		otherVehicle = utilityToPass.isOtherVehicleEmpty(inbJsonRequest.getInboundQuoteDTO());
+		if(!otherVehicle){
+			otherProvince = inbJsonRequest.getInboundQuoteDTO().getOtherVehicle().getProvince();
+		}
 		EnumRiskType riskType = inbJsonRequest.getInboundQuoteDTO().getContext().getRiskType();
 		logger.debug("getAssetSections init riskType="+riskType);
 		List<ICoverage> listCov = inbJsonRequest.getInboundQuoteDTO().getCoverages();
@@ -127,6 +133,14 @@ public class MapperAssetSectionToPASS
 			unitInstance.setEnableTariffFormulaLog(this.tybF);
 		logger.debug("getUnitInstanceInit wsUnitInstance.EnableTariffFormulaLog="+isEnableTariffFormulaLogActive);
 //		ExceptionCode
+		
+		if(!otherVehicle)
+		{
+			unitInstance.setExceptionCode(otherProvince);
+			logger.debug("getUnitInstanceInit otherVehicle.Province="+
+					otherProvince+" --> wsUnitInstance.ExceptionCode="+unitInstance.getExceptionCode());
+		}
+		else 
 		if(figureOwner != null && figureOwner.getResidenceAddress() != null)
 		{
 			unitInstance.setExceptionCode(figureOwner.getResidenceAddress().getProvince());

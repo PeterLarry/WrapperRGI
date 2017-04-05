@@ -31,6 +31,7 @@ import it.cg.main.integration.mapper.enumerations.ENUMInternalAssetInstanceFacto
 import it.cg.main.integration.mapper.enumerations.ENUMInternalCodeProduct;
 import it.cg.main.integration.mapper.enumerations.ENUMInternalWsProductFactors;
 import it.cg.main.process.mapping.utilities.MapperHashmapUtilitiesToPASS;
+import it.cg.main.process.mapping.utilities.MapperUtilityToPASS;
 
 @Service
 public class MapperProductAssetToPASS
@@ -474,10 +475,11 @@ public class MapperProductAssetToPASS
 	{
 		List<WsAssetInstance> listAssetInstResponse = new ArrayList<WsAssetInstance>();
 		WsAssetInstance assetInstanceResponse = new WsAssetInstance();
-
-		boolean isVehicleMopedMotorbike = isVehicleMopedMotorbike(quote.getContext().getRiskType());
+		MapperUtilityToPASS mapForOtherVehicle = new MapperUtilityToPASS();
 		
-		boolean isOtherVehicleEmpty = isOtherVehicleEmpty(quote);
+		boolean isVehicleMopedMotorbike = isVehicleMopedMotorbike(quote.getContext().getRiskType());
+		boolean isOtherVehicleEmpty = mapForOtherVehicle.isOtherVehicleEmpty(quote);
+		
 		logger.debug("quoteToWsAssetInstance isOtherVehicleEmpty:"+isOtherVehicleEmpty);
 		
 //		factor 2Loyal and lastYears 3 and 6
@@ -596,14 +598,24 @@ public class MapperProductAssetToPASS
 			factAsset.add(wsFactor);
 		}
 				
-		if(quote.getInnerClass() != null)
+		if(!isOtherVehicleEmpty)
 		{
-			wsFactor = new WsFactor();
-			wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CU.value());
-			wsFactor.setValue(quote.getInnerClass());
-			logger.debug("quoteToWsAssetInstance add factor : " + "quote.getInnerClass()" + " = " +quote.getInnerClass()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
-			factAsset.add(wsFactor);
-		}
+			if(quote.getOtherVehicle().getBmClass()!=null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CU.value());
+				wsFactor.setValue(quote.getOtherVehicle().getBmClass());
+				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getOtherVehicle().getBmClass()" + " = " +quote.getOtherVehicle().getBmClass()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+				factAsset.add(wsFactor);
+			}
+		}else if(quote.getInnerClass() != null)
+			{
+				wsFactor = new WsFactor();
+				wsFactor.setCode(ENUMInternalAssetInstanceFactors.FACTOR__2CU.value());
+				wsFactor.setValue(quote.getInnerClass());
+				logger.debug("quoteToWsAssetInstance add factor : " + "quote.getInnerClass()" + " = " +quote.getInnerClass()+" --> "+wsFactor.getCode()+" = "+wsFactor.getValue());
+				factAsset.add(wsFactor);
+			}
 				
 		if(quote.getDriverNumber() != null)
 		{
@@ -1213,22 +1225,4 @@ public class MapperProductAssetToPASS
 	
 	}
 	
-	/**
-	 * check the field ownBehalf that seams is never null
-	 * @param quote
-	 * @return if otherVehicle or OwnBehalf are null
-	 */
-	private boolean isOtherVehicleEmpty(Quote quote)
-	{
-		boolean isEmptyOtherVehicle = false ;
-		
-		IOtherVehicle otherVehicle = quote.getOtherVehicle();
-		
-		if(otherVehicle == null || otherVehicle.getBmClass() == null )
-			isEmptyOtherVehicle = true;
-		
-		return isEmptyOtherVehicle;
-	}
-
-
 }

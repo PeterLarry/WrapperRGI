@@ -11,6 +11,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.apache.log4j.Logger;
 
 import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IFigure;
+import com.mapfre.engines.rating.common.base.intefaces.bo.proxy.IOtherVehicle;
 import com.mapfre.engines.rating.common.enums.EnumRole;
 import com.pass.global.TypeData;
 import com.pass.global.WsAsset;
@@ -94,6 +95,23 @@ public class MapperUtilityToPASS
 		
 		return dataOpenTypeData;
 	
+	}
+	
+	/**
+	 * check the field ownBehalf that seams is never null
+	 * @param quote
+	 * @return if otherVehicle or OwnBehalf are null
+	 */
+	public boolean isOtherVehicleEmpty(Quote quote)
+	{
+		boolean isEmptyOtherVehicle = false ;
+		
+		IOtherVehicle otherVehicle = quote.getOtherVehicle();
+		
+		if(otherVehicle == null || otherVehicle.getBmClass() == null )
+			isEmptyOtherVehicle = true;
+		
+		return isEmptyOtherVehicle;
 	}
 
 }
